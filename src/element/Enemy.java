@@ -2,11 +2,9 @@ package element;
 
 import java.awt.image.BufferedImage;
 
-import com.golden.gamedev.object.Sprite;
-
-public abstract class Enemy extends Sprite{
+public abstract class Enemy extends Element{
 	
-	private int hp;
+	private int healthPoint;
 
 	public Enemy(BufferedImage image){
 		super(image);
@@ -14,39 +12,18 @@ public abstract class Enemy extends Sprite{
 	
 	public abstract void attack();
 	
-	public void changeHp(int h){
-		hp = h;
+	public void setHP(int healthPoint){
+		this.healthPoint = healthPoint;
 	}
 	
-	public int getHp(){
-		return hp;
+	public int getHP(){
+		return healthPoint;
 	}
 	
-	public abstract void death();
+//	public abstract void death();
 	
 	public void death(BufferedImage i){
 		this.setImage(i);
 	}
 	
-	public void setSpeed(double x,double y){
-		this.setSpeed(x, y);
-	}
-	
-	public void setLocation(int x, int y){
-		this.setLocation(x, y);
-	}
-	
-	public double getLocationX(){
-		return this.getX();
-	}
-	
-	public double getLocationY(){
-		return this.getY();
-	}
-	
-	public void setImage(BufferedImage image){
-		this.setImage(image);
-	}
-	
-		
 }
