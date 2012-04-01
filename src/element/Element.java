@@ -9,6 +9,10 @@ public abstract class Element extends Sprite{
 	public Element(BufferedImage image) {
 		super(image);
 	}
+	
+	public Element(){
+		super();
+	}
 
 	public void setSpeed(double x,double y){
 		super.setSpeed(x, y);
