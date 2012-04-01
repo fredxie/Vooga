@@ -28,14 +28,14 @@ public class FighterEnemyCollision extends BasicCollisionGroup{
 		explosion = images;
 	}
 
-	public void collided(Fighter s1, Enemy s2) {
+	public void collided(Sprite s1, Sprite s2) {
 		s2.setActive(false);
 
 		collideEvent(s1, s2);
 
 	}
 
-	public void collideEvent(Element s1, Element s2) {
+	public void collideEvent(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
 		playfield.add(new VolatileSprite(explosion, s1.getX(), s1.getY()));
 		if(((Fighter) s1).getLifeNum()==1)
@@ -43,18 +43,12 @@ public class FighterEnemyCollision extends BasicCollisionGroup{
 
 			else{
 				
-			((Fighter) s1).setHP(Configuration.HP);
+			((Fighter) s1).setHP(Configuration.FIGHTER_HP);
 				
 			((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum()-1);
 			}
 			
 	}		
-
-	@Override
-	public void collided(Sprite s1, Sprite s2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 

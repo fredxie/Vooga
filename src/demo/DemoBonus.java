@@ -18,6 +18,7 @@ public class DemoBonus extends Bonus{
 
 	public void init() {
 	  //this.setWeaponDamage();
+		this.setWeaponStyle(TopDownUtility.getRandom(0, 2));
 		this.setWeaponStyle(TopDownUtility.getRandom(0,Configuration.BONUS_STYLE_NUM-1));
 		this.setX(TopDownUtility.getRandom(0, DemoGameEngine.WIDTH
 				- this.getWidth()));

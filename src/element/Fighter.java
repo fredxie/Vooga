@@ -10,10 +10,19 @@ import com.golden.gamedev.object.Timer;
 
 public abstract class Fighter extends Element {
 	
-	private int healthPoint;
+	private int healthPoint = Configuration.FIGHTER_HP;
 	private int lifeNum = Configuration.lifeNum;
 	private int weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
-	private int weaponStyle = 1;
+	
+	private int weaponStyle = Configuration.INITIAL_STYLE;
+	public int getWeaponStyle() {
+		return weaponStyle;
+	}
+
+	public void setWeaponStyle(int weaponStyle) {
+		this.weaponStyle = weaponStyle;
+	}
+
 	private double speedX, speedY;
 	private double moveSpeed= 0.3;
 	
@@ -45,7 +54,14 @@ public abstract class Fighter extends Element {
 	public int getHP() {
 		return healthPoint;
 	}
+	
+	public int getLifeNum(){
+		return lifeNum;
+	}
 
+	public void setLifeNum(int lifeNum){
+		this.lifeNum = lifeNum;
+	}
 	public void setWeapon(int weaponDamage, int weaponStyle) {
 		//change according to bonus
 		this.weaponDamage = weaponDamage;
@@ -94,6 +110,15 @@ public abstract class Fighter extends Element {
 	public void death(BufferedImage i){
 		this.setImage(i);
 	}
+	
+	public int getWeaponDamage() {
+		return weaponDamage;
+	}
+
+	public void setWeaponDamage(int weaponDamage) {
+		this.weaponDamage = weaponDamage;
+	}
+
 	
 	public abstract void attack(long elapsedTime, int weaponStyle, int weaponDamage);
 }

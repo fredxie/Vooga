@@ -8,6 +8,7 @@ import util.TopDownImageUtil;
 
 import element.Bullet;
 import element.Fighter;
+import game.Configuration;
 
 public class DemoFighter extends Fighter{
 	
@@ -17,7 +18,6 @@ public class DemoFighter extends Fighter{
 
 	public void init() {
 		
-		setHP(10);//Default HP
 		setRefireRate(300);//Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH/2, playfield.getBackground().getHeight()-getHeight());//Default Location
 		playfield.getGroup("Fighter").add(this);
