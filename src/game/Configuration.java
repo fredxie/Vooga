@@ -28,6 +28,11 @@ public class Configuration {
     public static int lifeNum =2;
     public static int INITIAL_STYLE =0;
     
+    
+    public static int BOMB_NUM =5;
+    public static int BOMB = KeyEvent.VK_CONTROL;
+
+    
 //	public static void setter(int level) {
 //		switch (level) {
 //		case 0: 

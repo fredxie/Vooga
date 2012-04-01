@@ -83,6 +83,7 @@ public class DemoGame extends TopDownGameObject {
 		
 		fighter.refresh(elapsedTime);
 		
+		fighter.bomb(elapsedTime);
 		//update Enemies
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i].refresh(elapsedTime);
