@@ -24,4 +24,10 @@ public class RegularFighter extends Fighter {
 		
 	}
 
+	@Override
+	public void bomb(long elapsedTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

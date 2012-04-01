@@ -1,13 +1,18 @@
 package demo;
 
 
+import element.Element;
 import game.TopDownGameEngine;
 import game.TopDownGameObject;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import levelEditor.LevelEditor;
+import menu.GameSL;
 
 import background.TopDownImageBackground;
 
@@ -56,7 +61,15 @@ public class DemoMenu extends TopDownGameObject {
 			}
 			if (option == 4){
 				// load and start game
-				
+				GameSL sl = new GameSL();
+				try{
+				ArrayList<Element> list = sl.loadElement("1.jason");
+				HashMap<Integer,String> map= sl.loadMap("1.jason");
+				String path = map.get(0);
+				}
+				catch(IOException e){
+					
+				}
 			}
 			break;
 
