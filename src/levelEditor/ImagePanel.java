@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 class ImagePanel extends JPanel {
 
 	private Image img;
-	private Dimension size = new Dimension(500,600);
+	//private Dimension size = new Dimension(500,600);
 	
 	public ImagePanel(){
 		
@@ -18,7 +18,7 @@ class ImagePanel extends JPanel {
 
 	public ImagePanel(Image img) {
 		this.img = img;
-		//Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
@@ -28,7 +28,7 @@ class ImagePanel extends JPanel {
 
 	public void setImage(Image img) {
 		this.img = img;
-		//Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
