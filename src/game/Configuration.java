@@ -21,9 +21,12 @@ public class Configuration {
 
   //Default Fighter HP & LifeNum
     public static int FIGHTER_WEAPON_DAMAGE = 1;
+    public static int ENEMY_WEAPON_DAMAGE = 1;
     
     public static int ENEMY_HP = 1;
-    public static int lifeNum =3;
+    public static int FIGHTER_HP = 1;
+    public static int lifeNum =2;
+    public static int INITIAL_STYLE =0;
     
 //	public static void setter(int level) {
 //		switch (level) {

@@ -51,6 +51,11 @@ public class DemoGame extends TopDownGameObject {
 		EnemyDestroyedCollision.destroyed = 0;
 
 		playfield.init();
+		for (int i = 0; i < blockNum; i++) {
+			blocks[i] = new DemoBlock(playfield,
+					getImage("images/game/block.png"));
+			blocks[i].init();
+		}
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
@@ -68,11 +73,7 @@ public class DemoGame extends TopDownGameObject {
 			bonuses[i].init();
 		}
 		
-		for (int i = 0; i < blockNum; i++) {
-			blocks[i] = new DemoBlock(playfield,
-					getImage("images/game/block.png"));
-			blocks[i].init();
-		}
+		
 	}
 
 	@Override
