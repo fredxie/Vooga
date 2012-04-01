@@ -12,6 +12,10 @@ public abstract class Element extends Sprite{
 	public Element(BufferedImage image) {
 		super(image);
 	}
+	
+	public Element(){
+		super();
+	}
 
 	public Element(BufferedImage image, double x, double y) {
 		super(image, x, y);

@@ -26,6 +26,7 @@ public class TopDownMenu extends GameObject {
 	private int numOfOptions;
 
 	public TopDownMenu(HashMap<String, Object> input) {
+		super(null);
 		map = new HashMap<String, Object>(input);
 		numOfOptions = map.size();
 		optionNames = new ArrayList<String>();
