@@ -54,28 +54,47 @@ public class LevelEditor extends JFrame implements ActionListener{
 	
 	public LevelEditor(){
 		super("Level Editor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		list = new ArrayList<Element>();
 		myMap = new HashMap<Integer,String>();
 		panel_1 = new ImagePanel(loadDefalutBackground());
 		panel_1.setLayout(null);
 		panel_2 = new JPanel();
 		//panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.PAGE_AXIS));
-		panel_2.setLayout(new GridLayout(4, 2));
+		panel_2.setLayout(new GridLayout(5, 2, 10, 10));
 		//new BorderLayout();
 		//panel_2.setLayout(null);
 		
 		setLayout(null);
+//
 		//panel1.getViewport().setBackground(Color.BLACK);
 		//panel_1.setBackground();
 	
 		
 		//panel2.getViewport().setBackground(Color.WHITE);
 		panel_2.setBackground(Color.WHITE);
+//
+		panel1 = new JScrollPane(panel_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		
+		
+		panel2 = new JScrollPane(panel_2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		
+		//panel1.getViewport().setBackground(Color.BLACK);
+		//panel_1.setBackground();
+		panel1.setBounds(0, 0, 500, 600);
+		
+		//panel2.getViewport().setBackground(Color.WHITE);
+		panel_2.setBackground(Color.WHITE);
+		panel2.setBounds(500,0,300,600);
+//
 		
 		int gap = 10;
 		  panel_2.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
-		
+	
 		
 		setButtons();
 		
@@ -89,9 +108,7 @@ public class LevelEditor extends JFrame implements ActionListener{
 		panel2.setBounds(500,0,300,600);
 		add(panel1);
 		add(panel2);
-		
-		
-			
+	
 		pack();
 	
 		setSize(810,635);
@@ -188,6 +205,7 @@ public class LevelEditor extends JFrame implements ActionListener{
         	di.addToPanel(panel_1);
         	
         	di.setVisible(true);
+        	
         	panel_1.revalidate();
         	panel_1.repaint();
 	}

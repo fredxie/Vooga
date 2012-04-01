@@ -37,6 +37,7 @@ public class DragImage extends JLabel implements MouseMotionListener, MouseListe
 		myElement = element;
 		list = inputList;
 		image = im;
+		//this.setAutoscrolls(true);
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		ImageIcon Icon = new ImageIcon(image);

@@ -21,4 +21,7 @@ public class TopDownPlayField extends PlayField{
 	public TopDownTileBackground getTileBackground(){
 		return (TopDownTileBackground) super.getBackground();
 	}
+	public ElementGroup getGroup(String name){
+		return (ElementGroup) super.getGroup(name);
+	}
 }

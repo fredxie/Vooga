@@ -54,13 +54,4 @@ public class EnemyFighterBulletCollision extends BasicCollisionGroup{
 			
 	}
 
-//	@Override
-//	public void collided(Sprite s1, Sprite s2) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
-
-	
 }

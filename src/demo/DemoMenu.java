@@ -7,6 +7,8 @@ import game.TopDownGameObject;
 import java.awt.*;
 import java.awt.event.*;
 
+import levelEditor.LevelEditor;
+
 import background.TopDownImageBackground;
 
 
@@ -48,18 +50,26 @@ public class DemoMenu extends TopDownGameObject {
 				// end
 				finish();
 			}
+			if (option == 3) {
+				// level editor
+				LevelEditor l = new LevelEditor();
+			}
+			if (option == 4){
+				// load and start game
+				
+			}
 			break;
 
 		case KeyEvent.VK_UP:
 			option--;
 			// loop
 			if (option < 0)
-				option = 2;
+				option = 4;
 			break;
 
 		case KeyEvent.VK_DOWN:
 			option++;
-			if (option > 2)
+			if (option > 4)
 				option = 0;
 			break;
 
@@ -76,6 +86,8 @@ public class DemoMenu extends TopDownGameObject {
 		fontManager.getFont("FPS Font").drawString(g, "EASY", 150, 100);
 		fontManager.getFont("FPS Font").drawString(g, "HARD", 150, 140);
 		fontManager.getFont("FPS Font").drawString(g, "EXIT", 150, 180);
+		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 220);
+		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150, 260);
 		g.drawImage(getImage("images/menu/MenuArrow.png"), 110, 90 + (option * 40), null);
 	}
 

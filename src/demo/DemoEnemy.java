@@ -14,6 +14,7 @@ import util.TopDownUtility;
 import element.Bullet;
 import element.Enemy;
 import element.TopDownPlayField;
+import game.Configuration;
 
 public class DemoEnemy extends Enemy{
 
@@ -58,7 +59,7 @@ public class DemoEnemy extends Enemy{
 				try {
 					enemyMissile = new Bullet(ImageIO.read(new File(
 							"images/game/emissle_easy.png")), getX()
-							+ getWidth() / 2, getY() + 20);
+							+ getWidth() / 2, getY() + 20, Configuration.ENEMY_WEAPON_DAMAGE);
 					enemyMissile.setVerticalSpeed(0.3);
 					playfield.getGroup("Enemy Missile").add(enemyMissile);
 					refireRate.refresh();

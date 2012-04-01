@@ -1,6 +1,10 @@
 package demo;
 
 import collision.EnemyFighterBulletCollision;
+import collision.FighterBlockCollision;
+import collision.FighterBonusCollision;
+import collision.FighterEnemyBulletCollision;
+import collision.FighterEnemyCollision;
 import background.TopDownTileBackground;
 import util.TopDownImageUtil;
 import util.TopDownUtility;
@@ -39,19 +43,29 @@ public class DemoPlayField extends TopDownPlayField{
 //				new EnemyDestroyedCollision(this, TopDownImageUtil.getImages(
 //						"images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
-				ENEMY_MISSILE,
-				FIGHTER,
-				new FighterDestroyedCollision(this, TopDownImageUtil.getImages(
+				
+				FIGHTER,ENEMY_MISSILE,
+				new FighterEnemyBulletCollision(this, TopDownImageUtil.getImages(
 						"images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
-				ENEMY,
-				FIGHTER,
-				new FighterDestroyedCollision(this, TopDownImageUtil.getImages(
+				
+				FIGHTER, ENEMY,
+				new FighterEnemyCollision(this, TopDownImageUtil.getImages(
 						"images/game/explosion.png", 6, 1)));
 		
 		this.addCollisionGroup(
 				ENEMY, FIGHTER_MISSILE, 
 				new EnemyFighterBulletCollision(this, TopDownImageUtil.getImages(
+						"images/game/explosion.png", 6, 1)));
+		
+		this.addCollisionGroup(
+				FIGHTER, BONUS, 
+				new FighterBonusCollision(this, TopDownImageUtil.getImages(
+						"images/game/explosion.png", 6, 1)));
+        this.addCollisionGroup(
+				
+				FIGHTER, BLOCK,
+				new FighterBlockCollision(this, TopDownImageUtil.getImages(
 						"images/game/explosion.png", 6, 1)));
 	}
 
