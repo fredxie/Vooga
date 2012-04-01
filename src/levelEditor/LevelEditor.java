@@ -54,7 +54,7 @@ public class LevelEditor extends JFrame implements ActionListener{
 	
 	public LevelEditor(){
 		super("Level Editor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		list = new ArrayList<Element>();
 		myMap = new HashMap<Integer,String>();
 		panel_1 = new ImagePanel(loadDefalutBackground());
@@ -64,20 +64,22 @@ public class LevelEditor extends JFrame implements ActionListener{
 		//panel_2.setLayout(null);
 		
 		setLayout(null);
-		panel1 = new JScrollPane(panel_1,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		panel1 = new JScrollPane(panel_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		panel2 = new JScrollPane(panel_2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		
+		
+		panel2 = new JScrollPane(panel_2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		
 		//panel1.getViewport().setBackground(Color.BLACK);
 		//panel_1.setBackground();
-		panel1.setBounds(0, 0, 500, 1000);
+		panel1.setBounds(0, 0, 500, 600);
 		
 		//panel2.getViewport().setBackground(Color.WHITE);
 		panel_2.setBackground(Color.WHITE);
-		panel2.setBounds(500,0,300,1000);
+		panel2.setBounds(500,0,300,600);
 		
 		add(panel1);
 		add(panel2);
@@ -158,6 +160,7 @@ public class LevelEditor extends JFrame implements ActionListener{
         	di.addToPanel(panel_1);
         	
         	di.setVisible(true);
+        	
         	panel_1.revalidate();
         	panel_1.repaint();
 	}
