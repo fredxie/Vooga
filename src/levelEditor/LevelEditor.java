@@ -60,10 +60,14 @@ public class LevelEditor extends JFrame implements ActionListener{
 		panel_1 = new ImagePanel(loadDefalutBackground());
 		panel_1.setLayout(null);
 		panel_2 = new JPanel();
-		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.PAGE_AXIS));
-		//panel_2.setLayout(null);
+		
+		panel_2.setLayout(new GridLayout(5, 2, 10, 10));
+		
 		
 		setLayout(null);
+
+		panel_2.setBackground(Color.WHITE);
+
 		panel1 = new JScrollPane(panel_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
@@ -72,22 +76,27 @@ public class LevelEditor extends JFrame implements ActionListener{
 		panel2 = new JScrollPane(panel_2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 	            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		
-		//panel1.getViewport().setBackground(Color.BLACK);
-		//panel_1.setBackground();
+
 		panel1.setBounds(0, 0, 500, 600);
-		
-		//panel2.getViewport().setBackground(Color.WHITE);
+	
 		panel_2.setBackground(Color.WHITE);
 		panel2.setBounds(500,0,300,600);
+
+		
+		int gap = 10;
+		  panel_2.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
+	
+		
+		setButtons();
 		
 		add(panel1);
 		add(panel2);
-		
-		setButtons();
-			
-		setSize(800,600);
+	
+		pack();
+	
+		setSize(810,635);
 		setVisible(true);
+		
 	}
 	
 	private void setButtons(){
@@ -100,32 +109,22 @@ public class LevelEditor extends JFrame implements ActionListener{
 		save = new JButton("Save");
 		exit = new JButton("Exit");
 
-		
-		enemy.setAlignmentX(Component.CENTER_ALIGNMENT);
-		player.setAlignmentX(Component.CENTER_ALIGNMENT);
-		map.setAlignmentX(Component.CENTER_ALIGNMENT);
-		weapon.setAlignmentX(Component.CENTER_ALIGNMENT);
-		bonus.setAlignmentX(Component.CENTER_ALIGNMENT);
-		block.setAlignmentX(Component.CENTER_ALIGNMENT);
-		save.setAlignmentX(Component.CENTER_ALIGNMENT);
-		exit.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		/*
-		enemy.setBounds(520,20,100,100);
-		player.setBounds(670, 20, 100, 100);
-		map.setBounds(520, 170, 100, 100);
-		weapon.setBounds(670,170,100,100);
-		bonus.setBounds(520,320,100,100);
-		block.setBounds(670,320,100,100);
-		save.setBounds(520, 470, 100, 100);
-		exit.setBounds(670, 470, 100, 100);
-		*/
-		
+		  enemy.setFont(new Font("Arial", 2, 20));
+		  player.setFont(new Font("Arial", 2, 20));
+		  map.setFont(new Font("Arial", 2, 20));
+		  weapon.setFont(new Font("Arial", 2, 20));
+		  bonus.setFont(new Font("Arial", 2, 20));
+		  block.setFont(new Font("Arial", 2, 20));
+		  save.setFont(new Font("Arial", 2, 20));
+		  exit.setFont(new Font("Arial", 2, 20));
+	
 		enemy.addActionListener(this);
 		player.addActionListener(this);
 		map.addActionListener(this);
 		save.addActionListener(this);
 		exit.addActionListener(this);
+		
+		
 		
 		panel_2.add(enemy);
 		panel_2.add(player);
@@ -135,7 +134,7 @@ public class LevelEditor extends JFrame implements ActionListener{
 		panel_2.add(block);
 		panel_2.add(save);
 		panel_2.add(exit);
-		
+	
 	}
 	
 	public static void main(String[] args){
