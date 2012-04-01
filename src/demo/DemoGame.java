@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 
 import util.TopDownImageUtil;
 
+import collision.EnemyFighterBulletCollision;
+
 import com.golden.gamedev.object.AnimatedSprite;
 
 import background.TopDownBackground;
@@ -48,7 +50,7 @@ public class DemoGame extends TopDownGameObject {
 	@Override
 	public void initResources() {
 		
-		EnemyDestroyedCollision.destroyed = 0;
+		EnemyFighterBulletCollision.destroyed = 0;
 
 		playfield.init();
 		for (int i = 0; i < blockNum; i++) {
@@ -106,8 +108,16 @@ public class DemoGame extends TopDownGameObject {
 		playfield.render(g);
 		// display enemies destroyed
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + EnemyDestroyedCollision.destroyed, 20,
+				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
 				20);
+		
+		fontManager.getFont("FPS Font").drawString(g,
+				"PLAYER HP   " + fighter.getHP(), 20,
+				35);
+		
+		fontManager.getFont("FPS Font").drawString(g,
+				"PLAYER LIFE NUMBER   " + fighter.getLifeNum(), 20,
+				50);
 		// game over
 		if (completed) {
 			fontManager.getFont("FPS Font").drawString(g,

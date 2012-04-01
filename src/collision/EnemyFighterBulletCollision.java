@@ -20,6 +20,7 @@ public class EnemyFighterBulletCollision extends BasicCollisionGroup{
 
 	private TopDownPlayField playfield;
 	private BufferedImage[] explosion;
+	public static int destroyed=0;
 	
 	public EnemyFighterBulletCollision(TopDownPlayField field, BufferedImage[] images) {
 		super();
@@ -42,6 +43,7 @@ public class EnemyFighterBulletCollision extends BasicCollisionGroup{
 		{
 //			if(((Enemy) s1).getLifeNum()==1)
             s1.setActive(false);
+            destroyed++;
 //			else{
 //				
 //			((Enemy) s1).setHP(Configuration.HP);

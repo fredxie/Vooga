@@ -39,7 +39,10 @@ public class FighterEnemyCollision extends BasicCollisionGroup{
 		// TODO Auto-generated method stub
 		playfield.add(new VolatileSprite(explosion, s1.getX(), s1.getY()));
 		if(((Fighter) s1).getLifeNum()==1)
+		{
 			s1.setActive(false);
+			
+		}
 
 			else{
 				
