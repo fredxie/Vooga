@@ -9,10 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.GameFont;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
-public class TopDownMenu extends Game {
+public class TopDownMenu extends GameObject {
 
 	private GameFont font;
 	private BufferedImage titleImage;

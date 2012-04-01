@@ -1,34 +1,44 @@
 package element;
 
-import java.awt.image.BufferedImage;
+import game.Configuration;
+import game.TopDownGame;
+import game.TopDownGameObject;
 
+import java.awt.image.BufferedImage;
+import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Timer;
 
 public abstract class Fighter extends Element {
-
-	private final int UP = 0;
-	private final int DOWN = 1;
-	private final int LEFT = 2;
-	private final int RIGHT = 3;
-
+	
 	private int healthPoint;
-	private int lifeNum;
-	private int weaponDamage;
-	private int weaponStyle;
+	private int lifeNum = Configuration.lifeNum;
+	private int weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
+	private int weaponStyle = 1;
 	private double speedX, speedY;
-	private double moveSpeed;
-	private boolean allowFire = false;
-	private Timer refireRate = new Timer(300); // allow to refire after 300 ms
-												// (default)
-	private BufferedImage bulletImage;
-
-	private double backgroundSpeed;
+	private double moveSpeed= 0.3;
+	
+	public boolean allowFire = true; 
+	public Timer refireRate = new Timer(300); // allow to refire after 300 ms
+	                                           // (default)	
+	
+	public TopDownGameObject game;
+//	public Bullet bullet;
+	public BufferedImage bulletImage;
 
 	public Fighter(BufferedImage image) {
 		super(image);
 	}
+	
+	public void setPlayfield(TopDownPlayField playfield){
+		this.playfield = playfield;
+	}
+	
+	public void setGameObject(TopDownGameObject game){
+		this.game = game;
+	}
 
 	public void setHP(int healthPoint) {
+
 		this.healthPoint = healthPoint;
 	}
 
@@ -42,55 +52,48 @@ public abstract class Fighter extends Element {
 		this.weaponStyle = weaponStyle;
 	}
 
-	public void fighterControl(long elapsedTime, int key) {
-		speedX = this.getHorizontalSpeed();
-		speedY = this.getVerticalSpeed();
-		switch (key) {
-		case UP:
+	public void fighterControl(long elapsedTime) {
+//		speedX = this.getHorizontalSpeed();
+//		speedY = this.getVerticalSpeed();
+		speedX = speedY =0;
+		
+		if (game.keyDown(Configuration.UP))
 			speedY = -moveSpeed;
-			break;
-		case DOWN:
+		else if (game.keyDown(Configuration.DOWN))
 			speedY = moveSpeed;
-			break;
-		case LEFT:
-			speedX = -moveSpeed;
-			break;
-		case RIGHT:
-			speedX = moveSpeed;
-			break;
-		}
 
+		else if (game.keyDown(Configuration.LEFT))
+			speedX = -moveSpeed;
+		else if (game.keyDown(Configuration.RIGHT))
+			speedX = moveSpeed;    
+		
+		if(!allowFire){
+			allowFire = refireRate.action(elapsedTime);
+		}
+		
+		else if(allowFire && game.keyDown(Configuration.FIRE))
+			attack(elapsedTime, weaponStyle, weaponDamage);
 		// stay relative motionless to the screen
-		speedY -= backgroundSpeed;
+		speedY -= Configuration.BACKGROUND_SPEED;
 		setSpeed(speedX, speedY);
 	}
 
-	public void fire(long elapsedTime) {
-		if (allowFire == false) {
-			allowFire = refireRate.action(elapsedTime);
-		}
-		if (allowFire) {
-			Bullet missile = new Bullet(bulletImage);
-			//here we also need to add missile to playfield, haven't done yet 
-			setBullet();
-		}
-	}
 
 	public void setRefireRate(int rate) {
 		refireRate = new Timer(rate);
-	}
-	
-	public void setBackgroundSpeed(double backgroundSpeed) {
-		this.backgroundSpeed = backgroundSpeed;
 	}
 
 	public void setBulletImage(BufferedImage bulletImage) {
 		this.bulletImage = bulletImage;
 	}
 	
-	public abstract void setBullet(); //here developer should set their bullet style
+//	public abstract void fighterWeapon(long elapsedTime); //here developer should set their bullet style
+//	public abstract void initFighter();
+	public abstract void refresh(long elapsedTime);
 	
 	public void death(BufferedImage i){
 		this.setImage(i);
 	}
+	
+	public abstract void attack(long elapsedTime, int weaponStyle, int weaponDamage);
 }

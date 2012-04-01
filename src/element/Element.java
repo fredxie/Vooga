@@ -2,12 +2,19 @@ package element;
 
 import java.awt.image.BufferedImage;
 
+import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
 
 public abstract class Element extends Sprite{
 	
+	public TopDownPlayField playfield;
+	
 	public Element(BufferedImage image) {
 		super(image);
+	}
+
+	public Element(BufferedImage image, double x, double y) {
+		super(image, x, y);
 	}
 
 	public void setSpeed(double x,double y){
@@ -29,4 +36,7 @@ public abstract class Element extends Sprite{
 	public void setImage(BufferedImage image){
 		super.setImage(image);
 	}
+	
+	public abstract void init();
+//	public abstract void update(long elapsedTime);
 }
