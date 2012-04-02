@@ -21,7 +21,7 @@ import element.Element;
  * Class provide load and save method for TopDownMenu to store and get edited level
  */
 public class GameSL {
-	private static final String Inteval  = "********";
+	private static final String Inteval  = "ok";
 
 	public GameSL() {
 	}
@@ -49,6 +49,7 @@ public class GameSL {
 		Gson gson = new Gson();
 		Scanner scanner = new Scanner(new File(add));
 		String wholeFile = scanner.useDelimiter("\\A").next();
+		System.out.println(wholeFile);
 		String [] whole = wholeFile.split(Inteval);
 
 		Type collectionType = new TypeToken<ArrayList<Element>>() {

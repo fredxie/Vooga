@@ -7,7 +7,6 @@ import game.TopDownTimer;
 
 import java.awt.image.BufferedImage;
 import com.golden.gamedev.object.PlayField;
-import com.golden.gamedev.object.Timer;
 
 public abstract class Fighter extends Element {
 	
@@ -36,7 +35,7 @@ public abstract class Fighter extends Element {
 	private double moveSpeed= 0.3;
 	
 	public boolean allowFire = true; 
-	public Timer refireRate = new Timer(300); // allow to refire after 300 ms
+	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire after 300 ms
 	                                           // (default)	
 	
 	public TopDownGameObject game;
@@ -105,7 +104,7 @@ public abstract class Fighter extends Element {
 
 
 	public void setRefireRate(int rate) {
-		refireRate = new Timer(rate);
+		refireRate = new TopDownTimer(rate);
 	}
 
 	public void setBulletImage(BufferedImage bulletImage) {

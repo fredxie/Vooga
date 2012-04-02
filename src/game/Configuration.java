@@ -1,6 +1,9 @@
 package game;
 
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+
+import util.TopDownImageUtil;
 
 public class Configuration {
 	// space
@@ -31,24 +34,9 @@ public class Configuration {
     
     public static int BOMB_NUM =5;
     public static int BOMB = KeyEvent.VK_CONTROL;
-
     
-//	public static void setter(int level) {
-//		switch (level) {
-//		case 0: 
-//			BACKGROUND_SPEED = 0.1;
-//			ENEMY_NUM = 40;
-//			IS_HARD = false;
-//			AMMUNITION_UPGRADE_NUM = 7;
-//			break;
-//		
-//		case 1: 
-//			BACKGROUND_SPEED = 0.15;
-//			ENEMY_NUM = 15;
-//			IS_HARD = true;
-//			AMMUNITION_UPGRADE_NUM = 5;
-//			break;
-//		
-//		}
-//	}
+    public static String BACKGROUND_PATH;
+    public static BufferedImage FIGHTER_PATH=TopDownImageUtil.getImage("images/game/fighter.png") ;
+    public static BufferedImage ENEMY_PATH = TopDownImageUtil.getImage("images/game/enemy_easy.png");
+
 }

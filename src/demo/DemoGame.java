@@ -7,7 +7,6 @@ import util.TopDownImageUtil;
 
 import collision.EnemyFighterBulletCollision;
 
-import com.golden.gamedev.object.AnimatedSprite;
 
 import background.TopDownBackground;
 
@@ -25,7 +24,7 @@ import game.TopDownGameObject;
 
 public class DemoGame extends TopDownGameObject {
 	
-	private double backgroundSpeed = Configuration.BACKGROUND_SPEED;
+
 	private int enemyNum = Configuration.ENEMY_NUM;
 	private int bonusNum = Configuration.BONUS_NUM;
 	private int blockNum = Configuration.BLOCK_NUM;
@@ -36,7 +35,9 @@ public class DemoGame extends TopDownGameObject {
 //	private ElementGroup FIGHTER, FIGHTER_BULLET, ENEMY, ENEMY_MISSILE,
 //			AMMUNITION_UPGRADE;
 
-	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
+	private DemoFighter fighter = new DemoFighter(Configuration.FIGHTER_PATH);
+
+//	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
@@ -65,7 +66,7 @@ public class DemoGame extends TopDownGameObject {
 		//init enemies
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
-					getImage("images/game/enemy_easy.png"), Configuration.ENEMY_HP);
+					Configuration.ENEMY_PATH, Configuration.ENEMY_HP);
 			juniorEnemies[i].init();
 		}
 		

@@ -15,6 +15,9 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import demo.DemoEnemy;
+
+
 import menu.GameSL;
 
 import java.awt.*;
@@ -25,11 +28,11 @@ import java.util.*;
 
 import element.Element;
 import element.RegularEnemy;
-import element.RegularFighter;
+import demo.DemoFighter;
 
 public class LevelEditor extends JFrame implements ActionListener{
 	
-	protected static final JFileChooser ourChooser = new JFileChooser("./src/images");
+	protected static final JFileChooser ourChooser = new JFileChooser("./");
 	private JScrollPane panel1;
 	//private JPanel panel1;
 	//private JPanel panel;
@@ -152,7 +155,7 @@ public class LevelEditor extends JFrame implements ActionListener{
     		File myFile = ourChooser.getSelectedFile();
     
         	BufferedImage image = convertToBufferedImage(myFile);   	
-        	RegularEnemy enemy = new RegularEnemy(image);
+        	DemoEnemy enemy = new DemoEnemy(image);
         	DragImage di = new DragImage(enemy,list,image);
         	
         	di.setDefalutLocation();
@@ -171,7 +174,7 @@ public class LevelEditor extends JFrame implements ActionListener{
     		}
     		File myFile = ourChooser.getSelectedFile();
         	BufferedImage image = convertToBufferedImage(myFile);
-        	RegularFighter fighter = new RegularFighter(image);
+        	DemoFighter fighter = new DemoFighter(image);
         	DragImage di = new DragImage(fighter,list,image);
         	di.setDefalutLocation();
         	di.addToPanel(panel_1);
@@ -188,11 +191,11 @@ public class LevelEditor extends JFrame implements ActionListener{
     		}
     		File myFile = ourChooser.getSelectedFile();
     		String path = myFile.getAbsolutePath();
-    		String miniPath = path.substring(path.lastIndexOf(File.separator));
+//    		String miniPath = path.substring(path.lastIndexOf(File.separator));
            
     		BufferedImage image = convertToBufferedImage(myFile);
     		
-    		myMap.put(0, miniPath);
+    		myMap.put(0, path);
     		
     		panel_1.setImage(image);
     		panel_1.revalidate();

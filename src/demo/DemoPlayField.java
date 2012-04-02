@@ -10,6 +10,7 @@ import util.TopDownImageUtil;
 import util.TopDownUtility;
 import element.ElementGroup;
 import element.TopDownPlayField;
+import game.Configuration;
 
 public class DemoPlayField extends TopDownPlayField{
 
@@ -22,7 +23,9 @@ public class DemoPlayField extends TopDownPlayField{
 			}
 		}
 
-		TopDownTileBackground background = new TopDownTileBackground(TopDownImageUtil.getImages("images/game/background.png",
+		if (Configuration.BACKGROUND_PATH == null)
+			Configuration.BACKGROUND_PATH = "images/game/background.png";
+		TopDownTileBackground background = new TopDownTileBackground(TopDownImageUtil.getImages(Configuration.BACKGROUND_PATH,
 				10, 1), tiles);
 		background.setLocation(0, background.getHeight());
 		this.setBackground(background);

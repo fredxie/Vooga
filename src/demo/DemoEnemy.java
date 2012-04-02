@@ -24,6 +24,10 @@ public class DemoEnemy extends Enemy{
 		healthPoint = HP;
 		// TODO Auto-generated constructor stub
 	}
+	public DemoEnemy(BufferedImage image)
+	{
+		super(image);
+	}
 
 	@Override
 	public void init() {

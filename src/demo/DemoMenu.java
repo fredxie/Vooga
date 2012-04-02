@@ -2,6 +2,7 @@ package demo;
 
 
 import element.Element;
+import game.Configuration;
 import game.TopDownGameEngine;
 import game.TopDownGameObject;
 
@@ -46,26 +47,35 @@ public class DemoMenu extends TopDownGameObject {
 				parent.nextGameID = DemoGameEngine.EASY_GAME;
 				finish();
 			}
+//			if (option == 1) {
+//				// start hard game
+//				parent.nextGameID = DemoGameEngine.HARD_GAME;
+//				finish();
+//			}
 			if (option == 1) {
-				// start hard game
-				parent.nextGameID = DemoGameEngine.HARD_GAME;
-				finish();
-			}
-			if (option == 2) {
 				// end
 				finish();
 			}
-			if (option == 3) {
+			if (option == 2) {
 				// level editor
 				LevelEditor l = new LevelEditor();
 			}
-			if (option == 4){
+			if (option == 3){
 				// load and start game
 				GameSL sl = new GameSL();
 				try{
 				ArrayList<Element> list = sl.loadElement("1.jason");
 				HashMap<Integer,String> map= sl.loadMap("1.jason");
 				String path = map.get(0);
+				
+//				for(Element i: list)
+//				{
+//					if(i instanceof DemoEnemy) 
+//					Configuration.ENEMY_PATH=i.getImage();	
+//					if(i instanceof DemoFighter)
+//					Configuration.FIGHTER_PATH=i.getImage();
+//				}
+				Configuration.BACKGROUND_PATH = path;
 				}
 				catch(IOException e){
 					
@@ -97,10 +107,10 @@ public class DemoMenu extends TopDownGameObject {
 
 		mainMenuTitle.render(g);
 		fontManager.getFont("FPS Font").drawString(g, "EASY", 150, 100);
-		fontManager.getFont("FPS Font").drawString(g, "HARD", 150, 140);
-		fontManager.getFont("FPS Font").drawString(g, "EXIT", 150, 180);
-		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 220);
-		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150, 260);
+//		fontManager.getFont("FPS Font").drawString(g, "HARD", 150, 140);
+		fontManager.getFont("FPS Font").drawString(g, "EXIT", 150, 140);
+		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 180);
+		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150, 220);
 		g.drawImage(getImage("images/menu/MenuArrow.png"), 110, 90 + (option * 40), null);
 	}
 
