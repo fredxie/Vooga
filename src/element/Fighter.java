@@ -15,9 +15,9 @@ import com.golden.gamedev.object.PlayField;
 
 public abstract class Fighter extends Element {
 
-	private int healthPoint = Configuration.FIGHTER_HP;
+	private double healthPoint = Configuration.FIGHTER_HP;
 	private int lifeNum = Configuration.lifeNum;
-	private int weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
+	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
 
 	private int weaponStyle = Configuration.INITIAL_STYLE;
 	private List<Key> keyList;
@@ -61,12 +61,12 @@ public abstract class Fighter extends Element {
 		this.game = game;
 	}
 
-	public void setHP(int healthPoint) {
+	public void setHP(double fIGHTER_HP) {
 
-		this.healthPoint = healthPoint;
+		this.healthPoint = fIGHTER_HP;
 	}
 
-	public int getHP() {
+	public double getHP() {
 		return healthPoint;
 	}
 
@@ -146,12 +146,12 @@ public abstract class Fighter extends Element {
 		this.setImage(i);
 	}
 
-	public int getWeaponDamage() {
+	public double getWeaponDamage() {
 		return weaponDamage;
 	}
 
-	public void setWeaponDamage(int weaponDamage) {
-		this.weaponDamage = weaponDamage;
+	public void setWeaponDamage(double d) {
+		this.weaponDamage = d;
 	}
 
 	public abstract void bomb(long elapsedTime);
@@ -164,6 +164,5 @@ public abstract class Fighter extends Element {
 		return bombNum;
 	}
 
-	public abstract void attack(long elapsedTime, int weaponStyle,
-			int weaponDamage);
+	public abstract void attack(long elapsedTime, int weaponStyle, double weaponDamage2);
 }

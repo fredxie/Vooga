@@ -15,9 +15,9 @@ import game.Configuration;
 
 public class DemoEnemy extends Enemy {
 
-	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, int HP) {
+	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
-		healthPoint = HP;
+		healthPoint = eNEMY_HP;
 		// TODO Auto-generated constructor stub
 	}
 

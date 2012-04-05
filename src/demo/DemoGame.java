@@ -1,5 +1,5 @@
 package demo;
-
+import ai.StrategyChanger;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 

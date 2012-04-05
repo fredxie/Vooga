@@ -23,11 +23,11 @@ public class Configuration {
 	public static int FIRE = KeyEvent.VK_SHIFT;
 
 	// Default Fighter HP & LifeNum
-	public static int FIGHTER_WEAPON_DAMAGE = 1;
-	public static int ENEMY_WEAPON_DAMAGE = 1;
+	public static double FIGHTER_WEAPON_DAMAGE = 1;
+	public static double ENEMY_WEAPON_DAMAGE = .25;
 
-	public static int ENEMY_HP = 1;
-	public static int FIGHTER_HP = 1;
+	public static double ENEMY_HP = 1;
+	public static double FIGHTER_HP = 1;
 	public static int lifeNum = 2;
 	public static int INITIAL_STYLE = 0;
 

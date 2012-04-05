@@ -9,9 +9,10 @@ import demo.DemoPlayField;
 
 public abstract class Enemy extends Element {
 
-	protected int healthPoint;
+	protected double healthPoint;
 	public boolean show = false;
-	public TopDownTimer refireRate = new TopDownTimer(800);
+	public int time = 800;
+	public TopDownTimer refireRate = new TopDownTimer(time);
 
 	public Enemy(BufferedImage image) {
 		super(image);
@@ -24,11 +25,11 @@ public abstract class Enemy extends Element {
 
 	public abstract void attack(long elapsedTime);
 
-	public void setHP(int healthPoint) {
-		this.healthPoint = healthPoint;
+	public void setHP(double h) {
+		this.healthPoint = h;
 	}
 
-	public int getHP() {
+	public double getHP() {
 		return healthPoint;
 	}
 
@@ -36,6 +37,9 @@ public abstract class Enemy extends Element {
 		refireRate = new TopDownTimer(rate);
 	}
 
+	public int getRefireRate() {
+		return time;
+	}
 	// public abstract void death();
 
 	public void death(BufferedImage i) {

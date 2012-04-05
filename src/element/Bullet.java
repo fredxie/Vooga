@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Bullet extends Element {
 
-	private int damage;
+	private double damage;
 
 	public Bullet(BufferedImage image) {
 		super(image);
@@ -14,17 +14,17 @@ public class Bullet extends Element {
 		super(image, x, y);
 	}
 
-	public Bullet(BufferedImage image, double x, double y, int damage) {
+	public Bullet(BufferedImage image, double x, double y, double eNEMY_WEAPON_DAMAGE) {
 		super(image, x, y);
-		this.damage = damage;
+		this.damage = eNEMY_WEAPON_DAMAGE;
 	}
 
-	public int getDamage() {
+	public double getDamage() {
 		return damage;
 	}
 
-	public void setDamage(int damage) {
-		this.damage = damage;
+	public void setDamage(double x) {
+		this.damage = x;
 	}
 
 	@Override

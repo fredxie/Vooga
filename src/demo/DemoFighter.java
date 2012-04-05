@@ -38,7 +38,7 @@ public class DemoFighter extends Fighter {
 	}
 
 	@Override
-	public void attack(long elapsedTime, int weaponStyle, int weaponDamage) {
+	public void attack(long elapsedTime, int weaponStyle, double weaponDamage) {
 
 		switch (weaponStyle) {
 		case 0: {

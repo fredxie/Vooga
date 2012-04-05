@@ -15,7 +15,7 @@ public class RegularFighter extends Fighter {
 	}
 
 	@Override
-	public void attack(long elapsedTime, int weaponStyle, int weaponDamage) {
+	public void attack(long elapsedTime, int weaponStyle, double weaponDamage) {
 		// TODO Auto-generated method stub
 
 	}
