@@ -3,6 +3,8 @@ package demo;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import keyconfiguration.KeyConfig;
+
 import util.TopDownImageUtil;
 
 import collision.EnemyFighterBulletCollision;
@@ -42,6 +44,7 @@ public class DemoGame extends TopDownGameObject {
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
 	private boolean completed = false, lose = false; // whether game is over
+	private KeyConfig keyConfig;
 
 	public DemoGame(TopDownGameEngine parent) {
 		super(parent);
@@ -75,7 +78,9 @@ public class DemoGame extends TopDownGameObject {
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-		
+		keyConfig = new KeyConfig(fighter,this);
+        keyConfig.parseKeyConfig("keyConfig.json");
+        fighter.setKeyList(keyConfig.getKeyList());
 		
 	}
 

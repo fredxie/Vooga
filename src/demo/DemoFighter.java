@@ -21,7 +21,7 @@ public class DemoFighter extends Fighter{
 	public void init() {
 		
 		
-		setRefireRate(300);//Default Re-fire Rate
+		setRefireRate(30);//Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH/2, playfield.getBackground().getHeight()-getHeight());//Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(Configuration.BOMB_NUM);

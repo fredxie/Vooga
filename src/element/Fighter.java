@@ -6,6 +6,11 @@ import game.TopDownGameObject;
 import game.TopDownTimer;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
+
+import keyconfiguration.Key;
+import keyconfiguration.KeyAnnotation;
+
 import com.golden.gamedev.object.PlayField;
 
 public abstract class Fighter extends Element {
@@ -15,7 +20,7 @@ public abstract class Fighter extends Element {
 	private int weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
 	
 	private int weaponStyle = Configuration.INITIAL_STYLE;
-	
+	private List<Key> keyList;
 	
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
@@ -75,8 +80,53 @@ public abstract class Fighter extends Element {
 		this.weaponDamage = weaponDamage;
 		this.weaponStyle = weaponStyle;
 	}
+	
+	public void setKeyList(List<Key> list){
+        keyList = list;
+    }
 
 	public void fighterControl(long elapsedTime) {
+		speedX = speedY =0;
+        for(Key key : keyList){
+            if(key.isKeyDown()){
+                key.notifyObserver(elapsedTime);
+            }
+        }
+        speedY -= Configuration.BACKGROUND_SPEED;
+		setSpeed(speedX, speedY);
+    }
+	
+	@KeyAnnotation(action = "up")
+    public void keyUpPressed(long elapsedTime) {
+		speedY = -moveSpeed;
+    }
+    
+    @KeyAnnotation(action = "down")
+    public void keyDownPressed(long elapsedTime) {
+    	speedY = moveSpeed;
+    }
+    
+    @KeyAnnotation(action = "left")
+    public void keyLeftPressed(long elapsedTime) {
+    	speedX = -moveSpeed;
+    }
+    
+    @KeyAnnotation(action = "right")
+    public void keyRightPressed(long elapsedTime) {
+    	speedX = moveSpeed;  
+    }
+    
+    @KeyAnnotation(action = "attack")
+    public void keyFirePressed(long elapsedTime) {
+    	if(!allowFire){
+			allowFire = refireRate.action(elapsedTime);
+		}
+		
+		else if(allowFire && game.keyDown(Configuration.FIRE))
+			attack(elapsedTime, weaponStyle, weaponDamage);  
+    }
+	
+	public void fighterControl1(long elapsedTime) {
 //		speedX = this.getHorizontalSpeed();
 //		speedY = this.getVerticalSpeed();
 		speedX = speedY =0;
