@@ -30,16 +30,10 @@ public class DemoGame extends TopDownGameObject {
 	private int enemyNum = Configuration.ENEMY_NUM;
 	private int bonusNum = Configuration.BONUS_NUM;
 	private int blockNum = Configuration.BLOCK_NUM;
-//	private int ammunitionUpgradeNum = Configuration.AMMUNITION_UPGRADE_NUM;
 
 	private DemoPlayField playfield = new DemoPlayField();;
-//	private TopDownBackground background;
-//	private ElementGroup FIGHTER, FIGHTER_BULLET, ENEMY, ENEMY_MISSILE,
-//			AMMUNITION_UPGRADE;
-
 	private DemoFighter fighter = new DemoFighter(Configuration.FIGHTER_PATH);
 
-//	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
@@ -48,7 +42,6 @@ public class DemoGame extends TopDownGameObject {
 
 	public DemoGame(TopDownGameEngine parent) {
 		super(parent);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -101,9 +94,9 @@ public class DemoGame extends TopDownGameObject {
 			bonuses[i].refresh(elapsedTime);
 		}
 
-		// press ESC at any time to go back to menu
+		// press ESC at any time to go to pause state
 		if (keyDown(KeyEvent.VK_ESCAPE)) {
-			parent.nextGameID = DemoGameEngine.MENU;
+			parent.nextGameID = DemoGameEngine.Menu;
 			finish();
 		}
 	}

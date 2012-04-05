@@ -44,7 +44,7 @@ public class DemoMenu extends TopDownGameObject {
 		case KeyEvent.VK_SPACE:
 			if (option == 0) {
 				// start easy game
-				parent.nextGameID = DemoGameEngine.EASY_GAME;
+				parent.nextGameID = DemoGameEngine.Playing;
 				finish();
 			}
 //			if (option == 1) {
