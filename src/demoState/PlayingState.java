@@ -6,6 +6,8 @@ import game.TopDownGameEngine;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import keyconfiguration.KeyConfig;
+
 import collision.EnemyFighterBulletCollision;
 
 import com.golden.gamedev.GameEngine;
@@ -30,6 +32,7 @@ public class PlayingState extends State {
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
 	private boolean completed = false, lose = false; // whether game is over
+	private KeyConfig keyConfig;
 
 	public PlayingState(TopDownGameEngine parent) {
 		super(parent);
@@ -63,6 +66,9 @@ public class PlayingState extends State {
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
+		keyConfig = new KeyConfig(fighter, this);
+		keyConfig.parseKeyConfig("keyConfig.json");
+		fighter.setKeyList(keyConfig.getKeyList());
 
 	}
 
@@ -88,7 +94,6 @@ public class PlayingState extends State {
 			parent.nextGameID = DemoGameEngine.Pause;
 			finish();
 		}
-		
 
 	}
 
@@ -97,16 +102,14 @@ public class PlayingState extends State {
 		playfield.render(g);
 		// display enemies destroyed
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
-				20);
-		
+				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed,
+				20, 20);
+
 		fontManager.getFont("FPS Font").drawString(g,
-				"PLAYER HP   " + fighter.getHP(), 20,
-				35);
-		
+				"PLAYER HP   " + fighter.getHP(), 20, 35);
+
 		fontManager.getFont("FPS Font").drawString(g,
-				"PLAYER LIFE NUMBER   " + fighter.getLifeNum(), 20,
-				50);
+				"PLAYER LIFE NUMBER   " + fighter.getLifeNum(), 20, 50);
 		// game over
 		if (completed) {
 			fontManager.getFont("FPS Font").drawString(g,
@@ -114,8 +117,9 @@ public class PlayingState extends State {
 					DemoGameEngine.HEIGHT / 2);
 		}
 		if (lose) {
-			fontManager.getFont("FPS Font").drawString(g,
-					"GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
+			fontManager.getFont("FPS Font")
+					.drawString(g, "GAME OVER!    PRESS ESC...", 20,
+							DemoGameEngine.HEIGHT / 2);
 		}
 
 	}

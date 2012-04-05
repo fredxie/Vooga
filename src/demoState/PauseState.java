@@ -10,13 +10,12 @@ import game.TopDownGameEngine;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-
 import background.TopDownImageBackground;
 
 import demo.DemoGameEngine;
 
-public class PauseState extends State{
-	
+public class PauseState extends State {
+
 	int option;
 	TopDownImageBackground mainMenuTitle;
 
@@ -26,8 +25,9 @@ public class PauseState extends State{
 
 	@Override
 	public void initResources() {
-		mainMenuTitle = new TopDownImageBackground(getImage("images/menu/title.png"),
-				DemoGameEngine.WIDTH, DemoGameEngine.HEIGHT);
+		mainMenuTitle = new TopDownImageBackground(
+				getImage("images/menu/title.png"), DemoGameEngine.WIDTH,
+				DemoGameEngine.HEIGHT);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class PauseState extends State{
 				// Setting
 				System.out.println("setting");
 			}
-			if (option == 3){
+			if (option == 3) {
 				// menu
 				parent.initResources();
 				parent.nextGameID = DemoGameEngine.Menu;
@@ -75,7 +75,7 @@ public class PauseState extends State{
 		case KeyEvent.VK_ESCAPE:
 			finish();
 			break;
-		}		
+		}
 	}
 
 	@Override
@@ -85,8 +85,9 @@ public class PauseState extends State{
 		fontManager.getFont("FPS Font").drawString(g, "RESTART", 150, 140);
 		fontManager.getFont("FPS Font").drawString(g, "SETTING", 150, 180);
 		fontManager.getFont("FPS Font").drawString(g, "MENU", 150, 220);
-		g.drawImage(getImage("images/menu/MenuArrow.png"), 110, 90 + (option * 40), null);
-		
+		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
+				90 + (option * 40), null);
+
 	}
 
 }

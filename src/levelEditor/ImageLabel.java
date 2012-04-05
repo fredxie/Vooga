@@ -21,7 +21,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 
-public class ImageLabel extends JLabel implements MouseInputListener{
+public class ImageLabel extends JLabel implements MouseInputListener {
 
 	private static int WIDTH = 60;
 	private static int HEIGTHT = 80;
@@ -135,12 +135,10 @@ public class ImageLabel extends JLabel implements MouseInputListener{
 
 			menu.show(arg0.getComponent(), arg0.getX() + 15, arg0.getY() + 20);
 		}
-		
-		else if(SwingUtilities.isLeftMouseButton(arg0) && !firstLeftClick){
+
+		else if (SwingUtilities.isLeftMouseButton(arg0) && !firstLeftClick) {
 			firstLeftClick = true;
 		}
-		
-		
 
 	}
 
@@ -153,9 +151,9 @@ public class ImageLabel extends JLabel implements MouseInputListener{
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if(isStored)
+		if (isStored)
 			return;
-		
+
 		this.setLocation(X_pos, Y_pos);
 		X_pos = arg0.getX();
 		Y_pos = arg0.getY();
@@ -174,8 +172,8 @@ public class ImageLabel extends JLabel implements MouseInputListener{
 	public boolean inRightPanel() {
 		return inRightPanel;
 	}
-	
-	public BufferedImage getImage(){
+
+	public BufferedImage getImage() {
 		return myImage;
 	}
 
@@ -187,10 +185,8 @@ public class ImageLabel extends JLabel implements MouseInputListener{
 	}
 
 	private void putThisOnPlayField() {
-		ImageLabel anotherElement = new ImageLabel(myImage,levelEditor);
+		ImageLabel anotherElement = new ImageLabel(myImage, levelEditor);
 		levelEditor.putLabelOnPlayField(anotherElement);
 	}
 
-	}
-
-
+}

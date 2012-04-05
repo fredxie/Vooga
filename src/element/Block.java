@@ -2,15 +2,15 @@ package element;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Block extends Element{
+public abstract class Block extends Element {
 
-	public Block(BufferedImage image){
+	public Block(BufferedImage image) {
 		super(image);
 	}
-	
+
 	public boolean show = false;
 
-	public Block(TopDownPlayField playfield,BufferedImage image){
+	public Block(TopDownPlayField playfield, BufferedImage image) {
 		super(image);
 		this.playfield = playfield;
 	}

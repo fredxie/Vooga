@@ -19,65 +19,61 @@ import javax.swing.JPanel;
 import element.RegularEnemy;
 
 public class EnemyChooseDialog extends JFrame implements ActionListener {
-	
-    protected static final JFileChooser ourChooser = new JFileChooser("./src/images");
-    private BufferedImage image;
-    private JPanel panel1;
-    private JButton button1;
-    private JButton button2;
-    private File myFile;
-    
-    public EnemyChooseDialog()
-    {
-    	super("Choose enemy");
-    	JPanel panel = (JPanel) getContentPane();
-        panel.setLayout(new BorderLayout());
-        button1 = new JButton("Enemy1");
-        button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	int retval = ourChooser.showOpenDialog(null);
-        		if (retval != JFileChooser.APPROVE_OPTION) {
-        			return;
-        		}
-        		myFile = ourChooser.getSelectedFile();
-            	
-            	image = convertToBufferedImage(myFile);   	
-        }
-          
-    }); 
-        
-        
-        button2 = new JButton("Create Enemy");
-        button2.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-            	//RegularEnemy enemy = new RegularEnemy(image); 
-        		//DragImage di = new DragImage(image,null);
-        		//di.addToPanel(panel_2);
-            	
-        }
-        });
-        
-        
-        panel.add(button1, BorderLayout.NORTH);
-    	panel1 = new JPanel();
-    	
-    	
-    }
+
+	protected static final JFileChooser ourChooser = new JFileChooser(
+			"./src/images");
+	private BufferedImage image;
+	private JPanel panel1;
+	private JButton button1;
+	private JButton button2;
+	private File myFile;
+
+	public EnemyChooseDialog() {
+		super("Choose enemy");
+		JPanel panel = (JPanel) getContentPane();
+		panel.setLayout(new BorderLayout());
+		button1 = new JButton("Enemy1");
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int retval = ourChooser.showOpenDialog(null);
+				if (retval != JFileChooser.APPROVE_OPTION) {
+					return;
+				}
+				myFile = ourChooser.getSelectedFile();
+
+				image = convertToBufferedImage(myFile);
+			}
+
+		});
+
+		button2 = new JButton("Create Enemy");
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// RegularEnemy enemy = new RegularEnemy(image);
+				// DragImage di = new DragImage(image,null);
+				// di.addToPanel(panel_2);
+
+			}
+		});
+
+		panel.add(button1, BorderLayout.NORTH);
+		panel1 = new JPanel();
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	private BufferedImage convertToBufferedImage(File myFile){
+
+	private BufferedImage convertToBufferedImage(File myFile) {
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(myFile);
+			img = ImageIO.read(myFile);
 		} catch (IOException e) {
 		}
 		return img;
 	}
-
 
 }

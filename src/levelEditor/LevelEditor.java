@@ -29,7 +29,8 @@ import demo.DemoFighter;
 
 public class LevelEditor extends JFrame implements ActionListener {
 
-	protected static final JFileChooser ImageChooser = new JFileChooser("./images/");
+	protected static final JFileChooser ImageChooser = new JFileChooser(
+			"./images/");
 
 	private JScrollPane panel1;
 	private JScrollPane panel2;
@@ -38,7 +39,6 @@ public class LevelEditor extends JFrame implements ActionListener {
 
 	private JMenuBar menuBar;
 	private ImageLabel cachedLabel;
-
 
 	private ArrayList<ImageLabel> list;
 	private HashMap<Integer, String> myMap;
@@ -57,7 +57,7 @@ public class LevelEditor extends JFrame implements ActionListener {
 		panel1.setBounds(0, 0, 500, 600);
 
 		panel_2 = new JPanel();
-		//panel_2.setLayout(null);
+		// panel_2.setLayout(null);
 		panel_2.setLayout(new GridLayout(4, 4));
 		panel_2.setBackground(Color.WHITE);
 		panel2 = new JScrollPane(panel_2,
@@ -67,8 +67,9 @@ public class LevelEditor extends JFrame implements ActionListener {
 
 		setLayout(null);
 
-		//int gap = 10;
-		//panel_2.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
+		// int gap = 10;
+		// panel_2.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap,
+		// gap));
 
 		setMenu();
 		setJMenuBar(menuBar);
@@ -129,7 +130,7 @@ public class LevelEditor extends JFrame implements ActionListener {
 			}
 		});
 		menu[1].add(loadBackground);
-		
+
 		JMenuItem pasteElement = new JMenuItem("Paste Item");
 		pasteElement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -139,28 +140,25 @@ public class LevelEditor extends JFrame implements ActionListener {
 		menu[1].add(pasteElement);
 	}
 
-	
-
-	
-	private void loadBackground() {	
+	private void loadBackground() {
 		panel_1.setImage(getSelectedImage());
 		panel_1.revalidate();
 		panel_1.repaint();
 	}
-	
-	private void loadNewElement(){
-		ImageLabel element = new ImageLabel(getSelectedImage(),this);
+
+	private void loadNewElement() {
+		ImageLabel element = new ImageLabel(getSelectedImage(), this);
 		panel_2.add(element);
 		panel_2.revalidate();
 		panel_2.repaint();
 	}
-	
-	private void pasteElement(){
-		ImageLabel element = new ImageLabel(cachedLabel.getImage(),this);
+
+	private void pasteElement() {
+		ImageLabel element = new ImageLabel(cachedLabel.getImage(), this);
 		putLabelOnPlayField(element);
 	}
-	
-	private BufferedImage getSelectedImage(){
+
+	private BufferedImage getSelectedImage() {
 		int retval = ImageChooser.showOpenDialog(null);
 		if (retval != JFileChooser.APPROVE_OPTION) {
 			return null;
@@ -189,39 +187,37 @@ public class LevelEditor extends JFrame implements ActionListener {
 		BufferedImage image = convertToBufferedImage(myFile);
 		return image;
 	}
-	
-	public void deleteLabel(ImageLabel l){
+
+	public void deleteLabel(ImageLabel l) {
 		l.setVisible(false);
 		removeFromPanel(l);
 		list.remove(l);
 	}
-	
-	public void removeFromPanel(ImageLabel l){
-		if(l.inRightPanel()){ 
+
+	public void removeFromPanel(ImageLabel l) {
+		if (l.inRightPanel()) {
 			panel_2.remove(l);
 			panel_2.revalidate();
-		}
-		else{
+		} else {
 			panel_1.remove(l);
 			panel_1.revalidate();
-		}	
+		}
 	}
-	
-	public void putLabelOnPlayField(ImageLabel l){
+
+	public void putLabelOnPlayField(ImageLabel l) {
 		removeFromPanel(l);
 		panel_1.add(l);
 		l.setDefaultPosition();
 		list.add(l);
 	}
-	
-	public void setCachedLabel(ImageLabel i){
+
+	public void setCachedLabel(ImageLabel i) {
 		cachedLabel = i;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
-		
+
 	}
 }

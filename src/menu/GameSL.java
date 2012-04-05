@@ -1,4 +1,3 @@
-
 package menu;
 
 import java.awt.image.BufferedImage;
@@ -21,13 +20,13 @@ import element.Element;
  * Class provide load and save method for TopDownMenu to store and get edited level
  */
 public class GameSL {
-	private static final String Inteval  = "ok";
+	private static final String Inteval = "ok";
 
 	public GameSL() {
 	}
 
-	public String saveLevel(ArrayList<Element> ele, HashMap<Integer,String> map, String levelname)
-			throws IOException {
+	public String saveLevel(ArrayList<Element> ele,
+			HashMap<Integer, String> map, String levelname) throws IOException {
 		Gson gson = new Gson();
 		String jsonString_list = gson.toJson(ele);
 		String jsonString_map = gson.toJson(map);
@@ -50,7 +49,7 @@ public class GameSL {
 		Scanner scanner = new Scanner(new File(add));
 		String wholeFile = scanner.useDelimiter("\\A").next();
 		System.out.println(wholeFile);
-		String [] whole = wholeFile.split(Inteval);
+		String[] whole = wholeFile.split(Inteval);
 
 		Type collectionType = new TypeToken<ArrayList<Element>>() {
 		}.getType();
@@ -58,19 +57,20 @@ public class GameSL {
 
 		return target;
 	}
-	
-	public HashMap<Integer,String> loadMap(String add)
-	 	throws FileNotFoundException{
+
+	public HashMap<Integer, String> loadMap(String add)
+			throws FileNotFoundException {
 		Gson gson = new Gson();
 		Scanner scanner = new Scanner(new File(add));
 		String wholeFile = scanner.useDelimiter("\\A").next();
-		String [] whole = wholeFile.split(Inteval);
+		String[] whole = wholeFile.split(Inteval);
 
-		Type collectionType = new TypeToken<HashMap<Integer,String>>() {
+		Type collectionType = new TypeToken<HashMap<Integer, String>>() {
 		}.getType();
-		HashMap<Integer,String> target = gson.fromJson(whole[1], collectionType);
+		HashMap<Integer, String> target = gson.fromJson(whole[1],
+				collectionType);
 
 		return target;
-		
+
 	}
 }
