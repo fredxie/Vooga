@@ -1,3 +1,4 @@
+
 package element;
 
 import game.TopDownTimer;
@@ -11,18 +12,18 @@ public abstract class Enemy extends Element {
 
 	protected double healthPoint;
 	public boolean show = false;
+	
+	public SpawnBehavior mySpawnBehavior;
 	public int time = 800;
 	public TopDownTimer refireRate = new TopDownTimer(time);
 
 	public Enemy(BufferedImage image) {
 		super(image);
-		this.setMass(3);
 	}
 
 	public Enemy(TopDownPlayField playfield, BufferedImage image) {
 		super(image);
 		this.playfield = playfield;
-		this.setMass(3);
 	}
 
 	public abstract void attack(long elapsedTime);
@@ -38,6 +39,25 @@ public abstract class Enemy extends Element {
 	public void setRefireRate(int rate) {
 		refireRate = new TopDownTimer(rate);
 	}
+	
+	/**
+	 * @author Gang Song
+	 * @Description set Spawning behavior
+	 */
+	public void setSpawnBehavior(SpawnBehavior SB){
+		//mySpawnBehavior=new SpawnByLocation();
+		mySpawnBehavior=SB;
+	}
+	
+	public void spawn(int k){
+		double[] templocation=mySpawnBehavior.spawn(k);
+		
+		this.setX(templocation[0]*(DemoGameEngine.WIDTH- this.getWidth()));
+		this.setY(templocation[1]*(playfield.getBackground().getHeight()- DemoGameEngine.HEIGHT));
+		
+		//this.playfield.getTileBackground().getWidth()
+	}
+	
 
 	public int getRefireRate() {
 		return time;
@@ -51,3 +71,4 @@ public abstract class Enemy extends Element {
 	public abstract void refresh(long elapsedTime);
 
 }
+

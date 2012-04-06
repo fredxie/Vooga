@@ -10,6 +10,7 @@ import util.TopDownUtility;
 
 import element.Bullet;
 import element.Enemy;
+import element.SpawnByLocation;
 import element.TopDownPlayField;
 import game.Configuration;
 
@@ -23,6 +24,8 @@ public class DemoEnemy extends Enemy {
 
 	public DemoEnemy(BufferedImage image) {
 		super(image);
+		
+		this.mySpawnBehavior=new SpawnByLocation();
 	}
 
 	@Override
