@@ -21,19 +21,21 @@ import element.Element;
 
 import background.TopDownImageBackground;
 
-public class MenuState extends State{
-	
+public class MenuState extends State {
+
 	int option;
 	TopDownImageBackground mainMenuTitle;
 
 	public MenuState(TopDownGameEngine parent) {
 		super(parent);
+		gameID = 0;
 	}
 
 	@Override
 	public void initResources() {
-		mainMenuTitle = new TopDownImageBackground(getImage("images/menu/title.png"),
-				DemoGameEngine.WIDTH, DemoGameEngine.HEIGHT);
+		mainMenuTitle = new TopDownImageBackground(
+				getImage("images/menu/title.png"), DemoGameEngine.WIDTH,
+				DemoGameEngine.HEIGHT);
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class MenuState extends State{
 		case KeyEvent.VK_SPACE:
 			if (option == 0) {
 				// start easy game
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = DemoGameEngine.GAME_Level1;
 				finish();
 			}
 
@@ -55,17 +57,16 @@ public class MenuState extends State{
 				// level editor
 				LevelEditor l = new LevelEditor();
 			}
-			if (option == 3){
+			if (option == 3) {
 				// load and start game
 				GameSL sl = new GameSL();
-				try{
-				ArrayList<Element> list = sl.loadElement("1.jason");
-				HashMap<Integer,String> map= sl.loadMap("1.jason");
-				String path = map.get(0);
-				Configuration.BACKGROUND_PATH = path;
-				}
-				catch(IOException e){
-					
+				try {
+					ArrayList<Element> list = sl.loadElement("1.jason");
+					HashMap<Integer, String> map = sl.loadMap("1.jason");
+					String path = map.get(0);
+					Configuration.BACKGROUND_PATH = path;
+				} catch (IOException e) {
+
 				}
 			}
 			break;
@@ -86,9 +87,8 @@ public class MenuState extends State{
 		case KeyEvent.VK_ESCAPE:
 			finish();
 			break;
-		} 
+		}
 
-		
 	}
 
 	@Override
@@ -97,9 +97,17 @@ public class MenuState extends State{
 		fontManager.getFont("FPS Font").drawString(g, "PLAY", 150, 100);
 		fontManager.getFont("FPS Font").drawString(g, "EXIT", 150, 140);
 		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 180);
-		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150, 220);
-		g.drawImage(getImage("images/menu/MenuArrow.png"), 110, 90 + (option * 40), null);
-		
+		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150,
+				220);
+		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
+				90 + (option * 40), null);
+
+	}
+
+	@Override
+	public boolean levelComplete() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

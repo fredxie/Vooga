@@ -1,15 +1,15 @@
 package demo;
-
+import ai.StrategyChanger;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+
+import keyconfiguration.KeyConfig;
 
 import util.TopDownImageUtil;
 
 import collision.EnemyFighterBulletCollision;
 
-
 import background.TopDownBackground;
-
 
 import element.Bonus;
 import element.ElementGroup;
@@ -23,7 +23,6 @@ import game.TopDownGameEngine;
 import game.TopDownGameObject;
 
 public class DemoGame extends TopDownGameObject {
-	
 
 	private int enemyNum = Configuration.ENEMY_NUM;
 	private int bonusNum = Configuration.BONUS_NUM;
@@ -36,6 +35,7 @@ public class DemoGame extends TopDownGameObject {
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
 	private boolean completed = false, lose = false; // whether game is over
+	private KeyConfig keyConfig;
 
 	public DemoGame(TopDownGameEngine parent) {
 		super(parent);
@@ -43,7 +43,7 @@ public class DemoGame extends TopDownGameObject {
 
 	@Override
 	public void initResources() {
-		
+
 		EnemyFighterBulletCollision.destroyed = 0;
 
 		playfield.init();
@@ -55,36 +55,38 @@ public class DemoGame extends TopDownGameObject {
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
-		
-		//init enemies
+
+		// init enemies
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
 					Configuration.ENEMY_PATH, Configuration.ENEMY_HP);
 			juniorEnemies[i].spawn(5);
 		}
-		
+
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i] = new DemoBonus(playfield,
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-		
-		
+		keyConfig = new KeyConfig(fighter, this);
+		keyConfig.parseKeyConfig("keyConfig.json");
+		fighter.setKeyList(keyConfig.getKeyList());
+
 	}
 
 	@Override
 	public void update(long elapsedTime) {
 
 		playfield.update(elapsedTime);
-		
+
 		fighter.refresh(elapsedTime);
-		
+
 		fighter.bomb(elapsedTime);
-		//update Enemies
+		// update Enemies
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i].refresh(elapsedTime);
 		}
-		
+
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i].refresh(elapsedTime);
 		}
@@ -95,23 +97,21 @@ public class DemoGame extends TopDownGameObject {
 			finish();
 		}
 	}
-	
+
 	@Override
 	public void render(Graphics2D g) {
 
 		playfield.render(g);
 		// display enemies destroyed
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
-				20);
-		
+				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed,
+				20, 20);
+
 		fontManager.getFont("FPS Font").drawString(g,
-				"PLAYER HP   " + fighter.getHP(), 20,
-				35);
-		
+				"PLAYER HP   " + fighter.getHP(), 20, 35);
+
 		fontManager.getFont("FPS Font").drawString(g,
-				"PLAYER LIFE NUMBER   " + fighter.getLifeNum(), 20,
-				50);
+				"PLAYER LIFE NUMBER   " + fighter.getLifeNum(), 20, 50);
 		// game over
 		if (completed) {
 			fontManager.getFont("FPS Font").drawString(g,
@@ -119,8 +119,9 @@ public class DemoGame extends TopDownGameObject {
 					DemoGameEngine.HEIGHT / 2);
 		}
 		if (lose) {
-			fontManager.getFont("FPS Font").drawString(g,
-					"GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
+			fontManager.getFont("FPS Font")
+					.drawString(g, "GAME OVER!    PRESS ESC...", 20,
+							DemoGameEngine.HEIGHT / 2);
 		}
 	}
 

@@ -2,37 +2,35 @@ package element;
 
 import java.awt.image.BufferedImage;
 
+public class Bullet extends Element {
 
+	private double damage;
 
-public class Bullet extends Element{
-	
-	private int damage;
-	
-	public Bullet(BufferedImage image){
+	public Bullet(BufferedImage image) {
 		super(image);
 	}
 
 	public Bullet(BufferedImage image, double x, double y) {
 		super(image, x, y);
 	}
-	
-	public Bullet(BufferedImage image, double x, double y, int damage) {
+
+	public Bullet(BufferedImage image, double x, double y, double eNEMY_WEAPON_DAMAGE) {
 		super(image, x, y);
-		this.damage = damage;
+		this.damage = eNEMY_WEAPON_DAMAGE;
 	}
-	
-	public int getDamage(){
+
+	public double getDamage() {
 		return damage;
 	}
-	
-	public void setDamage(int damage){
-		this.damage = damage;
+
+	public void setDamage(double x) {
+		this.damage = x;
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

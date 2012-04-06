@@ -10,24 +10,30 @@ import game.TopDownGameEngine;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-
 import background.TopDownImageBackground;
 
 import demo.DemoGameEngine;
 
-public class PauseState extends State{
-	
+public class PauseState extends State {
+
 	int option;
 	TopDownImageBackground mainMenuTitle;
+	private int previousGameID;
 
 	public PauseState(TopDownGameEngine parent) {
 		super(parent);
+		gameID = 3;
+	}
+	
+	public void setPreviousGameID(int gameID){
+		previousGameID = gameID;
 	}
 
 	@Override
 	public void initResources() {
-		mainMenuTitle = new TopDownImageBackground(getImage("images/menu/title.png"),
-				DemoGameEngine.WIDTH, DemoGameEngine.HEIGHT);
+		mainMenuTitle = new TopDownImageBackground(
+				getImage("images/menu/title.png"), DemoGameEngine.WIDTH,
+				DemoGameEngine.HEIGHT);
 	}
 
 	@Override
@@ -37,21 +43,21 @@ public class PauseState extends State{
 		case KeyEvent.VK_SPACE:
 			if (option == 0) {
 				// RESUME
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = previousGameID;
 				finish();
 			}
 
 			if (option == 1) {
 				// RESTART
 				parent.initResources();
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = DemoGameEngine.GAME_Level1;
 				finish();
 			}
 			if (option == 2) {
 				// Setting
 				System.out.println("setting");
 			}
-			if (option == 3){
+			if (option == 3) {
 				// menu
 				parent.initResources();
 				parent.nextGameID = DemoGameEngine.Menu;
@@ -75,7 +81,7 @@ public class PauseState extends State{
 		case KeyEvent.VK_ESCAPE:
 			finish();
 			break;
-		}		
+		}
 	}
 
 	@Override
@@ -85,8 +91,15 @@ public class PauseState extends State{
 		fontManager.getFont("FPS Font").drawString(g, "RESTART", 150, 140);
 		fontManager.getFont("FPS Font").drawString(g, "SETTING", 150, 180);
 		fontManager.getFont("FPS Font").drawString(g, "MENU", 150, 220);
-		g.drawImage(getImage("images/menu/MenuArrow.png"), 110, 90 + (option * 40), null);
-		
+		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
+				90 + (option * 40), null);
+
+	}
+
+	@Override
+	public boolean levelComplete() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

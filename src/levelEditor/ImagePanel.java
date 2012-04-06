@@ -10,10 +10,11 @@ import javax.swing.JPanel;
 class ImagePanel extends JPanel {
 
 	private Image img;
-	//private Dimension size = new Dimension(500,600);
-	
-	public ImagePanel(){
-		
+
+	// private Dimension size = new Dimension(500,600);
+
+	public ImagePanel() {
+
 	}
 
 	public ImagePanel(Image img) {

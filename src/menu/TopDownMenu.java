@@ -19,7 +19,7 @@ public class TopDownMenu extends GameObject {
 	private BufferedImage titleImage;
 	private int option;
 	private AdvanceSprite leftOptionSprite;
-	
+
 	private HashMap<String, Object> map;
 	private List<String> optionNames;
 
@@ -30,7 +30,7 @@ public class TopDownMenu extends GameObject {
 		map = new HashMap<String, Object>(input);
 		numOfOptions = map.size();
 		optionNames = new ArrayList<String>();
-		for(String s: map.keySet()){
+		for (String s : map.keySet()) {
 			optionNames.add(s);
 		}
 	}
@@ -56,15 +56,15 @@ public class TopDownMenu extends GameObject {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(titleImage, 10, 10, null);
-		
+
 		int line = 200;
-		for(String s: optionNames){
-			font.drawString(g, s, 	GameFont.CENTER, 0, line, getWidth());
+		for (String s : optionNames) {
+			font.drawString(g, s, GameFont.CENTER, 0, line, getWidth());
 			line = line + 40;
 		}
-		
-		int y = (option == 2) ? line : 200+(option*40);
-		leftOptionSprite.render(g, 145, y);	
+
+		int y = (option == 2) ? line : 200 + (option * 40);
+		leftOptionSprite.render(g, 145, y);
 
 	}
 
@@ -92,8 +92,7 @@ public class TopDownMenu extends GameObject {
 
 			if (option == map.size()) {
 				finish();
-			}
-			else{
+			} else {
 				String optionName = optionNames.get(option);
 				Object o = map.get(optionName);
 			}

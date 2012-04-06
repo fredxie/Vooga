@@ -8,18 +8,18 @@ import javax.imageio.ImageIO;
 
 import com.golden.gamedev.util.ImageUtil;
 
-public class TopDownImageUtil{
-	public static BufferedImage[] getImages(String imagefile, int col, int row){
+public class TopDownImageUtil {
+	public static BufferedImage[] getImages(String imagefile, int col, int row) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File(imagefile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return ImageUtil.splitImages(image, col, row);	
+		return ImageUtil.splitImages(image, col, row);
 	}
-	
-	public static BufferedImage getImage(String imagefile){
+
+	public static BufferedImage getImage(String imagefile) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File(imagefile));

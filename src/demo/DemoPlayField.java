@@ -12,9 +12,9 @@ import element.ElementGroup;
 import element.TopDownPlayField;
 import game.Configuration;
 
-public class DemoPlayField extends TopDownPlayField{
+public class DemoPlayField extends TopDownPlayField {
 
-	public void init() {
+	public void init(String s) {
 
 		int[][] tiles = new int[100][100];
 		for (int i = 0; i < tiles.length; i++) {
@@ -24,50 +24,53 @@ public class DemoPlayField extends TopDownPlayField{
 		}
 
 		if (Configuration.BACKGROUND_PATH == null)
-			Configuration.BACKGROUND_PATH = "images/game/background.png";
-		TopDownTileBackground background = new TopDownTileBackground(TopDownImageUtil.getImages(Configuration.BACKGROUND_PATH,
-				10, 1), tiles);
+			Configuration.BACKGROUND_PATH = s;
+		TopDownTileBackground background = new TopDownTileBackground(
+				TopDownImageUtil
+						.getImages(Configuration.BACKGROUND_PATH, 10, 1),
+				tiles);
 		background.setLocation(0, background.getHeight());
 		this.setBackground(background);
 
 		// create groups
 		ElementGroup FIGHTER = this.addGroup(new ElementGroup("Fighter"));
-		ElementGroup FIGHTER_MISSILE = this
-				.addGroup(new ElementGroup("Fighter Bullet"));
+		ElementGroup FIGHTER_MISSILE = this.addGroup(new ElementGroup(
+				"Fighter Bullet"));
 		ElementGroup ENEMY = this.addGroup(new ElementGroup("Enemy"));
-		ElementGroup ENEMY_MISSILE = this.addGroup(new ElementGroup("Enemy Missile"));
+		ElementGroup ENEMY_MISSILE = this.addGroup(new ElementGroup(
+				"Enemy Missile"));
 		ElementGroup BONUS = this.addGroup(new ElementGroup("Bonus"));
 		ElementGroup BLOCK = this.addGroup(new ElementGroup("Block"));
 
 		// set up collision groups
-//		this.addCollisionGroup(
-//				FIGHTER_MISSILE,
-//				ENEMY,
-//				new EnemyDestroyedCollision(this, TopDownImageUtil.getImages(
-//						"images/game/explosion.png", 6, 1)));
+		// this.addCollisionGroup(
+		// FIGHTER_MISSILE,
+		// ENEMY,
+		// new EnemyDestroyedCollision(this, TopDownImageUtil.getImages(
+		// "images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
-				
-				FIGHTER,ENEMY_MISSILE,
-				new FighterEnemyBulletCollision(this, TopDownImageUtil.getImages(
-						"images/game/explosion.png", 6, 1)));
+
+		FIGHTER, ENEMY_MISSILE, new FighterEnemyBulletCollision(this,
+				TopDownImageUtil.getImages("images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
-				
-				FIGHTER, ENEMY,
+
+				FIGHTER,
+				ENEMY,
 				new FighterEnemyCollision(this, TopDownImageUtil.getImages(
 						"images/game/explosion.png", 6, 1)));
-		
+
 		this.addCollisionGroup(
-				ENEMY, FIGHTER_MISSILE, 
-				new EnemyFighterBulletCollision(this, TopDownImageUtil.getImages(
-						"images/game/explosion.png", 6, 1)));
-		
+				ENEMY,
+				FIGHTER_MISSILE,
+				new EnemyFighterBulletCollision(this, TopDownImageUtil
+						.getImages("images/game/explosion.png", 6, 1)));
+
+		this.addCollisionGroup(FIGHTER, BONUS, new FighterBonusCollision(this,
+				TopDownImageUtil.getImages("images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
-				FIGHTER, BONUS, 
-				new FighterBonusCollision(this, TopDownImageUtil.getImages(
-						"images/game/explosion.png", 6, 1)));
-        this.addCollisionGroup(
-				
-				FIGHTER, BLOCK,
+
+				FIGHTER,
+				BLOCK,
 				new FighterBlockCollision(this, TopDownImageUtil.getImages(
 						"images/game/explosion.png", 6, 1)));
 	}

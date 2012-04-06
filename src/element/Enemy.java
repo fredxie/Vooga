@@ -1,49 +1,43 @@
 package element;
 
-
 import game.TopDownTimer;
 
 import java.awt.image.BufferedImage;
 
-
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
 
+public abstract class Enemy extends Element {
 
-public abstract class Enemy extends Element{
-	
-	protected int healthPoint;
+	protected double healthPoint;
 	public boolean show = false;
-	public TopDownTimer refireRate = new TopDownTimer(800);
 	
 	public SpawnBehavior mySpawnBehavior;
-	
+	public int time = 800;
+	public TopDownTimer refireRate = new TopDownTimer(time);
 
-	public Enemy(BufferedImage image){
+	public Enemy(BufferedImage image) {
 		super(image);
 	}
-	
+
 	public Enemy(TopDownPlayField playfield, BufferedImage image) {
 		super(image);
 		this.playfield = playfield;
 	}
-	
+
 	public abstract void attack(long elapsedTime);
-	
-	public void setHP(int healthPoint){
-		this.healthPoint = healthPoint;
+
+	public void setHP(double h) {
+		this.healthPoint = h;
 	}
-	
-	public int getHP(){
+
+	public double getHP() {
 		return healthPoint;
 	}
-	
+
 	public void setRefireRate(int rate) {
 		refireRate = new TopDownTimer(rate);
 	}
-	
-//	public abstract void death();
-	
 	
 	/**
 	 * @author Gang Song
@@ -63,11 +57,16 @@ public abstract class Enemy extends Element{
 		//this.playfield.getTileBackground().getWidth()
 	}
 	
-	
-	public void death(BufferedImage i){
+
+	public int getRefireRate() {
+		return time;
+	}
+	// public abstract void death();
+
+	public void death(BufferedImage i) {
 		this.setImage(i);
 	}
-	
+
 	public abstract void refresh(long elapsedTime);
-	
+
 }

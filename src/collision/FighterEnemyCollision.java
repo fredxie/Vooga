@@ -17,11 +17,11 @@ import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
 
-public class FighterEnemyCollision extends BasicCollisionGroup{
+public class FighterEnemyCollision extends BasicCollisionGroup {
 
 	private TopDownPlayField playfield;
 	private BufferedImage[] explosion;
-	
+
 	public FighterEnemyCollision(TopDownPlayField field, BufferedImage[] images) {
 		super();
 		playfield = field;
@@ -38,21 +38,18 @@ public class FighterEnemyCollision extends BasicCollisionGroup{
 	public void collideEvent(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
 		playfield.add(new VolatileSprite(explosion, s1.getX(), s1.getY()));
-		if(((Fighter) s1).getLifeNum()==1)
-		{
+		if (((Fighter) s1).getLifeNum() == 1) {
 			s1.setActive(false);
-			
+
 		}
 
-			else{
-				
+		else {
+
 			((Fighter) s1).setHP(Configuration.FIGHTER_HP);
-				
-			((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum()-1);
-			}
-			
-	}		
 
+			((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);
+		}
 
+	}
 
 }
