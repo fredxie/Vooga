@@ -22,6 +22,7 @@ import element.TopDownPlayField;
 public class EnemyFighterBulletCollision extends TopDownCollision{
 
 	public static int destroyed=0;
+	public static int scoreRatio = 1;
 
 	public EnemyFighterBulletCollision(TopDownPlayField field, BufferedImage[] images,String sound) {
 		super(field,images,sound);
