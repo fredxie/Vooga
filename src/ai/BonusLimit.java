@@ -1,11 +1,14 @@
 package ai;
 
+import element.Missile;
 import com.golden.gamedev.object.Timer;
 
 import game.Configuration;
 import demo.DemoGameEngine;
 import element.Bullet;
 import element.Enemy;
+import element.Missile;
+
 import java.util.*;
 
 public class BonusLimit implements TopDownBehavior
@@ -63,18 +66,18 @@ public class BonusLimit implements TopDownBehavior
 	{
 		return d = 1.0;
 	}
-	public void weaponDamage(Bullet bullet)
+	public void weaponDamage(Missile missile)
 	{
-		bullet.setDamage(1.5);
+		missile.setDamage(1.5);
 	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{
-		double x = bullet.getHorizontalSpeed();
-		double y = bullet.getVerticalSpeed();
+		double x = missile.getHorizontalSpeed();
+		double y = missile.getVerticalSpeed();
 		x = x * 1.5;
-		bullet.setHorizontalSpeed(x);
+		missile.setHorizontalSpeed(x);
 		y = y * 1.5;
-		bullet.setVerticalSpeed(y);
+		missile.setVerticalSpeed(y);
 	}
 	public double enemyHP()
 	{

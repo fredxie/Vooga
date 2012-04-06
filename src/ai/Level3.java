@@ -7,7 +7,7 @@ import game.Configuration;
 import java.util.*;
 import com.golden.gamedev.object.Timer;
 import java.util.Random;
-
+import element.Missile;
 public class Level3 implements TopDownBehavior
 {
 	double x = (Math.random()*51); 
@@ -31,11 +31,11 @@ public class Level3 implements TopDownBehavior
 		return d = 1.5;
 	}
 
-//	public void weaponDamage(Bullet bullet)
+//	public void weaponDamage(Missile missile)
 //	{
-//		bullet.setDamage(1.5);
+//		missile.setDamage(1.5);
 //	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{	
 		/*
 		 * bullets zig zag every half second. May need to move zig zag to gameLevelState update fields
@@ -43,10 +43,10 @@ public class Level3 implements TopDownBehavior
 		double h = .2;
 		if(Math.random()*10 > 5)
 		{
-			bullet.setHorizontalSpeed(h);
+			missile.setHorizontalSpeed(h);
 		}
 		else {
-			bullet.setHorizontalSpeed(-h);
+			missile.setHorizontalSpeed(-h);
 		}
 //		timer.refresh();
 //		if(timer.getCurrentTick() == 500){
@@ -70,7 +70,7 @@ public class Level3 implements TopDownBehavior
 		//				timer.refresh();
 		//			}
 		//		}
-		bullet.setVerticalSpeed(.25);
+		missile.setVerticalSpeed(.25);
 	}
 	public double enemyHP()
 	{

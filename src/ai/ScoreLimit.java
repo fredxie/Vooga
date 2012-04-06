@@ -9,7 +9,7 @@ import java.util.*;
 import com.golden.gamedev.object.Timer;
 
 import element.Enemy;
-
+import element.Missile;
 /*
  * When the player gets x number of points, score limit increases the ai of the computer. This will happen
  * multiple times through the game depending on the score of the player, and can happen in any level, and in
@@ -38,11 +38,11 @@ public class ScoreLimit implements TopDownBehavior
 		rate = rate - 150;
 		enemy.setRefireRate(rate);		
 	}
-	public void weaponDamage(Bullet bullet)
+	public void weaponDamage(Missile missile)
 	{
-		double x = bullet.getDamage();
+		double x = missile.getDamage();
 		x = x + 0.5;
-		bullet.setDamage(x);
+		missile.setDamage(x);
 	}
 	public double enemyDamage()
 	{
@@ -51,14 +51,14 @@ public class ScoreLimit implements TopDownBehavior
 		Configuration.ENEMY_WEAPON_DAMAGE = d;
 		return d;
 	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{
-		double x = bullet.getHorizontalSpeed();
-		double y = bullet.getVerticalSpeed();
+		double x = missile.getHorizontalSpeed();
+		double y = missile.getVerticalSpeed();
 		x = x * 1.3;
-		bullet.setHorizontalSpeed(x);
+		missile.setHorizontalSpeed(x);
 		y = y * 1.3;
-		bullet.setVerticalSpeed(y);
+		missile.setVerticalSpeed(y);
 	}
 	public double enemyHP() {
 		double x = Configuration.ENEMY_HP;

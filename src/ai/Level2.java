@@ -1,5 +1,6 @@
 package ai;
 import element.*; 
+import element.Missile;
 import game.*;
 import collision.*;
 import demo.*;
@@ -33,20 +34,20 @@ public class Level2 implements TopDownBehavior
 		return d = 1.0;
 	}
 
-//	public void weaponDamage(Bullet bullet)
+//	public void weaponDamage(Missile missile)
 //	{
-//		bullet.setDamage(1.0);
+//		missile.setDamage(1.0);
 //	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{	
 		if(Math.random()*10 > 5)
 		{
-			bullet.setHorizontalSpeed(.1);
+			missile.setHorizontalSpeed(.1);
 		}
 		else {
-			bullet.setHorizontalSpeed(-.1);
+			missile.setHorizontalSpeed(-.1);
 		}
-		bullet.setVerticalSpeed(.2);
+		missile.setVerticalSpeed(.2);
 	}
 
 	public double enemyHP()

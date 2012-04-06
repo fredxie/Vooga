@@ -7,7 +7,7 @@ import game.Configuration;
 import java.util.*;
 
 import com.golden.gamedev.object.Timer;
-
+import element.Missile;
 public class Level5 implements TopDownBehavior
 {
 	private Timer timer = new Timer(3200);
@@ -104,7 +104,7 @@ public class Level5 implements TopDownBehavior
 //	{
 //		bullet.setDamage(3);
 //	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{	
 		/*
 		 * in this level, the hypothetical final level on hard, bullet speed/ direction is random, and bullets 
@@ -113,13 +113,13 @@ public class Level5 implements TopDownBehavior
 		double h = Math.random() * 0.25;
 		double v = Math.random() * 0.35;
 		if(Math.random()*51 < 25){
-			bullet.setSpeed(h,v);
+			missile.setSpeed(h,v);
 		}
 		else{ 
-			bullet.setSpeed(-h,v);
+			missile.setSpeed(-h,v);
 		}
-		if(bullet.getX() <= 0 || bullet.getX() >= DemoGameEngine.WIDTH-((bullet.getWidth())/2)){
-			bullet.setSpeed(-h,v);
+		if(missile.getX() <= 0 || missile.getX() >= DemoGameEngine.WIDTH-((missile.getWidth())/2)){
+			missile.setSpeed(-h,v);
 		}
 	}
 

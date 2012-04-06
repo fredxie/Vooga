@@ -2,43 +2,42 @@ package collision;
 
 import java.awt.image.BufferedImage;
 
-import collision.DestroyedOneCollision;
 
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.collision.BasicCollisionGroup;
-import com.golden.gamedev.object.sprite.VolatileSprite;
 
-import element.Block;
-import element.Bullet;
-import element.Element;
-import element.Enemy;
 import element.Fighter;
+import element.RegularFighter;
 import element.TopDownPlayField;
 import game.Configuration;
 
-public class FighterEnemyCollision extends BasicCollisionGroup {
 
-	private TopDownPlayField playfield;
-	private BufferedImage[] explosion;
+public class FighterEnemyCollision extends TopDownCollision{
 
-	public FighterEnemyCollision(TopDownPlayField field, BufferedImage[] images) {
-		super();
-		playfield = field;
-		explosion = images;
+
+	public FighterEnemyCollision(TopDownPlayField field, BufferedImage[] images,String sound) {
+		super(field,images,sound);
 	}
 
-	public void collided(Sprite s1, Sprite s2) {
-		s2.setActive(false);
+	public FighterEnemyCollision(TopDownPlayField field)
+	{
+		super(field);
+	}
 
-		collideEvent(s1, s2);
-
+	public FighterEnemyCollision(TopDownPlayField field, BufferedImage[] images)
+	{
+		super(field,images );
+	}
+	public FighterEnemyCollision(TopDownPlayField field, String sound)
+	{
+		super(field, sound);
 	}
 
 	public void collideEvent(Sprite s1, Sprite s2) {
-		// TODO Auto-generated method stub
-		playfield.add(new VolatileSprite(explosion, s1.getX(), s1.getY()));
-		if (((Fighter) s1).getLifeNum() == 1) {
+
+
+		if(((Fighter) s1).getLifeNum()==1)
+		{
+			((Fighter) s1).setLifeNum(0);
 			s1.setActive(false);
 
 		}

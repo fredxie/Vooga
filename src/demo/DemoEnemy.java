@@ -1,7 +1,6 @@
 package demo;
 
-
-import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage; 
 
 
 import java.io.File;
@@ -21,6 +20,20 @@ import ai.hpLimit;
 import ai.TopDownBehavior;
 import demoState.GameLevel1State;
 import demoState.State;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import util.TopDownUtility;
+
+import element.Bullet;
+import element.Enemy;
+import element.Missile;
+import element.SpawnByLocation;
+import element.TopDownPlayField;
+import game.Configuration;
 
 import util.TopDownUtility;
 
@@ -40,6 +53,7 @@ public class DemoEnemy extends Enemy {
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
 //		healthPoint = eNEMY_HP;
+		this.mySpawnBehavior=new SpawnByLocation();
 		if(Level == 1){
 			this.setBehavior(new Level2()); 
 		}
@@ -55,6 +69,7 @@ public class DemoEnemy extends Enemy {
 
 	public DemoEnemy(BufferedImage image) {
 		super(image);
+		this.mySpawnBehavior=new SpawnByLocation();
 	}
 
 	@Override
@@ -109,9 +124,9 @@ public class DemoEnemy extends Enemy {
 	public void attack(long elapsedTime) {
 		if (isActive()) {
 			if (refireRate.action(elapsedTime)) {
-				Bullet enemyMissile;
+				Missile enemyMissile;
 				try {
-					enemyMissile = new Bullet(ImageIO.read(new File(
+					enemyMissile = new Missile(ImageIO.read(new File(
 							"images/game/emissle_easy.png")), getX()
 							+ getWidth() / 2, getY() + 20,
 							behavior.enemyDamage());

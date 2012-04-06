@@ -7,7 +7,7 @@ import game.Configuration;
 import java.util.*;
 
 import com.golden.gamedev.object.Timer;
-
+import element.Missile;
 public class Level4 implements TopDownBehavior
 {
 	/*
@@ -53,13 +53,13 @@ public class Level4 implements TopDownBehavior
 		return d = 2.0;
 	}
 
-//	public void weaponDamage(Bullet bullet)
+//	public void weaponDamage(Missile missile)
 //	{
-//		bullet.setDamage(2.0);
+//		missile.setDamage(2.0);
 //	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{	
-		bullet.setSpeed(Math.random() * 0.26,Math.random()*0.26);
+		missile.setSpeed(Math.random() * 0.26,Math.random()*0.26);
 	}
 	public double enemyHP()
 	{

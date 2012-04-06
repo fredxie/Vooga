@@ -1,11 +1,11 @@
 package ai;
 import element.*;
- 
+
+import element.Missile;
 import element.Bullet;
 import game.*;
 import collision.*;
 import demo.*;
-import demo.DemoEnemy;
 import game.Configuration;
 import java.util.*;
 
@@ -29,14 +29,14 @@ public class Level1 implements TopDownBehavior
 		return d = 0.25;
 	}
 
-//	public void weaponDamage(Bullet bullet)
+//	public void weaponDamage(Missile missile)
 //	{
-//		bullet.setDamage(.5);
+//		missile.setDamage(.5);
 //	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{	
-		bullet.setHorizontalSpeed(0);
-		bullet.setVerticalSpeed(.15);
+		missile.setHorizontalSpeed(0);
+		missile.setVerticalSpeed(.15);
 	}
 	
 	public double enemyHP()

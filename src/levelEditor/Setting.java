@@ -50,22 +50,22 @@ public class Setting extends JFrame implements KeyListener {
 		fireText.setEnabled(true);
 		fireText.setBounds(300, 20, 100, 20);
 		fireText.addKeyListener(new Temp("attack"));
-		
+
 		leftText = new JTextField(10);
 		leftText.setEnabled(true);
 		leftText.setBounds(300, 50, 100, 20);
 		leftText.addKeyListener(new Temp("left"));
-		
+
 		rightText = new JTextField(10);
 		rightText.setEnabled(true);
 		rightText.setBounds(300, 80, 100, 20);
 		rightText.addKeyListener(new Temp("right"));
-		
+
 		upText = new JTextField(10);
 		upText.setEnabled(true);
 		upText.setBounds(300, 110, 100, 20);
 		upText.addKeyListener(new Temp("up"));
-		
+
 		downText = new JTextField(10);
 		downText.setEnabled(true);
 		downText.setBounds(300, 140, 100, 20);
@@ -102,7 +102,7 @@ public class Setting extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		
+
 	}
 
 }

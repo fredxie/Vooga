@@ -1,3 +1,7 @@
+/**
+ * @author Jiawei Shi
+ */
+
 package demoState;
 
 import game.Configuration;

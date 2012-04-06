@@ -1,3 +1,6 @@
+/*
+ * @ author: Jiawei Shi
+ */
 package demoState;
 
 import game.TopDownGameEngine;
@@ -25,7 +28,4 @@ public abstract class State extends TopDownGameObject {
 
 	public abstract boolean levelComplete();
 
-//	public int getLevel(){
-//		return gameID;
-//	}
 }

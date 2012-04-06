@@ -1,6 +1,8 @@
 package ai;
-
+import element.Missile;
 import demo.DemoGameEngine;
+
+import element.Missile;
 import element.Bullet;
 import element.Enemy;
 import game.Configuration;
@@ -38,11 +40,11 @@ public class hpLimit implements TopDownBehavior
 		enemy.setRefireRate(rate);		
 	}
 
-//	public static void weaponDamage(Bullet bullet)
+//	public static void weaponDamage(Missile missile)
 //	{
-//		double x = bullet.getDamage();
+//		double x = missile.getDamage();
 //		x = x/2;
-//		bullet.setDamage(x);
+//		missile.setDamage(x);
 //	}
 	public double enemyDamage()
 	{
@@ -65,17 +67,17 @@ public class hpLimit implements TopDownBehavior
 		Configuration.ENEMY_HP = h;
 		return h;
 	}
-	public void weaponSpeed(Bullet bullet)
+	public void weaponSpeed(Missile missile)
 	{
-		double x = bullet.getHorizontalSpeed();
-		double y = bullet.getVerticalSpeed();
+		double x = missile.getHorizontalSpeed();
+		double y = missile.getVerticalSpeed();
 		if(x > 0)
 		{
 			x = x/2;
-			bullet.setHorizontalSpeed(x);
+			missile.setHorizontalSpeed(x);
 		}
 		y = y * 0.75;
-		bullet.setVerticalSpeed(y);
+		missile.setVerticalSpeed(y);
 	}
 //	public static void enemyHP(Enemy enemy)
 //	{

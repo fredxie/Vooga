@@ -1,6 +1,7 @@
 package ai;
 
 import element.Bullet;
+import element.Missile;
 import element.Enemy;
 
 public interface TopDownBehavior {
@@ -10,5 +11,5 @@ public interface TopDownBehavior {
 //	abstract public void enemyHP(Enemy enemy); 
 	abstract double enemyHP();
 	abstract double enemyDamage();
-	abstract public void weaponSpeed(Bullet bullet);
+	abstract public void weaponSpeed(Missile missile);
 }

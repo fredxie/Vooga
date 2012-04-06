@@ -22,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import element.Fighter;
 
 public class KeyConfig {
-	private HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
 	private List<Key> keyList = new ArrayList<Key>();
 	private Fighter player;
 	private GameObject myGame;
@@ -66,7 +66,7 @@ public class KeyConfig {
 		keyMap.put(action, customKey);
 	}
 
-	public void outputJsonFile(String fileName) throws IOException {
+	public static void outputJsonFile(String fileName) throws IOException {
 		Gson gson = new Gson();
 		FileWriter out = new FileWriter(fileName);
 		BufferedWriter bufferedOut = new BufferedWriter(out);
