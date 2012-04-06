@@ -3,12 +3,13 @@ package demoState;
 import game.Configuration;
 import game.TopDownGameEngine;
 import game.TopDownTimer;
+import hud.HUD;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import util.TopDownImageUtil;
-import util.TopDownUtility;
 
 import keyconfiguration.KeyConfig;
 
@@ -33,7 +34,7 @@ public class GameLevel1State extends State {
 	private int bonusNum = Configuration.BONUS_NUM;
 	private int blockNum = Configuration.BLOCK_NUM;
 	private KeyConfig keyConfig;
-    private boolean sate = false;
+
 	TopDownTimer timer = new TopDownTimer(3000);
 	private DemoPlayField playfield = new DemoPlayField(this);
 	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
@@ -70,7 +71,7 @@ public class GameLevel1State extends State {
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
 					getImage("images/game/enemy_easy.png"), Configuration.ENEMY_HP);
-			juniorEnemies[i].spawn(5);
+			juniorEnemies[i].init();
 		}
 		
 		for (int i = 0; i < bonusNum; i++) {
@@ -107,15 +108,7 @@ public class GameLevel1State extends State {
 			parent.nextGameID = DemoGameEngine.PAUSE;
 			finish();
 		}
-		if(keyDown(KeyEvent.VK_CONTROL)&&!sate)
-		{   sate = true;
-			fighter.genSatellite(TopDownImageUtil.getImage(("images/game/Satellite.png")));
-			fighter.getSatellite().fighterControl(elapsedTime);
-		}
-		if(sate)
-		{
-			fighter.getSatellite().fighterControl(elapsedTime);
-		}
+		
 		
 		if(levelComplete())
 		{
@@ -136,22 +129,52 @@ public class GameLevel1State extends State {
 		if (levelComplete) {
 			playfield.clearPlayField();
 			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20, DemoGameEngine.HEIGHT / 2 -50);
-			fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ", 20, DemoGameEngine.HEIGHT / 2 );  
-			fontManager.getFont("FPS Font").drawString(g, "COMING: LEVEL 2     ", 20, DemoGameEngine.HEIGHT / 2 + 50);
+//			fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ", 20, DemoGameEngine.HEIGHT / 2 );  
+//			fontManager.getFont("FPS Font").drawString(g, "COMING: LEVEL 2     ", 20, DemoGameEngine.HEIGHT / 2 + 50);
+			
+		/*
+		 * Take in object[] without Element object and display	
+		 */
+			ArrayList<Object[]> list = new ArrayList<Object[]>();
+			Object[] obj1 = {"MISSION COMPLETE!", 20, DemoGameEngine.HEIGHT / 2};
+			Object[] obj2 = {"COMING: LEVEL 2 ", 20, DemoGameEngine.HEIGHT / 2 + 50};
+			list.add(obj1);
+			list.add(obj2);
+			new HUD(g, "FPS Font", list).DisplayMulti();
+			
 		}
 		else if (gameOver) {
-			fontManager.getFont("FPS Font").drawString(g,
-					"GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
+//			fontManager.getFont("FPS Font").drawString(g, "GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
+			
+			
+			/*
+			 * Takes in individual parameters and display
+			 */
+			HUD hud = new HUD(g, "FPS Font", "GAME OVER! PRESS ESC TO QUIT", 20, DemoGameEngine.HEIGHT / 2);
+			hud.DisplayMono();
 		}
 		
 		else{
 			// display enemies destroyed
-			fontManager.getFont("FPS Font").drawString(g,
-					"BEAT DOWN 10 ENEMIES   ", 20,
-					15);
-			fontManager.getFont("FPS Font").drawString(g,
-					"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
-					30);
+			fontManager.getFont("FPS Font").drawString(g, "BEAT DOWN 10 ENEMIES ", 20, 15);
+			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20, 30);
+//			HUD hud = new HUD(g, "FPS Font", "BEAT DOWN 10 ENEMIES ", 20, 15);
+//			HUD hud2 = new HUD(g,"FPS Font", "ENEMIES DESTROYED", "score", EnemyFighterBulletCollision, 20, 15 );
+//			hud.DisplayMono();
+//			hud2.DisplayMono();
+			
+//			/*
+//			 * Takes in list of Object[] with Element object and display
+//			 */
+//			ArrayList<Object[]> list = new ArrayList<Object[]>();
+//			Object[] obj1 = {"PLAYER WEAPON:", "weapon", fighter, 20, 45};
+//			Object[] obj2 = {"PLAYER HP:", "hp", fighter, 20, 60 };
+//			list.add(obj1);
+//			list.add(obj2);
+//			new HUD(g,"FPS Font", list).DisplayMulti();
+			
+//			HUD hud = new HUD(g, "FPS Font", "PLAYER WEAPON:", "weapon", fighter, 20, 45);
+//			hud.DisplayMono();
 		}
 	}
 

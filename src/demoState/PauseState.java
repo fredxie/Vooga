@@ -1,3 +1,7 @@
+/**
+ * @author Jiawei Shi
+ */
+
 package demoState;
 
 import game.Configuration;
@@ -20,7 +24,7 @@ public class PauseState extends State {
 		super(parent);
 		gameID = 3;
 	}
-
+	
 	public void setPreviousGameID(int gameID){
 		previousGameID = gameID;
 	}

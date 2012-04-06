@@ -7,6 +7,8 @@ import game.TopDownTimer;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import collision.EnemyFighterBulletCollision;
+
 import keyconfiguration.KeyConfig;
 
 import demo.DemoBlock;
@@ -23,7 +25,7 @@ import demo.EnemyDestroyedCollision;
 import util.TopDownImageUtil;
 
 public class GameLevel2State extends State{
-
+	
 	private double backgroundSpeed = Configuration.BACKGROUND_SPEED;
 	private int enemyNum = Configuration.ENEMY_NUM;
 	private int bonusNum = Configuration.BONUS_NUM;
@@ -35,7 +37,7 @@ public class GameLevel2State extends State{
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
-
+	
 	public GameLevel2State(TopDownGameEngine parent) {
 		super(parent);
 		gameID = 2;
@@ -43,56 +45,56 @@ public class GameLevel2State extends State{
 
 
 	public void initResources() {
-
+		
 		EnemyDestroyedCollision.destroyed = 0;
 
 		playfield.init("images/game/background.jpg");
 		for (int i = 0; i < blockNum; i++) {
+			int j = getRandom(0,30);
+			if(j<=10)
 			blocks[i] = new DemoBlock(playfield,
-					getImage("images/game/block.png"));
+					getImage("images/game/block2.png"),3);
+			else 
+				blocks[i] = new DemoBlock(playfield,
+						getImage("images/game/block.png"));
 			blocks[i].init();
 		}
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
-
+		
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
 					getImage("images/game/enemy_easy.png"), Configuration.ENEMY_HP);
 			juniorEnemies[i].init();
 		}
-
+		
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i] = new DemoBonus(playfield,
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-
+		
 		keyConfig = new KeyConfig(fighter, this);
 		keyConfig.parseKeyConfig("keyConfig.json");
 		fighter.setKeyList(keyConfig.getKeyList());	
-
-
+		
+		
 	}
 
 	@Override
 	public void update(long elapsedTime) {
 
 		playfield.update(elapsedTime);
-
+		
 		fighter.refresh(elapsedTime);
-
+		
 		fighter.bomb(elapsedTime);
 		//update Enemies
-		for(int i = 0; i < enemyNum; i++){
+		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i].refresh(elapsedTime);
-			double h = juniorEnemies[i].getHorizontalSpeed();
-			double v = juniorEnemies[i].getVerticalSpeed();
-			if(juniorEnemies[i].getX() <= 0 || juniorEnemies[i].getX() >= DemoGameEngine.WIDTH-((juniorEnemies[i].getWidth()))){
-				juniorEnemies[i].setSpeed(-h, v);		
-			}
 		}
-
+		
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i].refresh(elapsedTime);
 		}
@@ -111,7 +113,7 @@ public class GameLevel2State extends State{
 			}
 		}
 	}
-
+	
 	@Override
 	public void render(Graphics2D g) {
 
@@ -120,7 +122,7 @@ public class GameLevel2State extends State{
 		// game over
 		if (levelComplete) {
 			playfield.clearPlayField();
-			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyDestroyedCollision.destroyed, 20, DemoGameEngine.HEIGHT / 2 -50);
+			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20, DemoGameEngine.HEIGHT / 2 -50);
 			fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ", 20, DemoGameEngine.HEIGHT / 2 );  
 			fontManager.getFont("FPS Font").drawString(g, "COMING: LEVEL 3     ", 20, DemoGameEngine.HEIGHT / 2 + 50);
 		}
@@ -128,14 +130,14 @@ public class GameLevel2State extends State{
 			fontManager.getFont("FPS Font").drawString(g,
 					"GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
 		}
-
+		
 		else{
 			// display enemies destroyed
 			fontManager.getFont("FPS Font").drawString(g,
 					"BEAT DOWN 20 ENEMIES   ", 20,
 					15);
 			fontManager.getFont("FPS Font").drawString(g,
-					"ENEMIES DESTROYED   " + EnemyDestroyedCollision.destroyed, 20,
+					"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
 					30);
 		}
 	}
@@ -144,10 +146,11 @@ public class GameLevel2State extends State{
 
 	@Override
 	public boolean levelComplete() {
-		if(EnemyDestroyedCollision.destroyed>=20){
+		if(EnemyFighterBulletCollision.destroyed>=20){
 			levelComplete = true;
 		 }
 		return levelComplete;
 	}
 
 }
+
