@@ -1,3 +1,4 @@
+
 package element;
 
 import game.TopDownTimer;
@@ -70,3 +71,4 @@ public abstract class Enemy extends Element {
 	public abstract void refresh(long elapsedTime);
 
 }
+

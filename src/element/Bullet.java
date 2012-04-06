@@ -1,11 +1,14 @@
 package element;
-
+/**
+ * 
+ * @author ShiyuanWang
+ */
 import java.awt.image.BufferedImage;
 
-public class Bullet extends Element {
+public abstract class Bullet extends Element {
 
-	private double damage;
-
+	private double damage = 1;
+    
 	public Bullet(BufferedImage image) {
 		super(image);
 	}
@@ -26,7 +29,7 @@ public class Bullet extends Element {
 	public void setDamage(double x) {
 		this.damage = x;
 	}
-
+    public abstract Bullet[] genBullets(Fighter fighter, int numOfBullet);
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub

@@ -8,12 +8,16 @@ import java.util.*;
 
 import com.golden.gamedev.object.Timer;
 
-public class Level4 extends TopDownLevel
+public class Level4 implements TopDownBehavior
 {
+	/*
+	 * timers don't work as i thought they did. Need to change this to get them to work
+	 */
 	private Timer timer = new Timer(400);
 	private boolean timera = false;
+	double d,h;
 
-//	@Override
+
 	public void movement(Enemy enemy)
 	{
 		timer.refresh();
@@ -38,34 +42,33 @@ public class Level4 extends TopDownLevel
 			enemy.setSpeed(-x,y);
 		}
 	}
-//	@Override
+
 	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(600);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = 2.0;
-//		Configuration.ENEMY_WEAPON_DAMAGE = d;
-//	}
-//	@Override
-	public void weaponDamage(Bullet bullet)
+	public double enemyDamage()
 	{
-		bullet.setDamage(2.0);
+		Configuration.ENEMY_WEAPON_DAMAGE = 2.0;
+		return d = 2.0;
 	}
+
+//	public void weaponDamage(Bullet bullet)
+//	{
+//		bullet.setDamage(2.0);
+//	}
 	public void weaponSpeed(Bullet bullet)
 	{	
 		bullet.setSpeed(Math.random() * 0.26,Math.random()*0.26);
 	}
-//	@Override
-//	public void enemyHP(double h)
-//	{
-//		h = 3.0;
-//		Configuration.ENEMY_HP = h;
-//	}
-	public void enemyHP(Enemy enemy)
+	public double enemyHP()
 	{
-		double h = 3.0;
-		enemy.setHP(h);
+		Configuration.ENEMY_HP = 3.0;
+		return h = 3.0;
 	}
+//	public void enemyHP(Enemy enemy)
+//	{
+//		double h = 3.0;
+//		enemy.setHP(h);
+//	}
 }

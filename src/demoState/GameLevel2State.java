@@ -23,19 +23,19 @@ import demo.EnemyDestroyedCollision;
 import util.TopDownImageUtil;
 
 public class GameLevel2State extends State{
-	
+
 	private double backgroundSpeed = Configuration.BACKGROUND_SPEED;
 	private int enemyNum = Configuration.ENEMY_NUM;
 	private int bonusNum = Configuration.BONUS_NUM;
 	private int blockNum = Configuration.BLOCK_NUM;
 	private KeyConfig keyConfig;
 	private TopDownTimer timer = new TopDownTimer(3000);
-	private DemoPlayField playfield = new DemoPlayField();
+	private DemoPlayField playfield = new DemoPlayField(this);
 	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
-	
+
 	public GameLevel2State(TopDownGameEngine parent) {
 		super(parent);
 		gameID = 2;
@@ -43,7 +43,7 @@ public class GameLevel2State extends State{
 
 
 	public void initResources() {
-		
+
 		EnemyDestroyedCollision.destroyed = 0;
 
 		playfield.init("images/game/background.jpg");
@@ -55,39 +55,44 @@ public class GameLevel2State extends State{
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
-		
+
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
 					getImage("images/game/enemy_easy.png"), Configuration.ENEMY_HP);
 			juniorEnemies[i].init();
 		}
-		
+
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i] = new DemoBonus(playfield,
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-		
+
 		keyConfig = new KeyConfig(fighter, this);
 		keyConfig.parseKeyConfig("keyConfig.json");
 		fighter.setKeyList(keyConfig.getKeyList());	
-		
-		
+
+
 	}
 
 	@Override
 	public void update(long elapsedTime) {
 
 		playfield.update(elapsedTime);
-		
+
 		fighter.refresh(elapsedTime);
-		
+
 		fighter.bomb(elapsedTime);
 		//update Enemies
-		for (int i = 0; i < enemyNum; i++) {
+		for(int i = 0; i < enemyNum; i++){
 			juniorEnemies[i].refresh(elapsedTime);
+			double h = juniorEnemies[i].getHorizontalSpeed();
+			double v = juniorEnemies[i].getVerticalSpeed();
+			if(juniorEnemies[i].getX() <= 0 || juniorEnemies[i].getX() >= DemoGameEngine.WIDTH-((juniorEnemies[i].getWidth()))){
+				juniorEnemies[i].setSpeed(-h, v);		
+			}
 		}
-		
+
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i].refresh(elapsedTime);
 		}
@@ -106,7 +111,7 @@ public class GameLevel2State extends State{
 			}
 		}
 	}
-	
+
 	@Override
 	public void render(Graphics2D g) {
 
@@ -123,7 +128,7 @@ public class GameLevel2State extends State{
 			fontManager.getFont("FPS Font").drawString(g,
 					"GAME OVER!    PRESS ESC...", 20, DemoGameEngine.HEIGHT / 2);
 		}
-		
+
 		else{
 			// display enemies destroyed
 			fontManager.getFont("FPS Font").drawString(g,
@@ -146,4 +151,3 @@ public class GameLevel2State extends State{
 	}
 
 }
-

@@ -18,25 +18,12 @@ public abstract class Fighter extends Element {
 	private double healthPoint = Configuration.FIGHTER_HP;
 	private int lifeNum = Configuration.lifeNum;
 	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
-
 	private int weaponStyle = Configuration.INITIAL_STYLE;
 	private List<Key> keyList;
-
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 																// after 5000 ms
 																// (default)
-
-	public int bombNum;
-
-	public int getWeaponStyle() {
-		return weaponStyle;
-	}
-
-	public void setWeaponStyle(int weaponStyle) {
-		this.weaponStyle = weaponStyle;
-	}
-
 	private double speedX, speedY;
 	private double moveSpeed = 0.3;
 
@@ -48,6 +35,17 @@ public abstract class Fighter extends Element {
 	public TopDownGameObject game;
 	// public Bullet bullet;
 	public BufferedImage bulletImage;
+	public int bombNum;
+
+	public int getWeaponStyle() {
+		return weaponStyle;
+	}
+
+	public void setWeaponStyle(int weaponStyle) {
+		this.weaponStyle = weaponStyle;
+	}
+
+	
 
 	public Fighter(BufferedImage image) {
 		super(image);
@@ -141,7 +139,6 @@ public abstract class Fighter extends Element {
 	// public abstract void fighterWeapon(long elapsedTime); //here developer
 	// should set their bullet style
 	// public abstract void initFighter();
-	public abstract void refresh(long elapsedTime);
 
 	public void death(BufferedImage i) {
 		this.setImage(i);
@@ -155,15 +152,6 @@ public abstract class Fighter extends Element {
 		this.weaponDamage = d;
 	}
 
-	public abstract void bomb(long elapsedTime);
-
-	public void setBombNum(int bombNum) {
-		this.bombNum = bombNum;
-	}
-
-	public int getBombNum() {
-		return bombNum;
-	}
 
 	public abstract void attack(long elapsedTime, int weaponStyle, double weaponDamage2);
 }

@@ -7,6 +7,7 @@ import com.golden.gamedev.object.sprite.VolatileSprite;
 
 import element.Bullet;
 import element.Fighter;
+import element.RegularFighter;
 import element.TopDownPlayField;
 import game.Configuration;
 

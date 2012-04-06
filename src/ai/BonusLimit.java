@@ -8,7 +8,7 @@ import element.Bullet;
 import element.Enemy;
 import java.util.*;
 
-public class BonusLimit extends TopDownLevel
+public class BonusLimit implements TopDownBehavior
 {
 	private Timer timer1 = new Timer(400);
 	private Timer timer2 = new Timer(800);
@@ -16,6 +16,7 @@ public class BonusLimit extends TopDownLevel
 	boolean timera = true;
 	boolean timerb = true;
 	boolean timerc = true;
+	double d,h;
 	
 	public void movement(Enemy enemy)
 	{
@@ -58,11 +59,10 @@ public class BonusLimit extends TopDownLevel
 	{
 		enemy.setRefireRate(500);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = 1.0;
-//		Configuration.ENEMY_WEAPON_DAMAGE = d;
-//	}
+	public double enemyDamage()
+	{
+		return d = 1.0;
+	}
 	public void weaponDamage(Bullet bullet)
 	{
 		bullet.setDamage(1.5);
@@ -76,14 +76,13 @@ public class BonusLimit extends TopDownLevel
 		y = y * 1.5;
 		bullet.setVerticalSpeed(y);
 	}
-//	public void enemyHP(double h)
-//	{
-//		h = 1.0;
-//		Configuration.ENEMY_HP = h;
-//	}
-	public void enemyHP(Enemy enemy)
+	public double enemyHP()
 	{
-		double h = 1.0;
-		enemy.setHP(h);
+		return h = 1.0;
 	}
+//	public void enemyHP(Enemy enemy)
+//	{
+//		double h = 1.0;
+//		enemy.setHP(h);
+//	}
 }

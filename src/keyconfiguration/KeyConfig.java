@@ -1,5 +1,9 @@
 package keyconfiguration;
-
+/**
+ * 
+ * @author Ran Zhang
+ * 
+ */
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,7 +60,6 @@ public class KeyConfig {
 			keyList.add(new Key(keyMap.get(action), action, player, myGame));
 		}
 	}
-	
 
 	public void setCustomKey(String fileName, int customKey, String action)
 			throws FileNotFoundException {

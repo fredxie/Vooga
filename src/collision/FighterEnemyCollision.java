@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import com.golden.gamedev.object.Sprite;
 
 import element.Fighter;
+import element.RegularFighter;
 import element.TopDownPlayField;
 import game.Configuration;
 

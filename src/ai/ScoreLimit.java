@@ -15,14 +15,15 @@ import element.Enemy;
  * multiple times through the game depending on the score of the player, and can happen in any level, and in
  * addition to any other ai change.
  */
-public class ScoreLimit extends TopDownLevel
+public class ScoreLimit implements TopDownBehavior
 {
+	double d,h;
 	public void movement(Enemy enemy)
 	{
 		double hSpeed = enemy.getHorizontalSpeed();
 		double vSpeed = enemy.getVerticalSpeed();
 		hSpeed = hSpeed + .05;
-		vSpeed = vSpeed + .02; // Vspeed incremented less, since it could happen several times and sprite leaving screen faster benifits player in a way;
+		vSpeed = vSpeed + .02;
 		enemy.setSpeed(hSpeed,vSpeed);
 		if (enemy.getX() <= 0){
 			enemy.setSpeed(-hSpeed,vSpeed);
@@ -43,11 +44,13 @@ public class ScoreLimit extends TopDownLevel
 		x = x + 0.5;
 		bullet.setDamage(x);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = Configuration.ENEMY_WEAPON_DAMAGE;
-//		d = d + .5;
-//	}
+	public double enemyDamage()
+	{
+		double a = Configuration.ENEMY_WEAPON_DAMAGE;
+		d = a + .5;
+		Configuration.ENEMY_WEAPON_DAMAGE = d;
+		return d;
+	}
 	public void weaponSpeed(Bullet bullet)
 	{
 		double x = bullet.getHorizontalSpeed();
@@ -57,9 +60,12 @@ public class ScoreLimit extends TopDownLevel
 		y = y * 1.3;
 		bullet.setVerticalSpeed(y);
 	}
-//	public void enemyHP(double h) {
-//		
-//	}
+	public double enemyHP() {
+		double x = Configuration.ENEMY_HP;
+		h = x + .5;
+		Configuration.ENEMY_HP = h;
+		return h;	
+	}
 	public void enemyHP(Enemy enemy)
 	{
 		double h = enemy.getHP();

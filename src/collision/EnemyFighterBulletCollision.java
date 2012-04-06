@@ -1,5 +1,15 @@
 package collision;
 
+import demo.EnemyDestroyedCollision;
+import element.Block;
+import element.Bonus;
+import element.Bullet;
+import element.Element;
+import element.Enemy;
+import element.Fighter;
+import element.TopDownPlayField;
+import game.Configuration;
+
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.object.Sprite;
@@ -34,13 +44,13 @@ public class EnemyFighterBulletCollision extends TopDownCollision{
 	@Override
 	public void collideEvent(Sprite s1, Sprite s2) {
 
+
 		((Enemy) s1).setHP(((Enemy) s1).getHP()-((Bullet) s2).getDamage());
 		if (((Enemy) s1).getHP() <= 0 )
 		{
             s1.setActive(false);
             destroyed++;
-
-			
+	
 		}		
 	}
 	

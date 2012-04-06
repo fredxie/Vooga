@@ -1,5 +1,6 @@
 package demo;
 
+import collision.BlockFighterBulletCollision;
 import collision.EnemyFighterBulletCollision;
 import collision.FighterBlockCollision;
 import collision.FighterBonusCollision;
@@ -11,9 +12,15 @@ import util.TopDownUtility;
 import element.ElementGroup;
 import element.TopDownPlayField;
 import game.Configuration;
+import game.TopDownGameObject;
 
 public class DemoPlayField extends TopDownPlayField {
 
+	public DemoPlayField(TopDownGameObject object) {
+		super(object);
+	}
+	
+	
 	public void init(String s) {
 
 		int[][] tiles = new int[100][100];
@@ -48,31 +55,38 @@ public class DemoPlayField extends TopDownPlayField {
 		// ENEMY,
 		// new EnemyDestroyedCollision(this, TopDownImageUtil.getImages(
 		// "images/game/explosion.png", 6, 1)));
-		this.addCollisionGroup(
+      this.addCollisionGroup(
+				
+				FIGHTER,ENEMY_MISSILE,
+				new FighterEnemyBulletCollision(this, TopDownImageUtil.getImages(
+						"images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
 
-		FIGHTER, ENEMY_MISSILE, new FighterEnemyBulletCollision(this,
-				TopDownImageUtil.getImages("images/game/explosion.png", 6, 1)));
 		this.addCollisionGroup(
 
 				FIGHTER,
 				ENEMY,
 				new FighterEnemyCollision(this, TopDownImageUtil.getImages(
-						"images/game/explosion.png", 6, 1)));
 
+						"images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
+		
 		this.addCollisionGroup(
-				ENEMY,
-				FIGHTER_MISSILE,
-				new EnemyFighterBulletCollision(this, TopDownImageUtil
-						.getImages("images/game/explosion.png", 6, 1)));
-
-		this.addCollisionGroup(FIGHTER, BONUS, new FighterBonusCollision(this,
-				TopDownImageUtil.getImages("images/game/explosion.png", 6, 1)));
+				ENEMY, FIGHTER_MISSILE, 
+				new EnemyFighterBulletCollision(this, TopDownImageUtil.getImages(
+						"images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
+		
 		this.addCollisionGroup(
-
-				FIGHTER,
-				BLOCK,
+				FIGHTER, BONUS, 
+				new FighterBonusCollision(this, TopDownImageUtil.getImages(
+						"images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
+		this.addCollisionGroup(
+				FIGHTER, BLOCK,
 				new FighterBlockCollision(this, TopDownImageUtil.getImages(
-						"images/game/explosion.png", 6, 1)));
-	}
+						"images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
+		
+		this.addCollisionGroup(
+				 BLOCK,FIGHTER_MISSILE,
+				new BlockFighterBulletCollision(this,TopDownImageUtil.getImages("images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
 
+}
+	
 }

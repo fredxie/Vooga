@@ -8,11 +8,17 @@ import util.TopDownImageUtil;
 import element.Bullet;
 import element.Element;
 import element.Fighter;
+import element.Laser;
+import element.Missile;
+import element.RegularFighter;
+import element.Satellite;
 import game.Configuration;
 import game.TopDownVolatileElement;
 
-public class DemoFighter extends Fighter {
-
+public class DemoFighter extends RegularFighter {
+    Bullet bullet = new Laser(TopDownImageUtil.getImage(
+			"images/game/bigLaser1.png"));
+    private Satellite satellite;
 	public DemoFighter(BufferedImage image) {
 		super(image);
 	}
@@ -39,47 +45,10 @@ public class DemoFighter extends Fighter {
 
 	@Override
 	public void attack(long elapsedTime, int weaponStyle, double weaponDamage) {
-
-		switch (weaponStyle) {
-		case 0: {
-			Bullet missile = new Bullet(
-					TopDownImageUtil.getImage("images/game/bullet.png"),
-					this.getX() + this.getWidth() / 2, this.getY() - 20,
-					weaponDamage);
-			missile.setVerticalSpeed(-0.7);
-			playfield.getGroup("Fighter Bullet").add(missile);
-			break;
-		}
-		case 1: {
-			Bullet[] missile = new Bullet[3];
-			for (int i = 0; i < 3; i++) {
-				missile[i] = new Bullet(
-						TopDownImageUtil.getImage("images/game/bullet.png"),
-						this.getX() + this.getWidth() / 2, this.getY() - 20,
-						weaponDamage);
-				missile[i].setSpeed(0.35 * Math.sin((1 - i) * 30 * 3.14 / 180),
-						-0.6 * Math.cos((1 - i) * 30 * 3.14 / 180));
-				playfield.getGroup("Fighter Bullet").add(missile[i]);
-			}
-			break;
-		}
-		case 2: {
-			Bullet[] missile = new Bullet[5];
-			for (int i = 0; i < 5; i++) {
-				missile[i] = new Bullet(
-						TopDownImageUtil.getImage("images/game/bullet.png"),
-						this.getX() + this.getWidth() / 2, this.getY() - 20,
-						weaponDamage);
-				missile[i].setSpeed(
-						0.35 * Math.sin((2 - i) * 22.5 * 3.14 / 180), -0.6
-								* Math.cos((2 - i) * 22.5 * 3.14 / 180));
-				playfield.getGroup("Fighter Bullet").add(missile[i]);
-			}
-			break;
-		}
-		}
+        Bullet[] bullets = bullet.genBullets(this,weaponStyle);
+		for(Bullet bullet : bullets)
+		playfield.getGroup("Fighter Bullet").add(bullet);
 		allowFire = false;
-		// refireRate.refresh();
 	}
 
 	public void bomb(long elapsedTime) {
@@ -115,5 +84,14 @@ public class DemoFighter extends Fighter {
 			}
 		}
 	}
+	public void genSatellite(BufferedImage image)
+    {   
+		satellite = new DemoSatellite(image,this);
+    	
+    }
+   public Satellite getSatellite()
+   {
+	   return satellite;
+   }
 
 }

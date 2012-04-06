@@ -9,6 +9,17 @@ public abstract class Element extends Sprite {
 
 	public TopDownPlayField playfield;
 
+	
+	 private int mass;   // this is Yi Ding's revise
+
+		public int getMass() {    // this is Yi Ding's revise
+			return mass;
+		}
+
+		public void setMass(int mass) {   // this is Yi Ding's revise
+			this.mass = mass;
+		}
+	
 	public Element(BufferedImage image) {
 		super(image);
 	}

@@ -8,7 +8,7 @@ import java.util.*;
 
 import com.golden.gamedev.object.Timer;
 
-public class Level5 extends TopDownLevel
+public class Level5 implements TopDownBehavior
 {
 	private Timer timer = new Timer(3200);
 	private boolean timera = false;
@@ -19,8 +19,8 @@ public class Level5 extends TopDownLevel
 	boolean timerb = true;
 	boolean timerc = true;
 	boolean timerd = true;
-	
-	//@Override
+	double d,h;
+
 	public void movement(Enemy enemy)
 	{
 		double h = enemy.getHorizontalSpeed();
@@ -89,21 +89,21 @@ public class Level5 extends TopDownLevel
 			enemy.setSpeed(-h,y);
 		}
 	}
-	//@Override
+
 	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(600);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = 2.5;
-//		Configuration.ENEMY_WEAPON_DAMAGE = d;
-//	}
-	//@Override
-	public void weaponDamage(Bullet bullet)
+	public double enemyDamage()
 	{
-		bullet.setDamage(3);
+		Configuration.ENEMY_WEAPON_DAMAGE = 2.5;
+		return d = 2.5;
 	}
+
+//	public void weaponDamage(Bullet bullet)
+//	{
+//		bullet.setDamage(3);
+//	}
 	public void weaponSpeed(Bullet bullet)
 	{	
 		/*
@@ -122,12 +122,12 @@ public class Level5 extends TopDownLevel
 			bullet.setSpeed(-h,v);
 		}
 	}
-	//@Override
-//	public void enemyHP(double h)
-//	{
-//		h = 3.5;
-//		Configuration.ENEMY_HP = h;
-//	}
+
+	public double enemyHP()
+	{
+		Configuration.ENEMY_HP = 3.5;
+		return h = 3.5;
+	}
 	public void enemyHP(Enemy enemy)
 	{
 		double h = 3.5;

@@ -10,6 +10,7 @@ import util.TopDownUtility;
 
 import element.Bullet;
 import element.Enemy;
+import element.Missile;
 import element.SpawnByLocation;
 import element.TopDownPlayField;
 import game.Configuration;
@@ -19,6 +20,8 @@ public class DemoEnemy extends Enemy {
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
 		healthPoint = eNEMY_HP;
+		
+		this.mySpawnBehavior=new SpawnByLocation();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -60,7 +63,7 @@ public class DemoEnemy extends Enemy {
 			if (refireRate.action(elapsedTime)) {
 				Bullet enemyMissile;
 				try {
-					enemyMissile = new Bullet(ImageIO.read(new File(
+					enemyMissile = new Missile(ImageIO.read(new File(
 							"images/game/emissle_easy.png")), getX()
 							+ getWidth() / 2, getY() + 20,
 							Configuration.ENEMY_WEAPON_DAMAGE);

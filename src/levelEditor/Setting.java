@@ -105,7 +105,4 @@ public class Setting extends JFrame implements KeyListener {
 		
 	}
 
-//	public static void main(String[] args) {
-//		Setting s = new Setting();
-//	}
 }

@@ -6,6 +6,8 @@ import com.golden.gamedev.object.Sprite;
 
 import element.Bonus;
 import element.Fighter;
+
+import element.RegularFighter;
 import element.TopDownPlayField;
 
 public class FighterBonusCollision extends TopDownCollision{
@@ -31,7 +33,8 @@ public class FighterBonusCollision extends TopDownCollision{
 	@Override
 	public void collideEvent(Sprite s1, Sprite s2) {
 		
-		
+		s2.setActive(false);
+
 		if (((Fighter) s1).getWeaponStyle() == (((Bonus) s2).getWeaponStyle()))
 			((Fighter) s1)
 					.setWeaponDamage(((Fighter) s1).getWeaponDamage() + 1);
