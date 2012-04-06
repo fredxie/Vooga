@@ -6,6 +6,10 @@ import game.*;
 import collision.*;
 import demo.*;
 import demo.DemoEnemy;
+<<<<<<< HEAD
+=======
+//import demo.DemoGame;
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 import game.Configuration;
 import java.util.*;
 

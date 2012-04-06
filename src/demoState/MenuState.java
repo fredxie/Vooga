@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import levelEditor.LevelEditor;
+import levelEditor.Setting;
 import menu.GameSL;
 
 import demo.DemoGameEngine;
@@ -65,6 +66,9 @@ public class MenuState extends State {
 
 				}
 			}
+			if (option == 4) {
+				Setting setting = new Setting();
+			}
 			break;
 
 		case KeyEvent.VK_UP:
@@ -95,6 +99,8 @@ public class MenuState extends State {
 		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 180);
 		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150,
 				220);
+		fontManager.getFont("FPS Font").drawString(g, "SETTING", 150,
+				260);
 		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
 				90 + (option * 40), null);
 
@@ -106,4 +112,8 @@ public class MenuState extends State {
 		return false;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f

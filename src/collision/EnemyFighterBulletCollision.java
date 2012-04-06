@@ -1,5 +1,6 @@
 package collision;
 
+<<<<<<< HEAD
 import demo.EnemyDestroyedCollision;
 import element.Block;
 import element.Bonus;
@@ -10,34 +11,42 @@ import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
 
+=======
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 import java.awt.image.BufferedImage;
 
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.collision.BasicCollisionGroup;
-import com.golden.gamedev.object.sprite.VolatileSprite;
 
-public class EnemyFighterBulletCollision extends BasicCollisionGroup {
 
-	private TopDownPlayField playfield;
-	private BufferedImage[] explosion;
-	public static int destroyed = 0;
+import element.Bullet;
+import element.Enemy;
+import element.TopDownPlayField;
 
-	public EnemyFighterBulletCollision(TopDownPlayField field,
-			BufferedImage[] images) {
-		super();
-		playfield = field;
-		explosion = images;
+public class EnemyFighterBulletCollision extends TopDownCollision{
+
+	public static int destroyed=0;
+
+	public EnemyFighterBulletCollision(TopDownPlayField field, BufferedImage[] images,String sound) {
+		super(field,images,sound);
+	}
+	
+	public EnemyFighterBulletCollision(TopDownPlayField field)
+	{
+		super(field);
 	}
 
-	public void collided(Sprite s1, Sprite s2) {
-		s2.setActive(false);
-
-		collideEvent(s1, s2);
+	public EnemyFighterBulletCollision(TopDownPlayField field, BufferedImage[] images)
+	{
+		super(field,images );
+	}
+	public EnemyFighterBulletCollision(TopDownPlayField field, String sound)
+	{
+		super(field, sound);
 
 	}
-
+	@Override
 	public void collideEvent(Sprite s1, Sprite s2) {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		playfield.add(new VolatileSprite(explosion, s1.getX(), s1.getY()));
 		((Enemy) s1).setHP(((Enemy) s1).getHP() - ((Bullet) s2).getDamage());
@@ -54,7 +63,21 @@ public class EnemyFighterBulletCollision extends BasicCollisionGroup {
 			// }
 			//
 		}
+=======
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 
-	}
+		((Enemy) s1).setHP(((Enemy) s1).getHP()-((Bullet) s2).getDamage());
+		if (((Enemy) s1).getHP() <= 0 )
+		{
+            s1.setActive(false);
+            destroyed++;
 
+<<<<<<< HEAD
 }
+=======
+			
+		}		
+	}
+	
+}
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f

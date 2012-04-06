@@ -9,11 +9,21 @@ import element.TopDownPlayField;
 
 public class DemoBlock extends Block {
 
-	public DemoBlock(TopDownPlayField playfield, BufferedImage image) {
+
+	
+
+	public DemoBlock(TopDownPlayField playfield, BufferedImage image,int hardDegree) {
 		super(playfield, image);
-		// TODO Auto-generated constructor stub
+		this.hardDegree = hardDegree;
+		destroyable = true;
 	}
 
+	public DemoBlock(TopDownPlayField playfield, BufferedImage image) {
+		super(playfield, image);
+		destroyable = false;
+	}
+
+	
 	@Override
 	public void init() {
 
@@ -25,3 +35,4 @@ public class DemoBlock extends Block {
 	}
 
 }
+

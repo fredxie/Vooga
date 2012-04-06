@@ -20,7 +20,11 @@ public class PauseState extends State {
 		super(parent);
 		gameID = 3;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 	public void setPreviousGameID(int gameID){
 		previousGameID = gameID;
 	}
@@ -98,4 +102,8 @@ public class PauseState extends State {
 		return false;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f

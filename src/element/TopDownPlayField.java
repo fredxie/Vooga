@@ -1,13 +1,31 @@
 package element;
 
 import game.Configuration;
+import game.TopDownGameObject;
 
 import background.TopDownBackground;
 import background.TopDownTileBackground;
 
 import com.golden.gamedev.object.PlayField;
 
-public class TopDownPlayField extends PlayField {
+public class TopDownPlayField extends PlayField{
+	
+	private TopDownGameObject game;
+
+	public TopDownPlayField(TopDownGameObject object)
+	{
+		super();
+		game = object;
+	}
+	
+	public TopDownGameObject getGame() {
+		return game;
+	}
+
+	public void setGame(TopDownGameObject game) {
+		this.game = game;
+	}
+
 
 	public ElementGroup addGroup(ElementGroup eg) {
 		return (ElementGroup) super.addGroup(eg);
@@ -27,3 +45,4 @@ public class TopDownPlayField extends PlayField {
 		return (ElementGroup) super.getGroup(name);
 	}
 }
+
