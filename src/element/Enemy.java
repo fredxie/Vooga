@@ -16,11 +16,13 @@ public abstract class Enemy extends Element {
 
 	public Enemy(BufferedImage image) {
 		super(image);
+		this.setMass(3);
 	}
 
 	public Enemy(TopDownPlayField playfield, BufferedImage image) {
 		super(image);
 		this.playfield = playfield;
+		this.setMass(3);
 	}
 
 	public abstract void attack(long elapsedTime);

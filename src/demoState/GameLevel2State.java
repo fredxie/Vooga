@@ -7,6 +7,8 @@ import game.TopDownTimer;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import collision.EnemyFighterBulletCollision;
+
 import keyconfiguration.KeyConfig;
 
 import demo.DemoBlock;
@@ -30,7 +32,7 @@ public class GameLevel2State extends State{
 	private int blockNum = Configuration.BLOCK_NUM;
 	private KeyConfig keyConfig;
 	private TopDownTimer timer = new TopDownTimer(3000);
-	private DemoPlayField playfield = new DemoPlayField();
+	private DemoPlayField playfield = new DemoPlayField(this);
 	private DemoFighter fighter = new DemoFighter(TopDownImageUtil.getImage("images/game/fighter.png"));
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
 	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
@@ -48,8 +50,13 @@ public class GameLevel2State extends State{
 
 		playfield.init("images/game/background.jpg");
 		for (int i = 0; i < blockNum; i++) {
+			int j = getRandom(0,30);
+			if(j<=10)
 			blocks[i] = new DemoBlock(playfield,
-					getImage("images/game/block.png"));
+					getImage("images/game/block2.png"),3);
+			else 
+				blocks[i] = new DemoBlock(playfield,
+						getImage("images/game/block.png"));
 			blocks[i].init();
 		}
 		fighter.setPlayfield(playfield);
@@ -115,7 +122,7 @@ public class GameLevel2State extends State{
 		// game over
 		if (levelComplete) {
 			playfield.clearPlayField();
-			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyDestroyedCollision.destroyed, 20, DemoGameEngine.HEIGHT / 2 -50);
+			fontManager.getFont("FPS Font").drawString(g, "ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20, DemoGameEngine.HEIGHT / 2 -50);
 			fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ", 20, DemoGameEngine.HEIGHT / 2 );  
 			fontManager.getFont("FPS Font").drawString(g, "COMING: LEVEL 3     ", 20, DemoGameEngine.HEIGHT / 2 + 50);
 		}
@@ -130,7 +137,7 @@ public class GameLevel2State extends State{
 					"BEAT DOWN 20 ENEMIES   ", 20,
 					15);
 			fontManager.getFont("FPS Font").drawString(g,
-					"ENEMIES DESTROYED   " + EnemyDestroyedCollision.destroyed, 20,
+					"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed, 20,
 					30);
 		}
 	}
@@ -139,7 +146,7 @@ public class GameLevel2State extends State{
 
 	@Override
 	public boolean levelComplete() {
-		if(EnemyDestroyedCollision.destroyed>=20){
+		if(EnemyFighterBulletCollision.destroyed>=20){
 			levelComplete = true;
 		 }
 		return levelComplete;
