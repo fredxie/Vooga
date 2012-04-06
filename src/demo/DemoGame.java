@@ -60,7 +60,7 @@ public class DemoGame extends TopDownGameObject {
 		for (int i = 0; i < enemyNum; i++) {
 			juniorEnemies[i] = new DemoEnemy(playfield,
 					Configuration.ENEMY_PATH, Configuration.ENEMY_HP);
-			juniorEnemies[i].init();
+			juniorEnemies[i].spawn(5);
 		}
 		
 		for (int i = 0; i < bonusNum; i++) {
