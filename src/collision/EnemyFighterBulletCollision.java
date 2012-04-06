@@ -1,5 +1,6 @@
 package collision;
 
+import demo.EnemyDestroyedCollision;
 import element.Block;
 import element.Bonus;
 import element.Bullet;
@@ -42,6 +43,7 @@ public class EnemyFighterBulletCollision extends BasicCollisionGroup {
 		((Enemy) s1).setHP(((Enemy) s1).getHP() - ((Bullet) s2).getDamage());
 		if (((Enemy) s1).getHP() <= 0) {
 			// if(((Enemy) s1).getLifeNum()==1)
+			EnemyDestroyedCollision.destroyed++;
 			s1.setActive(false);
 			destroyed++;
 			// else{

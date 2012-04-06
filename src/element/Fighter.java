@@ -89,6 +89,7 @@ public abstract class Fighter extends Element {
 	}
 
 	public void fighterControl(long elapsedTime) {
+		//System.out.println(keyList.size());
 		speedX = speedY = 0;
 		for (Key key : keyList) {
 			if (key.isKeyDown()) {

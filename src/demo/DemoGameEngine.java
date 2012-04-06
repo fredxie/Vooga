@@ -15,7 +15,7 @@ public class DemoGameEngine extends TopDownGameEngine {
 		distribute = true;
 	}
 
-	public static final int Menu = 0, Playing = 1, Pause = 2;
+	public static final int Menu = 0, GAME_Level1 = 1, GAME_Level2 = 2,PAUSE = 3;
 	public static final int HEIGHT = 640;
 	public static final int WIDTH = 480;
 
@@ -27,8 +27,9 @@ public class DemoGameEngine extends TopDownGameEngine {
 
 	public void initResources() {
 
-		map.put(Playing, new PlayingState(this));
-		map.put(Pause, new PauseState(this));
+		map.put(GAME_Level1, new GameLevel1State(this));
+		map.put(GAME_Level2, new GameLevel2State(this));
+		map.put(PAUSE, new PauseState(this));
 		map.put(Menu, new MenuState(this));
 
 		nextGameID = Menu;

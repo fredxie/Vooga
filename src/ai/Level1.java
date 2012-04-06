@@ -5,7 +5,7 @@ import game.*;
 import collision.*;
 import demo.*;
 import demo.DemoEnemy;
-import demo.DemoGame;
+//import demo.DemoGame;
 import game.Configuration;
 import java.util.*;
 
