@@ -140,7 +140,7 @@ public class GameLevel1State extends State {
 			Object[] obj2 = {"COMING: LEVEL 2 ", 20, DemoGameEngine.HEIGHT / 2 + 50};
 			list.add(obj1);
 			list.add(obj2);
-			new HUD(g, "FPS Font", list).DisplayMulti();
+			new HUD(g, "FPS Font", list).displayMulti();
 			
 		}
 		else if (gameOver) {
@@ -151,7 +151,7 @@ public class GameLevel1State extends State {
 			 * Takes in individual parameters and display
 			 */
 			HUD hud = new HUD(g, "FPS Font", "GAME OVER! PRESS ESC TO QUIT", 20, DemoGameEngine.HEIGHT / 2);
-			hud.DisplayMono();
+			hud.displayMono();
 		}
 		
 		else{
