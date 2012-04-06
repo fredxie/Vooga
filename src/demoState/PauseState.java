@@ -1,7 +1,3 @@
-/**
- * @author Jiawei Shi
- */
-
 package demoState;
 
 import game.Configuration;
@@ -18,9 +14,15 @@ public class PauseState extends State {
 
 	int option;
 	TopDownImageBackground mainMenuTitle;
+	private int previousGameID;
 
 	public PauseState(TopDownGameEngine parent) {
 		super(parent);
+		gameID = 3;
+	}
+
+	public void setPreviousGameID(int gameID){
+		previousGameID = gameID;
 	}
 
 	@Override
@@ -37,14 +39,14 @@ public class PauseState extends State {
 		case KeyEvent.VK_SPACE:
 			if (option == 0) {
 				// RESUME
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = previousGameID;
 				finish();
 			}
 
 			if (option == 1) {
 				// RESTART
 				parent.initResources();
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = DemoGameEngine.GAME_Level1;
 				finish();
 			}
 			if (option == 2) {
@@ -88,6 +90,12 @@ public class PauseState extends State {
 		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
 				90 + (option * 40), null);
 
+	}
+
+	@Override
+	public boolean levelComplete() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

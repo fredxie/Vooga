@@ -1,7 +1,3 @@
-/**
- * @author Jiawei Shi
- */
-
 package demoState;
 
 import game.Configuration;
@@ -28,6 +24,7 @@ public class MenuState extends State {
 
 	public MenuState(TopDownGameEngine parent) {
 		super(parent);
+		gameID = 0;
 	}
 
 	@Override
@@ -44,7 +41,7 @@ public class MenuState extends State {
 		case KeyEvent.VK_SPACE:
 			if (option == 0) {
 				// start easy game
-				parent.nextGameID = DemoGameEngine.Playing;
+				parent.nextGameID = DemoGameEngine.GAME_Level1;
 				finish();
 			}
 
@@ -101,6 +98,12 @@ public class MenuState extends State {
 		g.drawImage(getImage("images/menu/MenuArrow.png"), 110,
 				90 + (option * 40), null);
 
+	}
+
+	@Override
+	public boolean levelComplete() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

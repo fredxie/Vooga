@@ -1,51 +1,52 @@
 package ai;
-import element.*; 
+import element.*;
+ 
 import element.Bullet;
 import game.*;
 import collision.*;
 import demo.*;
 import demo.DemoEnemy;
-import demo.DemoGame;
 import game.Configuration;
 import java.util.*;
 
 // basic functionality for level 1, starts with standard weapon, one directional movement, slow fire rate, reduced damage
 // this corresponds to level 1 easy
-public class Level1 //extends TopDownLevel
+public class Level1 implements TopDownBehavior
 {
-	public static void movement(Enemy enemy)
+	double d,h;
+	public void movement(Enemy enemy)
 	{
-		enemy.setSpeed(0,0.1);
+		enemy.setSpeed(0,0.08);
 	}
 //	@Override
-	public static void fireRate(Enemy enemy)
+	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(1200);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = 0.5;
-//		Configuration.ENEMY_WEAPON_DAMAGE = d;
-//	}
-//	@Override
-	public static void weaponDamage(Bullet bullet)
+	public double enemyDamage()
 	{
-		bullet.setDamage(.5);
+		Configuration.ENEMY_WEAPON_DAMAGE = .25;
+		return d = 0.25;
 	}
-	public static void weaponSpeed(Bullet bullet)
+//	@Override
+//	public void weaponDamage(Bullet bullet)
+//	{
+//		bullet.setDamage(.5);
+//	}
+	public void weaponSpeed(Bullet bullet)
 	{	
 		bullet.setHorizontalSpeed(0);
 		bullet.setVerticalSpeed(.15);
 	}
 //	@Override
-//	public void enemyHP(double h)
-//	{
-//		h = 1.0;
-//		Configuration.ENEMY_HP = h;
-//	}
-	public static void enemyHP(Enemy enemy)
+	public double enemyHP()
 	{
-		double h = 1.0;
-		enemy.setHP(h);
+		Configuration.ENEMY_HP = 1.0;
+		return h = 1.0;
 	}
+//	public void enemyHP(Enemy enemy)
+//	{
+//		double h = 1.0;
+//		enemy.setHP(h);
+//	}
 }

@@ -1,23 +1,55 @@
 package demo;
 
+
 import java.awt.image.BufferedImage;
+
+
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import ai.BonusLimit; // 
+import ai.hpLimit;
+import ai.ScoreLimit;
+import ai.Level1;
+import ai.Level2;
+import ai.Level3;
+import ai.Level4;
+import ai.Level5;
+import ai.hpLimit;
+import ai.TopDownBehavior;
+import demoState.GameLevel1State;
+import demoState.State;
+
 import util.TopDownUtility;
 
 import element.Bullet;
 import element.Enemy;
+import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
 
 public class DemoEnemy extends Enemy {
-
+	//State gameID;
+	TopDownBehavior behavior;
+	TopDownBehavior oldBehavior;
+	public int Level = GameLevel1State.getLevel();
+	
+	private boolean hpLimit = false;
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
-		healthPoint = eNEMY_HP;
+//		healthPoint = eNEMY_HP;
+		if(Level == 1){
+			this.setBehavior(new Level1()); 
+		}
+		else if (Level == 2){ 
+			this.setBehavior(new Level2());
+		}
+		else{
+			this.setBehavior(new Level3());
+		}
+		healthPoint = behavior.enemyHP();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,15 +73,41 @@ public class DemoEnemy extends Enemy {
 					+ DemoGameEngine.HEIGHT
 					&& getY() > playfield.getBackground().getY()) {
 				// show the enemy
-				setVerticalSpeed(0.1);
+				behavior.movement(this);
+				double h = this.getHorizontalSpeed();
+				double v = this.getVerticalSpeed();
+				if (this.getX() <= 0 || this.getX() >= DemoGameEngine.WIDTH-((this.getWidth())/2)){
+					this.setSpeed(-h,v);
+				}
+//				behavior.enemyHP(this);
+				behavior.fireRate(this);
+				//setVerticalSpeed(0.1);
 				playfield.getGroup("Enemy").add(this);
 				show = true;
+				oldBehavior = this.getBehaviour();
+				if(DemoFighter.getHP() <= .5){ // need to find a way to get fighter data in this class. will be easier when elements carry their values and all are in same game class.
+					this.setBehavior(new hpLimit());
+					hpLimit = true;
+				}
+				if(hpLimit == true){
+					if(DemoFighter.getHP() > .5){
+						this.setBehavior(oldBehavior);
+						hpLimit = false;
+					}
+				}
 				// enemy fires
 				attack(elapsedTime);
 			}
 		} else { // for those have shown before, they should continue firing
 			attack(elapsedTime);
 		}
+	}
+	public void setBehavior(TopDownBehavior behavior){
+		this.behavior = behavior;
+	}
+	public TopDownBehavior getBehaviour()
+	{
+		return behavior;
 	}
 
 	public void attack(long elapsedTime) {
@@ -60,8 +118,9 @@ public class DemoEnemy extends Enemy {
 					enemyMissile = new Bullet(ImageIO.read(new File(
 							"images/game/emissle_easy.png")), getX()
 							+ getWidth() / 2, getY() + 20,
-							Configuration.ENEMY_WEAPON_DAMAGE);
-					enemyMissile.setVerticalSpeed(0.3);
+							behavior.enemyDamage());
+					behavior.weaponSpeed(enemyMissile);
+//					enemyMissile.setVerticalSpeed(0.3);
 					playfield.getGroup("Enemy Missile").add(enemyMissile);
 					refireRate.refresh();
 				} catch (IOException e) {

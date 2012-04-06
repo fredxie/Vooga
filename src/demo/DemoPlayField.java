@@ -14,7 +14,7 @@ import game.Configuration;
 
 public class DemoPlayField extends TopDownPlayField {
 
-	public void init() {
+	public void init(String s) {
 
 		int[][] tiles = new int[100][100];
 		for (int i = 0; i < tiles.length; i++) {
@@ -24,7 +24,7 @@ public class DemoPlayField extends TopDownPlayField {
 		}
 
 		if (Configuration.BACKGROUND_PATH == null)
-			Configuration.BACKGROUND_PATH = "images/game/background.png";
+			Configuration.BACKGROUND_PATH = s;
 		TopDownTileBackground background = new TopDownTileBackground(
 				TopDownImageUtil
 						.getImages(Configuration.BACKGROUND_PATH, 10, 1),

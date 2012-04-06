@@ -8,10 +8,11 @@ import java.util.*;
 
 import com.golden.gamedev.object.Timer;
 
-public class Level4 extends TopDownLevel
+public class Level4 implements TopDownBehavior
 {
 	private Timer timer = new Timer(400);
 	private boolean timera = false;
+	double d,h;
 
 //	@Override
 	public void movement(Enemy enemy)
@@ -43,26 +44,26 @@ public class Level4 extends TopDownLevel
 	{
 		enemy.setRefireRate(600);
 	}
-//	public void enemyDamage(double d)
-//	{
-//		d = 2.0;
-//		Configuration.ENEMY_WEAPON_DAMAGE = d;
-//	}
-//	@Override
-	public void weaponDamage(Bullet bullet)
+	public double enemyDamage()
 	{
-		bullet.setDamage(2.0);
+		Configuration.ENEMY_WEAPON_DAMAGE = 2.0;
+		return d = 2.0;
 	}
+//	@Override
+//	public void weaponDamage(Bullet bullet)
+//	{
+//		bullet.setDamage(2.0);
+//	}
 	public void weaponSpeed(Bullet bullet)
 	{	
 		bullet.setSpeed(Math.random() * 0.26,Math.random()*0.26);
 	}
 //	@Override
-//	public void enemyHP(double h)
-//	{
-//		h = 3.0;
-//		Configuration.ENEMY_HP = h;
-//	}
+	public double enemyHP()
+	{
+		Configuration.ENEMY_HP = 3.0;
+		return h = 3.0;
+	}
 	public void enemyHP(Enemy enemy)
 	{
 		double h = 3.0;

@@ -15,7 +15,7 @@ import com.golden.gamedev.object.PlayField;
 
 public abstract class Fighter extends Element {
 
-	private double healthPoint = Configuration.FIGHTER_HP;
+	private static double healthPoint = Configuration.FIGHTER_HP;
 	private int lifeNum = Configuration.lifeNum;
 	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
 
@@ -66,7 +66,7 @@ public abstract class Fighter extends Element {
 		this.healthPoint = fIGHTER_HP;
 	}
 
-	public double getHP() {
+	public static double getHP() {
 		return healthPoint;
 	}
 
@@ -89,6 +89,7 @@ public abstract class Fighter extends Element {
 	}
 
 	public void fighterControl(long elapsedTime) {
+		//System.out.println(keyList.size());
 		speedX = speedY = 0;
 		for (Key key : keyList) {
 			if (key.isKeyDown()) {
