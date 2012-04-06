@@ -1,8 +1,5 @@
 package keyconfiguration;
 
-import java.util.ArrayList;
-
-import com.golden.gamedev.Game;
 import com.golden.gamedev.GameObject;
 
 import element.Fighter;
@@ -17,7 +14,6 @@ public class Key {
 	private String action;
 	private KeyObserver observer;
 	private GameObject myGame;
-	private boolean[] isValid;
 
 	public Key(int value, String actionName, Fighter player, GameObject game) {
 		keyValue = value;
