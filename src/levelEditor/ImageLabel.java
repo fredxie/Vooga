@@ -35,10 +35,6 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 	private boolean firstLeftClick;
 	private boolean isStored;
 	private int X_pos, Y_pos;
-	
-	public ImageLabel(){
-		
-	}
 
 	public ImageLabel(BufferedImage image, LevelEditor ld) {
 		super();

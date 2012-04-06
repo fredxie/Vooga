@@ -11,7 +11,6 @@ import game.Configuration;
 public class hpLimit implements TopDownBehavior
 {
 	double d,h;
-//	@Override
 	public void movement(Enemy enemy)
 	{
 		double hSpeed = enemy.getHorizontalSpeed();
@@ -32,13 +31,13 @@ public class hpLimit implements TopDownBehavior
 			enemy.setSpeed(-hSpeed, vSpeed);
 		}
 	}
-//	@Override
+
 	public void fireRate(Enemy enemy){
 		int rate = enemy.getRefireRate();
 		rate = rate + 150;
 		enemy.setRefireRate(rate);		
 	}
-//	@Override
+
 //	public static void weaponDamage(Bullet bullet)
 //	{
 //		double x = bullet.getDamage();

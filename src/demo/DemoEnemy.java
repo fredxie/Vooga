@@ -26,11 +26,7 @@ import util.TopDownUtility;
 
 import element.Bullet;
 import element.Enemy;
-<<<<<<< HEAD
 import element.Fighter;
-=======
-import element.SpawnByLocation;
->>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 import element.TopDownPlayField;
 import game.Configuration;
 
@@ -45,7 +41,7 @@ public class DemoEnemy extends Enemy {
 		super(playfield, image);
 //		healthPoint = eNEMY_HP;
 		if(Level == 1){
-			this.setBehavior(new Level1()); 
+			this.setBehavior(new Level2()); 
 		}
 		else if (Level == 2){ 
 			this.setBehavior(new Level2());
@@ -59,8 +55,6 @@ public class DemoEnemy extends Enemy {
 
 	public DemoEnemy(BufferedImage image) {
 		super(image);
-		
-		this.mySpawnBehavior=new SpawnByLocation();
 	}
 
 	@Override
@@ -82,16 +76,12 @@ public class DemoEnemy extends Enemy {
 				behavior.movement(this);
 				double h = this.getHorizontalSpeed();
 				double v = this.getVerticalSpeed();
-				if (this.getX() <= 0 || this.getX() >= DemoGameEngine.WIDTH-((this.getWidth())/2)){
-					this.setSpeed(-h,v);
-				}
 //				behavior.enemyHP(this);
 				behavior.fireRate(this);
-				//setVerticalSpeed(0.1);
 				playfield.getGroup("Enemy").add(this);
 				show = true;
 				oldBehavior = this.getBehaviour();
-				if(DemoFighter.getHP() <= .5){ // need to find a way to get fighter data in this class. will be easier when elements carry their values and all are in same game class.
+				if(DemoFighter.getHP() <= .5){ 
 					this.setBehavior(new hpLimit());
 					hpLimit = true;
 				}
@@ -126,7 +116,6 @@ public class DemoEnemy extends Enemy {
 							+ getWidth() / 2, getY() + 20,
 							behavior.enemyDamage());
 					behavior.weaponSpeed(enemyMissile);
-//					enemyMissile.setVerticalSpeed(0.3);
 					playfield.getGroup("Enemy Missile").add(enemyMissile);
 					refireRate.refresh();
 				} catch (IOException e) {

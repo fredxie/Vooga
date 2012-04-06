@@ -23,7 +23,7 @@ public class ScoreLimit implements TopDownBehavior
 		double hSpeed = enemy.getHorizontalSpeed();
 		double vSpeed = enemy.getVerticalSpeed();
 		hSpeed = hSpeed + .05;
-		vSpeed = vSpeed + .02; // Vspeed incremented less, since it could happen several times and sprite leaving screen faster benifits player in a way;
+		vSpeed = vSpeed + .02;
 		enemy.setSpeed(hSpeed,vSpeed);
 		if (enemy.getX() <= 0){
 			enemy.setSpeed(-hSpeed,vSpeed);

@@ -22,8 +22,6 @@ public abstract class State extends TopDownGameObject {
 	public abstract void update(long elapsedTime);
 
 	public abstract void render(Graphics2D g);
-	
-	public abstract boolean levelComplete();
 
 	public abstract boolean levelComplete();
 

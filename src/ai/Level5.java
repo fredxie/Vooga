@@ -20,7 +20,7 @@ public class Level5 implements TopDownBehavior
 	boolean timerc = true;
 	boolean timerd = true;
 	double d,h;
-	//@Override
+
 	public void movement(Enemy enemy)
 	{
 		double h = enemy.getHorizontalSpeed();
@@ -89,7 +89,7 @@ public class Level5 implements TopDownBehavior
 			enemy.setSpeed(-h,y);
 		}
 	}
-	//@Override
+
 	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(600);
@@ -99,7 +99,7 @@ public class Level5 implements TopDownBehavior
 		Configuration.ENEMY_WEAPON_DAMAGE = 2.5;
 		return d = 2.5;
 	}
-	//@Override
+
 //	public void weaponDamage(Bullet bullet)
 //	{
 //		bullet.setDamage(3);
@@ -122,7 +122,7 @@ public class Level5 implements TopDownBehavior
 			bullet.setSpeed(-h,v);
 		}
 	}
-	//@Override
+
 	public double enemyHP()
 	{
 		Configuration.ENEMY_HP = 3.5;

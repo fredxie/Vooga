@@ -18,15 +18,9 @@ public class Level3 implements TopDownBehavior
 	public void movement(Enemy enemy)
 	{
 		enemy.setSpeed(0.15,0.15);
-		if (enemy.getX() <= 0){
-			enemy.setSpeed(0.15,0.15);
-		}
-		if (enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2))
-		{
-			enemy.setSpeed(-0.15, 0.15);
-		}
+		
 	}
-//	@Override
+
 	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(700);
@@ -36,7 +30,7 @@ public class Level3 implements TopDownBehavior
 		Configuration.ENEMY_WEAPON_DAMAGE = 1.5;
 		return d = 1.5;
 	}
-//	@Override
+
 //	public void weaponDamage(Bullet bullet)
 //	{
 //		bullet.setDamage(1.5);
@@ -44,7 +38,7 @@ public class Level3 implements TopDownBehavior
 	public void weaponSpeed(Bullet bullet)
 	{	
 		/*
-		 * bullets zig zag every half second
+		 * bullets zig zag every half second. May need to move zig zag to gameLevelState update fields
 		 */
 		double h = .2;
 		if(Math.random()*10 > 5)
@@ -78,7 +72,6 @@ public class Level3 implements TopDownBehavior
 		//		}
 		bullet.setVerticalSpeed(.25);
 	}
-//	@Override
 	public double enemyHP()
 	{
 		Configuration.ENEMY_HP = 2.5;

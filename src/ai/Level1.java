@@ -6,10 +6,6 @@ import game.*;
 import collision.*;
 import demo.*;
 import demo.DemoEnemy;
-<<<<<<< HEAD
-=======
-//import demo.DemoGame;
->>>>>>> 06547cd22a3812a3a49734f264f682acfa7b902f
 import game.Configuration;
 import java.util.*;
 
@@ -22,7 +18,7 @@ public class Level1 implements TopDownBehavior
 	{
 		enemy.setSpeed(0,0.08);
 	}
-//	@Override
+
 	public void fireRate(Enemy enemy)
 	{
 		enemy.setRefireRate(1200);
@@ -32,7 +28,7 @@ public class Level1 implements TopDownBehavior
 		Configuration.ENEMY_WEAPON_DAMAGE = .25;
 		return d = 0.25;
 	}
-//	@Override
+
 //	public void weaponDamage(Bullet bullet)
 //	{
 //		bullet.setDamage(.5);
@@ -42,7 +38,7 @@ public class Level1 implements TopDownBehavior
 		bullet.setHorizontalSpeed(0);
 		bullet.setVerticalSpeed(.15);
 	}
-//	@Override
+	
 	public double enemyHP()
 	{
 		Configuration.ENEMY_HP = 1.0;
