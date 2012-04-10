@@ -62,30 +62,30 @@ public class DemoEnemy extends Enemy {
 		behaviors.add(new Level3());
 		behaviors.add(new Level4());
 		behaviors.add(new Level5());
-		for( TopDownBehavior level : behaviors){
-			if(Level <= 5){
-				if (Level == level.getState()){
-					this.setBehavior(level);
-				}
-				else{
-					this.setBehavior(new Level1());
-				}
-			}
-			else if (Level > 5){ 
-				h = this.getHorizontalSpeed();
-				v = this.getVerticalSpeed();
-				this.setSpeed(h + .05, v + .03);
-			}
+//		for( TopDownBehavior level : behaviors){
+//			if(Level <= 5){
+//				if (Level == level.getState()){
+//					this.setBehavior(level);
+//				}
+//				else{
+//					this.setBehavior(new Level1());
+//				}
+//			}
+//			else if (Level > 5){ 
+//				h = this.getHorizontalSpeed();
+//				v = this.getVerticalSpeed();
+//				this.setSpeed(h + .05, v + .03);
+//			}
+//		}
+		if(Level == 1){
+			this.setBehavior(new Level5()); 
 		}
-//		if(Level == 1){
-//			this.setBehavior(new Level5()); 
-//		}
-//		else if (Level == 2){ 
-//			this.setBehavior(new Level2());
-//		}
-//		else{
-//			this.setBehavior(new Level1());
-//		}
+		else if (Level == 2){ 
+			this.setBehavior(new Level2());
+		}
+		else{
+			this.setBehavior(new Level1());
+		}
 		healthPoint = behavior.enemyHP();
 		// TODO Auto-generated constructor stub
 	}
