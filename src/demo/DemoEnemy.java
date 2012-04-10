@@ -23,6 +23,7 @@ import demoState.State;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -45,24 +46,46 @@ import game.Configuration;
 
 public class DemoEnemy extends Enemy {
 	//State gameID;
-	TopDownBehavior behavior;
+	public TopDownBehavior behavior;
 	TopDownBehavior oldBehavior;
-	public int Level = GameLevel1State.getLevel();
+	public double Level = GameLevel1State.getLevel();
+	ArrayList<TopDownBehavior> behaviors = new ArrayList<TopDownBehavior>();
+	double h,v,y;
 	
 	private boolean hpLimit = false;
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
 //		healthPoint = eNEMY_HP;
 		this.mySpawnBehavior=new SpawnByLocation();
-		if(Level == 1){
-			this.setBehavior(new Level2()); 
+		behaviors.add(new Level1());
+		behaviors.add(new Level2());
+		behaviors.add(new Level3());
+		behaviors.add(new Level4());
+		behaviors.add(new Level5());
+		for( TopDownBehavior level : behaviors){
+			if(Level <= 5){
+				if (Level == level.getState()){
+					this.setBehavior(level);
+				}
+				else{
+					this.setBehavior(new Level1());
+				}
+			}
+			else if (Level > 5){ 
+				h = this.getHorizontalSpeed();
+				v = this.getVerticalSpeed();
+				this.setSpeed(h + .05, v + .03);
+			}
 		}
-		else if (Level == 2){ 
-			this.setBehavior(new Level2());
-		}
-		else{
-			this.setBehavior(new Level3());
-		}
+//		if(Level == 1){
+//			this.setBehavior(new Level5()); 
+//		}
+//		else if (Level == 2){ 
+//			this.setBehavior(new Level2());
+//		}
+//		else{
+//			this.setBehavior(new Level1());
+//		}
 		healthPoint = behavior.enemyHP();
 		// TODO Auto-generated constructor stub
 	}
@@ -89,8 +112,9 @@ public class DemoEnemy extends Enemy {
 					&& getY() > playfield.getBackground().getY()) {
 				// show the enemy
 				behavior.movement(this);
-				double h = this.getHorizontalSpeed();
-				double v = this.getVerticalSpeed();
+				y = getY();
+//				double h = this.getHorizontalSpeed();
+//				double v = this.getVerticalSpeed();
 //				behavior.enemyHP(this);
 				behavior.fireRate(this);
 				playfield.getGroup("Enemy").add(this);
@@ -122,22 +146,35 @@ public class DemoEnemy extends Enemy {
 	}
 
 	public void attack(long elapsedTime) {
-		if (isActive()) {
-			if (refireRate.action(elapsedTime)) {
-				Missile enemyMissile;
-				try {
-					enemyMissile = new Missile(ImageIO.read(new File(
-							"images/game/emissle_easy.png")), getX()
-							+ getWidth() / 2, getY() + 20,
-							behavior.enemyDamage());
-					behavior.weaponSpeed(enemyMissile);
-					playfield.getGroup("Enemy Missile").add(enemyMissile);
-					refireRate.refresh();
-				} catch (IOException e) {
-					e.printStackTrace();
+//		if( y > 0 || y < DemoGameEngine.HEIGHT)
+//		{
+			if (isActive() == true) {
+				if (refireRate.action(elapsedTime)) {
+					Missile enemyMissile;
+					try {
+						enemyMissile = new Missile(ImageIO.read(new File("images/game/emissle_easy.png")), getX()+ getWidth() / 2, getY() + 20,behavior.enemyDamage());
+						behavior.weaponSpeed(enemyMissile);
+						playfield.getGroup("Enemy Missile").add(enemyMissile);
+						refireRate.refresh();
+						if(Level >= 5 ){
+							if(enemyMissile.getX() <= 0 || enemyMissile.getX() >= DemoGameEngine.WIDTH-((enemyMissile.getWidth()))){     
+								//behavior.weaponSpeed(enemyMissile);
+								double h2 = enemyMissile.getHorizontalSpeed();
+								double v2 = enemyMissile.getVerticalSpeed();
+								enemyMissile.setSpeed(-h2, v2);	
+							}
+						}
+						else if (Level > 5){
+							double h2 = enemyMissile.getHorizontalSpeed();
+							double v2 = enemyMissile.getVerticalSpeed();
+							enemyMissile.setSpeed(h2 + .02, v2 + .02);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-	}
+//	}
 
 }

@@ -25,13 +25,6 @@ public class hpLimit implements TopDownBehavior
 			vSpeed = vSpeed - .02; 
 		}
 		enemy.setSpeed(hSpeed,vSpeed);
-		if (enemy.getX() <= 0){
-			enemy.setSpeed(-hSpeed,vSpeed);
-		}
-		if (enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2))
-		{
-			enemy.setSpeed(-hSpeed, vSpeed);
-		}
 	}
 
 	public void fireRate(Enemy enemy){
@@ -73,7 +66,7 @@ public class hpLimit implements TopDownBehavior
 		double y = missile.getVerticalSpeed();
 		if(x > 0)
 		{
-			x = x/2;
+			x = x * .5;
 			missile.setHorizontalSpeed(x);
 		}
 		y = y * 0.75;
@@ -84,4 +77,8 @@ public class hpLimit implements TopDownBehavior
 //		double h = enemy.getHP();
 //		enemy.setHP(h);
 //	}
+	public double getState()
+	{
+		return 0;// setting as 0 since gamestate always starts at 1 and never reaches 0, these arent levels but ai changes based on changes in the game
+	}
 }

@@ -60,4 +60,8 @@ public class Level2 implements TopDownBehavior
 		double h = 2.0;
 		enemy.setHP(h);
 	}
+	public double getState()
+	{
+		return 2.0;
+	}
 }
