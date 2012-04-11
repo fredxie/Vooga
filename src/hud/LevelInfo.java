@@ -1,6 +1,6 @@
 package hud;
 
-import demoState.State;
+import state.State;
 
 public class LevelInfo implements HUDInfo {
 	public LevelInfo() {}
@@ -8,6 +8,6 @@ public class LevelInfo implements HUDInfo {
 	@Override
 	public String getString(Object obj) {
 		State state = (State) obj;
-		return " " + state.gameID;
+		return " " + state.getStateID();
 	}
 }

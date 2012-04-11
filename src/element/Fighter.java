@@ -2,7 +2,7 @@ package element;
 
 import game.Configuration;
 import game.TopDownGame;
-import game.TopDownGameObject;
+import gameObject.TopDownGameObject;
 import game.TopDownTimer;
 
 import java.awt.image.BufferedImage;

@@ -1,7 +1,7 @@
 package element;
 
 import game.Configuration;
-import game.TopDownGameObject;
+import gameObject.TopDownGameObject;
 
 import background.TopDownBackground;
 import background.TopDownTileBackground;

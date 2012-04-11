@@ -4,7 +4,7 @@ package element;
  * @author ShiyuanWang
  */
 import game.Configuration;
-import game.TopDownGameObject;
+import gameObject.TopDownGameObject;
 
 import java.awt.image.BufferedImage;
 

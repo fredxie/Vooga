@@ -4,8 +4,8 @@ package element;
  * @author ShiyuanWang
  */
 import game.Configuration;
-import game.TopDownGameObject;
 import game.TopDownTimer;
+import gameObject.TopDownGameObject;
 
 import java.awt.image.BufferedImage;
 import java.util.List;

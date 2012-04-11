@@ -12,12 +12,12 @@ import util.TopDownUtility;
 import element.ElementGroup;
 import element.TopDownPlayField;
 import game.Configuration;
-import game.TopDownGameObject;
+import gameObject.TopDownGameObject;
 
 public class DemoPlayField extends TopDownPlayField {
 
-	public DemoPlayField(TopDownGameObject object) {
-		super(object);
+	public DemoPlayField(TopDownGameObject o) {
+		super(o);
 	}
 
 

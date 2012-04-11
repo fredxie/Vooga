@@ -18,8 +18,6 @@ import ai.Level4;
 import ai.Level5;
 import ai.hpLimit;
 import ai.TopDownBehavior;
-import demoState.GameLevel1State;
-import demoState.State;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,12 +40,13 @@ import element.Enemy;
 import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
+import gameObject.GameLevel1;
 
 public class DemoEnemy extends Enemy {
 	//State gameID;
 	TopDownBehavior behavior;
 	TopDownBehavior oldBehavior;
-	public int Level = GameLevel1State.getLevel();
+	public int Level = GameLevel1.getLevel();
 	
 	private boolean hpLimit = false;
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
