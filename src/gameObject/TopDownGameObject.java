@@ -1,22 +1,23 @@
 package gameObject;
 
+import game.TopDownGameEngine;
+
 import java.awt.Graphics2D;
 
 import state.State;
 
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
 public abstract class TopDownGameObject extends GameObject {
 	protected State myState;
+	private int option;
 	public boolean levelComplete = false;
-    public boolean gameOver = false;
-	
-	public TopDownGameObject(GameEngine parent) {
+
+	public TopDownGameObject(TopDownGameEngine parent) {
 		super(parent);
 	}
-	
-	public void setGameState(State gameState){
+
+	public void setGameState(State gameState) {
 		myState = gameState;
 	}
 
@@ -33,5 +34,30 @@ public abstract class TopDownGameObject extends GameObject {
 
 	public State getCurrentState() {
 		return myState;
+	}
+	public void optionArrowUp(int bsInput,int key,int optionNum){
+		if(bsInput == key){
+			option--;
+			if (option < 0)
+				option = optionNum;
+		}
+	}
+	
+	public void optionArrowDown(int bsInput, int key, int optionNum){
+		if(bsInput == key){
+			option++;
+			if (option >optionNum)
+				option = 0;
+		}
+	}
+	
+	public void setFinish(int bsInput, int key){
+		if(bsInput == key){
+			finish();
+		}
+	}
+	
+	public int getOption(){
+		return option;
 	}
 }

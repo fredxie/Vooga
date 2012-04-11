@@ -8,6 +8,8 @@ package state;
 
 
 import game.TopDownGameEngine;
+import gameObject.GameLevel;
+import gameObject.GameLevel2;
 import gameObject.TopDownGameObject;
 
 import com.golden.gamedev.GameEngine;
@@ -39,5 +41,6 @@ public abstract class State{
 	}
 
 	public abstract void update(long arg0);
-	
+
+	public abstract void gameFinish(GameLevel game, long arg0);
 }

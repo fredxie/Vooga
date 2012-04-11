@@ -7,6 +7,7 @@ package state;
 import java.awt.event.KeyEvent;
 
 import game.TopDownGameEngine;
+import gameObject.GameLevel;
 import gameObject.Pause;
 import gameObject.TopDownGameObject;
 
@@ -54,4 +55,11 @@ public class PauseState extends State{
 	}
 
 }
+
+	@Override
+	public void gameFinish(GameLevel game, long arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

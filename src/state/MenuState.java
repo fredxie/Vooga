@@ -15,6 +15,7 @@ import menu.GameSL;
 
 import game.Configuration;
 import game.TopDownGameEngine;
+import gameObject.GameLevel;
 import gameObject.Menu;
 import gameObject.TopDownGameObject;
 
@@ -72,5 +73,13 @@ public class MenuState extends State {
 		}
 		
 	}
+
+	@Override
+	public void gameFinish(GameLevel game, long arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

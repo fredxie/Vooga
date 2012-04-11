@@ -2,6 +2,8 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import collision.EnemyFighterBulletCollision;
+
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
 
@@ -57,6 +59,7 @@ public class DemoFighter extends RegularFighter {
 		}
 		if (game.keyDown(Configuration.BOMB) && bombNum > 0 && allowBomb) {
 			bombNum--;
+			
 			clearElement("Enemy");
 			clearElement("Enemy Missile");
 			allowBomb = false;
@@ -76,6 +79,7 @@ public class DemoFighter extends RegularFighter {
 							.getY() + DemoGameEngine.HEIGHT) {
 				element[i].setActive(false);
 				if (name.equals("Enemy")) {
+					EnemyFighterBulletCollision.destroyed++;
 					playfield.add(new TopDownVolatileElement(TopDownImageUtil
 							.getImages("images/game/explosion.png", 6, 1),
 							element[i].getX(), element[i].getY()));

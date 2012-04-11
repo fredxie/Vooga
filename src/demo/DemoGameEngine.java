@@ -4,17 +4,14 @@ import game.TopDownGameEngine;
 import game.TopDownGameLoader;
 import gameObject.GameLevel1;
 import gameObject.GameLevel2;
+import gameObject.Menu;
 import gameObject.Pause;
 import gameObject.TopDownGameObject;
-import gameObject.Menu;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.HashMap;
 
 import state.Level1State;
-import state.Level2State;
-import state.PauseState;
-import state.MenuState;
 
 
 public class DemoGameEngine extends TopDownGameEngine {
@@ -37,7 +34,7 @@ public class DemoGameEngine extends TopDownGameEngine {
 		
 		
 		TopDownGameObject t1 = new GameLevel1(this);
-		//Level1State state1 = new Level1State(this,t1);
+	    //Level1State state1 = new Level1State(this,t1);
 		map.put(2, t1);
 		
 		TopDownGameObject t2 = new GameLevel2(this);
