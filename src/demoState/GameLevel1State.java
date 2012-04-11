@@ -34,7 +34,7 @@ public class GameLevel1State extends State {
 	private int bonusNum = Configuration.BONUS_NUM;
 	private int blockNum = Configuration.BLOCK_NUM;
 	private KeyConfig keyConfig;
-	private static int Level;
+	private static double Level;
 
 	TopDownTimer timer = new TopDownTimer(3000);
 	private DemoPlayField playfield = new DemoPlayField(this);
@@ -91,7 +91,6 @@ public class GameLevel1State extends State {
 	public void update(long elapsedTime) {
 
 		playfield.update(elapsedTime);
-
 		fighter.refresh(elapsedTime);
 
 		fighter.bomb(elapsedTime);
@@ -103,10 +102,13 @@ public class GameLevel1State extends State {
 			if(juniorEnemies[i].getX() <= 0 || juniorEnemies[i].getX() >= DemoGameEngine.WIDTH-((juniorEnemies[i].getWidth()))){
 				juniorEnemies[i].setSpeed(-h, v);		
 			}
+			if(juniorEnemies[i].getY() > 0 || juniorEnemies[i].getY() < DemoGameEngine.WIDTH){
+				juniorEnemies[i].attack(elapsedTime); // added to fix bullet movement... didn't work
+			}
 		}
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i].refresh(elapsedTime);
-		}
+//		for (int i = 0; i < enemyNum; i++) {
+//			juniorEnemies[i].refresh(elapsedTime);
+//		}
 
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i].refresh(elapsedTime);
@@ -198,12 +200,12 @@ public class GameLevel1State extends State {
 		 }
 		return levelComplete;
 	}
-	public static int getLevel() {
+	public static double getLevel() {
 		return Level;
 	}
 
 
-	public void setLevel(int level) {
+	public void setLevel(double level) {
 		Level = level;
 	}
 

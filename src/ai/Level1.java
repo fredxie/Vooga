@@ -49,4 +49,8 @@ public class Level1 implements TopDownBehavior
 //		double h = 1.0;
 //		enemy.setHP(h);
 //	}
+	public double getState()
+	{
+		return 1.0;
+	}
 }

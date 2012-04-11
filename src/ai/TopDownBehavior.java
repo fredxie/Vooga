@@ -12,4 +12,5 @@ public interface TopDownBehavior {
 	abstract double enemyHP();
 	abstract double enemyDamage();
 	abstract public void weaponSpeed(Missile missile);
+	abstract double getState();
 }

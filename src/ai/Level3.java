@@ -1,20 +1,23 @@
 package ai;
-import element.*;
+import element.*; 
 import game.*;
 import collision.*;
 import demo.*;
 import game.Configuration;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
-import com.golden.gamedev.object.Timer;
+//import com.golden.gamedev.object.Timer;
+import javax.swing.Timer;
 import java.util.Random;
 import element.Missile;
 public class Level3 implements TopDownBehavior
 {
 	double x = (Math.random()*51); 
-	double d,h;
-	private Timer timer = new Timer(500);
-	private boolean timera = false;
-//	@Override
+	double d,h,s;
+	Timer timer;
+	
 	public void movement(Enemy enemy)
 	{
 		enemy.setSpeed(0.15,0.15);
@@ -35,42 +38,33 @@ public class Level3 implements TopDownBehavior
 //	{
 //		missile.setDamage(1.5);
 //	}
-	public void weaponSpeed(Missile missile)
+	public void weaponSpeed(final Missile missile)
 	{	
 		/*
 		 * bullets zig zag every half second. May need to move zig zag to gameLevelState update fields
 		 */
-		double h = .2;
+		final double s = .2;
+		missile.setVerticalSpeed(.25);
 		if(Math.random()*10 > 5)
 		{
-			missile.setHorizontalSpeed(h);
+			missile.setHorizontalSpeed(s);
 		}
 		else {
-			missile.setHorizontalSpeed(-h);
+			missile.setHorizontalSpeed(-s);
 		}
-//		timer.refresh();
-//		if(timer.getCurrentTick() == 500){
-//			timera = true;
+		
+		timer = new Timer(500, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(timer)){
+					missile.setHorizontalSpeed(-s);
+				}
+			}
+		});
+		timer.setRepeats(true);
+		timer.start();
+//		if(missile.isActive() == false){
+//			timer.restart();
 //		}
-//		if(timera == true){
-//			bullet.setHorizontalSpeed(-h);
-//			timera = false;
-//			timer.refresh();
-//		}
-		//}
-		//		else {
-		//			bullet.setHorizontalSpeed(-h);
-		//			timer.refresh();
-		//			if(timer.getCurrentTick() == 500){
-		//				timera = true;
-		//			}
-		//			if(timera == true){
-		//				bullet.setHorizontalSpeed(h);
-		//				timera = false;
-		//				timer.refresh();
-		//			}
-		//		}
-		missile.setVerticalSpeed(.25);
 	}
 	public double enemyHP()
 	{
@@ -81,5 +75,9 @@ public class Level3 implements TopDownBehavior
 	{
 		double h = 2.5;
 		enemy.setHP(h);
+	}
+	public double getState()
+	{
+		return 3.0;
 	}
 }

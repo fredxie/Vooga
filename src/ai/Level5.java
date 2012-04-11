@@ -1,93 +1,72 @@
 package ai;
-import element.*; 
+import element.*;  
 import game.*;
 import collision.*;
 import demo.*;
 import game.Configuration;
-import java.util.*;
 
-import com.golden.gamedev.object.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+import javax.swing.Timer;
+
 import element.Missile;
 public class Level5 implements TopDownBehavior
 {
-	private Timer timer = new Timer(3200);
-	private boolean timera = false;
-	
-	private Timer timer2 = new Timer(400);
-	private Timer timer3 = new Timer(800);
-	private Timer timer4 = new Timer(2000);
-	boolean timerb = true;
-	boolean timerc = true;
-	boolean timerd = true;
-	double d,h;
+	Timer timer1;
+	Timer timer2;
+	Timer timer3;
+	double d,hp,rand,h,v,x,y; 
 
-	public void movement(Enemy enemy)
+	public void movement(final Enemy enemy)
 	{
-		double h = enemy.getHorizontalSpeed();
-		double y = enemy.getVerticalSpeed();
-		int x = (int) (Math.random()*51);
-		timer.refresh();
-		if(timer.getCurrentTick() == 3200){
-			timera = true;
-		}
-		if(timera == true && x < 10)
+		rand = Math.random()*51;
+		enemy.setSpeed(0, .1);
+		timer1 = new Timer(400, new ActionListener() 
 		{
-			enemy.setSpeed(Math.random() * 0.26,Math.random()*0.26);
-			timera = false;
-		}
-		else if(timera == true && x > 30)
-		{
-			enemy.setSpeed(0.2,0.05);
-			timera = false;
-		}
-		else if(timera == true && x >= 10 && x <=30)
-		{
-			timera = false;
-			timerb = false;
-			timer2.refresh();
-			while(timerb == false){ 
-				enemy.setSpeed(-.05,.05);
-//				if (enemy.getX() <= 0)
-//				{
-//					enemy.setSpeed(.05,.05);
-//				}
-//				if (enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2))
-//				{
-//					enemy.setSpeed(-.05,.05);
-//				}
-			}
-			if(timerb == true){
-				timerc = false;
-				timer3.refresh();
-				while(timerc == false)
+			public void actionPerformed(ActionEvent e1) 
+			{
+				if(e1.getSource().equals(timer1))
 				{
-					enemy.setSpeed(-.05,-.07);
-//					if (enemy.getX() <= 0)
-//					{
-//						enemy.setSpeed(.05,-.07);
-//					}
-//					if (enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2))
-//					{
-//						enemy.setSpeed(-.05,.07);
-//					}
+					if( rand < 10)
+					{
+						enemy.setSpeed(Math.random() * 0.26,Math.random() * 0.26);
+					}
+					else if( rand >= 10 && rand <= 30)
+					{
+						enemy.setSpeed(.2,.05);
+					}
+					else if( rand > 30 )
+					{
+						enemy.setSpeed(-.05,.05);
+						timer2.start();
+					}
 				}
 			}
-			if(timerb == true && timerc == true){
-				timerd = false;
-				timer4.refresh();
-				enemy.setSpeed(0,.1);
+		});
+		timer2 = new Timer(400, new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e2) 
+			{
+				if(e2.getSource().equals(timer2))
+				{
+					enemy.setSpeed(-.05, -.07);
+					timer3.start();
+				}
 			}
-		}
-//		if (enemy.getX() <= 0){
-//			enemy.setSpeed(0.2,0.05);
-//		}
-//		if (enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2))
-//		{
-//			enemy.setSpeed(-0.2, 0.05);
-//		}
-		if (enemy.getX() <= 0 || enemy.getX() >= DemoGameEngine.WIDTH-((enemy.getWidth())/2)){
-			enemy.setSpeed(-h,y);
-		}
+		});
+		timer3 = new Timer(400, new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e3) 
+			{
+				if(e3.getSource().equals(timer3))
+				{
+					enemy.setSpeed(0, .12);
+				}
+			}
+		});
+		timer1.start();
+		timer1.setRepeats(true);
 	}
 
 	public void fireRate(Enemy enemy)
@@ -108,29 +87,39 @@ public class Level5 implements TopDownBehavior
 	{	
 		/*
 		 * in this level, the hypothetical final level on hard, bullet speed/ direction is random, and bullets 
-		 * stay in frame, they dont exit frame so player must dodge them. 
+		 * stay in frame, they dont exit frame so player must dodge them Missile update needs to be moves to gameStateLevel_ like enemy movement bounds were
 		 */
-		double h = Math.random() * 0.25;
-		double v = Math.random() * 0.35;
-		if(Math.random()*51 < 25){
+		h = Math.random() * 0.25;
+		v = Math.random() * 0.35 + Configuration.BACKGROUND_SPEED;
+		if(Math.random()*51 < 25)
+		{
 			missile.setSpeed(h,v);
+			if(missile.getX() <= 0 || missile.getX() >= DemoGameEngine.WIDTH-((missile.getWidth())))
+			{
+				missile.setSpeed(-h, v);		
+			}
 		}
 		else{ 
 			missile.setSpeed(-h,v);
-		}
-		if(missile.getX() <= 0 || missile.getX() >= DemoGameEngine.WIDTH-((missile.getWidth())/2)){
-			missile.setSpeed(-h,v);
+			if(missile.getX() <= 0 || missile.getX() >= DemoGameEngine.WIDTH-((missile.getWidth())))
+			{
+				missile.setSpeed(h, v);		
+			}
 		}
 	}
 
 	public double enemyHP()
 	{
 		Configuration.ENEMY_HP = 3.5;
-		return h = 3.5;
+		return hp = 3.5;
 	}
 	public void enemyHP(Enemy enemy)
 	{
-		double h = 3.5;
-		enemy.setHP(h);
+		double hp = 3.5;
+		enemy.setHP(hp);
+	}
+	public double getState()
+	{
+		return 5.0;
 	}
 }
