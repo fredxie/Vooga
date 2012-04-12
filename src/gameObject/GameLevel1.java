@@ -57,7 +57,9 @@ public class GameLevel1 extends GameLevel {
 		playfield.init("images/game/background.png");
 		
 		manager = new CollisionManager(playfield);
+//		manager.registerCollisionWithState("Fighter", "Shield", "Enemy Missile", new SoundCollision(playfield,"sounds/explosion.wav"));
 		manager.registerCollision("Fighter", "Enemy Missile", new SoundCollision(playfield,"sounds/explosion.wav"));
+
 		manager.registerCollision("Fighter", "Enemy Missile", new ImageCollision(playfield,"images/game/explosion.png"));
 		manager.registerCollision("Fighter", "Enemy Missile", new LifeDecreaseCollision());
 		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield,"sounds/explosion.wav"));
