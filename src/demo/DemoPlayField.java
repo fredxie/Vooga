@@ -1,15 +1,8 @@
 package demo;
 
-import collision.BlockFighterBulletCollision;
-import collision.EnemyFighterBulletCollision;
-import collision.FighterBlockCollision;
-import collision.FighterBonusCollision;
-import collision.FighterEnemyBulletCollision;
-import collision.FighterEnemyCollision;
-import background.TopDownTileBackground;
 import util.TopDownImageUtil;
 import util.TopDownUtility;
-import element.ElementGroup;
+import background.TopDownTileBackground;
 import element.TopDownPlayField;
 import game.Configuration;
 import gameObject.TopDownGameObject;
@@ -38,7 +31,7 @@ public class DemoPlayField extends TopDownPlayField {
 				tiles);
 		background.setLocation(0, background.getHeight());
 		this.setBackground(background);
-
+/*
 		// create groups
 		ElementGroup FIGHTER = this.addGroup(new ElementGroup("Fighter"));
 		ElementGroup FIGHTER_MISSILE = this.addGroup(new ElementGroup(
@@ -86,7 +79,7 @@ public class DemoPlayField extends TopDownPlayField {
 		this.addCollisionGroup(
 				 BLOCK,FIGHTER_MISSILE,
 				new BlockFighterBulletCollision(this,TopDownImageUtil.getImages("images/game/explosion.png", 6, 1),"sounds/explosion.wav"));
-
+*/
 }
 
 }
