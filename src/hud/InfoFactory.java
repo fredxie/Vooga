@@ -17,9 +17,11 @@ public class InfoFactory {
 		myMap = new HashMap<String, HUDInfo>();
 		myMap.put("level", new LevelInfo());
 		myMap.put("score", new ScoreInfo());
-		myMap.put("hp", new HPInfo());
+		myMap.put("fighterHP", new FighterHPInfo());
+		myMap.put("enemyHP", new EnemyHPInfo());
 		myMap.put("weapon", new WeaponInfo());
 		myMap.put("life", new LifeInfo());
+		myMap.put("time", new RealTimeInfo());
 	}
 	
 	public void addIntoMap(String str, HUDInfo hdInfo) {

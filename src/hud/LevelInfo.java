@@ -1,13 +1,13 @@
 package hud;
 
-import state.State;
+import gameObject.GameLevel;
 
 public class LevelInfo implements HUDInfo {
 	public LevelInfo() {}
 	
 	@Override
 	public String getString(Object obj) {
-		State state = (State) obj;
-		return " " + state.getStateID();
+		GameLevel gmLevel = (GameLevel) obj;
+		return " " + gmLevel.Level;
 	}
 }
