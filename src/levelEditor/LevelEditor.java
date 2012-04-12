@@ -1,7 +1,7 @@
 package levelEditor;
 
 /**
- * @author Jiawei SHI
+ * @author Jiawei Shi
  */
 
 import java.awt.Color;
@@ -9,25 +9,20 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import demo.DemoEnemy;
-
-import menu.GameSL;
-
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import element.Element;
-import element.RegularEnemy;
-import demo.DemoFighter;
-
-public class LevelEditor extends JFrame implements ActionListener {
+public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 
 	protected static final JFileChooser ImageChooser = new JFileChooser(
 			"./images/");
@@ -39,6 +34,7 @@ public class LevelEditor extends JFrame implements ActionListener {
 
 	private JMenuBar menuBar;
 	private ImageLabel cachedLabel;
+	private int width, height;
 
 	private ArrayList<ImageLabel> list;
 	private HashMap<Integer, String> myMap;
@@ -47,10 +43,17 @@ public class LevelEditor extends JFrame implements ActionListener {
 		super("Level Editor");
 		list = new ArrayList<ImageLabel>();
 		cachedLabel = null;
-		myMap = new HashMap<Integer, String>();
+		width = 500;
+		height = 600;
 
-		panel_1 = new ImagePanel(loadDefalutBackground());
+		myMap = new HashMap<Integer, String>();
+		addKeyListener(this);
+		
+
+		 panel_1 = new ImagePanel(loadDefalutBackground());
+		//panel_1 = new ImagePanel();
 		panel_1.setLayout(null);
+		panel_1.addMouseListener(this);
 		panel1 = new JScrollPane(panel_1,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -141,13 +144,24 @@ public class LevelEditor extends JFrame implements ActionListener {
 	}
 
 	private void loadBackground() {
-		panel_1.setImage(getSelectedImage());
+		BufferedImage image = getSelectedImage();
+		panel_1.setImage(image);
+		height = image.getHeight();
+		width = image.getWidth();
 		panel_1.revalidate();
 		panel_1.repaint();
 	}
+	
+	private Image loadDefalutBackground() {
+		File myFile = new File("src/images/background1.jpg");
+		BufferedImage image = convertToBufferedImage(myFile);
+		return image;
+	}
+
 
 	private void loadNewElement() {
 		ImageLabel element = new ImageLabel(getSelectedImage(), this);
+		// currentLabel = element;
 		panel_2.add(element);
 		panel_2.revalidate();
 		panel_2.repaint();
@@ -182,25 +196,22 @@ public class LevelEditor extends JFrame implements ActionListener {
 		return img;
 	}
 
-	private Image loadDefalutBackground() {
-		File myFile = new File("src/images/background1.jpg");
-		BufferedImage image = convertToBufferedImage(myFile);
-		return image;
-	}
 
 	public void deleteLabel(ImageLabel l) {
 		l.setVisible(false);
 		removeFromPanel(l);
-		list.remove(l);
 	}
 
 	public void removeFromPanel(ImageLabel l) {
 		if (l.inRightPanel()) {
 			panel_2.remove(l);
 			panel_2.revalidate();
+			System.out.println(list.size());
 		} else {
 			panel_1.remove(l);
+			list.remove(l);
 			panel_1.revalidate();
+			System.out.println(list.size());
 		}
 	}
 
@@ -215,9 +226,74 @@ public class LevelEditor extends JFrame implements ActionListener {
 		cachedLabel = i;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	
+	public int getBackgroundHeight() {
+		return height;
+	}
 
+	public int getBackgroundWidth() {
+		return width;
+	}
+	
+	public void addToList(ImageLabel i){
+		list.add(i);
+		System.out.println(list.size());
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		if(cachedLabel != null){
+			cachedLabel.setLocation(arg0.getX()-ImageLabel.WIDTH/2, arg0.getY()-ImageLabel.HEIGTHT/2);
+			panel_1.add(cachedLabel);
+			//output();
+			panel_1.repaint();
+			panel_1.revalidate();
+		}
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void output(){
+		for(int i=0; i<list.size(); i++){
+			System.out.println("item "+ i+" "+list.get(i).getX()+" "+list.get(i).getY());
+		}
+		System.out.println(" ");
 	}
 }
