@@ -1,6 +1,5 @@
 package element;
 
-import game.TopDownGameObject;
 import gameObject.GameLevel;
 
 import java.awt.image.BufferedImage;

@@ -1,7 +1,6 @@
 package element;
 
 import game.Configuration;
-import game.TopDownGameObject;
 import game.TopDownTimer;
 import gameObject.GameLevel;
 

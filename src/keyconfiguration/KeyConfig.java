@@ -4,22 +4,15 @@ package keyconfiguration;
  * @author Ran Zhang
  * 
  */
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import util.JsonUtil;
 
 import com.golden.gamedev.GameObject;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import configuration.GameParameters;
 
