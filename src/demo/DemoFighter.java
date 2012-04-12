@@ -2,12 +2,18 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import configuration.GameParameters;
+
+import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
-import collisionSystem.LifeDecreaseCollision;
+
 import element.Bullet;
 import element.Element;
+import element.Fighter;
 import element.Laser;
+import element.Missile;
+import element.PhysicalProtection;
 import element.RegularFighter;
 import element.Satellite;
 import game.Configuration;
@@ -17,13 +23,13 @@ public class DemoFighter extends RegularFighter {
     Bullet bullet = new Laser(TopDownImageUtil.getImage(
 			"images/game/bigLaser1.png"));
     private Satellite satellite;
+    private DemoProtection protection;
 	public DemoFighter(BufferedImage image) {
 		super(image);
 	}
 
 	public void init() {
-
-		setRefireRate(100);// Default Re-fire Rate
+		setRefireRate(500);// Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
@@ -43,9 +49,7 @@ public class DemoFighter extends RegularFighter {
 
 	@Override
 	public void attack(long elapsedTime, int weaponStyle, double weaponDamage) {
-        Bullet[] bullets = bullet.genBullets(this,weaponStyle);
-		for(Bullet bullet : bullets)
-		playfield.getGroup("Fighter Bullet").add(bullet);
+        bullet.genBullets(this,weaponStyle,weaponDamage);
 		allowFire = false;
 	}
 
@@ -55,7 +59,6 @@ public class DemoFighter extends RegularFighter {
 		}
 		if (game.keyDown(Configuration.BOMB) && bombNum > 0 && allowBomb) {
 			bombNum--;
-			
 			clearElement("Enemy");
 			clearElement("Enemy Missile");
 			allowBomb = false;
@@ -75,7 +78,6 @@ public class DemoFighter extends RegularFighter {
 							.getY() + DemoGameEngine.HEIGHT) {
 				element[i].setActive(false);
 				if (name.equals("Enemy")) {
-					LifeDecreaseCollision.destroyed++;
 					playfield.add(new TopDownVolatileElement(TopDownImageUtil
 							.getImages("images/game/explosion.png", 6, 1),
 							element[i].getX(), element[i].getY()));
@@ -93,5 +95,13 @@ public class DemoFighter extends RegularFighter {
    {
 	   return satellite;
    }
-
+   public void genProtection(BufferedImage image)
+   {   
+		protection = new DemoProtection(image,this);
+   	
+   }
+  public PhysicalProtection getProtection()
+  {
+	   return protection;
+  }
 }

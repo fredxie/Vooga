@@ -6,8 +6,8 @@ package element;
 import java.awt.image.BufferedImage;
 
 public abstract class Bullet extends Element {
-
-	private double damage = 1;
+    double damage;
+	BufferedImage image;
     
 	public Bullet(BufferedImage image) {
 		super(image);
@@ -29,11 +29,15 @@ public abstract class Bullet extends Element {
 	public void setDamage(double x) {
 		this.damage = x;
 	}
-    public abstract Bullet[] genBullets(Fighter fighter, int numOfBullet);
+    public abstract  void genBullets(Fighter fighter, int numOfBullet, double weaponDamage);
+ 
+    public void addBullets(Bullet[] bullets,Fighter fighter)
+    {  
+    	for(Bullet bullet : bullets)
+			fighter.playfield.getGroup("Fighter Bullet").add(bullet);
+		fighter.allowFire = false;
+		
+    }
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
+	public abstract void init();
 }

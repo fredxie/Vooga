@@ -5,12 +5,14 @@ package element;
  */
 import game.Configuration;
 import game.TopDownTimer;
+import gameObject.GameLevel;
 import gameObject.TopDownGameObject;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 import util.JsonUtil;
+import util.TopDownImageUtil;
 import configuration.GameParameters;
 
 import keyconfiguration.Key;
@@ -27,28 +29,17 @@ public abstract class RegularFighter extends Fighter {
 	private Satellite satellite;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 																// after 5000 ms
-																// (default)
+	public double moveSpeed = 0.3;															// (default)
 
 	public boolean allowFire = true;
 	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire
 															// after 300 ms
 	// (default)
 
-	public TopDownGameObject game;
+	public GameLevel game;
 	// public Bullet bullet;
 	public BufferedImage bulletImage;
 	public int bombNum;
-
-
-
-	public int getWeaponStyle() {
-		return weaponStyle;
-	}
-
-	public void setWeaponStyle(int weaponStyle) {
-		this.weaponStyle = weaponStyle;
-	}
-
 
 
 	public RegularFighter(BufferedImage image) {
@@ -59,7 +50,7 @@ public abstract class RegularFighter extends Fighter {
 		this.playfield = playfield;
 	}
 
-	public void setGameObject(TopDownGameObject game) {
+	public void setGameObject(GameLevel game) {
 		this.game = game;
 	}
 
@@ -80,27 +71,12 @@ public abstract class RegularFighter extends Fighter {
 		this.lifeNum = lifeNum;
 	}
 
-	public void setWeapon(int weaponDamage, int weaponStyle) {
-		// change according to bonus
-		this.weaponDamage = weaponDamage;
-		this.weaponStyle = weaponStyle;
-	}
 
 	public void setKeyList(List<Key> list) {
 		keyList = list;
 	}
 
-	public void fighterControl(long elapsedTime) {
-		//System.out.println(keyList.size());
-		speedX = speedY = 0;
-		for (Key key : keyList) {
-			if (key.isKeyDown()) {
-				key.notifyObserver(elapsedTime);
-			}
-		}
-		speedY -= JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0;
-		setSpeed(speedX, speedY);
-	}
+
 
 	@KeyAnnotation(action = "UP")
 	public void keyUpPressed(long elapsedTime) {
@@ -146,13 +122,6 @@ public abstract class RegularFighter extends Fighter {
 		this.setImage(i);
 	}
 
-	public double getWeaponDamage() {
-		return weaponDamage;
-	}
-
-	public void setWeaponDamage(double d) {
-		this.weaponDamage = d;
-	}
 
 	public abstract void bomb(long elapsedTime);
 
@@ -171,9 +140,67 @@ public abstract class RegularFighter extends Fighter {
     {
     	return speedY;
     }
+    
+    private AutoFighter assistance;  //Default Satellite for test
+	private Bullet bullet = new Laser(
+			TopDownImageUtil.getImage("images/game/bigLaser1.png")); // Default Bullet  
 
-	public abstract void attack(long elapsedTime, int weaponStyle, double weaponDamage2);
+	public void setWeapon(int weaponDamage, int weaponStyle) {
+		this.weaponDamage = weaponDamage;
+		this.weaponStyle = weaponStyle;
+	}
 
+	public int getWeaponStyle() {
+		return weaponStyle;
+	}
+
+	public void setWeaponStyle(int weaponStyle) {
+		this.weaponStyle = weaponStyle;
+	}
+
+	public double getWeaponDamage() {
+		return weaponDamage;
+	}
+
+	public void setWeaponDamage(double d) {
+		this.weaponDamage = d;
+	}
+
+	public void setBulletState(Bullet bullet) {
+		this.bullet = bullet;
+	}
+    public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
+		bullet.genBullets(this, numOfBullet, weaponDamage);
+	}
+    
+    //State in Assistence part
+    public void setAssistenceState(AutoFighter assistance)
+    {
+    	this.assistance = assistance;
+    }
+    public void genAssistence()
+    {
+    	assistance.produce(this);
+    }
+    public AutoFighter getAssistence()
+    {
+    	return assistance;
+    }
+   
+    public void fighterControl(long elapsedTime) {
+		speedX = speedY = 0;
+		for (Key key : keyList) {
+			if (key.isKeyDown()) {
+				key.notifyObserver(elapsedTime);
+			}
+		}
+		speedY -= JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0;
+		setSpeed(speedX, speedY);
+		if(assistance!=null)
+		assistance.fighterControl(elapsedTime);
+		
+	}
+    
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub

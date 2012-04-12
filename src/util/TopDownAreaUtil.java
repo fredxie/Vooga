@@ -1,7 +1,9 @@
 package util;
 
+import element.AutoFighter;
 import element.Element;
 import element.Fighter;
+import element.RegularFighter;
 import background.TopDownBackground;
 import background.TopDownTileBackground;
 import game.TopDownGameEngine;
@@ -37,6 +39,26 @@ public class TopDownAreaUtil {
 		}
 		if (fighter.getX() + fighter.getWidth() > background.getX() + width) {
 			fighter.setX(background.getX() + width - fighter.getWidth());
+		}
+	}
+	
+	public static void setAutoFighterArea(AutoFighter fighter,
+			TopDownTileBackground background, double height, double width) {
+		// the fighter can't move out of screen boundary
+		RegularFighter master = fighter.getMaster();
+		if (master.getX() == background.getX()) {
+			
+			fighter.setBrinkHorizontalSpeed();
+
+		}
+		if (master.getY() == background.getY()) {
+			fighter.setBrinkVerticalSpeed();
+		}
+		if (master.getY() + master.getHeight() == background.getY() + height) {
+			fighter.setBrinkVerticalSpeed();
+		}
+		if (master.getX() + master.getWidth() == background.getX() + width) {
+			fighter.setBrinkHorizontalSpeed();
 		}
 	}
 

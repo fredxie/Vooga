@@ -5,6 +5,7 @@ import game.TopDownGameEngine;
 import game.TopDownTimer;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 import keyconfiguration.KeyConfig;
 import state.Level1State;
@@ -23,6 +24,7 @@ import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
+import demo.DemoSatellite;
 
 public class GameLevel1 extends GameLevel {
 	private int enemyNum = JsonUtil.parse("paraConfig.json").get(GameParameters.ENEMY_NUM);
@@ -30,6 +32,7 @@ public class GameLevel1 extends GameLevel {
 	private int blockNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BLOCK_NUM);
 	private int cannonNum = 20;
 
+	private boolean showSatellite =false;
 	
 	private KeyConfig keyConfig;
 	private CollisionManager manager;
@@ -139,8 +142,16 @@ public class GameLevel1 extends GameLevel {
 		playfield.update(elapsedTime);
 
 		fighter.refresh(elapsedTime);
+		
+		
+		
+		if(keyDown(KeyEvent.VK_SPACE)&&!showSatellite)
+        {   showSatellite = true;
+            fighter.setAssistenceState(new DemoSatellite(TopDownImageUtil.getImage("images/game/Satellite.png"),fighter));            
+            fighter.genAssistence();
+        }
 
-		fighter.bomb(elapsedTime);
+	//	fighter.bomb(elapsedTime);
 		
 		
 		// Yi Ding's revise
