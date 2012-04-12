@@ -1,13 +1,7 @@
 package ai;
-import element.*;
-
+import element.Enemy;
 import element.Missile;
-import element.Bullet;
-import game.*;
-import collision.*;
-import demo.*;
 import game.Configuration;
-import java.util.*;
 
 // basic functionality for level 1, starts with standard weapon, one directional movement, slow fire rate, reduced damage
 // this corresponds to level 1 easy

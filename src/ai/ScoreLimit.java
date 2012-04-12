@@ -1,15 +1,7 @@
 package ai;
-import element.*; 
-import game.*;
-import collision.*;
-import demo.*;
-import game.Configuration;
-import java.util.*;
-
-import com.golden.gamedev.object.Timer;
-
 import element.Enemy;
 import element.Missile;
+import game.Configuration;
 /*
  * When the player gets x number of points, score limit increases the ai of the computer. This will happen
  * multiple times through the game depending on the score of the player, and can happen in any level, and in

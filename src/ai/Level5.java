@@ -1,20 +1,15 @@
 package ai;
-import element.*;  
-import game.*;
-import collision.*;
-import demo.*;
-import game.Configuration;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+
 import javax.swing.Timer;
 
 import util.JsonUtil;
-
 import configuration.GameParameters;
-
+import demo.DemoGameEngine;
+import element.Enemy;
 import element.Missile;
+import game.Configuration;
 public class Level5 implements TopDownBehavior
 {
 	Timer timer1;

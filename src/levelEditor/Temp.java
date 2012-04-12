@@ -19,7 +19,7 @@ public class Temp extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 
-		KeyConfig.keyMap.put(action, arg0.getKeyCode());
+		KeyConfig.keyMap.put(action,  arg0.getKeyCode());
 		try {
 			KeyConfig.outputJsonFile("keyConfig.json");
 		} catch (IOException e) {

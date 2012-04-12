@@ -1,20 +1,16 @@
-package levelEditor;
-
 /**
  * @author Jiawei Shi
  */
 
-import java.awt.Color;
-import java.awt.Label;
-import java.awt.Point;
+package levelEditor;
+
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -23,28 +19,24 @@ import javax.swing.event.MouseInputListener;
 
 public class ImageLabel extends JLabel implements MouseInputListener {
 
-	private static int WIDTH = 60;
-	private static int HEIGTHT = 80;
-	private static int Default_X = 200;
+	public static int WIDTH = 60;
+	public static int HEIGTHT = 60;
+	private static int Default_X = 100;
 	private static int Default_Y = 50;
 
 	private BufferedImage myImage;
 	private LevelEditor levelEditor;
 
 	private boolean inRightPanel;
-	private boolean firstLeftClick;
-	private boolean isStored;
 	private int X_pos, Y_pos;
 
 	public ImageLabel(BufferedImage image, LevelEditor ld) {
 		super();
 		levelEditor = ld;
-		myImage = image;
+		myImage = properImageSize(image);
 		setBackgroundImage();
 		this.setSize(WIDTH, HEIGTHT);
 		inRightPanel = true;
-		firstLeftClick = false;
-		isStored = false;
 		addMouseMotionListener(this);
 		addMouseListener(this);
 	}
@@ -52,7 +44,12 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 	private void setBackgroundImage() {
 		ImageIcon Icon = new ImageIcon(myImage);
 		setIcon(Icon);
-		setSize(WIDTH, HEIGHT);
+		// setSize(WIDTH, HEIGHT);
+	}
+
+	private BufferedImage properImageSize(BufferedImage i) {
+		Image img = i.getScaledInstance(WIDTH, HEIGTHT, Image.SCALE_SMOOTH);
+		return Picture.toBufferedImage(img);
 	}
 
 	@Override
@@ -108,36 +105,18 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 				}
 			});
 
-			menu.addSeparator();
-
-			if (inRightPanel) {
-				JMenuItem create = new JMenuItem("Create");
-				menu.add(create);
-				create.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						System.out.println("create");
-						putThisOnPlayField();
-					}
-				});
-			}
-
-			else {
-				JMenuItem storeItem = new JMenuItem("Store Item");
-				this.isStored = true;
-				menu.add(storeItem);
-				storeItem.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						System.out.println("store");
-					}
-				});
-
-			}
-
 			menu.show(arg0.getComponent(), arg0.getX() + 15, arg0.getY() + 20);
 		}
 
-		else if (SwingUtilities.isLeftMouseButton(arg0) && !firstLeftClick) {
-			firstLeftClick = true;
+		else if (SwingUtilities.isLeftMouseButton(arg0) && inRightPanel) {
+			ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
+			newLabel.moveToLeftPanel();
+			levelEditor.addToList(newLabel);
+			levelEditor.setCachedLabel(newLabel);
+		}
+
+		else if (SwingUtilities.isLeftMouseButton(arg0) && !inRightPanel) {
+			levelEditor.setCachedLabel(this);
 		}
 
 	}
@@ -151,12 +130,6 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if (isStored)
-			return;
-
-		this.setLocation(X_pos, Y_pos);
-		X_pos = arg0.getX();
-		Y_pos = arg0.getY();
 	}
 
 	@Override
@@ -184,9 +157,12 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 		moveToLeftPanel();
 	}
 
-	private void putThisOnPlayField() {
-		ImageLabel anotherElement = new ImageLabel(myImage, levelEditor);
-		levelEditor.putLabelOnPlayField(anotherElement);
+	public int getX_Pos() {
+		return X_pos;
+	}
+
+	public int getY_pos() {
+		return Y_pos;
 	}
 
 }

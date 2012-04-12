@@ -1,17 +1,21 @@
 package element;
 
 import game.Configuration;
-import game.TopDownGame;
-import gameObject.TopDownGameObject;
+import game.TopDownGameObject;
 import game.TopDownTimer;
+import gameObject.GameLevel;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import util.JsonUtil;
-
-
 import configuration.GameParameters;
+
+import demo.DemoSatellite;
+
+import util.JsonUtil;
+import util.TopDownImageUtil;
+
+import keyconfiguration.Key;
 
 public abstract class Fighter extends Element {
 
@@ -21,30 +25,14 @@ public abstract class Fighter extends Element {
 	private int weaponStyle = Configuration.INITIAL_STYLE;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
-																// after 5000 ms
-																// (default)
-	public double speedX, speedY;
-	public double moveSpeed = 0.3;
+	public boolean allowFire = false;
+	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
+    public double speedX,speedY;												// after 300 ms
 
-	public boolean allowFire = true;
-	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire
-															// after 300 ms
-	// (default)
-
-	public TopDownGameObject game;
+	public GameLevel game;
 	// public Bullet bullet;
 	public BufferedImage bulletImage;
 	public int bombNum;
-
-	public int getWeaponStyle() {
-		return weaponStyle;
-	}
-
-	public void setWeaponStyle(int weaponStyle) {
-		this.weaponStyle = weaponStyle;
-	}
-
-
 
 	public Fighter(BufferedImage image) {
 		super(image);
@@ -54,9 +42,6 @@ public abstract class Fighter extends Element {
 		this.playfield = playfield;
 	}
 
-	public void setGameObject(TopDownGameObject game) {
-		this.game = game;
-	}
 
 	public void setHP(double fIGHTER_HP) {
 
@@ -75,12 +60,6 @@ public abstract class Fighter extends Element {
 		this.lifeNum = lifeNum;
 	}
 
-	public void setWeapon(int weaponDamage, int weaponStyle) {
-		// change according to bonus
-		this.weaponDamage = weaponDamage;
-		this.weaponStyle = weaponStyle;
-	}
-
 	public void setRefireRate(int rate) {
 		refireRate = new TopDownTimer(rate);
 	}
@@ -97,6 +76,24 @@ public abstract class Fighter extends Element {
 		this.setImage(i);
 	}
 
+	// State Pattern of State Pattern about Bullet
+	 //Default Sate
+	private Bullet bullet = new Laser(
+			TopDownImageUtil.getImage("images/game/bigLaser1.png")); // Default Bullet  
+
+	public void setWeapon(int weaponDamage, int weaponStyle) {
+		this.weaponDamage = weaponDamage;
+		this.weaponStyle = weaponStyle;
+	}
+
+	public int getWeaponStyle() {
+		return weaponStyle;
+	}
+
+	public void setWeaponStyle(int weaponStyle) {
+		this.weaponStyle = weaponStyle;
+	}
+
 	public double getWeaponDamage() {
 		return weaponDamage;
 	}
@@ -105,6 +102,25 @@ public abstract class Fighter extends Element {
 		this.weaponDamage = d;
 	}
 
+	public void setBulletState(Bullet bullet) {
+		this.bullet = bullet;
+	}
+    public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
+		
+    	bullet.genBullets(this, numOfBullet, weaponDamage);
+	}
+    
 
-	public abstract void attack(long elapsedTime, int weaponStyle, double weaponDamage2);
+	public double getSpeedX() {
+		return speedX;
+	}
+
+	public double getSpeedY() {
+		return speedY;
+	}
+	
+	
+	public void setGameObject(GameLevel game) {
+		this.game = game;
+	}
 }

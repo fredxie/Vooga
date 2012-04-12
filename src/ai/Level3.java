@@ -1,17 +1,12 @@
 package ai;
-import element.*; 
-import game.*;
-import collision.*;
-import demo.*;
-import game.Configuration;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-//import com.golden.gamedev.object.Timer;
+
 import javax.swing.Timer;
-import java.util.Random;
+
+import element.Enemy;
 import element.Missile;
+import game.Configuration;
 public class Level3 implements TopDownBehavior
 {
 	double x = (Math.random()*51); 

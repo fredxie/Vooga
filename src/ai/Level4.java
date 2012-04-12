@@ -1,21 +1,14 @@
 package ai;
-import element.*; 
-import game.*;
-import collision.*;
-import demo.*;
-import game.Configuration;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 import javax.swing.Timer;
 
 import util.JsonUtil;
-
 import configuration.GameParameters;
+import element.Enemy;
 import element.Missile;
-import element.TopDownBackground;
+import game.Configuration;
 public class Level4 implements TopDownBehavior
 {
 	double d,hp,h,v;

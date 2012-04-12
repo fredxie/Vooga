@@ -1,17 +1,7 @@
 package ai;
-import element.*; 
+import element.Enemy;
 import element.Missile;
-import game.*;
-import collision.*;
-import demo.*;
 import game.Configuration;
-
-import java.awt.Graphics2D;
-import java.util.*;
-import com.golden.gamedev.*;
-/* correspond to level 2 easy or level 1 hard.
- * fire rate increases slightly, movement becomes horizontal also.  
- */
 
 public class Level2 implements TopDownBehavior
 {

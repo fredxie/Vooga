@@ -6,13 +6,16 @@ import game.TopDownTimer;
 
 import java.awt.Graphics2D;
 
-import configuration.GameParameters;
-
 import keyconfiguration.KeyConfig;
 import state.Level2State;
 import util.JsonUtil;
 import util.TopDownImageUtil;
-import collision.EnemyFighterBulletCollision;
+import collisionSystem.BonusCollision;
+import collisionSystem.CollisionManager;
+import collisionSystem.ImageCollision;
+import collisionSystem.LifeDecreaseCollision;
+import collisionSystem.SoundCollision;
+import configuration.GameParameters;
 import demo.DemoBlock;
 import demo.DemoBonus;
 import demo.DemoEnemy;
@@ -25,6 +28,7 @@ public class GameLevel2 extends GameLevel {
 	private int bonusNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BONUS_NUM);
 	private int blockNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BLOCK_NUM);
 	private KeyConfig keyConfig;
+	private CollisionManager manager;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);
 	private DemoPlayField playfield = new DemoPlayField(this);
@@ -41,9 +45,30 @@ public class GameLevel2 extends GameLevel {
 	}
 
 	public void initResources() {
-		EnemyFighterBulletCollision.destroyed = 0;
+		LifeDecreaseCollision.destroyed = 0;
 
 		playfield.init("images/game/background.png");
+		
+		manager = new CollisionManager(playfield);
+		manager.registerCollision("Fighter", "Enemy Missile", new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy Missile", new ImageCollision(playfield,"images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy Missile", new LifeDecreaseCollision());
+		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy", new ImageCollision(playfield,"images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy", new LifeDecreaseCollision());
+		manager.registerCollision("Enemy", "Fighter Bullet",new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Enemy", "Fighter Bullet",new ImageCollision(playfield,"images/game/explosion.png"));
+		manager.registerCollision("Enemy", "Fighter Bullet", new LifeDecreaseCollision());
+		manager.registerCollision("Fighter", "Bonus", new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Bonus", new BonusCollision());
+		manager.registerCollision("Fighter", "Block", new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Block", new ImageCollision(playfield,"images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Block", new LifeDecreaseCollision());
+		manager.registerCollision("Block", "Fighter Bullet",new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Block", "Fighter Bullet",new ImageCollision(playfield,"images/game/explosion.png"));
+		manager.registerCollision("Block", "Fighter Bullet",new LifeDecreaseCollision());
+		
+		
 		for (int i = 0; i < blockNum; i++) {
 			int j = getRandom(0, 30);
 			if (j <= 10)
@@ -128,7 +153,7 @@ public class GameLevel2 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (EnemyFighterBulletCollision.destroyed >= 20) {
+		if (LifeDecreaseCollision.destroyed >= 20) {
 			levelComplete = true;
 		}
 		return levelComplete;
@@ -137,13 +162,13 @@ public class GameLevel2 extends GameLevel {
 	public void gameRender(Graphics2D g, String levelRequirement) {
 		fontManager.getFont("FPS Font").drawString(g, levelRequirement, 20, 15);
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed,
+				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed,
 				20, 30);
 	}
 
 	public void betweenLevelsRender(Graphics2D g, int nextLevelNum) {
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + EnemyFighterBulletCollision.destroyed,
+				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed,
 				20, DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ",
 				20, DemoGameEngine.HEIGHT / 2);
