@@ -9,8 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import configuration.Setting;
+
 import levelEditor.LevelEditor;
-import levelEditor.Setting;
 import menu.GameSL;
 
 import game.Configuration;

@@ -15,14 +15,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import util.JsonUtil;
+
 import com.golden.gamedev.GameObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import configuration.GameParameters;
+
 import element.Fighter;
 
 public class KeyConfig {
-	public static HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
+	public static HashMap<GameParameters, Integer> keyMap = new HashMap<GameParameters, Integer>();
 	private List<Key> keyList = new ArrayList<Key>();
 	private Fighter player;
 	private GameObject myGame;
@@ -36,7 +40,7 @@ public class KeyConfig {
 
 	}
 
-	public HashMap<String, Integer> getKeyMap() {
+	public HashMap<GameParameters, Integer> getKeyMap() {
 		return keyMap;
 	}
 
@@ -45,32 +49,18 @@ public class KeyConfig {
 	}
 
 	public void parseKeyConfig(String fileName) {
-		Gson gson = new Gson();
-		Scanner scanner;
-		try {
-			scanner = new Scanner(new File(fileName));
-			String wholeFile = scanner.useDelimiter("\\A").next();
-			Type collectionType = new TypeToken<HashMap<String, Integer>>() {
-			}.getType();
-			keyMap = gson.fromJson(wholeFile, collectionType);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		for (String action : keyMap.keySet()) {
+		keyMap = JsonUtil.parse(fileName);
+		for (GameParameters action : keyMap.keySet()) {
 			keyList.add(new Key(keyMap.get(action), action, player, myGame));
 		}
 	}
 
-	public void setCustomKey(String fileName, int customKey, String action)
+	public void setCustomKey(String fileName, int customKey, GameParameters action)
 			throws FileNotFoundException {
 		keyMap.put(action, customKey);
 	}
 
 	public static void outputJsonFile(String fileName) throws IOException {
-		Gson gson = new Gson();
-		FileWriter out = new FileWriter(fileName);
-		BufferedWriter bufferedOut = new BufferedWriter(out);
-		bufferedOut.write(gson.toJson(keyMap));
-		bufferedOut.close();
+		JsonUtil.output(keyMap, fileName);
 	}
 }

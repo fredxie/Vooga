@@ -2,6 +2,9 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import configuration.GameParameters;
+
+import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownUtility;
 import element.Bonus;
@@ -34,7 +37,7 @@ public class DemoBonus extends Bonus {
 				// show the bonus
 				setSpeed(
 						TopDownUtility.getRandom(-1, 1) / 20.0,
-						Configuration.BACKGROUND_SPEED
+						JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0
 								+ TopDownUtility.getRandom(0, 1) / 20.0);
 				playfield.getGroup("Bonus").add(this);
 				show = true;

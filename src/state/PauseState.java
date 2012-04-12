@@ -6,6 +6,8 @@ package state;
 
 import java.awt.event.KeyEvent;
 
+import configuration.Setting;
+
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
 import gameObject.Pause;
@@ -41,7 +43,7 @@ public class PauseState extends State{
 				
 			case 2:
 				// Setting
-				System.out.println("setting");
+				Setting setting = new Setting();
 				break;
 				
 			case 3:

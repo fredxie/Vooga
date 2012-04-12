@@ -6,9 +6,11 @@ import game.TopDownTimer;
 
 import java.awt.Graphics2D;
 
+import configuration.GameParameters;
+
 import keyconfiguration.KeyConfig;
-import state.Level1State;
 import state.Level2State;
+import util.JsonUtil;
 import util.TopDownImageUtil;
 import collision.EnemyFighterBulletCollision;
 import demo.DemoBlock;
@@ -19,9 +21,9 @@ import demo.DemoGameEngine;
 import demo.DemoPlayField;
 
 public class GameLevel2 extends GameLevel {
-	private int enemyNum = Configuration.ENEMY_NUM;
-	private int bonusNum = Configuration.BONUS_NUM;
-	private int blockNum = Configuration.BLOCK_NUM;
+	private int enemyNum = JsonUtil.parse("paraConfig.json").get(GameParameters.ENEMY_NUM);
+	private int bonusNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BONUS_NUM);
+	private int blockNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BLOCK_NUM);
 	private KeyConfig keyConfig;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);

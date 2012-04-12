@@ -4,7 +4,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import configuration.GameParameters;
+
 import element.Fighter;
+import element.RegularFighter;
 
 /**
  * 
@@ -22,8 +25,8 @@ public class KeyObserver {
 
 	}
 
-	public void getActoinMethods(String action, long elapsedTime) {
-		Class<?> c = Fighter.class;
+	public void getActoinMethods(GameParameters action, long elapsedTime) {
+		Class<?> c = RegularFighter.class;
 		Method[] methods = c.getMethods();
 		for (Method m : methods) {
 			Annotation annotation = m.getAnnotation(KeyAnnotation.class);
@@ -31,7 +34,7 @@ public class KeyObserver {
 				KeyAnnotation key = (KeyAnnotation) annotation;
 				if (!m.getGenericParameterTypes()[0].equals(long.class))
 					continue;
-				if (key.action().equals(action)) {
+				if (key.action().equals(action.toString())) {
 					try {
 						m.invoke(player, elapsedTime);
 					} catch (IllegalArgumentException e) {

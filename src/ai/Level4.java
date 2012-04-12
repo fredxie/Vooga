@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 import javax.swing.Timer;
+
+import util.JsonUtil;
+
+import configuration.GameParameters;
 import element.Missile;
 import element.TopDownBackground;
 public class Level4 implements TopDownBehavior
@@ -29,7 +33,7 @@ public class Level4 implements TopDownBehavior
 				{
 					if( x < 10 )
 					{
-						enemy.setSpeed(Math.random() * 0.26,Math.random()*0.26  + Configuration.BACKGROUND_SPEED );
+						enemy.setSpeed(Math.random() * 0.26,Math.random()*0.26  + JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0);
 					}
 					else if( x >= 10 )
 					{
@@ -59,7 +63,7 @@ public class Level4 implements TopDownBehavior
 //	}
 	public void weaponSpeed(Missile missile)
 	{	
-		missile.setSpeed(Math.random() * 0.25,Math.random()*0.2 + Configuration.BACKGROUND_SPEED);
+		missile.setSpeed(Math.random() * 0.25,Math.random()*0.2 + JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0);
 	}
 	public double enemyHP()
 	{

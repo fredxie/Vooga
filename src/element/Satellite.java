@@ -8,6 +8,9 @@ import gameObject.TopDownGameObject;
 
 import java.awt.image.BufferedImage;
 
+import configuration.GameParameters;
+
+import util.JsonUtil;
 import util.TopDownImageUtil;
 
 import demo.DemoGameEngine;
@@ -55,7 +58,7 @@ public abstract class Satellite extends Fighter{
 
 		else 
 			attack(elapsedTime, 0, height);
-		speedY =0.6*master.getSpeedY()- Configuration.BACKGROUND_SPEED * 0.4;
+		speedY =0.6*master.getSpeedY()- JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0 * 0.4;
 		speedX = 0.6 * master.getSpeedX();
 		setSpeed(speedX, speedY);}
 	}

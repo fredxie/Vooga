@@ -1,5 +1,6 @@
 package element;
 
+import util.JsonUtil;
 import game.Configuration;
 import gameObject.TopDownGameObject;
 
@@ -7,6 +8,8 @@ import background.TopDownBackground;
 import background.TopDownTileBackground;
 
 import com.golden.gamedev.object.PlayField;
+
+import configuration.GameParameters;
 
 public class TopDownPlayField extends PlayField {
 
@@ -36,7 +39,7 @@ public void setGame(TopDownGameObject game) {
 	public void update(long elapsedTime) {
 		super.update(elapsedTime);
 		this.getBackground().move(0,
-				-Configuration.BACKGROUND_SPEED * elapsedTime);
+				-JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0 * elapsedTime);
 	}
 
 	public TopDownTileBackground getTileBackground() {

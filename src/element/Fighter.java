@@ -8,24 +8,23 @@ import game.TopDownTimer;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import keyconfiguration.Key;
-import keyconfiguration.KeyAnnotation;
+import util.JsonUtil;
 
-import com.golden.gamedev.object.PlayField;
+
+import configuration.GameParameters;
 
 public abstract class Fighter extends Element {
 
 	private static double healthPoint = Configuration.FIGHTER_HP;
-	private int lifeNum = Configuration.lifeNum;
+	private int lifeNum = JsonUtil.parse("paraConfig.json").get(GameParameters.lifeNum);
 	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
 	private int weaponStyle = Configuration.INITIAL_STYLE;
-	private List<Key> keyList;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 																// after 5000 ms
 																// (default)
-	private double speedX, speedY;
-	private double moveSpeed = 0.3;
+	public double speedX, speedY;
+	public double moveSpeed = 0.3;
 
 	public boolean allowFire = true;
 	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire
@@ -80,52 +79,6 @@ public abstract class Fighter extends Element {
 		// change according to bonus
 		this.weaponDamage = weaponDamage;
 		this.weaponStyle = weaponStyle;
-	}
-
-	public void setKeyList(List<Key> list) {
-		keyList = list;
-	}
-
-	public void fighterControl(long elapsedTime) {
-		//System.out.println(keyList.size());
-		speedX = speedY = 0;
-		for (Key key : keyList) {
-			if (key.isKeyDown()) {
-				key.notifyObserver(elapsedTime);
-			}
-		}
-		speedY -= Configuration.BACKGROUND_SPEED;
-		setSpeed(speedX, speedY);
-	}
-
-	@KeyAnnotation(action = "up")
-	public void keyUpPressed(long elapsedTime) {
-		speedY = -moveSpeed;
-	}
-
-	@KeyAnnotation(action = "down")
-	public void keyDownPressed(long elapsedTime) {
-		speedY = moveSpeed;
-	}
-
-	@KeyAnnotation(action = "left")
-	public void keyLeftPressed(long elapsedTime) {
-		speedX = -moveSpeed;
-	}
-
-	@KeyAnnotation(action = "right")
-	public void keyRightPressed(long elapsedTime) {
-		speedX = moveSpeed;
-	}
-
-	@KeyAnnotation(action = "attack")
-	public void keyFirePressed(long elapsedTime) {
-		if (!allowFire) {
-			allowFire = refireRate.action(elapsedTime);
-		}
-
-		else if (allowFire && game.keyDown(Configuration.FIRE))
-			attack(elapsedTime, weaponStyle, weaponDamage);
 	}
 
 	public void setRefireRate(int rate) {

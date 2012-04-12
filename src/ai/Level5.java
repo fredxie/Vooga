@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.Timer;
 
+import util.JsonUtil;
+
+import configuration.GameParameters;
+
 import element.Missile;
 public class Level5 implements TopDownBehavior
 {
@@ -90,7 +94,7 @@ public class Level5 implements TopDownBehavior
 		 * stay in frame, they dont exit frame so player must dodge them Missile update needs to be moves to gameStateLevel_ like enemy movement bounds were
 		 */
 		h = Math.random() * 0.25;
-		v = Math.random() * 0.35 + Configuration.BACKGROUND_SPEED;
+		v = Math.random() * 0.35 + JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0;
 		if(Math.random()*51 < 25)
 		{
 			missile.setSpeed(h,v);

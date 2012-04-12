@@ -10,13 +10,16 @@ import gameObject.TopDownGameObject;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import util.JsonUtil;
+import configuration.GameParameters;
+
 import keyconfiguration.Key;
 import keyconfiguration.KeyAnnotation;
 
 public abstract class RegularFighter extends Fighter {
 
 	private static double healthPoint = Configuration.FIGHTER_HP;
-	private int lifeNum = Configuration.lifeNum;
+	private int lifeNum = JsonUtil.parse("paraConfig.json").get(GameParameters.lifeNum);
 	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
 	private int weaponStyle = Configuration.INITIAL_STYLE;
 	private List<Key> keyList;
@@ -25,8 +28,6 @@ public abstract class RegularFighter extends Fighter {
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 																// after 5000 ms
 																// (default)
-	private double speedX, speedY;
-	private double moveSpeed = 0.3;
 
 	public boolean allowFire = true;
 	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire
@@ -97,37 +98,37 @@ public abstract class RegularFighter extends Fighter {
 				key.notifyObserver(elapsedTime);
 			}
 		}
-		speedY -= Configuration.BACKGROUND_SPEED;
+		speedY -= JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0;
 		setSpeed(speedX, speedY);
 	}
 
-	@KeyAnnotation(action = "up")
+	@KeyAnnotation(action = "UP")
 	public void keyUpPressed(long elapsedTime) {
 		speedY = -moveSpeed;
 	}
 
-	@KeyAnnotation(action = "down")
+	@KeyAnnotation(action = "DOWN")
 	public void keyDownPressed(long elapsedTime) {
 		speedY = moveSpeed;
 	}
 
-	@KeyAnnotation(action = "left")
+	@KeyAnnotation(action = "LEFT")
 	public void keyLeftPressed(long elapsedTime) {
 		speedX = -moveSpeed;
 	}
 
-	@KeyAnnotation(action = "right")
+	@KeyAnnotation(action = "RIGHT")
 	public void keyRightPressed(long elapsedTime) {
 		speedX = moveSpeed;
 	}
 
-	@KeyAnnotation(action = "attack")
+	@KeyAnnotation(action = "FIRE")
 	public void keyFirePressed(long elapsedTime) {
 		if (!allowFire) {
 			allowFire = refireRate.action(elapsedTime);
 		}
 
-		else if (allowFire && game.keyDown(Configuration.FIRE))
+		else if (allowFire)
 			attack(elapsedTime, weaponStyle, weaponDamage);
 	}
 
