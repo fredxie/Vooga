@@ -6,7 +6,8 @@ package state;
 
 import java.awt.event.KeyEvent;
 
-import configuration.Setting;
+import configuration.DemoSetting;
+import configuration.Setting1;
 
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
@@ -43,7 +44,7 @@ public class PauseState extends State{
 				
 			case 2:
 				// Setting
-				Setting setting = new Setting();
+				DemoSetting setting = new DemoSetting();
 				break;
 				
 			case 3:

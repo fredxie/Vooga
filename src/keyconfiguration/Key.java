@@ -1,5 +1,7 @@
 package keyconfiguration;
 
+import java.util.ArrayList;
+
 import com.golden.gamedev.GameObject;
 
 import configuration.GameParameters;

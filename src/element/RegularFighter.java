@@ -102,27 +102,27 @@ public abstract class RegularFighter extends Fighter {
 		setSpeed(speedX, speedY);
 	}
 
-	@KeyAnnotation(action = "UP")
+	@KeyAnnotation(action = GameParameters.UP)
 	public void keyUpPressed(long elapsedTime) {
 		speedY = -moveSpeed;
 	}
 
-	@KeyAnnotation(action = "DOWN")
+	@KeyAnnotation(action = GameParameters.DOWN)
 	public void keyDownPressed(long elapsedTime) {
 		speedY = moveSpeed;
 	}
 
-	@KeyAnnotation(action = "LEFT")
+	@KeyAnnotation(action = GameParameters.LEFT)
 	public void keyLeftPressed(long elapsedTime) {
 		speedX = -moveSpeed;
 	}
 
-	@KeyAnnotation(action = "RIGHT")
+	@KeyAnnotation(action = GameParameters.RIGHT)
 	public void keyRightPressed(long elapsedTime) {
 		speedX = moveSpeed;
 	}
 
-	@KeyAnnotation(action = "FIRE")
+	@KeyAnnotation(action = GameParameters.FIRE)
 	public void keyFirePressed(long elapsedTime) {
 		if (!allowFire) {
 			allowFire = refireRate.action(elapsedTime);

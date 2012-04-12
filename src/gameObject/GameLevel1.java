@@ -31,7 +31,7 @@ public class GameLevel1 extends GameLevel {
 	private DemoFighter fighter = new DemoFighter(
 			TopDownImageUtil.getImage("images/game/fighter.png"));
 	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
-	private DemoBonus[] bonuses = new DemoBonus[enemyNum];
+	private DemoBonus[] bonuses = new DemoBonus[bonusNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
 
 	public GameLevel1(TopDownGameEngine parent) {

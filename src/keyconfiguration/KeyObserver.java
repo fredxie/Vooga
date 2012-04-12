@@ -34,7 +34,7 @@ public class KeyObserver {
 				KeyAnnotation key = (KeyAnnotation) annotation;
 				if (!m.getGenericParameterTypes()[0].equals(long.class))
 					continue;
-				if (key.action().equals(action.toString())) {
+				if (key.action().equals(action)) {
 					try {
 						m.invoke(player, elapsedTime);
 					} catch (IllegalArgumentException e) {

@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import configuration.Setting;
+import configuration.DemoSetting;
+import configuration.Setting1;
 
 import levelEditor.LevelEditor;
 import menu.GameSL;
@@ -68,7 +69,7 @@ public class MenuState extends State {
 				break;
 				
 			case 4:
-				Setting setting = new Setting();
+				DemoSetting setting = new DemoSetting();
 				break;
 			}
 		}
