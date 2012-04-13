@@ -6,8 +6,13 @@ import game.TopDownTimer;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import keyconfiguration.KeyConfig;
+import spawn.EnemySpawner;
+import spawn.SpawnByRandom;
+import spawn.SpawnByTime;
 import state.Level1State;
 import util.JsonUtil;
 import util.TopDownImageUtil;
@@ -25,15 +30,19 @@ import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
 import demo.DemoSatellite;
+import element.Enemy;
 
 public class GameLevel1 extends GameLevel {
-	private int enemyNum = JsonUtil.parse("paraConfig.json").get(GameParameters.ENEMY_NUM);
-	private int bonusNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BONUS_NUM);
-	private int blockNum = JsonUtil.parse("paraConfig.json").get(GameParameters.BLOCK_NUM);
+	private int enemyNum = JsonUtil.parse("paraConfig.json").get(
+			GameParameters.ENEMY_NUM);
+	private int bonusNum = JsonUtil.parse("paraConfig.json").get(
+			GameParameters.BONUS_NUM);
+	private int blockNum = JsonUtil.parse("paraConfig.json").get(
+			GameParameters.BLOCK_NUM);
 	private int cannonNum = 20;
 
-	private boolean showSatellite =false;
-	
+	private boolean showSatellite = false;
+
 	private KeyConfig keyConfig;
 	private CollisionManager manager;
 
@@ -41,42 +50,64 @@ public class GameLevel1 extends GameLevel {
 	private DemoPlayField playfield = new DemoPlayField(this);
 	private DemoFighter fighter = new DemoFighter(
 			TopDownImageUtil.getImage("images/game/fighter.png"));
-	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
+	private List<Enemy> juniorEnemies = new ArrayList<Enemy>(); // Use Arraylist instead of enemies, by Gang
+														
 	private DemoBonus[] bonuses = new DemoBonus[bonusNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
-	private DemoCannonBlock[] cannon = new DemoCannonBlock[cannonNum];   // Yi Ding's revise
+	private List<Enemy> cannon = new ArrayList<Enemy>(); // Yi Ding's revise, Gang changed it to ArrayList;
+												
+	private EnemySpawner enemySpawner1;
+	private EnemySpawner cannonSpawner1;
 
 	public GameLevel1(TopDownGameEngine parent) {
 		super(parent);
-        myState = new Level1State(parent, this);
+		myState = new Level1State(parent, this);
 	}
 
 	public void initResources() {
 		LifeDecreaseCollision.destroyed = 0;
 
 		playfield.init("images/game/background.png");
-		
-		manager = new CollisionManager(playfield);
-//		manager.registerCollisionWithState("Fighter", "Shield", "Enemy Missile", new SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy Missile", new SoundCollision(playfield,"sounds/explosion.wav"));
 
-		manager.registerCollision("Fighter", "Enemy Missile", new ImageCollision(playfield,"images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy Missile", new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy", new ImageCollision(playfield,"images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy", new LifeDecreaseCollision());
-		manager.registerCollision("Enemy", "Fighter Bullet",new SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Enemy", "Fighter Bullet",new ImageCollision(playfield,"images/game/explosion.png"));
-		manager.registerCollision("Enemy", "Fighter Bullet", new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Bonus", new SoundCollision(playfield,"sounds/explosion.wav"));
+		manager = new CollisionManager(playfield);
+		// manager.registerCollisionWithState("Fighter", "Shield",
+		// "Enemy Missile", new
+		// SoundCollision(playfield,"sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy Missile",
+				new SoundCollision(playfield, "sounds/explosion.wav"));
+
+		manager.registerCollision("Fighter", "Enemy Missile",
+				new ImageCollision(playfield, "images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy Missile",
+				new LifeDecreaseCollision());
+		manager.registerCollision("Fighter", "Enemy", new SoundCollision(
+				playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy", new ImageCollision(
+				playfield, "images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy",
+				new LifeDecreaseCollision());
+		manager.registerCollision("Enemy", "Fighter Bullet",
+				new SoundCollision(playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Enemy", "Fighter Bullet",
+				new ImageCollision(playfield, "images/game/explosion.png"));
+		manager.registerCollision("Enemy", "Fighter Bullet",
+				new LifeDecreaseCollision());
+		manager.registerCollision("Fighter", "Bonus", new SoundCollision(
+				playfield, "sounds/explosion.wav"));
 		manager.registerCollision("Fighter", "Bonus", new BonusCollision());
-		manager.registerCollision("Fighter", "Block", new SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Block", new ImageCollision(playfield,"images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Block", new LifeDecreaseCollision());
-		manager.registerCollision("Block", "Fighter Bullet",new SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Block", "Fighter Bullet",new ImageCollision(playfield,"images/game/explosion.png"));
-		manager.registerCollision("Block", "Fighter Bullet",new LifeDecreaseCollision());
-		
+		manager.registerCollision("Fighter", "Block", new SoundCollision(
+				playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Block", new ImageCollision(
+				playfield, "images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Block",
+				new LifeDecreaseCollision());
+		manager.registerCollision("Block", "Fighter Bullet",
+				new SoundCollision(playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Block", "Fighter Bullet",
+				new ImageCollision(playfield, "images/game/explosion.png"));
+		manager.registerCollision("Block", "Fighter Bullet",
+				new LifeDecreaseCollision());
+
 		for (int i = 0; i < blockNum; i++) {
 			int j = getRandom(0, 30);
 			if (j <= 10)
@@ -92,28 +123,22 @@ public class GameLevel1 extends GameLevel {
 		fighter.setGameObject(this);
 		fighter.init();
 
-		// Yi Ding's revise
-		
-		
-				for(int i =0; i< cannonNum; i++)
-				{
-					cannon[i] = new DemoCannonBlock(playfield,getImage("images/game/base.png"),getImage("images/game/cannon.png"),fighter);
-					cannon[i].init();
-				}
-		
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i] = new DemoEnemy(playfield,
-					getImage("images/game/enemy_easy.png"),
-					Configuration.ENEMY_HP);
-			juniorEnemies[i].init();
-		}
+		// Yi Ding's revise, Gang changed it to use EnemySpawner to generate cannons
+		cannonSpawner1=new EnemySpawner(new SpawnByRandom(), new DemoCannonBlock(playfield,
+				getImage("images/game/base.png"),
+				getImage("images/game/cannon.png"), fighter), cannonNum);
+		cannon.addAll(cannonSpawner1.spawn());
+
+		// In this level we use Time Spawning mechanism to generate enemies
+		enemySpawner1 = new EnemySpawner(new SpawnByTime(fighter), new DemoEnemy(
+				playfield, getImage("images/game/enemy_easy.png"),
+				Configuration.ENEMY_HP), 5);
 
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i] = new DemoBonus(playfield,
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-
 
 		keyConfig = new KeyConfig(fighter, this);
 		keyConfig.parseKeyConfig("keyConfig.json");
@@ -144,36 +169,35 @@ public class GameLevel1 extends GameLevel {
 		playfield.update(elapsedTime);
 
 		fighter.refresh(elapsedTime);
-		
-		
-		
-		if(keyDown(KeyEvent.VK_SPACE)&&!showSatellite)
-        {   showSatellite = true;
-            fighter.setAssistenceState(new DemoSatellite(TopDownImageUtil.getImage("images/game/Satellite.png"),fighter));            
-            fighter.genAssistence();
-        }
 
-	//	fighter.bomb(elapsedTime);
-		
-		
+		if (keyDown(KeyEvent.VK_SPACE) && !showSatellite) {
+			showSatellite = true;
+			fighter.setAssistenceState(new DemoSatellite(TopDownImageUtil
+					.getImage("images/game/Satellite.png"), fighter));
+			fighter.genAssistence();
+		}
+
+		// fighter.bomb(elapsedTime);
+
 		// Yi Ding's revise
-				for(int i =0; i< cannonNum; i++)
-				{
-					cannon[i].refresh(elapsedTime);
-				}
+		for (int i = 0; i < cannonNum; i++) {
+			cannon.get(i).refresh(elapsedTime);
+		}
 		// update Enemies
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i].refresh(elapsedTime);
-			double h = juniorEnemies[i].getHorizontalSpeed();
-			double v = juniorEnemies[i].getVerticalSpeed();
-			if (juniorEnemies[i].getX() <= 0
-					|| juniorEnemies[i].getX() >= DemoGameEngine.WIDTH
-							- ((juniorEnemies[i].getWidth()))) {
-				juniorEnemies[i].setSpeed(-h, v);
+		for (int i = 0; i < juniorEnemies.size(); i++) {
+			juniorEnemies.get(i).refresh(elapsedTime);
+			double h = juniorEnemies.get(i).getHorizontalSpeed();
+			double v = juniorEnemies.get(i).getVerticalSpeed();
+			if (juniorEnemies.get(i).getX() <= 0
+					|| juniorEnemies.get(i).getX() >= DemoGameEngine.WIDTH
+							- ((juniorEnemies.get(i).getWidth()))) {
+				juniorEnemies.get(i).setSpeed(-h, v);
 			}
 		}
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i].refresh(elapsedTime);
+		
+        // Spawn enemies after a certain period of time
+		if (enemySpawner1.refresh(elapsedTime)) {
+			juniorEnemies.addAll(enemySpawner1.spawn());
 		}
 
 		for (int i = 0; i < bonusNum; i++) {
@@ -195,14 +219,14 @@ public class GameLevel1 extends GameLevel {
 	public void gameRender(Graphics2D g, String levelRequirement) {
 		fontManager.getFont("FPS Font").drawString(g, levelRequirement, 20, 15);
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed,
-				20, 30);
+				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed, 20,
+				30);
 	}
 
 	public void betweenLevelsRender(Graphics2D g, int nextLevelNum) {
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed,
-				20, DemoGameEngine.HEIGHT / 2 - 50);
+				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed, 20,
+				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ",
 				20, DemoGameEngine.HEIGHT / 2);
 		fontManager.getFont("FPS Font").drawString(g,

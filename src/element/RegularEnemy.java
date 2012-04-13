@@ -2,6 +2,8 @@ package element;
 
 import java.awt.image.BufferedImage;
 
+import spawn.SpawnByLocation;
+
 public class RegularEnemy extends Enemy {
 
 	public RegularEnemy(BufferedImage image) {
@@ -26,6 +28,12 @@ public class RegularEnemy extends Enemy {
 	public void init() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Enemy clone() {
+		// TODO Auto-generated method stub
+		return new RegularEnemy(this.getImage());
 	}
 
 }

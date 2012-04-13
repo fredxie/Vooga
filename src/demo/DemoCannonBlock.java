@@ -182,4 +182,10 @@ public class DemoCannonBlock extends Enemy {
         g.drawImage( m_baseImg, null, (int) getX(),(int) getY() );
     }
 
+	@Override
+	public Enemy clone() {
+		// TODO Auto-generated method stub
+		return new DemoCannonBlock(playfield, m_baseImg, m_cannonImg, fighter);
+	}
+
 }

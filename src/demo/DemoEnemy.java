@@ -25,12 +25,13 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import spawn.SpawnByLocation;
+import spawn.SpawnByRandom;
 import util.TopDownUtility;
 
 import element.Bullet;
 import element.Enemy;
 import element.Missile;
-import element.SpawnByLocation;
 import element.TopDownPlayField;
 import game.Configuration;
 
@@ -56,7 +57,7 @@ public class DemoEnemy extends Enemy {
 	public DemoEnemy(TopDownPlayField playfield, BufferedImage image, double eNEMY_HP) {
 		super(playfield, image);
 //		healthPoint = eNEMY_HP;
-		this.mySpawnBehavior=new SpawnByLocation();
+		this.mySpawnBehavior=new SpawnByRandom();
 		behaviors.add(new Level1());
 		behaviors.add(new Level2());
 		behaviors.add(new Level3());
@@ -92,7 +93,7 @@ public class DemoEnemy extends Enemy {
 
 	public DemoEnemy(BufferedImage image) {
 		super(image);
-		this.mySpawnBehavior=new SpawnByLocation();
+		this.mySpawnBehavior=new SpawnByRandom();
 	}
 
 	@Override
@@ -176,5 +177,11 @@ public class DemoEnemy extends Enemy {
 			}
 		}
 //	}
+
+	@Override
+	public Enemy clone() {
+		// TODO Auto-generated method stub
+		return new DemoEnemy(playfield, getImage(), healthPoint);
+	}
 
 }

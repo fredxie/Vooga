@@ -4,6 +4,8 @@ import game.TopDownTimer;
 
 import java.awt.image.BufferedImage;
 
+import spawn.SpawnBehavior;
+
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
 
@@ -48,8 +50,8 @@ public abstract class Enemy extends Element {
 		mySpawnBehavior=SB;
 	}
 
-	public void spawn(int k){
-		double[] templocation=mySpawnBehavior.spawn(k);
+	public void spawn(){
+		double[] templocation=mySpawnBehavior.spawn();
 
 		this.setX(templocation[0]*(DemoGameEngine.WIDTH- this.getWidth()));
 		this.setY(templocation[1]*(playfield.getBackground().getHeight()- DemoGameEngine.HEIGHT));
@@ -57,6 +59,8 @@ public abstract class Enemy extends Element {
 		//this.playfield.getTileBackground().getWidth()
 	}
 
+	//To clone the same kind of enemy
+	public abstract Enemy clone();
 
 	public int getRefireRate() {
 		return time;

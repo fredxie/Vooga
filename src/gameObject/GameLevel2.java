@@ -5,8 +5,13 @@ import game.TopDownGameEngine;
 import game.TopDownTimer;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import keyconfiguration.KeyConfig;
+import spawn.EnemySpawner;
+import spawn.SpawnByRandom;
+import spawn.SpawnByTime;
 import state.Level2State;
 import util.JsonUtil;
 import util.TopDownImageUtil;
@@ -22,6 +27,7 @@ import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
+import element.Enemy;
 
 public class GameLevel2 extends GameLevel {
 	private int enemyNum = JsonUtil.parse("paraConfig.json").get(GameParameters.ENEMY_NUM);
@@ -34,10 +40,12 @@ public class GameLevel2 extends GameLevel {
 	private DemoPlayField playfield = new DemoPlayField(this);
 	private DemoFighter fighter = new DemoFighter(
 			TopDownImageUtil.getImage("images/game/fighter.png"));
-	private DemoEnemy[] juniorEnemies = new DemoEnemy[enemyNum];
+	private List<Enemy> juniorEnemies = new ArrayList<Enemy>(); // Use Arraylist instead of enemies, by Gang
 	private DemoBonus[] bonuses = new DemoBonus[bonusNum];
 	private DemoBlock[] blocks = new DemoBlock[blockNum];
-
+	private EnemySpawner ES;
+	
+	
 	public GameLevel2(TopDownGameEngine parent) {
 		super(parent);
 
@@ -84,12 +92,12 @@ public class GameLevel2 extends GameLevel {
 		fighter.setGameObject(this);
 		fighter.init();
 
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i] = new DemoEnemy(playfield,
-					getImage("images/game/enemy_easy.png"),
-					Configuration.ENEMY_HP);
-			juniorEnemies[i].init();
-		}
+		//Use enemy spawner to spawn enemies, please do not change it to original spawning method
+		//In this level, enemies are spawned by random
+		ES = new EnemySpawner(new SpawnByRandom(), new DemoEnemy(
+				playfield, getImage("images/game/enemy_easy.png"),
+				Configuration.ENEMY_HP), enemyNum);
+		juniorEnemies.addAll(ES.spawn());
 
 		for (int i = 0; i < bonusNum; i++) {
 			bonuses[i] = new DemoBonus(playfield,
@@ -129,18 +137,18 @@ public class GameLevel2 extends GameLevel {
 
 		fighter.bomb(elapsedTime);
 		// update Enemies
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i].refresh(elapsedTime);
-			double h = juniorEnemies[i].getHorizontalSpeed();
-			double v = juniorEnemies[i].getVerticalSpeed();
-			if (juniorEnemies[i].getX() <= 0
-					|| juniorEnemies[i].getX() >= DemoGameEngine.WIDTH
-							- ((juniorEnemies[i].getWidth()))) {
-				juniorEnemies[i].setSpeed(-h, v);
+		for (int i = 0; i < juniorEnemies.size(); i++) {
+			juniorEnemies.get(i).refresh(elapsedTime);
+			double h = juniorEnemies.get(i).getHorizontalSpeed();
+			double v = juniorEnemies.get(i).getVerticalSpeed();
+			if (juniorEnemies.get(i).getX() <= 0
+					|| juniorEnemies.get(i).getX() >= DemoGameEngine.WIDTH
+							- ((juniorEnemies.get(i).getWidth()))) {
+				juniorEnemies.get(i).setSpeed(-h, v);
 			}
 		}
-		for (int i = 0; i < enemyNum; i++) {
-			juniorEnemies[i].refresh(elapsedTime);
+		for (int i = 0; i <  juniorEnemies.size(); i++) {
+			juniorEnemies.get(i).refresh(elapsedTime);
 		}
 
 		for (int i = 0; i < bonusNum; i++) {
