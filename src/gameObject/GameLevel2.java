@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import keyconfiguration.KeyConfig;
 import spawn.EnemySpawner;
 import spawn.SpawnByRandom;
 import state.DefaultLastLevelState;
@@ -20,6 +19,7 @@ import collisionSystem.ImageCollision;
 import collisionSystem.LifeDecreaseCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
+import configuration.KeyPressedSubject;
 import demo.DemoBlock;
 import demo.DemoBonus;
 import demo.DemoEnemy;
@@ -35,7 +35,6 @@ public class GameLevel2 extends GameLevel {
 			GameParameters.BONUS_NUM);
 	private int blockNum = JsonUtil.parse("paraConfig.json").get(
 			GameParameters.BLOCK_NUM);
-	private KeyConfig keyConfig;
 	private CollisionManager manager;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);
@@ -125,10 +124,8 @@ public class GameLevel2 extends GameLevel {
 					getImage("images/game/bonus.png"));
 			bonuses[i].init();
 		}
-
-		keyConfig = new KeyConfig(fighter, this);
-		keyConfig.parseKeyConfig("keyConfig.json");
-		fighter.setKeyList(keyConfig.getKeyList());
+		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
+				this));
 
 	}
 
@@ -155,6 +152,8 @@ public class GameLevel2 extends GameLevel {
 		playfield.update(elapsedTime);
 
 		fighter.refresh(elapsedTime);
+
+		KeyPressedSubject.getInstance().notifyObservers(elapsedTime);
 
 		fighter.bomb(elapsedTime);
 		// update Enemies

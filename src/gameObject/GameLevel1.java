@@ -11,7 +11,6 @@ import java.util.List;
 
 import playerState.AssistanceState;
 
-import keyconfiguration.KeyConfig;
 import spawn.EnemySpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
@@ -29,6 +28,7 @@ import collisionSystem.LifeDecreaseCollision;
 import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
+import configuration.KeyPressedSubject;
 import demo.DemoBlock;
 import demo.DemoBonus;
 import demo.DemoCannonBlock;
@@ -51,7 +51,6 @@ public class GameLevel1 extends GameLevel {
 
 	private boolean showSatellite = false;
 
-	private KeyConfig keyConfig;
 	private CollisionManager manager;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);
@@ -159,9 +158,8 @@ public class GameLevel1 extends GameLevel {
 			bonuses[i].init();
 		}
 
-		keyConfig = new KeyConfig(fighter, this);
-		keyConfig.parseKeyConfig("keyConfig.json");
-		fighter.setKeyList(keyConfig.getKeyList());
+		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
+				this));
 
 	}
 
@@ -188,6 +186,8 @@ public class GameLevel1 extends GameLevel {
 		playfield.update(elapsedTime);
 
 		fighter.refresh(elapsedTime);
+
+		KeyPressedSubject.getInstance().notifyObservers(elapsedTime);
 
 		if (keyDown(KeyEvent.VK_SPACE) && !showSatellite) {
 			showSatellite = true;
