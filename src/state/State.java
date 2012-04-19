@@ -9,18 +9,18 @@ package state;
 
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
-import gameObject.GameLevel2;
-import gameObject.TopDownGameObject;
+import gameObject.TopDownGameManager;
 
 import com.golden.gamedev.GameEngine;
+import com.golden.gamedev.GameObject;
 
 
 public abstract class State{
 	private int stateID;
-	protected TopDownGameObject myGameObject;
+	protected GameObject myGameObject;
 	protected GameEngine myGameEngine;
 	
-	public State(TopDownGameEngine parent,TopDownGameObject game) {
+	public State(TopDownGameEngine parent,GameObject game) {
 		myGameEngine = parent;
 		myGameObject = game;
 	}
@@ -35,7 +35,8 @@ public abstract class State{
 	
 	public void activateByPressedButton(int keyPress, int gameID){
 		if (myGameEngine.keyDown(keyPress)){
-			myGameEngine.nextGameID = gameID;
+			//myGameEngine.nextGameID = gameID;
+			TopDownGameManager.setCurrentGameID(gameID);
 			myGameObject.finish();
 		}
 	}

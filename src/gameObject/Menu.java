@@ -10,13 +10,22 @@ import state.MenuState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class Menu extends TopDownGameObject {
+public class Menu extends OptionGameObject {
 	int option;
 	TopDownImageBackground mainMenuTitle;
+	
 
 	public Menu(TopDownGameEngine parent) {
 		super(parent);
         myState = new MenuState(parent, this);
+	}
+	
+	public void setOptionList(){
+		addOption("PLAY");
+		addOption("EXIT");
+		addOption("LEVEL EDITOR");
+		addOption("LOAD AND SAVE");
+		addOption("SETTING");
 	}
 
 	@Override
@@ -29,11 +38,8 @@ public class Menu extends TopDownGameObject {
 	@Override
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(g, "PLAY", 150, 100);
-		fontManager.getFont("FPS Font").drawString(g, "EXIT", 150, 140);
-		fontManager.getFont("FPS Font").drawString(g, "LEVEL EDITOR", 150, 180);
-		fontManager.getFont("FPS Font").drawString(g, "LOAD AND START", 150,220);
-		fontManager.getFont("FPS Font").drawString(g, "SETTING", 150, 260);
+		
+		setOptionLayout(g,150,100,40);
 		setOptionArrow(g);
 	}
 

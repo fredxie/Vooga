@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import configuration.DemoSetting;
-import configuration.Setting1;
 
 import levelEditor.LevelEditor;
 import menu.GameSL;
@@ -19,16 +18,19 @@ import game.Configuration;
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
 import gameObject.Menu;
-import gameObject.TopDownGameObject;
+import gameObject.OptionGameObject;
+import gameObject.TopDownGameManager;
 
 import element.Element;
 
 public class MenuState extends State {
+	TopDownGameEngine engine;
 
-	public MenuState(TopDownGameEngine parent, TopDownGameObject game) {
+	public MenuState(TopDownGameEngine parent, OptionGameObject game) {
 		super(parent, game);
-		myGameObject.setGameState(this);
+		game.setGameState(this);
 		setStateID(0);
+		engine = parent;
 	}
 
 	@Override
@@ -36,25 +38,26 @@ public class MenuState extends State {
 		if(myGameObject.bsInput.getKeyPressed() == KeyEvent.VK_ENTER ||
 				myGameObject.bsInput.getKeyPressed() == KeyEvent.VK_SPACE){
 			Menu game = (Menu) myGameObject;
-			System.out.println(game.getOption());
+			
 			switch(game.getOption()){
 			case 0:
 				// start easy game
-				myGameEngine.nextGameID = 2;
+				TopDownGameManager.setCurrentGameID(2);
+				//myGameEngine.nextGameID = 2;
 				game.finish();
 				break;
-			
+
 			case 1:
 				// end
-				game.finish();
-				//finish();
+				//game.finish();
+				engine.finish();
 				break;
-				
+
 			case 2:
 				// level editor
 				LevelEditor l = new LevelEditor();
 				break;
-				
+
 			case 3:
 				// load and start game
 				GameSL sl = new GameSL();
@@ -67,19 +70,19 @@ public class MenuState extends State {
 
 				}
 				break;
-				
+
 			case 4:
 				DemoSetting setting = new DemoSetting();
 				break;
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void gameFinish(GameLevel game, long arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

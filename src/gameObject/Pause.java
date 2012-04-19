@@ -9,7 +9,7 @@ import state.PauseState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class Pause extends TopDownGameObject {
+public class Pause extends OptionGameObject {
 	int option;
 	TopDownImageBackground mainMenuTitle;
 
@@ -17,6 +17,13 @@ public class Pause extends TopDownGameObject {
 		super(parent);
 
 		myState = new PauseState(parent, this);
+	}
+	
+	public void setOptionList(){
+		addOption("RESUME");
+		addOption("RESTART");
+		addOption("SETTING");
+		addOption("MENU");
 	}
 
 	public void initResources() {
@@ -27,10 +34,7 @@ public class Pause extends TopDownGameObject {
 
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(g, "RESUME", 150, 100);
-		fontManager.getFont("FPS Font").drawString(g, "RESTART", 150, 140);
-		fontManager.getFont("FPS Font").drawString(g, "SETTING", 150, 180);
-		fontManager.getFont("FPS Font").drawString(g, "MENU", 150, 220);
+		setOptionLayout(g,150,100,40);
 		setOptionArrow(g);
 	}
 
