@@ -11,7 +11,6 @@ import java.util.List;
 
 import playerState.AssistanceState;
 
-import keyconfiguration.KeyConfig;
 import spawn.EnemySpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
@@ -25,10 +24,12 @@ import collisionSystem.EnemyBulletCollision;
 import collisionSystem.FighterBulletCollision;
 import collisionSystem.FighterEnemyOrBlockCollision;
 import collisionSystem.ImageCollision;
+import collisionSystem.InActiveCollision;
 import collisionSystem.LifeDecreaseCollision;
 import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
+import configuration.KeyPressedSubject;
 import demo.DemoBlock;
 import demo.DemoBonus;
 import demo.DemoCannonBlock;
@@ -51,7 +52,6 @@ public class GameLevel1 extends GameLevel {
 
 	private boolean showSatellite = false;
 
-	private KeyConfig keyConfig;
 	private CollisionManager manager;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);
@@ -86,43 +86,31 @@ public class GameLevel1 extends GameLevel {
 		// manager.registerCollisionWithState("Fighter", "Shield",
 		// "Enemy Missile", new
 		// SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new SoundCollision(playfield, "sounds/explosion.wav"),
-				new ImageCollision(playfield, "images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy Missile",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
 
-		manager.registerCollision("Fighter", "Normal", "Enemy Missile",
-				new FighterBulletCollision());
+		manager.registerCollision("Fighter","Normal","Enemy Missile",new FighterBulletCollision());
+		
+		manager.registerCollision("Fighter","Shield","Enemy Missile",new InActiveCollision());
 
-		// manager.registerCollision("Fighter","Normal","Enemy Missile",new
-		// LifeDecreaseCollision());
 
-		manager.registerCollision("Fighter", "Enemy", new SoundCollision(
-				playfield, "sounds/explosion.wav"), new ImageCollision(
-				playfield, "images/game/explosion.png"));
+		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
 
-		manager.registerCollision("Fighter", "Shield", "Enemy",
-				new PhysicCollision());
+		manager.registerCollision("Fighter", "Shield","Enemy",new PhysicCollision());
+		
+		manager.registerCollision("Fighter", "Normal","Enemy",new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Enemy", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new EnemyBulletCollision());
 
-		manager.registerCollision("Fighter", "Normal", "Enemy",
-				new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Fighter", "Bonus", new SoundCollision(playfield, "sounds/explosion.wav"),new BonusCollision());
+		
+		manager.registerCollision("Fighter", "Block", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Fighter", "Normal","Block",new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Fighter", "Shield","Block",new InActiveCollision());
 
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"),
-				new ImageCollision(playfield, "images/game/explosion.png"),
-				new EnemyBulletCollision());
-
-		manager.registerCollision("Fighter", "Bonus", new SoundCollision(
-				playfield, "sounds/explosion.wav"), new BonusCollision());
-
-		manager.registerCollision("Fighter", "Block", new SoundCollision(
-				playfield, "sounds/explosion.wav"), new ImageCollision(
-				playfield, "images/game/explosion.png"),
-				new FighterEnemyOrBlockCollision());
-
-		manager.registerCollision("Block", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"),
-				new ImageCollision(playfield, "images/game/explosion.png"),
-				new BlockBulletCollision());
+		manager.registerCollision("Block", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new BlockBulletCollision());
 
 		for (int i = 0; i < blockNum; i++) {
 			int j = getRandom(0, 30);
@@ -159,9 +147,8 @@ public class GameLevel1 extends GameLevel {
 			bonuses[i].init();
 		}
 
-		keyConfig = new KeyConfig(fighter, this);
-		keyConfig.parseKeyConfig("keyConfig.json");
-		fighter.setKeyList(keyConfig.getKeyList());
+		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
+				this));
 
 	}
 
@@ -188,6 +175,8 @@ public class GameLevel1 extends GameLevel {
 		playfield.update(elapsedTime);
 
 		fighter.refresh(elapsedTime);
+
+		KeyPressedSubject.getInstance().notifyObservers(elapsedTime);
 
 		if (keyDown(KeyEvent.VK_SPACE) && !showSatellite) {
 			showSatellite = true;
@@ -230,7 +219,7 @@ public class GameLevel1 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (EnemyBulletCollision.destroyed >= 5) {
+		if (EnemyBulletCollision.destroyed >= 1) {
 			levelComplete = true;
 		}
 		return levelComplete;

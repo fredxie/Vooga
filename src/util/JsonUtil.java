@@ -1,6 +1,5 @@
 package util;
 
-
 /**
  * @author Ran Zhang
  */
@@ -11,16 +10,20 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
+import com.golden.gamedev.GameObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import configuration.GameParameters;
+import configuration.Key;
 
 public class JsonUtil {
-	
+
 	public static HashMap<GameParameters, Integer> parse(String fileName) {
 		Gson gson = new Gson();
 		HashMap<GameParameters, Integer> map = new HashMap<GameParameters, Integer>();
@@ -36,8 +39,9 @@ public class JsonUtil {
 		}
 		return map;
 	}
-	
-	public static void output(HashMap<GameParameters, Integer> map, String fileName) {
+
+	public static void output(HashMap<GameParameters, Integer> map,
+			String fileName) {
 
 		Gson gson = new Gson();
 		try {
@@ -49,6 +53,16 @@ public class JsonUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public static List<Key> createKeyList(Object obj, String fileName,
+			GameObject myGame) {
+		HashMap<GameParameters, Integer> keyMap = JsonUtil.parse(fileName);
+		List<Key> keyList = new ArrayList<Key>();
+		for (GameParameters action : keyMap.keySet()) {
+			keyList.add(new Key(keyMap.get(action), action, obj, myGame));
+		}
+		return keyList;
 	}
 
 }

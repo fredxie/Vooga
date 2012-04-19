@@ -7,6 +7,8 @@ package configuration;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -86,6 +88,37 @@ public abstract class Setting extends JFrame {
 					.parse("paraConfig.json");
 			map.put(parameter, Integer.parseInt(textField.getText()));
 			JsonUtil.output(map, "paraConfig.json");
+		}
+
+	}
+
+	public class KeySettingListener extends JFrame implements KeyListener {
+		GameParameters action;
+
+		public KeySettingListener(GameParameters action) {
+			this.action = action;
+		}
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+
+			HashMap<GameParameters, Integer> keyMap = JsonUtil
+					.parse("keyConfig.json");
+			keyMap.put(action, arg0.getKeyCode());
+			JsonUtil.output(keyMap, "keyConfig.json");
+			KeyChangedSubject.getInstance().notifyObservers();
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+
 		}
 
 	}
