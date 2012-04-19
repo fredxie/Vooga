@@ -1,6 +1,7 @@
 package element;
 
 import game.Configuration;
+import game.TopDownGameObject;
 import game.TopDownTimer;
 import gameObject.GameLevel;
 
@@ -18,18 +19,18 @@ import keyconfiguration.Key;
 
 public abstract class Fighter extends Element {
 
-	private static double healthPoint = Configuration.FIGHTER_HP;
-	private int lifeNum = JsonUtil.parse("paraConfig.json").get(GameParameters.lifeNum);
-	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
-	private int weaponStyle = Configuration.INITIAL_STYLE;
+	protected static double healthPoint = Configuration.FIGHTER_HP;
+	protected int lifeNum = JsonUtil.parse("paraConfig.json").get(GameParameters.lifeNum);
+	protected double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
+	protected int weaponStyle = Configuration.INITIAL_STYLE;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 	public boolean allowFire = false;
 	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
     public double speedX,speedY;												// after 300 ms
-
+    public double backgroundSpeed=JsonUtil.parse("paraConfig.json").get(
+			GameParameters.BACKGROUND_SPEED);
 	public GameLevel game;
-	// public Bullet bullet;
 	public BufferedImage bulletImage;
 	public int bombNum;
 
@@ -51,6 +52,16 @@ public abstract class Fighter extends Element {
 		return healthPoint;
 	}
 
+	public void changeHP(double change)
+	{
+		healthPoint = healthPoint + change;
+		if(healthPoint<=0)
+			{lifeNum--;
+			healthPoint = Configuration.FIGHTER_HP;
+			}
+		
+	}
+	
 	public int getLifeNum() {
 		return lifeNum;
 	}
@@ -59,6 +70,14 @@ public abstract class Fighter extends Element {
 		this.lifeNum = lifeNum;
 	}
 
+    public void changeLifeNum(int change)
+    {
+    	lifeNum = lifeNum + change;
+    }
+	
+	
+	
+	
 	public void setRefireRate(int rate) {
 		refireRate = new TopDownTimer(rate);
 	}
@@ -66,18 +85,13 @@ public abstract class Fighter extends Element {
 	public void setBulletImage(BufferedImage bulletImage) {
 		this.bulletImage = bulletImage;
 	}
-
-	// public abstract void fighterWeapon(long elapsedTime); //here developer
-	// should set their bullet style
-	// public abstract void initFighter();
-
 	public void death(BufferedImage i) {
 		this.setImage(i);
 	}
 
 	// State Pattern of State Pattern about Bullet
 	 //Default Sate
-	private Bullet bullet = new Laser(
+	private Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/bigLaser1.png")); // Default Bullet  
 
 	public void setWeapon(int weaponDamage, int weaponStyle) {
@@ -101,14 +115,15 @@ public abstract class Fighter extends Element {
 		this.weaponDamage = d;
 	}
 
-	public void setBulletState(Bullet bullet) {
-		this.bullet = bullet;
+
+	public void setBombNum(int bombNum) {
+		this.bombNum = bombNum;
 	}
-    public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
-		
-    	bullet.genBullets(this, numOfBullet, weaponDamage);
+
+	public int getBombNum() {
+		return bombNum;
 	}
-    
+
 
 	public double getSpeedX() {
 		return speedX;
@@ -117,7 +132,8 @@ public abstract class Fighter extends Element {
 	public double getSpeedY() {
 		return speedY;
 	}
-	
+
+	public abstract void attack(long elapsedTime, int numOfBullet, double weaponDamage);
 	
 	public void setGameObject(GameLevel game) {
 		this.game = game;

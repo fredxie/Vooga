@@ -103,6 +103,8 @@ public class DemoEnemy extends Enemy {
 				DemoGameEngine.WIDTH - this.getWidth()));
 		this.setY(TopDownUtility.getRandom(100, playfield.getBackground()
 				.getHeight() - DemoGameEngine.HEIGHT));
+		setMass(3);
+
 	}
 
 	@Override

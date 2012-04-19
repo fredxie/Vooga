@@ -1,82 +1,56 @@
 package element;
+
 /**
  * 
  * @author ShiyuanWang
  */
-import game.Configuration;
 import game.TopDownTimer;
 import gameObject.GameLevel;
-import gameObject.TopDownGameObject;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
-
-import util.JsonUtil;
-import util.TopDownImageUtil;
-import configuration.GameParameters;
 
 import keyconfiguration.Key;
 import keyconfiguration.KeyAnnotation;
+import playerState.AssistanceState;
+import playerState.CollisionState;
+import playerState.NormalCollisionState;
+import playerState.PhysicCollisionState;
+import playerState.PlayerState;
+import playerState.WeaponState;
+import util.TopDownImageUtil;
+
+import com.golden.gamedev.object.Sprite;
+
+import configuration.GameParameters;
 
 public abstract class RegularFighter extends Fighter {
 
-	private static double healthPoint = Configuration.FIGHTER_HP;
-	private int lifeNum = JsonUtil.parse("paraConfig.json").get(GameParameters.lifeNum);
-	private double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
-	private int weaponStyle = Configuration.INITIAL_STYLE;
 	private List<Key> keyList;
 	public boolean allowBomb = true;
-	private Satellite satellite;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
-																// after 5000 ms
-	public double moveSpeed = 0.3;															// (default)
+    public WeaponState weaponState = new WeaponState(this);		
+    public AssistanceState assistanceState = new AssistanceState(this); 
 
+    public CollisionState collisionState = new PhysicCollisionState(this);
+    public AutoFighter assistance; 
+	public double moveSpeed = 0.3; // (default)
 	public boolean allowFire = true;
-	public TopDownTimer refireRate = new TopDownTimer(300); // allow to refire
-															// after 300 ms
-	// (default)
-
 	public GameLevel game;
-	// public Bullet bullet;
 	public BufferedImage bulletImage;
-	public int bombNum;
-
-
+    public List<PlayerState> stateList=new ArrayList<PlayerState>();
 	public RegularFighter(BufferedImage image) {
 		super(image);
-	}
-
-	public void setPlayfield(TopDownPlayField playfield) {
-		this.playfield = playfield;
 	}
 
 	public void setGameObject(GameLevel game) {
 		this.game = game;
 	}
 
-	public void setHP(double fIGHTER_HP) {
-
-		this.healthPoint = fIGHTER_HP;
-	}
-
-	public static double getHP() {
-		return healthPoint;
-	}
-
-	public int getLifeNum() {
-		return lifeNum;
-	}
-
-	public void setLifeNum(int lifeNum) {
-		this.lifeNum = lifeNum;
-	}
-
-
 	public void setKeyList(List<Key> list) {
 		keyList = list;
 	}
-
-
 
 	@KeyAnnotation(action = GameParameters.UP)
 	public void keyUpPressed(long elapsedTime) {
@@ -108,104 +82,53 @@ public abstract class RegularFighter extends Fighter {
 			attack(elapsedTime, weaponStyle, weaponDamage);
 	}
 
-	public void setRefireRate(int rate) {
-		refireRate = new TopDownTimer(rate);
-	}
-
-	public void setBulletImage(BufferedImage bulletImage) {
-		this.bulletImage = bulletImage;
-	}
 
 	public abstract void refresh(long elapsedTime);
 
-	public void death(BufferedImage i) {
-		this.setImage(i);
-	}
-
 
 	public abstract void bomb(long elapsedTime);
-
-	public void setBombNum(int bombNum) {
-		this.bombNum = bombNum;
+    
+	
+	public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
+		weaponState.fire(elapsedTime, numOfBullet, weaponDamage);
 	}
-
-	public int getBombNum() {
-		return bombNum;
-	}
-    public double getSpeedX()
+    public PlayerState getWeaponState()
     {
-    	return speedX;
-    }
-    public double getSpeedY()
-    {
-    	return speedY;
+    	return weaponState;
     }
     
-    private AutoFighter assistance;  //Default Satellite for test
-	private Bullet bullet = new Laser(
-			TopDownImageUtil.getImage("images/game/bigLaser1.png")); // Default Bullet  
-
-	public void setWeapon(int weaponDamage, int weaponStyle) {
-		this.weaponDamage = weaponDamage;
-		this.weaponStyle = weaponStyle;
-	}
-
-	public int getWeaponStyle() {
-		return weaponStyle;
-	}
-
-	public void setWeaponStyle(int weaponStyle) {
-		this.weaponStyle = weaponStyle;
-	}
-
-	public double getWeaponDamage() {
-		return weaponDamage;
-	}
-
-	public void setWeaponDamage(double d) {
-		this.weaponDamage = d;
-	}
-
-	public void setBulletState(Bullet bullet) {
-		this.bullet = bullet;
-	}
-    public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
-		bullet.genBullets(this, numOfBullet, weaponDamage);
-	}
-    
-    //State in Assistence part
-    public void setAssistenceState(AutoFighter assistance)
+    public PlayerState getAssistanceState()
     {
-    	this.assistance = assistance;
+    	return assistanceState;
     }
-    public void genAssistence()
-    {
-    	assistance.produce(this);
-    }
-    public AutoFighter getAssistence()
-    {
-    	return assistance;
-    }
-   
-    public void fighterControl(long elapsedTime) {
+	
+	//State in Collision Part
+
+	
+	public CollisionState getCollisionState() {
+		return collisionState;
+	}
+	
+	
+	
+	public abstract void init(); 
+	
+	public void fighterControl(long elapsedTime) {
 		speedX = speedY = 0;
 		for (Key key : keyList) {
 			if (key.isKeyDown()) {
 				key.notifyObserver(elapsedTime);
 			}
 		}
-		speedY -= JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED)/10.0;
+		speedY -= backgroundSpeed / 10.0;
 		setSpeed(speedX, speedY);
-		if(assistance!=null)
-		assistance.fighterControl(elapsedTime);
+		if (assistance != null)
+			assistance.fighterControl(elapsedTime);
 		
-	}
-    
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
+		for( PlayerState state: stateList)
+		{
+			state.update(elapsedTime);
+		}
 
 	}
-
-
 }

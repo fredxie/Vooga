@@ -16,11 +16,12 @@ import element.Missile;
 import element.PhysicalProtection;
 import element.RegularFighter;
 import element.Satellite;
+import element.Weapon;
 import game.Configuration;
 import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
-    Bullet bullet = new Laser(TopDownImageUtil.getImage(
+    Weapon bullet = new Laser(TopDownImageUtil.getImage(
 			"images/game/bigLaser1.png"));
     private Satellite satellite;
     private DemoProtection protection;
@@ -34,6 +35,11 @@ public class DemoFighter extends RegularFighter {
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(Configuration.BOMB_NUM);
+		stateList.add(weaponState);
+		stateList.add(assistanceState);
+		stateList.add(collisionState);
+		setMass(4);
+
 	}
 
 	public void refresh(long elapsedTime) {

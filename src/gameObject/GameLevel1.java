@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import playerState.AssistanceState;
+
 import keyconfiguration.KeyConfig;
 import spawn.EnemySpawner;
 import spawn.SpawnByRandom;
@@ -16,10 +18,15 @@ import spawn.SpawnByTime;
 import state.Level1State;
 import util.JsonUtil;
 import util.TopDownImageUtil;
+import collisionSystem.BlockBulletCollision;
 import collisionSystem.BonusCollision;
 import collisionSystem.CollisionManager;
+import collisionSystem.EnemyBulletCollision;
+import collisionSystem.FighterBulletCollision;
+import collisionSystem.FighterEnemyOrBlockCollision;
 import collisionSystem.ImageCollision;
 import collisionSystem.LifeDecreaseCollision;
+import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
 import demo.DemoBlock;
@@ -29,6 +36,7 @@ import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
+import demo.DemoProtection;
 import demo.DemoSatellite;
 import element.Enemy;
 
@@ -73,40 +81,27 @@ public class GameLevel1 extends GameLevel {
 		// manager.registerCollisionWithState("Fighter", "Shield",
 		// "Enemy Missile", new
 		// SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy Missile",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
 
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Enemy", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy", new ImageCollision(
-				playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Bonus", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Bonus", new BonusCollision());
-		manager.registerCollision("Fighter", "Block", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Block", new ImageCollision(
-				playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Block",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Block", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Block", "Fighter Bullet",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Block", "Fighter Bullet",
-				new LifeDecreaseCollision());
+		manager.registerCollision("Fighter","Normal","Enemy Missile",new FighterBulletCollision());
+		
+	//	manager.registerCollision("Fighter","Normal","Enemy Missile",new LifeDecreaseCollision());
+
+
+		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
+
+		manager.registerCollision("Fighter", "Shield","Enemy",new PhysicCollision());
+		
+		manager.registerCollision("Fighter", "Normal","Enemy",new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Enemy", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new EnemyBulletCollision());
+
+		
+		manager.registerCollision("Fighter", "Bonus", new SoundCollision(playfield, "sounds/explosion.wav"),new BonusCollision());
+		
+		manager.registerCollision("Fighter", "Block", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Block", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new BlockBulletCollision());
 
 		for (int i = 0; i < blockNum; i++) {
 			int j = getRandom(0, 30);
@@ -172,9 +167,10 @@ public class GameLevel1 extends GameLevel {
 
 		if (keyDown(KeyEvent.VK_SPACE) && !showSatellite) {
 			showSatellite = true;
-			fighter.setAssistenceState(new DemoSatellite(TopDownImageUtil
-					.getImage("images/game/Satellite.png"), fighter));
-			fighter.genAssistence();
+			fighter.getAssistanceState().changeState(
+					new DemoProtection(TopDownImageUtil
+							.getImage("images/game/Satellite.png"), fighter));
+			((AssistanceState) fighter.getAssistanceState()).genAssistance();
 		}
 
 		// fighter.bomb(elapsedTime);

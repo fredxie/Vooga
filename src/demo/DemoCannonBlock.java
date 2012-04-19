@@ -20,6 +20,7 @@ import element.Enemy;
 import element.Fighter;
 import element.Missile;
 import element.TopDownPlayField;
+import element.Weapon;
 import game.Configuration;
 
 
@@ -92,7 +93,7 @@ public class DemoCannonBlock extends Enemy {
 			double speedX = (headX - rotCenterX) / r;
 			double speedY = (headY - rotCenterY) / r;
 
-			Bullet enemyMissile;
+			Weapon enemyMissile;
 			try {
 				enemyMissile = new Missile(ImageIO.read(new File(
 						"images/game/emissle_easy.png")), headX, headY,

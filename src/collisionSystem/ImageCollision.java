@@ -1,6 +1,8 @@
 package collisionSystem;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import util.TopDownImageUtil;
 
@@ -11,20 +13,25 @@ import element.TopDownPlayField;
 
 public class ImageCollision extends CoolCollision{
 	
-	private String explosion;
+//	private String explosion;
+	private List<String> explosion;
 
-	public ImageCollision(TopDownPlayField playfield, String image)
+	public ImageCollision(TopDownPlayField playfield, String ...image)
 	{
 		this.playfield = playfield;
-		explosion = image;
+		explosion = new ArrayList<String>(); 
+		for(String str: image)
+		explosion.add(str);
 		
 	}
 	
 	@Override
 	void oncollide(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
+		
+		for(String str:explosion)
 		playfield.add(new VolatileSprite(TopDownImageUtil.getImages(
-				explosion, 6, 1),s2.getX(),s2.getY()));
+				str, 6, 1),s2.getX(),s2.getY()));
 
 		
 	}
