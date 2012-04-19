@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
-import gameObject.GameLevel1;
 import gameObject.TopDownGameManager;
 
 public class DefaultLevelState extends State{
@@ -23,9 +22,9 @@ public class DefaultLevelState extends State{
 		gameFinish(game, arg0);
 	}
 
-	@Override
+
 	public void gameFinish(GameLevel game, long arg0) {
-		if (game.levelComplete()) {
+		/*if (game.levelComplete()) {
 			if (GameLevel1.timer.action(arg0)) {
 				game.levelComplete = false;
 				//myGameEngine.nextGameID = TopDownGameManager.getCurrentGameID() + 1;
@@ -33,6 +32,14 @@ public class DefaultLevelState extends State{
 				game.setLevel(TopDownGameManager.getCurrentGameID() + 1);
 				game.finish();
 			}
+		}*/
+		if(game.levelComplete()){
+			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD);
+			game.finish();
+		}
+		if(game.isGameOver()){
+			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD+1);
+			game.finish();
 		}
 		
 	}

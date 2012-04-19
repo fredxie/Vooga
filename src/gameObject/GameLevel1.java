@@ -230,7 +230,7 @@ public class GameLevel1 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (EnemyBulletCollision.destroyed >= 10) {
+		if (EnemyBulletCollision.destroyed >= 5) {
 			levelComplete = true;
 		}
 		return levelComplete;

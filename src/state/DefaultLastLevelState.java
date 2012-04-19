@@ -21,15 +21,19 @@ public class DefaultLastLevelState extends State{
 		gameFinish(game, arg0);
 	}
 
-	@Override
+	
 	public void gameFinish(GameLevel game, long arg0) {
-		if (game.levelComplete()) {
+		/*if (game.levelComplete()) {
 			if (GameLevel2.timer.action(arg0)) {
 				game.levelComplete = false;
 				//myGameEngine.nextGameID = TopDownGameManager.GAMEBEGIN;
 				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 				game.finish();
 			}
+		}*/
+		if(game.levelComplete()){
+			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD+2);
+			game.finish();
 		}
 		
 	}

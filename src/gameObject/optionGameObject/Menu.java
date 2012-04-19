@@ -4,7 +4,6 @@ package gameObject.optionGameObject;
 import game.TopDownGameEngine;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 import state.MenuState;
 import background.TopDownImageBackground;

@@ -182,7 +182,7 @@ public class GameLevel2 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (LifeDecreaseCollision.destroyed >= 20) {
+		if (LifeDecreaseCollision.destroyed >= 1) {
 			levelComplete = true;
 		}
 		return levelComplete;

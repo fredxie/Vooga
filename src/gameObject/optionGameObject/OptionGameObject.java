@@ -60,14 +60,14 @@ public abstract class OptionGameObject extends GameObject{
 		if(bsInput == key){
 			option--;
 			if (option < 0)
-				option = optionNum;
+				option = options.size()-1;
 		}
 	}
 	
 	public void optionArrowDown(int bsInput, int key, int optionNum){
 		if(bsInput == key){
 			option++;
-			if (option >optionNum)
+			if (option >options.size()-1)
 				option = 0;
 		}
 	}

@@ -42,7 +42,7 @@ public class MenuState extends State {
 			switch(game.getOption()){
 			case 0:
 				// start easy game
-				TopDownGameManager.setCurrentGameID(2);
+				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 				//myGameEngine.nextGameID = 2;
 				game.finish();
 				break;
@@ -78,13 +78,6 @@ public class MenuState extends State {
 		}
 
 	}
-
-	@Override
-	public void gameFinish(GameLevel game, long arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
 
 
 }

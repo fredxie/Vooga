@@ -43,5 +43,5 @@ public abstract class State{
 
 	public abstract void update(long arg0);
 
-	public abstract void gameFinish(GameLevel game, long arg0);
+	//public abstract void gameFinish(GameLevel game, long arg0);
 }

@@ -7,13 +7,15 @@ import gameObject.GameLevel2;
 import gameObject.TopDownGameManager;
 import gameObject.optionGameObject.Menu;
 import gameObject.optionGameObject.Pause;
+import gameObject.scoreBoardGameObject.InterLevelScoreBoard;
+import gameObject.scoreBoardGameObject.LostGameScoreBoard;
+import gameObject.scoreBoardGameObject.WinGameScoreBoard;
 
 import java.awt.Dimension;
 
 
 public class DemoGameEngine extends TopDownGameEngine {
 
-	//public static final int Menu = 0, PAUSE = 1, GAME_Level1 = 2, GAME_Level2 = 3;
 	public static final int HEIGHT = 640;
 	public static final int WIDTH = 480;
 
@@ -29,6 +31,9 @@ public class DemoGameEngine extends TopDownGameEngine {
 		TopDownGameManager.addNewGameObject(TopDownGameManager.GAMEBEGIN+1, new Pause(this));
 		TopDownGameManager.addNewGameObject(TopDownGameManager.GAMELEVELBEGIN, new GameLevel1(this));
 		TopDownGameManager.addNewGameObject(TopDownGameManager.GAMELEVELBEGIN+1, new GameLevel2(this));	
+		TopDownGameManager.addNewGameObject(TopDownGameManager.SCOREBOARD, new InterLevelScoreBoard(this));
+		TopDownGameManager.addNewGameObject(TopDownGameManager.SCOREBOARD+1, new LostGameScoreBoard(this));
+		TopDownGameManager.addNewGameObject(TopDownGameManager.SCOREBOARD+2, new WinGameScoreBoard(this));
 	}
 
 	@Override

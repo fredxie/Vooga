@@ -14,9 +14,11 @@ public class TopDownGameManager {
 
 	public static int GAMEBEGIN = 0;
 	public static int GAMELEVELBEGIN = 2;
+	public static int SCOREBOARD = 50;
 	private static HashMap<Integer, GameObject> map;
 	private static int currentGameID;
 	private static int initialGameID;
+	private static int previousGameID;
 	//private static TopDownGameEngine gameEngine;
 	
 	public static void initManager(TopDownGameEngine e){
@@ -49,11 +51,16 @@ public class TopDownGameManager {
 	
 	public static void setCurrentGameID(int id){
 		//gameEngine.nextGameID = id;
+		previousGameID = currentGameID;
 		currentGameID = id;
 	}
 	
 	public static int getInitialGameID(){
 		return initialGameID;
+	}
+	
+	public static int getPreviousGameID(){
+		return previousGameID;
 	}
 	
 	
