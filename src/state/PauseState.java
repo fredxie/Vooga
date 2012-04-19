@@ -10,10 +10,10 @@ import configuration.DemoSetting;
 
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
-import gameObject.OptionGameObject;
-import gameObject.Pause;
 import gameObject.TopDownGameManager;
 import gameObject.TopDownGameObject;
+import gameObject.optionGameObject.OptionGameObject;
+import gameObject.optionGameObject.Pause;
 
 public class PauseState extends State{
 

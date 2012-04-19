@@ -4,9 +4,9 @@ import game.TopDownGameEngine;
 import game.TopDownGameLoader;
 import gameObject.GameLevel1;
 import gameObject.GameLevel2;
-import gameObject.Menu;
-import gameObject.Pause;
 import gameObject.TopDownGameManager;
+import gameObject.optionGameObject.Menu;
+import gameObject.optionGameObject.Pause;
 
 import java.awt.Dimension;
 
