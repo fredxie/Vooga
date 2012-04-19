@@ -206,7 +206,7 @@ public class GameLevel1 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (LifeDecreaseCollision.destroyed >= 10) {
+		if (EnemyBulletCollision.destroyed >= 10) {
 			levelComplete = true;
 		}
 		return levelComplete;
@@ -215,13 +215,13 @@ public class GameLevel1 extends GameLevel {
 	public void gameRender(Graphics2D g, String levelRequirement) {
 		fontManager.getFont("FPS Font").drawString(g, levelRequirement, 20, 15);
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed, 20,
+				"ENEMIES DESTROYED   " + EnemyBulletCollision.destroyed, 20,
 				30);
 	}
 
 	public void betweenLevelsRender(Graphics2D g, int nextLevelNum) {
 		fontManager.getFont("FPS Font").drawString(g,
-				"ENEMIES DESTROYED   " + LifeDecreaseCollision.destroyed, 20,
+				"ENEMIES DESTROYED   " + EnemyBulletCollision.destroyed, 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g, "MISSION COMPLETE!   ",
 				20, DemoGameEngine.HEIGHT / 2);
