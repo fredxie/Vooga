@@ -216,7 +216,6 @@ public class GameLevel1 extends GameLevel {
 	public boolean levelComplete() {
 		if (EnemyBulletCollision.destroyed >= 1) {
 			levelComplete = true;
-			System.out.println(EnemyBulletCollision.destroyed);
 		}
 		return levelComplete;
 	}

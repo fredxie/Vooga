@@ -36,7 +36,7 @@ public class DefaultLevelState extends State{
 			}
 		}*/
 		
-		System.out.println(EnemyBulletCollision.destroyed);
+		
 		if(game.levelComplete()){
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD);
 			game.finish();
