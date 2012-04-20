@@ -45,11 +45,11 @@ public  class PhysicalProtection extends AutoFighter {
 		if (master.isActive()) {
 			setSpeed(
 					Math.sin(PI * degree / 180) * master.getWidth() * 0.01
-							+ master.getSpeedX() * 0.5,
+							+ master.getHorizontalSpeed() * 0.5,
 					Math.cos(PI * degree / 180)
 							* master.getWidth()
 							* 0.01
-							+ master.getSpeedY()
+							+ master.getVerticalSpeed()
 							* 0.6
 							+ 0.01
 							* backgroundSpeed);
