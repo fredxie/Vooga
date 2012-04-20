@@ -16,7 +16,7 @@ import com.golden.gamedev.GameObject;
 
 
 public abstract class State{
-	private int stateID;
+	private static int stateID;
 	protected GameObject myGameObject;
 	protected TopDownGameEngine myGameEngine;
 	
@@ -29,7 +29,7 @@ public abstract class State{
 		stateID = name;
 	}
 
-	public int getStateID(){
+	public static int getStateID(){
 		return stateID;
 	}
 	

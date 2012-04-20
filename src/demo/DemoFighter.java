@@ -25,7 +25,7 @@ public class DemoFighter extends RegularFighter {
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
 	private Satellite satellite;
 	private DemoProtection protection;
-
+    public static boolean best_weapon = false;
 	public DemoFighter(BufferedImage image) {
 		super(image);
 	}
@@ -46,6 +46,12 @@ public class DemoFighter extends RegularFighter {
 	public void refresh(long elapsedTime) {
 		if (isActive()) {
 			fighterControl(elapsedTime);
+			if(this.getWeaponStyle() == 3){ 
+				best_weapon = true;
+			}
+			else {
+				best_weapon = false;
+			}
 			TopDownAreaUtil.setFighterArea(this, playfield.getTileBackground(),
 					DemoGameEngine.HEIGHT, DemoGameEngine.WIDTH);
 			if (getY() == 0) {
