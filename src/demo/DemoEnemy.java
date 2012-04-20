@@ -113,9 +113,13 @@ public class DemoEnemy extends Enemy {
 				}
 				if (LifeDecreaseCollision.destroyed >= 6) {
 					this.setBehavior(new ScoreLimit());
+					oldBehavior = this.getBehaviour();
 				}
 				if(DemoFighter.best_weapon == true){
 					this.setBehavior(new BonusLimit());
+				}
+				if(DemoFighter.best_weapon == false){
+					this.setBehavior(oldBehavior);
 				}
 				// enemy fires
 				attack(elapsedTime);
