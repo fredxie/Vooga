@@ -33,6 +33,8 @@ public abstract class Satellite extends AutoFighter {
 	public void init() {
 		playfield = master.playfield;
 		game = master.game;
+		weaponState.changeState(bullet);
+		weaponState.setWeapon(0,1);
 		setRefireRate(1000);
 		setLocation(master.getX() - 0.5 * master.getWidth(), master.getY());
 	}
@@ -44,11 +46,9 @@ public abstract class Satellite extends AutoFighter {
 			if (!allowFire) {
 				allowFire = refireRate.action(elapsedTime);
 			} else
-				attack(elapsedTime, 0, height);
-			speedY = master.getSpeedY()
-					+ 0.05
-					* backgroundSpeed;
-			speedX = 0.3 * master.getSpeedX();
+				attack();
+			speedY = master.getVerticalSpeed()*0.5;
+			speedX = 0.3 * master.getHorizontalSpeed();
 			setSpeed(speedX, speedY);
 			TopDownAreaUtil.setFighterArea(this, playfield.getTileBackground(),
 					DemoGameEngine.HEIGHT, DemoGameEngine.WIDTH);
@@ -64,4 +64,12 @@ public abstract class Satellite extends AutoFighter {
 	public void setBrinkHorizontalSpeed() {
 		setHorizontalSpeed(0);
 	}
+	   public void attack() {
+			
+			weaponState.fire();
+			allowFire = false;
+		  }
+
+
+
 }

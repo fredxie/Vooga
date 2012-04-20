@@ -60,10 +60,7 @@ public  class PhysicalProtection extends AutoFighter {
 			setActive(false);
 	}
 
-	@Override
-	public void attack(long elapsedTime, int weaponStyle, double weaponDamage2) {
 
-	}
 
 	public void setBrinkVerticalSpeed() {
 		setVerticalSpeed(Math.cos(6 * PI * degree / 180)
@@ -82,5 +79,11 @@ public  class PhysicalProtection extends AutoFighter {
 		 PhysicalProtection PP=new PhysicalProtection(this.getImage());
 		 PP.init();
 		return PP;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -113,9 +113,6 @@ public abstract class RegularFighter extends Fighter {
 
 	public abstract void bomb(long elapsedTime);
 
-	public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
-		weaponState.fire(elapsedTime, numOfBullet, weaponDamage);
-	}
 
 	public PlayerState getWeaponState() {
 		return weaponState;
@@ -139,7 +136,7 @@ public abstract class RegularFighter extends Fighter {
 	}
 
 	public abstract void initHelper();
-	
+
 	public void fighterControl(long elapsedTime) {
 		// speedX = speedY = 0;
 		// for (Key key : keyList) {
@@ -152,9 +149,22 @@ public abstract class RegularFighter extends Fighter {
 		if (assistance != null)
 			assistance.fighterControl(elapsedTime);
 
-		for (PlayerState state : stateList) {
-			state.update(elapsedTime);
-		}
-
+		stateUpdate(elapsedTime);
 	}
+	
+	@Override
+    public void attack() {
+		
+		weaponState.fire();
+		allowFire = false;
+	  }
+	
+	public void stateUpdate(long elapsedTime) {
+		for (PlayerState state : stateList) {
+
+			state.update(elapsedTime);
+
+		}
+	}
+
 }

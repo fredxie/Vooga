@@ -1,19 +1,15 @@
 package element;
 
 import game.Configuration;
-import game.TopDownGameObject;
 import game.TopDownTimer;
 import gameLevel.GameLevel;
 
 import java.awt.image.BufferedImage;
-import java.util.List;
 
-import configuration.GameParameters;
-
-import demo.DemoSatellite;
-
+import playerState.WeaponState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
+import configuration.GameParameters;
 
 public abstract class Fighter extends Element {
 
@@ -25,6 +21,7 @@ public abstract class Fighter extends Element {
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 	public boolean allowFire = false;
+	public WeaponState weaponState = new WeaponState(this,weaponStyle,weaponDamage);
 	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
 	public double speedX, speedY; // after 300 ms
 	public double backgroundSpeed = JsonUtil.parse("paraConfig.json").get(
@@ -126,9 +123,8 @@ public abstract class Fighter extends Element {
 		return speedY;
 	}
 
-	public abstract void attack(long elapsedTime, int numOfBullet,
-			double weaponDamage);
-
+	public abstract void attack();
+	
 	public void setGameObject(GameLevel game) {
 		this.game = game;
 	}
