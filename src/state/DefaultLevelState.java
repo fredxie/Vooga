@@ -2,6 +2,8 @@ package state;
 
 import java.awt.event.KeyEvent;
 
+import collisionSystem.EnemyBulletCollision;
+
 import game.TopDownGameEngine;
 import gameObject.GameLevel;
 import gameObject.TopDownGameManager;
@@ -33,10 +35,13 @@ public class DefaultLevelState extends State{
 				game.finish();
 			}
 		}*/
+		
+		
 		if(game.levelComplete()){
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD);
 			game.finish();
 		}
+		
 		if(game.isGameOver()){
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.SCOREBOARD+1);
 			game.finish();

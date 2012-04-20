@@ -152,4 +152,10 @@ public class DemoFighter extends RegularFighter {
 		else if (allowFire)
 			attack(elapsedTime, weaponStyle, weaponDamage);
 	}
+
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

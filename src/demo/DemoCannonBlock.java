@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 
 import util.TopDownUtility;
 
+import ai.AI;
+
 import com.golden.gamedev.object.GameFont;
 import com.golden.gamedev.object.Timer;
 
@@ -42,12 +44,15 @@ public class DemoCannonBlock extends Enemy {
 
 	protected static final int CANNON_XOFFSET = (WIDTH - 16) / 2;
 	protected static final int CANNON_YOFFSET = -3 * HEIGHT / 4;
+	
+	AI init;
 
 	public DemoCannonBlock(TopDownPlayField playfield, BufferedImage baseImg,
-			BufferedImage cannonImg, Fighter player)
+			BufferedImage cannonImg, Fighter player)//, AI initialAI)
 
 	{
-		super(baseImg);
+		super(baseImg);//, initialAI);
+		//init = initialAI;
 		this.playfield = playfield;
 		m_baseImg = baseImg;
 		m_cannonImg = cannonImg;
@@ -186,7 +191,7 @@ public class DemoCannonBlock extends Enemy {
 	@Override
 	public Enemy clone() {
 		// TODO Auto-generated method stub
-		return new DemoCannonBlock(playfield, m_baseImg, m_cannonImg, fighter);
+		return new DemoCannonBlock(playfield, m_baseImg, m_cannonImg, fighter);//, init);
 	}
 
 }

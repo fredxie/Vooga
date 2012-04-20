@@ -56,4 +56,10 @@ public class SpawnByFighterState implements SpawnBehavior{
 		myWaveLength=length-Math.floor(length);
 	}
 
+	@Override
+	public boolean check() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -13,16 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class BonusLimit implements EnemyTopDownBehavior
+public class BonusLimit implements TopDownBehavior
 {
 	Timer timer1;
 	Timer timer2;
 	Timer timer3;
 	Timer timer4;
-	Timer timer5;
 	double d,h,x,y;
 	
-	public void enemy_Changes(final Enemy enemy)
+	public void movement(final Enemy enemy)
 	{
 		enemy.setSpeed(0,.12);
 		timer1 = new Timer(400, new ActionListener() 
@@ -42,8 +41,7 @@ public class BonusLimit implements EnemyTopDownBehavior
 			{
 				if(e2.getSource().equals(timer2))
 				{
-					enemy.setSpeed(0, -.1);
-//					enemy.setSpeed(.18, -.23);
+					enemy.setSpeed(.18, -.23);
 					timer3.start();
 				}
 			}
@@ -59,23 +57,11 @@ public class BonusLimit implements EnemyTopDownBehavior
 				}
 			}
 		});
-		timer4 = new Timer(400, new ActionListener() 
+		timer4 = new Timer(800, new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e4) 
 			{
 				if(e4.getSource().equals(timer4))
-				{
-					enemy.setSpeed(0, .25);
-//					enemy.setSpeed(0, -.1);
-					timer5.start();
-				}
-			}
-		});
-		timer5 = new Timer(800, new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e5) 
-			{
-				if(e5.getSource().equals(timer5))
 				{
 					timer1.restart();
 				}
@@ -86,17 +72,24 @@ public class BonusLimit implements EnemyTopDownBehavior
 		timer2.setRepeats(true);
 		timer3.setRepeats(true);
 		timer4.setRepeats(true);
-		timer5.setRepeats(true);
 		x = enemy.getHorizontalSpeed();
 		y = enemy.getVerticalSpeed();
-
-		enemy.setRefireRate(500);
-		Configuration.ENEMY_HP = h;
 	}
-
-	public void weapon_Changes(Missile missile) 
+	public void fireRate(Enemy enemy)
+	{
+		enemy.setRefireRate(500);
+	}
+	public double enemyDamage()
 	{
 		Configuration.ENEMY_WEAPON_DAMAGE = 1.0;
+		return d = 1.0;	
+	}
+	public void weaponDamage(Missile missile)
+	{
+		missile.setDamage(1.0);
+	}
+	public void weaponSpeed(Missile missile)
+	{
 		double x2 = missile.getHorizontalSpeed();
 		double y2 = missile.getVerticalSpeed();
 		x2 = (x2 * 1.5) + x;
@@ -104,19 +97,17 @@ public class BonusLimit implements EnemyTopDownBehavior
 		y2 = (y2 * 1.5) + y;
 		missile.setVerticalSpeed(y2);
 	}
-	public int getState()
+	public double enemyHP()
 	{
-		return 0; // setting as 0 since gamestate always starts at 1 and never reaches 0, these arent levels but ai changes based on changes in the game	
+		return h = 1.0;
 	}
-
-//	public void weaponDamage(Missile missile)
-//	{
-//		missile.setDamage(1.0);
-//	}
-	
 //	public void enemyHP(Enemy enemy)
 //	{
 //		double h = 1.0;
 //		enemy.setHP(h);
 //	}
+	public double getState()
+	{
+		return 0; // setting as 0 since gamestate always starts at 1 and never reaches 0, these arent levels but ai changes based on changes in the game	
+	}
 }

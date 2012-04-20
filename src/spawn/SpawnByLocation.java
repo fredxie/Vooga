@@ -7,7 +7,6 @@
 package spawn;
 
 import umontreal.iro.lecuyer.probdist.NormalDist;
-import util.TopDownUtility;
 
 public class SpawnByLocation implements SpawnBehavior{
 
@@ -81,6 +80,12 @@ public class SpawnByLocation implements SpawnBehavior{
 	public void setWaveLength(double length){
 		myWaveLength=length-Math.floor(length);
 	}
+
+	@Override
+	public boolean check() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 	/**
 	 * 
@@ -112,6 +117,7 @@ public class SpawnByLocation implements SpawnBehavior{
 //	public double getY(){
 //		return y;
 //	}
+
 
 
 

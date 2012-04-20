@@ -8,6 +8,7 @@ import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownUtility;
 import element.Bonus;
+import element.Element;
 import element.TopDownPlayField;
 import game.Configuration;
 
@@ -49,6 +50,12 @@ public class DemoBonus extends Bonus {
 		super.update(elapsedTime);
 		TopDownAreaUtil.limitArea(this, playfield.getTileBackground(),
 				DemoGameEngine.HEIGHT, DemoGameEngine.WIDTH);
+	}
+
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

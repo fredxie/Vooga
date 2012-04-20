@@ -1,7 +1,5 @@
 package spawn;
 
-import util.TopDownUtility;
-import demo.DemoGameEngine;
 
 public class SpawnByRandom implements SpawnBehavior {
 
@@ -23,6 +21,12 @@ public class SpawnByRandom implements SpawnBehavior {
 		loc[0] = x;
 		loc[1] = y;
 		return loc;
+	}
+
+	@Override
+	public boolean check() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -1,3 +1,4 @@
+
 package gameObject;
 
 import game.Configuration;
@@ -8,6 +9,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import spawn.ElementSpawner;
 import spawn.EnemySpawner;
 import spawn.SpawnByRandom;
 import state.DefaultLastLevelState;
@@ -26,6 +28,8 @@ import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
+import element.Block;
+import element.Bonus;
 import element.Enemy;
 
 public class GameLevel2 extends GameLevel {
@@ -45,9 +49,12 @@ public class GameLevel2 extends GameLevel {
 																// instead of
 																// enemies, by
 																// Gang
-	private DemoBonus[] bonuses = new DemoBonus[bonusNum];
-	private DemoBlock[] blocks = new DemoBlock[blockNum];
-	private EnemySpawner ES;
+	private List<Bonus> bonuses = new ArrayList<Bonus>();//[bonusNum]
+	private List<Block> blocks = new ArrayList<Block>();
+	private ElementSpawner<Enemy> ES;
+	private ElementSpawner<Block> blockSpawner1;
+	private ElementSpawner<Block> blockSpawner2;
+	private ElementSpawner<Bonus> bonusSpawner1;
 
 	public GameLevel2(TopDownGameEngine parent) {
 		super(parent);
@@ -95,35 +102,31 @@ public class GameLevel2 extends GameLevel {
 		manager.registerCollision("Block", "Fighter Bullet",
 				new LifeDecreaseCollision());
 
-		for (int i = 0; i < blockNum; i++) {
-			int j = getRandom(0, 30);
-			if (j <= 10)
-				blocks[i] = new DemoBlock(playfield,
-						getImage("images/game/block2.png"), 3);
-			else
-				blocks[i] = new DemoBlock(playfield,
-						getImage("images/game/block.png"));
-			blocks[i].init();
-		}
+
+		// use Element spawner to spawn most of the elements in the game
+		blockSpawner1=new ElementSpawner<Block>(new SpawnByRandom(), new DemoBlock(playfield,
+						getImage("images/game/block2.png"), 3), blockNum/3);
+		blockSpawner2=new ElementSpawner<Block>(new SpawnByRandom(),  new DemoBlock(playfield,
+				getImage("images/game/block.png")), 2*blockNum/3);
+		blocks.addAll(blockSpawner1.spawn());
+		blocks.addAll(blockSpawner2.spawn());
 
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
 
-		// Use enemy spawner to spawn enemies, please do not change it to
-		// original spawning method
-		// In this level, enemies are spawned by random
-		ES = new EnemySpawner(new SpawnByRandom(),
-				new DemoEnemy(playfield,
-						getImage("images/game/enemy_easy.png"),
-						Configuration.ENEMY_HP), enemyNum);
+		//Use enemy spawner to spawn enemies, please do not change it to original spawning method
+		//In this level, enemies are spawned by random
+		ES = new ElementSpawner<Enemy>(new SpawnByRandom(), new DemoEnemy(
+				playfield, getImage("images/game/enemy_easy.png"),
+				Configuration.ENEMY_HP), enemyNum);
 		juniorEnemies.addAll(ES.spawn());
 
-		for (int i = 0; i < bonusNum; i++) {
-			bonuses[i] = new DemoBonus(playfield,
-					getImage("images/game/bonus.png"));
-			bonuses[i].init();
-		}
+		//to Element spawner to spawn most of the elements in the game
+		bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus(playfield,
+				getImage("images/game/bonus.png")),  bonusNum );
+		bonuses.addAll(bonusSpawner1.spawn());
+		
 		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
 				this));
 
@@ -172,7 +175,7 @@ public class GameLevel2 extends GameLevel {
 		}
 
 		for (int i = 0; i < bonusNum; i++) {
-			bonuses[i].refresh(elapsedTime);
+			bonuses.get(i).refresh(elapsedTime);
 		}
 
 		if (fighter.getLifeNum() == 0) {
@@ -205,3 +208,4 @@ public class GameLevel2 extends GameLevel {
 	}
 
 }
+

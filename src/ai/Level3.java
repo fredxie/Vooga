@@ -1,34 +1,42 @@
 package ai;
-import element.*; 
-import game.*;
-import collision.*;
-import demo.*;
-import game.Configuration;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-//import com.golden.gamedev.object.Timer;
+
 import javax.swing.Timer;
-import java.util.Random;
+
+import element.Enemy;
 import element.Missile;
-public class Level3 implements EnemyTopDownBehavior
+import game.Configuration;
+public class Level3 implements TopDownBehavior
 {
+	double x = (Math.random()*51); 
+	double d,h,s;
 	Timer timer;
 	
-	public void enemy_Changes(Enemy enemy)
+	public void movement(Enemy enemy)
 	{
 		enemy.setSpeed(0.15,0.15);
-		enemy.setRefireRate(700);
-		Configuration.ENEMY_HP = 2.5;
+		
 	}
 
-	public void weapon_Changes(final Missile missile)
+	public void fireRate(Enemy enemy)
+	{
+		enemy.setRefireRate(700);
+	}
+	public double enemyDamage()
 	{
 		Configuration.ENEMY_WEAPON_DAMAGE = 1.5;
-	
+		return d = 1.5;
+	}
+
+//	public void weaponDamage(Missile missile)
+//	{
+//		missile.setDamage(1.5);
+//	}
+	public void weaponSpeed(final Missile missile)
+	{	
 		/*
-		 * bullets zig zag every half second
+		 * bullets zig zag every half second. May need to move zig zag to gameLevelState update fields
 		 */
 		final double s = .2;
 		missile.setVerticalSpeed(.25);
@@ -53,19 +61,18 @@ public class Level3 implements EnemyTopDownBehavior
 //			timer.restart();
 //		}
 	}
-
-	public int getState()
+	public double enemyHP()
 	{
-		return 3;
+		Configuration.ENEMY_HP = 2.5;
+		return h = 2.5;
 	}
-//	public void weaponDamage(Missile missile)
-//	{
-//		missile.setDamage(1.5);
-//	}
-//	public void enemyHP(Enemy enemy)
-//	{
-//		double h = 2.5;
-//		enemy.setHP(h);
-//	}
-	
+	public void enemyHP(Enemy enemy)
+	{
+		double h = 2.5;
+		enemy.setHP(h);
+	}
+	public double getState()
+	{
+		return 3.0;
+	}
 }

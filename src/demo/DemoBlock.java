@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import util.TopDownUtility;
 
 import element.Block;
+import element.Element;
 import element.TopDownPlayField;
 
 public class DemoBlock extends Block {
@@ -29,6 +30,12 @@ public class DemoBlock extends Block {
 		this.setY(TopDownUtility.getRandom(150, playfield.getBackground()
 				.getHeight() - DemoGameEngine.HEIGHT));
 		playfield.getGroup("Block").add(this);
+	}
+
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import util.TopDownImageUtil;
 
 import element.Bullet;
+import element.Element;
 import element.Laser;
 import element.RegularFighter;
 import element.Satellite;
@@ -29,6 +30,11 @@ public class DemoSatellite extends Satellite
 	public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

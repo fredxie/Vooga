@@ -76,4 +76,11 @@ public  class PhysicalProtection extends AutoFighter {
 		setHorizontalSpeed(Math.sin(6 * PI * degree / 180) * master.getWidth()
 				* 0.01);
 	}
+
+	@Override
+	public Element clone() {
+		 PhysicalProtection PP=new PhysicalProtection(this.getImage());
+		 PP.init();
+		return PP;
+	}
 }
