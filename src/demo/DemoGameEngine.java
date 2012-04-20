@@ -38,7 +38,7 @@ public class DemoGameEngine extends TopDownGameEngine {
 
 	@Override
 	public void setInitialGameID() {
-		TopDownGameManager.setInitialGameID(0);	
+		TopDownGameManager.setInitialGameID(TopDownGameManager.GAMEBEGIN);	
 	}
 
 

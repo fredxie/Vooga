@@ -18,7 +18,7 @@ import com.golden.gamedev.GameObject;
 public abstract class State{
 	private int stateID;
 	protected GameObject myGameObject;
-	protected GameEngine myGameEngine;
+	protected TopDownGameEngine myGameEngine;
 	
 	public State(TopDownGameEngine parent,GameObject game) {
 		myGameEngine = parent;

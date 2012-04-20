@@ -7,9 +7,7 @@ import java.awt.Graphics2D;
 import state.DefaultInterLevelState;
 
 import background.TopDownImageBackground;
-
 import collisionSystem.EnemyBulletCollision;
-import collisionSystem.LifeDecreaseCollision;
 
 
 import demo.DemoGameEngine;
@@ -35,7 +33,7 @@ public class InterLevelScoreBoard extends ScoreBoardGameObject{
 				"YOU FINISHED LEVEL " + (TopDownGameManager.getPreviousGameID()-TopDownGameManager.GAMELEVELBEGIN+1), 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + LifeDecreaseCollision.destroyed+" ENEMIES", 20,
+				"YOU KILLED " + EnemyBulletCollision.destroyed+" ENEMIES", 20,
 				DemoGameEngine.HEIGHT / 2 );
 		
 	}

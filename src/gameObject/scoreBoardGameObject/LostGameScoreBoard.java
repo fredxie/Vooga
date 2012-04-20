@@ -9,7 +9,7 @@ import state.DefaultFinishGameState;
 
 import background.TopDownImageBackground;
 
-import collisionSystem.LifeDecreaseCollision;
+import collisionSystem.EnemyBulletCollision;
 
 import demo.DemoGameEngine;
 
@@ -33,7 +33,7 @@ public class LostGameScoreBoard extends ScoreBoardGameObject {
 				"YOU LOST IN THE LEVEL " + (TopDownGameManager.getPreviousGameID()-TopDownGameManager.GAMELEVELBEGIN+1), 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + LifeDecreaseCollision.destroyed + " ENEMIES", 20,
+				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES", 20,
 				DemoGameEngine.HEIGHT / 2 );
 	}
 

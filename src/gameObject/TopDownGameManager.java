@@ -13,9 +13,9 @@ import com.golden.gamedev.GameObject;
 public class TopDownGameManager {
 
 	public static int GAMEBEGIN = 0;
-	public static int GAMELEVELBEGIN = 2;
+	public static int GAMELEVELBEGIN = 100;
 	public static int SCOREBOARD = 50;
-	private static HashMap<Integer, GameObject> map;
+	public static HashMap<Integer, GameObject> map;
 	private static int currentGameID;
 	private static int initialGameID;
 	private static int previousGameID;
@@ -61,6 +61,10 @@ public class TopDownGameManager {
 	
 	public static int getPreviousGameID(){
 		return previousGameID;
+	}
+	
+	public static void refresh(){
+		
 	}
 	
 	

@@ -23,7 +23,9 @@ public abstract class TopDownGameEngine extends GameEngine {
 
 	
 	public void initResources(){
+		//System.out.println("start");
 		super.initResources();
+		TopDownGameManager.initManager(this);
 		addGameObjects();
 		setInitialGameID();
 	}

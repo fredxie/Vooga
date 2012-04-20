@@ -9,9 +9,7 @@ import java.awt.event.KeyEvent;
 import configuration.DemoSetting;
 
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
 import gameObject.TopDownGameManager;
-import gameObject.TopDownGameObject;
 import gameObject.optionGameObject.OptionGameObject;
 import gameObject.optionGameObject.Pause;
 
@@ -33,7 +31,7 @@ public class PauseState extends State{
 			case 0:
 				// RESUME
 				//myGameEngine.nextGameID = 2;
-				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
+				TopDownGameManager.setCurrentGameID(TopDownGameManager.getPreviousGameID());
 				game.finish();
 				break;
 
@@ -53,7 +51,6 @@ public class PauseState extends State{
 			case 3:
 				// menu
 				myGameEngine.initResources();
-				//myGameEngine.nextGameID = 0;
 				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 				game.finish();
 				break;	
