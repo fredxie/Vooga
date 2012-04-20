@@ -34,7 +34,7 @@ public class BlockFighterBulletCollision extends TopDownCollision {
           s2.setActive(false);
           if(((Block) s1).isDestroyable())
           {
-        	  ((Block) s1).setHardDegree(((Block) s1).getHardDegree()-1);
+        	  ((Block) s1).changeHardDegree(((Block) s1).getHardDegree()-1);
           if(((Block) s1).getHardDegree()==0)
         	  s1.setActive(false);
           }

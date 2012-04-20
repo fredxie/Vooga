@@ -1,7 +1,5 @@
 package spawn;
 
-import util.TopDownUtility;
-import demo.DemoGameEngine;
 
 public class SpawnByRandom implements SpawnBehavior {
 

@@ -1,3 +1,4 @@
+
 package gameObject;
 
 import game.Configuration;
@@ -9,19 +10,23 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import playerState.AssistanceState;
+
 import keyconfiguration.KeyConfig;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
-import state.Level1State;
+import state.DefaultLevelState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
 import collisionSystem.BonusCollision;
 import collisionSystem.CollisionManager;
+import collisionSystem.EnemyBulletCollision;
 import collisionSystem.ImageCollision;
 import collisionSystem.LifeDecreaseCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
+import configuration.KeyPressedSubject;
 import demo.DemoBlock;
 import demo.DemoBonus;
 import demo.DemoCannonBlock;
@@ -29,6 +34,7 @@ import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
+import demo.DemoProtection;
 import demo.DemoSatellite;
 import element.Block;
 import element.Bonus;
@@ -66,7 +72,7 @@ public class GameLevel1 extends GameLevel {
 	
 	public GameLevel1(TopDownGameEngine parent) {
 		super(parent);
-		myState = new Level1State(parent, this);
+		myState = new DefaultLevelState(parent, this);
 	}
 
 	public void initResources() {
@@ -141,9 +147,8 @@ public class GameLevel1 extends GameLevel {
 				getImage("images/game/bonus.png")),  bonusNum );
 		bonuses.addAll(bonusSpawner1.spawn());
 
-		keyConfig = new KeyConfig(fighter, this);
-		keyConfig.parseKeyConfig("keyConfig.json");
-		fighter.setKeyList(keyConfig.getKeyList());
+		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
+				this));
 
 	}
 
@@ -171,11 +176,15 @@ public class GameLevel1 extends GameLevel {
 
 		fighter.refresh(elapsedTime);
 
+		
+		KeyPressedSubject.getInstance().notifyObservers(elapsedTime);
+		
 		if (keyDown(KeyEvent.VK_SPACE) && !showSatellite) {
 			showSatellite = true;
-			fighter.setAssistenceState(new DemoSatellite(TopDownImageUtil
-					.getImage("images/game/Satellite.png"), fighter));
-			fighter.genAssistence();
+			fighter.getAssistanceState().changeState(
+					new DemoProtection(TopDownImageUtil
+							.getImage("images/game/Satellite.png"), fighter));
+			((AssistanceState) fighter.getAssistanceState()).genAssistance();
 		}
 
 		// fighter.bomb(elapsedTime);
@@ -212,8 +221,9 @@ public class GameLevel1 extends GameLevel {
 	}
 
 	public boolean levelComplete() {
-		if (LifeDecreaseCollision.destroyed >= 10) {
+		if (EnemyBulletCollision.destroyed >= 1) {
 			levelComplete = true;
+			System.out.println(EnemyBulletCollision.destroyed);
 		}
 		return levelComplete;
 	}
@@ -236,3 +246,4 @@ public class GameLevel1 extends GameLevel {
 				DemoGameEngine.HEIGHT / 2 + 50);
 	}
 }
+

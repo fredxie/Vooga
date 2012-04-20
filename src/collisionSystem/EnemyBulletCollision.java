@@ -1,9 +1,10 @@
+
 package collisionSystem;
 
 import com.golden.gamedev.object.Sprite;
 
-import element.Bullet;
 import element.Enemy;
+import element.Weapon;
 
 public class EnemyBulletCollision extends CoolCollision{
 
@@ -13,7 +14,7 @@ public class EnemyBulletCollision extends CoolCollision{
 	void oncollide(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
 		s2.setActive(false);	
-		((Enemy) s1).setHP(((Enemy) s1).getHP()-((Bullet) s2).getDamage());
+		((Enemy) s1).setHP(((Enemy) s1).getHP()-((Weapon) s2).getDamage());
 		if (((Enemy) s1).getHP() <= 0 )
 		{
             s1.setActive(false);
@@ -25,4 +26,5 @@ public class EnemyBulletCollision extends CoolCollision{
 	
 	
 }
+
  

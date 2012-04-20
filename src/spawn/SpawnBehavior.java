@@ -15,5 +15,6 @@ public interface SpawnBehavior{
 	 * @return true means the spawning behavior should be carried out, otherwise don't carry out.
 	 */
 	boolean check();
+	
 
 }

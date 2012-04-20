@@ -1,5 +1,6 @@
 package element;
 
+import game.TopDownGameObject;
 import gameObject.GameLevel;
 
 import java.awt.image.BufferedImage;
@@ -7,9 +8,11 @@ import java.awt.image.BufferedImage;
 public abstract class AutoFighter extends Fighter{
 	
 	protected RegularFighter master;
-	GameLevel game;
-	
-	public AutoFighter(BufferedImage image) {
+	public abstract void init();
+    public abstract void setBrinkVerticalSpeed();
+    public abstract void setBrinkHorizontalSpeed();
+
+    public AutoFighter(BufferedImage image) {
 		super(image);
 	}
 
@@ -19,16 +22,14 @@ public abstract class AutoFighter extends Fighter{
 		init();
 	}
 
-	public abstract void init();
-    public abstract void setBrinkVerticalSpeed();
-    public abstract void setBrinkHorizontalSpeed();
     public RegularFighter getMaster()
     {
     	return master;
     }
 
-	public void produce(Fighter fighter) {
+	public AutoFighter produce(Fighter fighter) {
 		fighter.playfield.add(this);
+		return this;
 	}
 
 	public abstract void fighterControl(long elapsedTime);

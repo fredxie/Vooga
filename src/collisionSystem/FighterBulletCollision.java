@@ -1,7 +1,7 @@
 package collisionSystem;
 
-import element.Bullet;
 import element.Fighter;
+import element.Weapon;
 import game.Configuration;
 
 import com.golden.gamedev.object.Sprite;
@@ -13,7 +13,7 @@ public class FighterBulletCollision extends CoolCollision{
 		// TODO Auto-generated method stub
 		
 		s2.setActive(false);
-		((Fighter) s1).setHP(((Fighter) s1).getHP() - ((Bullet) s2).getDamage());
+		((Fighter) s1).setHP(((Fighter) s1).getHP() - ((Weapon) s2).getDamage());
 		if (((Fighter) s1).getHP() <= 0) {
 			if (((Fighter) s1).getLifeNum() == 1)
 				s1.setActive(false);

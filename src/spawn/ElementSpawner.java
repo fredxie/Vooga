@@ -3,17 +3,8 @@ package spawn;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golden.gamedev.object.PlayField;
-import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.Timer;
-
-import util.TopDownImageUtil;
-import demo.DemoEnemy;
-import demo.DemoPlayField;
 import element.Element;
-import element.Enemy;
-import element.TopDownPlayField;
-import game.Configuration;
+
 
 /**
  * 

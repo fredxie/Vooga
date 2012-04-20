@@ -7,7 +7,6 @@
 package spawn;
 
 import umontreal.iro.lecuyer.probdist.NormalDist;
-import util.TopDownUtility;
 
 public class SpawnByLocation implements SpawnBehavior{
 
@@ -118,6 +117,7 @@ public class SpawnByLocation implements SpawnBehavior{
 //	public double getY(){
 //		return y;
 //	}
+
 
 
 

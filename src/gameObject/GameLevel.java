@@ -34,5 +34,9 @@ public abstract class GameLevel extends TopDownGameObject {
 		fontManager.getFont("FPS Font").drawString(g,
 				"GAME OVER! PRESS ESC TO QUIT", 20, DemoGameEngine.HEIGHT / 2);
 	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
 
 }

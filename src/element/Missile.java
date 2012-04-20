@@ -6,7 +6,7 @@ package element;
  */
 import java.awt.image.BufferedImage;
 
-public class Missile extends Bullet {
+public class Missile extends Weapon {
 	double damage = 3;
 
 	public Missile(BufferedImage image) {
@@ -34,14 +34,14 @@ public class Missile extends Bullet {
 
 	@Override
 	public void genBullets(Fighter fighter, int numOfBullet, double weaponDamage) {
-	    damage = weaponDamage;
-		Bullet[] missile = new Bullet[numOfBullet * 2 + 1];
+		damage = weaponDamage;
+		Weapon[] missile = new Weapon[numOfBullet * 2 + 1];
 		switch (numOfBullet) {
 		case 0: {
 
 			missile[0] = new Missile(image, fighter.getX() + fighter.getWidth()
 					/ 2, fighter.getY() - 20, damage);
-			missile[0].setVerticalSpeed(-0.7);
+			missile[0].setVerticalSpeed(-bulletSpeed);
 			break;
 		}
 		case 1: {
@@ -64,8 +64,8 @@ public class Missile extends Bullet {
 			break;
 		}
 		}
-		
-	    addBullets(missile,fighter);
+
+		addBullets(missile, fighter);
 	}
 
 	@Override
@@ -75,9 +75,14 @@ public class Missile extends Bullet {
 	}
 
 	@Override
+
 	public Element clone() {
 		// TODO Auto-generated method stub
 		return new Missile(this.image, this.getX(), this.getY());
+	}
+	public void bulletUpdate() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -1,12 +1,13 @@
+
 package collisionSystem;
 
-import element.Bullet;
+import com.golden.gamedev.object.Sprite;
+
+import element.Block;
 import element.Enemy;
 import element.Fighter;
-import element.Block;
+import element.Weapon;
 import game.Configuration;
-
-import com.golden.gamedev.object.Sprite;
 
 public class LifeDecreaseCollision extends CoolCollision{
 
@@ -35,10 +36,10 @@ public class LifeDecreaseCollision extends CoolCollision{
 		}
 		}
 		
-		if((s1 instanceof Fighter)&&(s2 instanceof Bullet))
+		if((s1 instanceof Fighter)&&(s2 instanceof Weapon))
 		{
 			s2.setActive(false);
-			((Fighter) s1).setHP(((Fighter) s1).getHP() - ((Bullet) s2).getDamage());
+			((Fighter) s1).setHP(((Fighter) s1).getHP() - ((Weapon) s2).getDamage());
 			if (((Fighter) s1).getHP() <= 0) {
 				if (((Fighter) s1).getLifeNum() == 1)
 					s1.setActive(false);
@@ -52,11 +53,11 @@ public class LifeDecreaseCollision extends CoolCollision{
 			}
 		}
 		
-		if((s1 instanceof Enemy)&&(s2 instanceof Bullet))
+		if((s1 instanceof Enemy)&&(s2 instanceof Weapon))
 			
 		{
 			s2.setActive(false);	
-			((Enemy) s1).setHP(((Enemy) s1).getHP()-((Bullet) s2).getDamage());
+			((Enemy) s1).setHP(((Enemy) s1).getHP()-((Weapon) s2).getDamage());
 			if (((Enemy) s1).getHP() <= 0 )
 			{
 	            s1.setActive(false);
@@ -65,7 +66,7 @@ public class LifeDecreaseCollision extends CoolCollision{
 			}	
 		}
 		
-		if((s1 instanceof Block)&& (s2 instanceof Bullet))
+		if((s1 instanceof Block)&& (s2 instanceof Weapon))
 		{
 	          s2.setActive(false);
 	          if(((Block) s1).isDestroyable())

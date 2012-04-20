@@ -1,6 +1,5 @@
 package spawn;
 
-import demo.DemoGameEngine;
 import element.Fighter;
 import umontreal.iro.lecuyer.probdist.NormalDist;
 
