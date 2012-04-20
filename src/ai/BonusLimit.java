@@ -1,3 +1,4 @@
+
 package ai;
 
 import element.Missile; 
@@ -111,3 +112,4 @@ public class BonusLimit implements TopDownBehavior
 		return 0; // setting as 0 since gamestate always starts at 1 and never reaches 0, these arent levels but ai changes based on changes in the game	
 	}
 }
+

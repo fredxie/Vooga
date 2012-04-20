@@ -1,3 +1,4 @@
+
 package demo;
 
 import java.awt.Graphics2D;
@@ -195,3 +196,4 @@ public class DemoCannonBlock extends Enemy {
 	}
 
 }
+

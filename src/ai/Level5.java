@@ -1,3 +1,4 @@
+
 package ai;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -122,3 +123,4 @@ public class Level5 implements TopDownBehavior
 		return 5.0;
 	}
 }
+

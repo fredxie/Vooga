@@ -1,3 +1,4 @@
+
 package ai;
 import element.Enemy;
 import element.Missile;
@@ -55,3 +56,4 @@ public class Level2 implements TopDownBehavior
 		return 2.0;
 	}
 }
+
