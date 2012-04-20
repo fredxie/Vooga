@@ -19,11 +19,16 @@ import spawn.SpawnByTime;
 import state.DefaultLevelState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
+import collisionSystem.BlockBulletCollision;
 import collisionSystem.BonusCollision;
 import collisionSystem.CollisionManager;
 import collisionSystem.EnemyBulletCollision;
+import collisionSystem.FighterBulletCollision;
+import collisionSystem.FighterEnemyOrBlockCollision;
 import collisionSystem.ImageCollision;
+import collisionSystem.InActiveCollision;
 import collisionSystem.LifeDecreaseCollision;
+import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import configuration.GameParameters;
 import configuration.KeyPressedSubject;
@@ -81,43 +86,31 @@ public class GameLevel1 extends GameLevel {
 		playfield.init("images/game/background.png");
 
 		manager = new CollisionManager(playfield);
-		// manager.registerCollisionWithState("Fighter", "Shield",
-		// "Enemy Missile", new
-		// SoundCollision(playfield,"sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
+		manager.registerCollision("Fighter", "Enemy Missile",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
 
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy Missile",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Enemy", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Enemy", new ImageCollision(
-				playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Enemy",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Enemy", "Fighter Bullet",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Fighter", "Bonus", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Bonus", new BonusCollision());
-		manager.registerCollision("Fighter", "Block", new SoundCollision(
-				playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Fighter", "Block", new ImageCollision(
-				playfield, "images/game/explosion.png"));
-		manager.registerCollision("Fighter", "Block",
-				new LifeDecreaseCollision());
-		manager.registerCollision("Block", "Fighter Bullet",
-				new SoundCollision(playfield, "sounds/explosion.wav"));
-		manager.registerCollision("Block", "Fighter Bullet",
-				new ImageCollision(playfield, "images/game/explosion.png"));
-		manager.registerCollision("Block", "Fighter Bullet",
-				new LifeDecreaseCollision());
+		manager.registerCollision("Fighter","Normal","Enemy Missile",new FighterBulletCollision());
+		
+		manager.registerCollision("Fighter","Shield","Enemy Missile",new InActiveCollision());
+
+		manager.registerCollision("Fighter", "Enemy", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"));
+
+		manager.registerCollision("Fighter", "Shield","Enemy",new PhysicCollision());
+		
+		manager.registerCollision("Fighter", "Normal","Enemy",new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Enemy", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new EnemyBulletCollision());
+
+		
+		manager.registerCollision("Fighter", "Bonus", new SoundCollision(playfield, "sounds/explosion.wav"),new BonusCollision());
+		
+		manager.registerCollision("Fighter", "Block", new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Fighter", "Normal","Block",new FighterEnemyOrBlockCollision());
+		
+		manager.registerCollision("Fighter", "Shield","Block",new InActiveCollision());
+
+		manager.registerCollision("Block", "Fighter Bullet",new SoundCollision(playfield, "sounds/explosion.wav"),new ImageCollision(playfield, "images/game/explosion.png"),new BlockBulletCollision());
+
 
 		// use Element spawner to spawn most of the elements in the game
 		blockSpawner1=new ElementSpawner<Block>(new SpawnByRandom(), new DemoBlock(playfield,

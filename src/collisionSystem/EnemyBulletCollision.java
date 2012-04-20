@@ -1,4 +1,3 @@
-
 package collisionSystem;
 
 import com.golden.gamedev.object.Sprite;
@@ -26,5 +25,4 @@ public class EnemyBulletCollision extends CoolCollision{
 	
 	
 }
-
  
