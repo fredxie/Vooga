@@ -81,6 +81,12 @@ public class SpawnByLocation implements SpawnBehavior{
 	public void setWaveLength(double length){
 		myWaveLength=length-Math.floor(length);
 	}
+
+	@Override
+	public boolean check() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 	/**
 	 * 

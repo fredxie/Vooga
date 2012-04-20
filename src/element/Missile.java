@@ -74,4 +74,10 @@ public class Missile extends Bullet {
 
 	}
 
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return new Missile(this.image, this.getX(), this.getY());
+	}
+
 }

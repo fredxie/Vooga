@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import keyconfiguration.KeyConfig;
-import spawn.EnemySpawner;
+import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
 import state.Level1State;
@@ -30,6 +30,8 @@ import demo.DemoFighter;
 import demo.DemoGameEngine;
 import demo.DemoPlayField;
 import demo.DemoSatellite;
+import element.Block;
+import element.Bonus;
 import element.Enemy;
 
 public class GameLevel1 extends GameLevel {
@@ -52,13 +54,16 @@ public class GameLevel1 extends GameLevel {
 			TopDownImageUtil.getImage("images/game/fighter.png"));
 	private List<Enemy> juniorEnemies = new ArrayList<Enemy>(); // Use Arraylist instead of enemies, by Gang
 														
-	private DemoBonus[] bonuses = new DemoBonus[bonusNum];
-	private DemoBlock[] blocks = new DemoBlock[blockNum];
+	private List<Bonus> bonuses = new ArrayList<Bonus>();//[bonusNum]
+	private List<Block> blocks = new ArrayList<Block>();
 	private List<Enemy> cannon = new ArrayList<Enemy>(); // Yi Ding's revise, Gang changed it to ArrayList;
 												
-	private EnemySpawner enemySpawner1;
-	private EnemySpawner cannonSpawner1;
-
+	private ElementSpawner<Enemy> enemySpawner1;
+	private ElementSpawner<Enemy> cannonSpawner1;
+	private ElementSpawner<Bonus> bonusSpawner1;
+    private ElementSpawner<Block> blockSpawner1;
+    private ElementSpawner<Block> blockSpawner2;
+	
 	public GameLevel1(TopDownGameEngine parent) {
 		super(parent);
 		myState = new Level1State(parent, this);
@@ -108,37 +113,33 @@ public class GameLevel1 extends GameLevel {
 		manager.registerCollision("Block", "Fighter Bullet",
 				new LifeDecreaseCollision());
 
-		for (int i = 0; i < blockNum; i++) {
-			int j = getRandom(0, 30);
-			if (j <= 10)
-				blocks[i] = new DemoBlock(playfield,
-						getImage("images/game/block2.png"), 3);
-			else
-				blocks[i] = new DemoBlock(playfield,
-						getImage("images/game/block.png"));
-			blocks[i].init();
-		}
+		// use Element spawner to spawn most of the elements in the game
+		blockSpawner1=new ElementSpawner<Block>(new SpawnByRandom(), new DemoBlock(playfield,
+						getImage("images/game/block2.png"), 3), blockNum/3);
+		blockSpawner2=new ElementSpawner<Block>(new SpawnByRandom(),  new DemoBlock(playfield,
+				getImage("images/game/block.png")), 2*blockNum/3);
+		blocks.addAll(blockSpawner1.spawn());
+		blocks.addAll(blockSpawner2.spawn());
 
 		fighter.setPlayfield(playfield);
 		fighter.setGameObject(this);
 		fighter.init();
 
 		// Yi Ding's revise, Gang changed it to use EnemySpawner to generate cannons
-		cannonSpawner1=new EnemySpawner(new SpawnByRandom(), new DemoCannonBlock(playfield,
+		cannonSpawner1=new ElementSpawner<Enemy>(new SpawnByRandom(), new DemoCannonBlock(playfield,
 				getImage("images/game/base.png"),
 				getImage("images/game/cannon.png"), fighter), cannonNum);
 		cannon.addAll(cannonSpawner1.spawn());
 
 		// In this level we use Time Spawning mechanism to generate enemies
-		enemySpawner1 = new EnemySpawner(new SpawnByTime(fighter), new DemoEnemy(
+		enemySpawner1 = new ElementSpawner<Enemy>(new SpawnByTime(fighter), new DemoEnemy(
 				playfield, getImage("images/game/enemy_easy.png"),
 				Configuration.ENEMY_HP), 5);
 
-		for (int i = 0; i < bonusNum; i++) {
-			bonuses[i] = new DemoBonus(playfield,
-					getImage("images/game/bonus.png"));
-			bonuses[i].init();
-		}
+		//use Element spawner to spawn most of the elements in the game
+		bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus(playfield,
+				getImage("images/game/bonus.png")),  bonusNum );
+		bonuses.addAll(bonusSpawner1.spawn());
 
 		keyConfig = new KeyConfig(fighter, this);
 		keyConfig.parseKeyConfig("keyConfig.json");
@@ -183,6 +184,8 @@ public class GameLevel1 extends GameLevel {
 		for (int i = 0; i < cannonNum; i++) {
 			cannon.get(i).refresh(elapsedTime);
 		}
+		
+		
 		// update Enemies
 		for (int i = 0; i < juniorEnemies.size(); i++) {
 			juniorEnemies.get(i).refresh(elapsedTime);
@@ -196,12 +199,11 @@ public class GameLevel1 extends GameLevel {
 		}
 		
         // Spawn enemies after a certain period of time
-		if (enemySpawner1.refresh(elapsedTime)) {
-			juniorEnemies.addAll(enemySpawner1.spawn());
-		}
+		juniorEnemies.addAll(enemySpawner1.spawn());
+			
 
-		for (int i = 0; i < bonusNum; i++) {
-			bonuses[i].refresh(elapsedTime);
+		for (int i = 0; i < bonuses.size(); i++) {
+			bonuses.get(i).refresh(elapsedTime);
 		}
 
 		if (fighter.getLifeNum() == 0) {

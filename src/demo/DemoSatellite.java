@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import util.TopDownImageUtil;
 
 import element.Bullet;
+import element.Element;
 import element.Laser;
 import element.RegularFighter;
 import element.Satellite;
@@ -23,6 +24,11 @@ public class DemoSatellite extends Satellite
 		super(image, fighter);
 		playfield.getGroup("Fighter").add(this);
 
+	}
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return new DemoSatellite(this.getImage());
 	}
 
 

@@ -46,4 +46,10 @@ public class Laser extends Bullet {
 
 	}
 
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return new Laser(this.image, this.getX(), this.getY());
+	}
+
 }

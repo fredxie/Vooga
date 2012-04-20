@@ -14,6 +14,7 @@ import configuration.GameParameters;
 public class TopDownPlayField extends PlayField {
 
 	private TopDownGameObject game;
+	private long myElapsedTime; 
 
 	public TopDownPlayField(TopDownGameObject object) {
 		super();
@@ -33,6 +34,7 @@ public class TopDownPlayField extends PlayField {
 	}
 
 	public void update(long elapsedTime) {
+		myElapsedTime=elapsedTime;
 		super.update(elapsedTime);
 		this.getBackground().move(
 				0,
@@ -47,5 +49,9 @@ public class TopDownPlayField extends PlayField {
 
 	public ElementGroup getGroup(String name) {
 		return (ElementGroup) super.getGroup(name);
+	}
+	
+	public long getElapsedTime(){
+		return myElapsedTime;
 	}
 }

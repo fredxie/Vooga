@@ -8,6 +8,7 @@ import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownUtility;
 import element.Bonus;
+import element.Element;
 import element.TopDownPlayField;
 import game.Configuration;
 
@@ -22,10 +23,10 @@ public class DemoBonus extends Bonus {
 		this.setWeaponStyle(TopDownUtility.getRandom(0, 2));
 		this.setWeaponStyle(TopDownUtility.getRandom(0,
 				Configuration.BONUS_STYLE_NUM - 1));
-		this.setX(TopDownUtility.getRandom(0,
-				DemoGameEngine.WIDTH - this.getWidth()));
-		this.setY(TopDownUtility.getRandom(150, playfield.getBackground()
-				.getHeight() - DemoGameEngine.HEIGHT));
+//		this.setX(TopDownUtility.getRandom(0,
+//				DemoGameEngine.WIDTH - this.getWidth()));
+//		this.setY(TopDownUtility.getRandom(150, playfield.getBackground()
+//				.getHeight() - DemoGameEngine.HEIGHT));
 	}
 
 	@Override
@@ -49,6 +50,13 @@ public class DemoBonus extends Bonus {
 		super.update(elapsedTime);
 		TopDownAreaUtil.limitArea(this, playfield.getTileBackground(),
 				DemoGameEngine.HEIGHT, DemoGameEngine.WIDTH);
+	}
+
+	@Override
+	public Element clone() {
+		DemoBonus db=new DemoBonus(this.playfield, this.getImage());
+		 db.init();
+		return db;
 	}
 
 }

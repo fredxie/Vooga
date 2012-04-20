@@ -2,13 +2,17 @@ package element;
 
 import java.awt.image.BufferedImage;
 
+import spawn.SpawnBehavior;
+
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
+
+import demo.DemoGameEngine;
 
 public abstract class Element extends Sprite {
 
 	public TopDownPlayField playfield;
-
+	public SpawnBehavior mySpawnBehavior;
 
 	 private int mass;   // this is Yi Ding's revise
 
@@ -54,4 +58,26 @@ public abstract class Element extends Sprite {
 
 	public abstract void init();
 	// public abstract void update(long elapsedTime);
+	
+	
+	/**
+	 * @author Gang Song
+	 * @Description set Spawning behavior
+	 */
+	public void setSpawnBehavior(SpawnBehavior SB){
+		//mySpawnBehavior=new SpawnByLocation();
+		mySpawnBehavior=SB;
+	}
+
+	public void spawn(){
+		double[] templocation=mySpawnBehavior.spawn();
+		
+		this.setX(templocation[0]*(DemoGameEngine.WIDTH- this.getWidth()));
+		this.setY(templocation[1]*(playfield.getBackground().getHeight()- DemoGameEngine.HEIGHT));
+
+		//this.playfield.getTileBackground().getWidth()
+	}
+	
+	
+	public abstract Element clone();
 }

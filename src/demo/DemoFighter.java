@@ -104,4 +104,10 @@ public class DemoFighter extends RegularFighter {
   {
 	   return protection;
   }
+
+@Override
+public Element clone() {
+	// TODO Auto-generated method stub
+	return new DemoFighter(this.getImage());
+}
 }

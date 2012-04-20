@@ -25,4 +25,10 @@ public class SpawnByRandom implements SpawnBehavior {
 		return loc;
 	}
 
+	@Override
+	public boolean check() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }
