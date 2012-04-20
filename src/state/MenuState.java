@@ -16,7 +16,7 @@ import menu.GameSL;
 
 import game.Configuration;
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 import gameObject.optionGameObject.Menu;
 import gameObject.optionGameObject.OptionGameObject;

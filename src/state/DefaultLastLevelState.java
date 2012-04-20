@@ -3,8 +3,8 @@ package state;
 import java.awt.event.KeyEvent;
 
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
-import gameObject.GameLevel2;
+import gameLevel.GameLevel;
+import gameLevel.GameLevel2;
 import gameObject.TopDownGameManager;
 
 public class DefaultLastLevelState extends State{

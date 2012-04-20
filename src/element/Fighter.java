@@ -3,7 +3,7 @@ package element;
 import game.Configuration;
 import game.TopDownGameObject;
 import game.TopDownTimer;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 
 import java.awt.image.BufferedImage;
 import java.util.List;

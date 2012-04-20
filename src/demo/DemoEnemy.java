@@ -67,7 +67,7 @@ import element.Enemy;
 import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
-import gameObject.GameLevel1;
+import gameLevel.GameLevel1;
 import gameObject.TopDownGameManager;
 import state.*;
 public class DemoEnemy extends Enemy {

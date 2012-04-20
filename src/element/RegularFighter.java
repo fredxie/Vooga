@@ -5,7 +5,7 @@ package element;
  * @author ShiyuanWang
  */
 import game.TopDownTimer;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

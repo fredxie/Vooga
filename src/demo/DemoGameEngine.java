@@ -2,8 +2,8 @@ package demo;
 
 import game.TopDownGameEngine;
 import game.TopDownGameLoader;
-import gameObject.GameLevel1;
-import gameObject.GameLevel2;
+import gameLevel.GameLevel1;
+import gameLevel.GameLevel2;
 import gameObject.TopDownGameManager;
 import gameObject.optionGameObject.Menu;
 import gameObject.optionGameObject.Pause;

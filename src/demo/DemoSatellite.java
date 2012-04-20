@@ -36,11 +36,8 @@ public class DemoSatellite extends Satellite
 	@Override
 	public Element clone() {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		return null;
-=======
+
 		return new DemoSatellite(this.getImage());
->>>>>>> ada42b2f157034c49af47fe8c2b0fb0d4d6625ad
 	}
 
 

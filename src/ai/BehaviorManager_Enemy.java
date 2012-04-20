@@ -1,7 +1,7 @@
 package ai;
 
-import gameObject.GameLevel;
-import gameObject.GameLevel1;
+import gameLevel.GameLevel;
+import gameLevel.GameLevel1;
 import gameObject.TopDownGameManager;
 
 import java.util.ArrayList;

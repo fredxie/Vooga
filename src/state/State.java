@@ -8,7 +8,7 @@ package state;
 
 
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 
 import com.golden.gamedev.GameEngine;

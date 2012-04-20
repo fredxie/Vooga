@@ -1,6 +1,6 @@
 package hud;
 
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 
 public class LevelInfo implements HUDInfo {
 	public LevelInfo() {}

@@ -2,7 +2,7 @@ package state;
 
 import java.awt.event.KeyEvent;
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 import gameObject.scoreBoardGameObject.ScoreBoardGameObject;
 

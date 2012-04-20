@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import collisionSystem.EnemyBulletCollision;
 
 import game.TopDownGameEngine;
-import gameObject.GameLevel;
+import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 
 public class DefaultLevelState extends State{

@@ -2,17 +2,10 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
-import configuration.GameParameters;
-
-import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
-
-import element.Bullet;
 import element.Element;
-import element.Fighter;
 import element.Laser;
-import element.Missile;
 import element.PhysicalProtection;
 import element.RegularFighter;
 import element.Satellite;
@@ -152,20 +145,11 @@ public class DemoFighter extends RegularFighter {
 		else if (allowFire)
 			attack(elapsedTime, weaponStyle, weaponDamage);
 	}
-<<<<<<< HEAD
 
-	@Override
-	public Element clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-=======
-	
 	@Override
 	public Element clone() {
 		// TODO Auto-generated method stub
 		return new DemoFighter(this.getImage());
 	}
 
->>>>>>> ada42b2f157034c49af47fe8c2b0fb0d4d6625ad
 }
