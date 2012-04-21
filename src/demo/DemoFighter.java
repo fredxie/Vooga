@@ -53,11 +53,7 @@ public class DemoFighter extends RegularFighter {
 		}
 	}
 
-	@Override
-	public void attack(long elapsedTime, int weaponStyle, double weaponDamage) {
-		bullet.genBullets(this, weaponStyle, weaponDamage);
-		allowFire = false;
-	}
+
 
 	public void bomb(long elapsedTime) {
 		if (allowBomb == false) {
@@ -143,7 +139,7 @@ public class DemoFighter extends RegularFighter {
 		}
 
 		else if (allowFire)
-			attack(elapsedTime, weaponStyle, weaponDamage);
+			attack();
 	}
 
 	@Override

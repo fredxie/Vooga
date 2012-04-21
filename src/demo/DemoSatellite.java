@@ -28,11 +28,7 @@ public class DemoSatellite extends Satellite
 		playfield.getGroup("Fighter").add(this);
 
 	}
-	@Override
-	public void attack(long elapsedTime, int numOfBullet, double weaponDamage) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public Element clone() {
 		// TODO Auto-generated method stub

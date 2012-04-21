@@ -41,7 +41,7 @@ public class Missile extends Weapon {
 
 			missile[0] = new Missile(image, fighter.getX() + fighter.getWidth()
 					/ 2, fighter.getY() - 20, damage);
-			missile[0].setVerticalSpeed(-bulletSpeed);
+			missile[0].setVerticalSpeed(bulletSpeed);
 			break;
 		}
 		case 1: {

@@ -34,7 +34,7 @@ public abstract class RegularFighter extends Fighter {
 	private List<Key> keyList;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
-	public WeaponState weaponState = new WeaponState(this);
+//	public WeaponState weaponState = new WeaponState(this);
 	public AssistanceState assistanceState = new AssistanceState(this);
 
 	public CollisionState collisionState = new PhysicCollisionState(this);
@@ -114,9 +114,7 @@ public abstract class RegularFighter extends Fighter {
 	public abstract void bomb(long elapsedTime);
 
 
-	public PlayerState getWeaponState() {
-		return weaponState;
-	}
+
 
 	public PlayerState getAssistanceState() {
 		return assistanceState;

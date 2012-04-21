@@ -1,6 +1,7 @@
 package playerState;
 
 import util.TopDownImageUtil;
+import element.Missile;
 import element.Weapon;
 import element.Fighter;
 import element.Laser;
@@ -11,8 +12,8 @@ public class WeaponState extends PlayerState{
 	public double weaponDamage= 0;
 	
 	
-	private Weapon bullet = new Laser(
-			TopDownImageUtil.getImage("images/game/bigLaser1.png")); //Default value for easy test
+	private Weapon bullet = new Missile(
+			TopDownImageUtil.getImage("images/game/bullet.png")); //Default value for easy test
 	
 	public WeaponState(Fighter fighter) {
 		super(fighter);
@@ -55,9 +56,9 @@ public class WeaponState extends PlayerState{
 	}
 		
 	
-	public void fire(long elapsedTime, int numOfBullet, double weaponDamage) {
-		bullet.genBullets(fighter, numOfBullet, weaponDamage);
-	}
+//	public void fire(long elapsedTime, int numOfBullet, double weaponDamage) {
+//		bullet.genBullets(fighter, numOfBullet, weaponDamage);
+//	}
 
     public void fire()
     {

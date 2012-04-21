@@ -1,5 +1,6 @@
 package gameLevel;
 
+import playerState.PhysicCollisionState;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
@@ -14,7 +15,11 @@ import collisionSystem.InActiveCollision;
 import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import demo.DemoBlock;
-import demo.DemoBonus;
+import demo.DemoBonus1;
+import demo.DemoBonus2;
+import demo.DemoBonus3;
+import demo.DemoBonus4;
+import demo.DemoBonus5;
 import demo.DemoCannonBlock;
 import demo.DemoEnemy;
 import element.Block;
@@ -45,10 +50,24 @@ public class DemoLevelInit1 {
 		gl.blocks.addAll(gl.blockSpawner1.spawn());
 		gl.blocks.addAll(gl.blockSpawner2.spawn());
 	}
+	
+	// Yi Ding's revise different bonus spawn
 
 	public void bonusInit(GameLevel1 gl) {
-		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus(gl.playfield,
-				gl.getImage("images/game/bonus.png")),  gl.bonusNum );
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus1(gl.playfield,
+				gl.getImage("images/game/bullet_scatterload.png")),  gl.bonusNum );
+		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus2(gl.playfield,
+				gl.getImage("images/game/fight_damage_powerup.png")),  gl.bonusNum );
+		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus3(gl.playfield,
+				gl.getImage("images/game/bullet_laser.png")),  gl.bonusNum );
+		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus4(gl.playfield,
+				gl.getImage("images/game/fight_hp_plus.png")),  gl.bonusNum );
+		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus5(gl.playfield,
+				gl.getImage("images/game/fighter_accelerate.png"),new PhysicCollisionState(gl.fighter)),  gl.bonusNum );
 		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
 	}
 

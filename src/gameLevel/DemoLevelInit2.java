@@ -13,7 +13,7 @@ import collisionSystem.InActiveCollision;
 import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
 import demo.DemoBlock;
-import demo.DemoBonus;
+import demo.DemoBonus1;
 import demo.DemoEnemy;
 import element.Block;
 import element.Bonus;
@@ -44,7 +44,7 @@ public class DemoLevelInit2 {
 	}
 
 	public void bonusInit(GameLevel2 gl) {
-		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus(gl.playfield,
+		gl.bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus1(gl.playfield,
 				gl.getImage("images/game/bonus.png")),  gl.bonusNum );
 		gl.bonuses.addAll(gl.bonusSpawner1.spawn());
 	}

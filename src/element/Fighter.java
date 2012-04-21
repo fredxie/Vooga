@@ -91,6 +91,11 @@ public abstract class Fighter extends Element {
 		this.weaponStyle = weaponStyle;
 	}
 
+	public WeaponState getWeaponState()
+	{
+		return weaponState;
+	}
+	
 	public int getWeaponStyle() {
 		return weaponStyle;
 	}

@@ -23,7 +23,7 @@ import collisionSystem.SoundCollision;
 import configuration.GameParameters;
 import configuration.KeyPressedSubject;
 import demo.DemoBlock;
-import demo.DemoBonus;
+import demo.DemoBonus1;
 import demo.DemoEnemy;
 import demo.DemoFighter;
 import demo.DemoGameEngine;
@@ -123,7 +123,7 @@ public class GameLevel2 extends GameLevel {
 		juniorEnemies.addAll(ES.spawn());
 
 		//to Element spawner to spawn most of the elements in the game
-		bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus(playfield,
+		bonusSpawner1 = new ElementSpawner<Bonus>(new SpawnByRandom(),new DemoBonus1(playfield,
 				getImage("images/game/bonus.png")),  bonusNum );
 		bonuses.addAll(bonusSpawner1.spawn());
 		
