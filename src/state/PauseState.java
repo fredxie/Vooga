@@ -38,6 +38,7 @@ public class PauseState extends State{
 			case 1:
 				// RESTART
 				myGameEngine.initResources();
+				initGameRecord();
 				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 				//myGameEngine.nextGameID = 2;
 				game.finish();

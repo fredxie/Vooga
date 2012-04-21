@@ -13,6 +13,7 @@ import levelTransition.DemoLevelTransition1;
 import playerState.AssistanceState;
 import spawn.ElementSpawner;
 import state.DefaultLastLevelState;
+import state.DefaultLevelState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
 import collisionSystem.CollisionManager;
@@ -64,7 +65,7 @@ public class GameLevel1 extends GameLevel {
 	public GameLevel1(TopDownGameEngine parent) {
 		super(parent);
 
-		myState = new DefaultLastLevelState(parent, this);
+		myState = new DefaultLevelState(parent, this);
 	}
 
 	public void initResources() {
@@ -77,6 +78,7 @@ public class GameLevel1 extends GameLevel {
 		demoLevelInit1.bonusInit(this);
 		demoLevelInit1.enemyInit(this);
 		demoLevelInit1.cannonInit(this);
+		demoLevelInit1.gameRecordInit();
 		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
 				this));
 
@@ -123,7 +125,7 @@ public class GameLevel1 extends GameLevel {
 		}
 	}
 	public boolean levelComplete() {
-		if (EnemyBulletCollision.destroyed >= 10) {
+		if (EnemyBulletCollision.destroyed >= 1) {
 			levelComplete = true;
 		}
 		return levelComplete;

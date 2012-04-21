@@ -131,6 +131,16 @@ public class DemoLevelInit1 {
 				new BlockBulletCollision());
 
 	}
+	
+	/***
+	 * added by Jiawei
+	 * initialize the number of killed enemies before the start of every level
+	 * Help to fix bugs in restart game and game record display
+	 */
+	public void gameRecordInit(){
+		EnemyBulletCollision.destroyed = 0;
+	}
+
 
 
 

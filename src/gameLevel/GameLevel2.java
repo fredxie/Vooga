@@ -61,6 +61,7 @@ public class GameLevel2 extends GameLevel {
 		demoLevelInit2.blockInit(this);
 		demoLevelInit2.bonusInit(this);
 		demoLevelInit2.enemyInit(this);
+		demoLevelInit2.gameRecordInit();
 		fighter.setKeyList(JsonUtil.createKeyList(fighter, "keyConfig.json",
 				this));
 

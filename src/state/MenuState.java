@@ -43,6 +43,7 @@ public class MenuState extends State {
 			case 0:
 				// start easy game
 				engine.initResources();
+				initGameRecord();
 				TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 				//myGameEngine.nextGameID = 2;
 				game.finish();

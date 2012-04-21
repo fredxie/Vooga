@@ -11,6 +11,8 @@ import game.TopDownGameEngine;
 import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 
+import collisionSystem.EnemyBulletCollision;
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
@@ -42,6 +44,11 @@ public abstract class State{
 	}
 
 	public abstract void update(long arg0);
+	
+	public void initGameRecord(){
+		EnemyBulletCollision.destroyed = 0;
+	}
+
 
 	//public abstract void gameFinish(GameLevel game, long arg0);
 }
