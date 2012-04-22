@@ -14,7 +14,7 @@ public class Brain3_Weapon extends AI{
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
-		Configuration.ENEMY_WEAPON_DAMAGE = 1.5;
+		AI.ENEMY_WEAPON_DAMAGE = 1.5;
 		
 		/*
 		 * bullets zig zag every half second

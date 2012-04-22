@@ -93,7 +93,7 @@ public class DemoEnemy extends Enemy {
 		//myBrain = BehaviorManager.BehaviorManager(this, Level);
 		this.setAI_Enemy();
 		//behavior = this.getBehaviour();
-		healthPoint = Configuration.ENEMY_HP;
+		healthPoint = AI.ENEMY_HP;
 	}
 
 	public DemoEnemy(BufferedImage image){//, AI initialAI) {

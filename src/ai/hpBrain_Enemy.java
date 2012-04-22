@@ -24,9 +24,9 @@ public class hpBrain_Enemy extends AI{
 		rate = rate + 150;
 		((Enemy) mySprite).setRefireRate(rate);	
 		
-		double x = Configuration.ENEMY_HP;
+		double x = AI.ENEMY_HP;
 		h = x - .5;
-		Configuration.ENEMY_HP = h;
+		AI.ENEMY_HP = h;
 	}
 
 	@Override

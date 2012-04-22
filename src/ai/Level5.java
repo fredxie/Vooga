@@ -75,7 +75,7 @@ public class Level5 implements TopDownBehavior
 	}
 	public double enemyDamage()
 	{
-		Configuration.ENEMY_WEAPON_DAMAGE = 2.5;
+		AI.ENEMY_WEAPON_DAMAGE = 2.5;
 		return d = 2.5;
 	}
 
@@ -110,7 +110,7 @@ public class Level5 implements TopDownBehavior
 
 	public double enemyHP()
 	{
-		Configuration.ENEMY_HP = 3.5;
+		AI.ENEMY_HP = 3.5;
 		return hp = 3.5;
 	}
 	public void enemyHP(Enemy enemy)

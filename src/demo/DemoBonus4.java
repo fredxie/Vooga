@@ -2,6 +2,9 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import util.JsonUtil;
+import configuration.GameParameters;
+
 import element.Bonus;
 import element.Element;
 import element.RegularFighter;
@@ -20,7 +23,8 @@ public class DemoBonus4 extends Bonus {
 	@Override
 	public void collideAction(RegularFighter s1) {
 		// TODO Auto-generated method stub
-		s1.setHP(Configuration.FIGHTER_HP);
+		s1.setHP(JsonUtil.parse("paraConfig.json").get(
+				GameParameters.FIGHTER_HP));
 	}
 
 	

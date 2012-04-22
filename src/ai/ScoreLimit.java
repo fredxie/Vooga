@@ -2,7 +2,6 @@
 package ai;
 import element.Enemy;
 import element.Missile;
-import game.Configuration;
 /*
  * When the player gets x number of points, score limit increases the ai of the computer. This will happen
  * multiple times through the game depending on the score of the player, and can happen in any level, and in
@@ -32,9 +31,9 @@ public class ScoreLimit implements TopDownBehavior
 	}
 	public double enemyDamage()
 	{
-		double a = Configuration.ENEMY_WEAPON_DAMAGE;
+		double a = AI.ENEMY_WEAPON_DAMAGE;
 		d = a + .5;
-		Configuration.ENEMY_WEAPON_DAMAGE = d;
+		AI.ENEMY_WEAPON_DAMAGE = d;
 		return d;
 	}
 	public void weaponSpeed(Missile missile)
@@ -47,9 +46,9 @@ public class ScoreLimit implements TopDownBehavior
 		missile.setVerticalSpeed(y);
 	}
 	public double enemyHP() {
-		double x = Configuration.ENEMY_HP;
+		double x = AI.ENEMY_HP;
 		h = x + .5;
-		Configuration.ENEMY_HP = h;
+		AI.ENEMY_HP = h;
 		return h;	
 	}
 	public void enemyHP(Enemy enemy)

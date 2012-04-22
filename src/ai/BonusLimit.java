@@ -82,7 +82,7 @@ public class BonusLimit implements TopDownBehavior
 	}
 	public double enemyDamage()
 	{
-		Configuration.ENEMY_WEAPON_DAMAGE = 1.0;
+		AI.ENEMY_WEAPON_DAMAGE = 1.0;
 		return d = 1.0;	
 	}
 	public void weaponDamage(Missile missile)

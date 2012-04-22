@@ -16,7 +16,7 @@ public class Brain2_Weapon extends AI{
 		}
 		mySprite.setVerticalSpeed(.3);
 		
-		Configuration.ENEMY_WEAPON_DAMAGE = 1.0;
+		AI.ENEMY_WEAPON_DAMAGE = 1.0;
 	}
 
 	@Override

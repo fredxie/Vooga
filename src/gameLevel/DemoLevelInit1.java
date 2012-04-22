@@ -1,5 +1,6 @@
 package gameLevel;
 
+import ai.AI;
 import playerState.PhysicCollisionState;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
@@ -74,7 +75,7 @@ public class DemoLevelInit1 {
 	public void enemyInit(GameLevel1 gl) {
 		gl.enemySpawner1 = new ElementSpawner<Enemy>(new SpawnByTime(gl.fighter), new DemoEnemy(
 				gl.playfield, gl.getImage("images/game/enemy_easy.png"),
-				Configuration.ENEMY_HP), 5);
+				AI.ENEMY_HP), 5);
 	}
 
 	public void cannonInit(GameLevel1 gl) {

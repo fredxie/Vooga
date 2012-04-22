@@ -42,7 +42,7 @@ public class Brain4_Enemy extends AI{
 		timer.setRepeats(true);
 
 		((Enemy) mySprite).setRefireRate(600);
-		Configuration.ENEMY_HP = 3.0;
+		AI.ENEMY_HP = 3.0;
 	}
 
 	@Override

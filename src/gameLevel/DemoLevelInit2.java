@@ -1,5 +1,6 @@
 package gameLevel;
 
+import ai.AI;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import collisionSystem.BlockBulletCollision;
@@ -52,7 +53,7 @@ public class DemoLevelInit2 {
 	public void enemyInit(GameLevel2 gl) {
 		gl.ES = new ElementSpawner<Enemy>(new SpawnByRandom(), new DemoEnemy(
 				gl.playfield, gl.getImage("images/game/enemy_easy.png"),
-				Configuration.ENEMY_HP), gl.enemyNum);
+				AI.ENEMY_HP), gl.enemyNum);
 		gl.juniorEnemies.addAll(gl.ES.spawn());
 	}
 

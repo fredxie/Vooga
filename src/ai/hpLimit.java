@@ -42,7 +42,7 @@ public class hpLimit implements TopDownBehavior
 //	}
 	public double enemyDamage()
 	{
-		double a = Configuration.ENEMY_WEAPON_DAMAGE;
+		double a = AI.ENEMY_WEAPON_DAMAGE;
 		if(a > .5 && a < 2.5){
 			d = a - .5;
 		}
@@ -56,9 +56,9 @@ public class hpLimit implements TopDownBehavior
 	}
 	public double enemyHP()
 	{
-		double x = Configuration.ENEMY_HP;
+		double x = AI.ENEMY_HP;
 		h = x - .5;
-		Configuration.ENEMY_HP = h;
+		AI.ENEMY_HP = h;
 		return h;
 	}
 	public void weaponSpeed(Missile missile)

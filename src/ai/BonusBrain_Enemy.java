@@ -86,7 +86,7 @@ public class BonusBrain_Enemy extends AI{
 		y = mySprite.getVerticalSpeed();
 
 		((Enemy) mySprite).setRefireRate(500);
-		Configuration.ENEMY_HP = h;
+		AI.ENEMY_HP = h;
 	}
 
 	@Override

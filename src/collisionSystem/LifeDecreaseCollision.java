@@ -1,6 +1,10 @@
 package collisionSystem;
 
+import util.JsonUtil;
+
 import com.golden.gamedev.object.Sprite;
+
+import configuration.GameParameters;
 
 import element.Block;
 import element.Enemy;
@@ -29,7 +33,8 @@ public class LifeDecreaseCollision extends CoolCollision{
 
 		else {
 
-			((Fighter) s1).setHP(Configuration.FIGHTER_HP);
+			((Fighter) s1).setHP(JsonUtil.parse("paraConfig.json").get(
+					GameParameters.FIGHTER_HP));
 
 			((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);
 		}
@@ -44,7 +49,8 @@ public class LifeDecreaseCollision extends CoolCollision{
 					s1.setActive(false);
 				else {
 
-					((Fighter) s1).setHP(Configuration.FIGHTER_HP);
+					((Fighter) s1).setHP(JsonUtil.parse("paraConfig.json").get(
+							GameParameters.FIGHTER_HP));
 
 					((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);
 				}

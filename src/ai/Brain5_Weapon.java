@@ -10,7 +10,7 @@ public class Brain5_Weapon extends AI{
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
-		Configuration.ENEMY_WEAPON_DAMAGE = 2.5;
+		AI.ENEMY_WEAPON_DAMAGE = 2.5;
 		h = Math.random() * 0.25;
 		v = Math.random() * 0.35 + background_speed;
 		if(Math.random()*51 < 25)

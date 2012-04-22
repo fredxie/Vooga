@@ -47,7 +47,7 @@ public class Level4 implements TopDownBehavior
 	}
 	public double enemyDamage()
 	{
-		Configuration.ENEMY_WEAPON_DAMAGE = 2.0;
+		AI.ENEMY_WEAPON_DAMAGE = 2.0;
 		return d = 2.0;
 	}
 
@@ -61,7 +61,7 @@ public class Level4 implements TopDownBehavior
 	}
 	public double enemyHP()
 	{
-		Configuration.ENEMY_HP = 3.0;
+		AI.ENEMY_HP = 3.0;
 		return hp = 3.0;
 	}
 //	public void enemyHP(Enemy enemy)

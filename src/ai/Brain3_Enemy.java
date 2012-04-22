@@ -10,7 +10,7 @@ public class Brain3_Enemy extends AI{
 		// TODO Auto-generated method stub
 		mySprite.setSpeed(0.15,0.15);
 		((Enemy) mySprite).setRefireRate(700);
-		Configuration.ENEMY_HP = 2.5;
+		AI.ENEMY_HP = 2.5;
 	}
 
 	@Override

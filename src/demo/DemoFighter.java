@@ -14,6 +14,7 @@ import game.Configuration;
 import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
+	private int BOMB_NUM = 5;
 	Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
 	private Satellite satellite;
@@ -28,7 +29,7 @@ public class DemoFighter extends RegularFighter {
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
-		setBombNum(Configuration.BOMB_NUM);
+		setBombNum(BOMB_NUM);
 		stateList.add(weaponState);
 		stateList.add(assistanceState);
 		stateList.add(collisionState);

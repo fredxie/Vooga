@@ -103,7 +103,7 @@ public class DemoCannonBlock extends Enemy {
 			try {
 				enemyMissile = new Missile(ImageIO.read(new File(
 						"images/game/emissle_easy.png")), headX, headY,
-						Configuration.ENEMY_WEAPON_DAMAGE);
+						AI.ENEMY_WEAPON_DAMAGE);
 
 				enemyMissile.setSpeed(speedX, speedY);
 				playfield.getGroup("Enemy Missile").add(enemyMissile);

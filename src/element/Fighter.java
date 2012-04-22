@@ -13,11 +13,15 @@ import configuration.GameParameters;
 
 public abstract class Fighter extends Element {
 
-	protected static double healthPoint = Configuration.FIGHTER_HP;
+	private static double FIGHTER_WEAPON_DAMAGE = 100;
+	private static int INITIAL_STYLE = 0;
+//	protected static double healthPoint = Configuration.FIGHTER_HP;
+	protected static double healthPoint = JsonUtil.parse("paraConfig.json").get(
+			GameParameters.FIGHTER_HP);
 	protected int lifeNum = JsonUtil.parse("paraConfig.json").get(
 			GameParameters.lifeNum);
-	protected double weaponDamage = Configuration.FIGHTER_WEAPON_DAMAGE;
-	protected int weaponStyle = Configuration.INITIAL_STYLE;
+	protected double weaponDamage = FIGHTER_WEAPON_DAMAGE;
+	protected int weaponStyle = INITIAL_STYLE;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 	public boolean allowFire = false;
@@ -51,7 +55,8 @@ public abstract class Fighter extends Element {
 		healthPoint = healthPoint + change;
 		if (healthPoint <= 0) {
 			lifeNum--;
-			healthPoint = Configuration.FIGHTER_HP;
+			healthPoint = JsonUtil.parse("paraConfig.json").get(
+					GameParameters.FIGHTER_HP);
 		}
 
 	}

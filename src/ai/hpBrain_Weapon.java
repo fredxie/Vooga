@@ -8,7 +8,7 @@ public class hpBrain_Weapon extends AI{
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
-		double a = Configuration.ENEMY_WEAPON_DAMAGE;
+		double a = AI.ENEMY_WEAPON_DAMAGE;
 		if(a > .5 && a < 2.5){
 			d = a - .5;
 		}
@@ -18,7 +18,7 @@ public class hpBrain_Weapon extends AI{
 		else if (a <= .5){
 			d = a;
 		}
-		Configuration.ENEMY_WEAPON_DAMAGE = d;
+		AI.ENEMY_WEAPON_DAMAGE = d;
 		
 		double x = mySprite.getHorizontalSpeed();
 		double y = mySprite.getVerticalSpeed();

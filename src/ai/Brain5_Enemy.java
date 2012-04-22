@@ -69,7 +69,7 @@ public class Brain5_Enemy extends AI {
 		timer1.setRepeats(true);
 	
 		((Enemy) mySprite).setRefireRate(600);
-		Configuration.ENEMY_HP = 3.5;
+		AI.ENEMY_HP = 3.5;
 	}
 	@Override
 	public int getState() {

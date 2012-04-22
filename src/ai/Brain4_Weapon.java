@@ -10,7 +10,7 @@ public class Brain4_Weapon extends AI{
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
-		Configuration.ENEMY_WEAPON_DAMAGE = 2.0;
+		AI.ENEMY_WEAPON_DAMAGE = 2.0;
 		mySprite.setSpeed(Math.random() * 0.25,Math.random()*0.2 + background_speed);
 	}
 
