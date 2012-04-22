@@ -1,14 +1,16 @@
 package gameObject.optionGameObject;
 
+
 import game.TopDownGameEngine;
 
 import java.awt.Graphics2D;
 
 import state.PauseState;
+import state.State;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class Pause extends OptionGameObject {
+public class Pause extends OptionGameObject{
 	int option;
 	TopDownImageBackground mainMenuTitle;
 
@@ -17,8 +19,8 @@ public class Pause extends OptionGameObject {
 
 		myState = new PauseState(parent, this);
 	}
-	
-	public void setOptionList(){
+
+	public void setOptionList() {
 		addOption("RESUME");
 		addOption("RESTART");
 		addOption("SETTING");
@@ -29,11 +31,12 @@ public class Pause extends OptionGameObject {
 		mainMenuTitle = new TopDownImageBackground(
 				getImage("images/menu/title.png"), DemoGameEngine.WIDTH,
 				DemoGameEngine.HEIGHT);
+
 	}
 
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		setOptionLayout(g,150,100,40);
+		setOptionLayout(g, 150, 100, 40);
 		setOptionArrow(g);
 	}
 
@@ -42,9 +45,13 @@ public class Pause extends OptionGameObject {
 				90 + (super.getOption() * 40), null);
 	}
 
-
 	public int getOption() {
 		return super.getOption();
 	}
+	
+	public State getState(){
+		return myState;
+	}
+
 
 }

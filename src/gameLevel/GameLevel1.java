@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import keyconfiguration.KeyConfig;
 import levelTransition.DemoLevelTransition1;
 import playerState.AssistanceState;
 import spawn.ElementSpawner;
@@ -38,7 +37,6 @@ public class GameLevel1 extends GameLevel {
 
 	public boolean showSatellite = false;
 
-	public KeyConfig keyConfig;
 	public CollisionManager manager;
 
 	public static TopDownTimer timer = new TopDownTimer(3000);

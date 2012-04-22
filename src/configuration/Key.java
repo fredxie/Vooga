@@ -32,6 +32,12 @@ public class Key {
 			return true;
 		return false;
 	}
+	
+	public boolean isKeyPressed() {
+		if (myGame.keyPressed(keyValue))
+			return true;
+		return false;
+	}
 
 	public GameParameters getAction() {
 		return action;
@@ -45,15 +51,17 @@ public class Key {
 		keyValue = value;
 	}
 
-	// public void notifyObserver(long elapsedTime) {
-	// observer.getActoinMethods(action, elapsedTime);
-	// }
-	//
-
 	public void executeKeyFuction(long elapsedTime) {
-		// Class<?> c = player.getClass();
-		Class<?> c = player.getClass().getSuperclass();
+		 Class<?> c = player.getClass();
+		 if (!execute(elapsedTime, c)) {
+			 c = player.getClass().getSuperclass();
+			 execute(elapsedTime, c);
+		 }
+	}
+	
+	public boolean execute(long elapsedTime, Class<?> c) {
 		Method[] methods = c.getMethods();
+		boolean invoked = false;
 		for (Method m : methods) {
 			Annotation annotation = m.getAnnotation(KeyAnnotation.class);
 			if (annotation instanceof KeyAnnotation) {
@@ -63,6 +71,7 @@ public class Key {
 				if (key.action().equals(action)) {
 					try {
 						m.invoke(player, elapsedTime);
+						invoked = true;
 					} catch (IllegalArgumentException e) {
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
@@ -73,6 +82,7 @@ public class Key {
 				}
 			}
 		}
+		return invoked;
 	}
 
 }

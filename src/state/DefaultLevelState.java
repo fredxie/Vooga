@@ -2,6 +2,11 @@ package state;
 
 import java.awt.event.KeyEvent;
 
+import util.JsonUtil;
+import configuration.GameParameters;
+import configuration.KeyAnnotation;
+import configuration.SystemKeyPressedObserver;
+
 import collisionSystem.EnemyBulletCollision;
 
 import game.TopDownGameEngine;
@@ -14,14 +19,24 @@ public class DefaultLevelState extends State{
 		super(parent, game);
 		myGameObject = game;
 		game.setGameState(this);
+		
+		keyPressedObserver = new SystemKeyPressedObserver(this);
+		setKeyList(JsonUtil.createKeyList(this, "keyConfig.json",
+				this.myGameObject));
 	}
 
 	@Override
 	public void update(long arg0) {
-		activateByPressedButton(KeyEvent.VK_ESCAPE, 1);
-		
+//		activateByPressedButton(KeyEvent.VK_ESCAPE, 1);
+		keyPressedObserver.pressKey(arg0);
 		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
+	}
+	
+	@KeyAnnotation(action = GameParameters.SystemEscape)
+	public void updateHelper(long arg0) {
+		TopDownGameManager.setCurrentGameID(1);
+		myGameObject.finish();
 	}
 
 
@@ -48,5 +63,6 @@ public class DefaultLevelState extends State{
 		}
 		
 	}
+
 
 }
