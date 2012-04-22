@@ -64,36 +64,6 @@ public abstract class RegularFighter extends Fighter {
 		return keyList;
 	}
 
-	// @KeyAnnotation(action = GameParameters.UP)
-	// public void keyUpPressed(long elapsedTime) {
-	// speedY = -moveSpeed;
-	// }
-	//
-	// @KeyAnnotation(action = GameParameters.DOWN)
-	// public void keyDownPressed(long elapsedTime) {
-	// speedY = moveSpeed;
-	// }
-	//
-	// @KeyAnnotation(action = GameParameters.LEFT)
-	// public void keyLeftPressed(long elapsedTime) {
-	// speedX = -moveSpeed;
-	// }
-	//
-	// @KeyAnnotation(action = GameParameters.RIGHT)
-	// public void keyRightPressed(long elapsedTime) {
-	// speedX = moveSpeed;
-	// }
-	//
-	// @KeyAnnotation(action = GameParameters.FIRE)
-	// public void keyFirePressed(long elapsedTime) {
-	// if (!allowFire) {
-	// allowFire = refireRate.action(elapsedTime);
-	// }
-	//
-	// else if (allowFire)
-	// attack(elapsedTime, weaponStyle, weaponDamage);
-	// }
-
 	@KeyAnnotation(action = GameParameters.UP)
 	public abstract void keyUpPressed(long elapsedTime);
 
@@ -108,13 +78,12 @@ public abstract class RegularFighter extends Fighter {
 
 	@KeyAnnotation(action = GameParameters.FIRE)
 	public abstract void keyFirePressed(long elapsedTime);
+	
+	@KeyAnnotation(action = GameParameters.BOMB)
+	public abstract void keyBombPressed(long elapsedTime);
+	
 
 	public abstract void refresh(long elapsedTime);
-
-	public abstract void bomb(long elapsedTime);
-
-
-
 
 	public PlayerState getAssistanceState() {
 		return assistanceState;
@@ -136,14 +105,6 @@ public abstract class RegularFighter extends Fighter {
 	public abstract void initHelper();
 
 	public void fighterControl(long elapsedTime) {
-		// speedX = speedY = 0;
-		// for (Key key : keyList) {
-		// if (key.isKeyDown()) {
-		// key.notifyObserver(elapsedTime);
-		// }
-		// }
-		// speedY -= backgroundSpeed / 10.0;
-		// setSpeed(speedX, speedY);
 		if (assistance != null)
 			assistance.fighterControl(elapsedTime);
 

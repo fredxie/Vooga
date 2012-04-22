@@ -14,7 +14,7 @@ public class DemoLevelUpdate2 {
 
 	public void fighterUpdate(GameLevel2 gl, long elapsedTime) {
 		gl.fighter.refresh(elapsedTime);
-		gl.fighter.bomb(elapsedTime);
+//		gl.fighter.bomb(elapsedTime);
 	}
 
 	public void enemyUpdate(GameLevel2 gl, long elapsedTime) {

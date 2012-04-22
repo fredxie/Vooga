@@ -23,7 +23,7 @@ public class Configuration {
 	public static int INITIAL_STYLE = 0;
 
 	public static int BOMB_NUM = 5;
-	public static int BOMB = KeyEvent.VK_CONTROL;
+//	public static int BOMB = KeyEvent.VK_CONTROL;
 
 	public static String BACKGROUND_PATH;
 	public static BufferedImage FIGHTER_PATH = TopDownImageUtil
