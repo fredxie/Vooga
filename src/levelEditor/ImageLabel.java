@@ -8,16 +8,18 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
-import javax.swing.event.MouseInputListener;
 
-public class ImageLabel extends JLabel implements MouseInputListener {
+public class ImageLabel extends JLabel implements MouseListener {
 
 	public static int WIDTH = 60;
 	public static int HEIGTHT = 60;
@@ -29,6 +31,10 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 
 	private boolean inRightPanel;
 	private int X_pos, Y_pos;
+	
+	private String ImagePath;
+	private String myCategory = null;
+	private int HP = 0;
 
 	public ImageLabel(BufferedImage image, LevelEditor ld) {
 		super();
@@ -37,7 +43,7 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 		setBackgroundImage();
 		this.setSize(WIDTH, HEIGTHT);
 		inRightPanel = true;
-		addMouseMotionListener(this);
+		addMouseListener(this);
 		addMouseListener(this);
 	}
 
@@ -82,7 +88,7 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 			menu.add(spec);
 			spec.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("spec");
+					activateSpecDialog();
 				}
 			});
 			menu.addSeparator();
@@ -109,7 +115,8 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 		}
 
 		else if (SwingUtilities.isLeftMouseButton(arg0) && inRightPanel) {
-			ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
+			//ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
+			ImageLabel newLabel = copyLabel();
 			newLabel.moveToLeftPanel();
 			levelEditor.addToList(newLabel);
 			levelEditor.setCachedLabel(newLabel);
@@ -126,17 +133,19 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	
+	public void activateSpecDialog(){
+		SpecDialog sd = new SpecDialog(this);
+	}
+	
+	public ImageLabel copyLabel(){
+		ImageLabel newLabel = new ImageLabel(myImage,levelEditor);
+		newLabel.setHP(HP);
+		newLabel.setCategory(myCategory);
+		newLabel.setImagePath(ImagePath);
+		return newLabel;
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public void moveToLeftPanel() {
 		inRightPanel = false;
@@ -163,6 +172,40 @@ public class ImageLabel extends JLabel implements MouseInputListener {
 
 	public int getY_pos() {
 		return Y_pos;
+	}
+	
+	public void setCategory(String str){
+		myCategory = str;
+	}
+	
+	public String getCategory(){
+		return myCategory;
+	}
+	
+	public void setHP(int a){
+		HP = a;
+	}
+	
+	public int getHP(){
+		return HP;
+	}
+	
+	public void setImagePath(String str){
+		ImagePath = str;
+	}
+	
+	public String getImagePath(){
+		return ImagePath;
+	}
+	
+	public List<Object> toList(){
+		List<Object> myList = new ArrayList<Object>();
+		myList.add(ImagePath);
+		myList.add(myCategory);
+		myList.add(HP);
+		myList.add(getX());
+		myList.add(getY());
+		return myList;
 	}
 
 }

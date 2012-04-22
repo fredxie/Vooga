@@ -22,7 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class LevelEditor extends JFrame implements KeyListener,MouseListener {
+public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	protected static final JFileChooser ImageChooser = new JFileChooser(
 			"./images/");
@@ -34,24 +34,21 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 
 	private JMenuBar menuBar;
 	private ImageLabel cachedLabel;
-	private int width, height;
+	private static int width = 500; 
+	private static int height = 600;;
 
 	private ArrayList<ImageLabel> list;
-	private HashMap<Integer, String> myMap;
+	private String background_Path;
 
 	public LevelEditor() {
 		super("Level Editor");
 		list = new ArrayList<ImageLabel>();
 		cachedLabel = null;
-		width = 500;
-		height = 600;
 
-		myMap = new HashMap<Integer, String>();
 		addKeyListener(this);
-		
 
-		 panel_1 = new ImagePanel(loadDefalutBackground());
-		//panel_1 = new ImagePanel();
+		panel_1 = new ImagePanel(loadDefalutBackground());
+		// panel_1 = new ImagePanel();
 		panel_1.setLayout(null);
 		panel_1.addMouseListener(this);
 		panel1 = new JScrollPane(panel_1,
@@ -69,10 +66,6 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		panel2.setBounds(500, 0, 300, 600);
 
 		setLayout(null);
-
-		// int gap = 10;
-		// panel_2.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap,
-		// gap));
 
 		setMenu();
 		setJMenuBar(menuBar);
@@ -105,7 +98,7 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		JMenuItem saveLevel = new JMenuItem("Save Level");
 		saveLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-
+				storeToList();
 			}
 		});
 		menu[0].add(saveLevel);
@@ -144,24 +137,28 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 	}
 
 	private void loadBackground() {
-		BufferedImage image = getSelectedImage();
+		File myFile = getSelectedFile();
+		background_Path = getSelectedPath(myFile);
+		
+		BufferedImage image = getSelectedImage(myFile);
 		panel_1.setImage(image);
 		height = image.getHeight();
 		width = image.getWidth();
 		panel_1.revalidate();
 		panel_1.repaint();
 	}
-	
+
 	private Image loadDefalutBackground() {
 		File myFile = new File("src/images/background1.jpg");
+		background_Path = getSelectedPath(myFile);
 		BufferedImage image = convertToBufferedImage(myFile);
 		return image;
 	}
 
-
 	private void loadNewElement() {
-		ImageLabel element = new ImageLabel(getSelectedImage(), this);
-		// currentLabel = element;
+		File myFile = getSelectedFile();
+		ImageLabel element = new ImageLabel(getSelectedImage(myFile), this);
+		element.setImagePath(getSelectedPath(myFile));
 		panel_2.add(element);
 		panel_2.revalidate();
 		panel_2.repaint();
@@ -171,20 +168,39 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		ImageLabel element = new ImageLabel(cachedLabel.getImage(), this);
 		putLabelOnPlayField(element);
 	}
-
-	private BufferedImage getSelectedImage() {
+	
+	private File getSelectedFile(){
 		int retval = ImageChooser.showOpenDialog(null);
 		if (retval != JFileChooser.APPROVE_OPTION) {
 			return null;
 		}
 		File myFile = ImageChooser.getSelectedFile();
-		BufferedImage image = convertToBufferedImage(myFile);
-		return image;
+		return myFile;
+	}
+	
+	private String getSelectedPath(File file){
+		String absolutePath = file.getAbsolutePath();
+		
+		File baseFile = new File("./");
+		String base = baseFile.getAbsolutePath().substring(0, baseFile.getAbsolutePath().length()-1);
+		
+		if (absolutePath.startsWith(base)) {
+		    return absolutePath.substring(base.length());
+		}
+
+		return null;
 	}
 
+	private BufferedImage getSelectedImage(File file) {
+		BufferedImage image = convertToBufferedImage(file);
+		return image;
+	}
+/******************************Main******************************/
+	
 	public static void main(String[] args) {
 		LevelEditor l = new LevelEditor();
 	}
+/**************************************************************/
 
 	private BufferedImage convertToBufferedImage(File myFile) {
 		BufferedImage img = null;
@@ -196,7 +212,6 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		return img;
 	}
 
-
 	public void deleteLabel(ImageLabel l) {
 		l.setVisible(false);
 		removeFromPanel(l);
@@ -206,12 +221,10 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		if (l.inRightPanel()) {
 			panel_2.remove(l);
 			panel_2.revalidate();
-			System.out.println(list.size());
 		} else {
 			panel_1.remove(l);
 			list.remove(l);
 			panel_1.revalidate();
-			System.out.println(list.size());
 		}
 	}
 
@@ -219,14 +232,13 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 		removeFromPanel(l);
 		panel_1.add(l);
 		l.setDefaultPosition();
-		list.add(l);
+		//list.add(l);
 	}
 
 	public void setCachedLabel(ImageLabel i) {
 		cachedLabel = i;
 	}
 
-	
 	public int getBackgroundHeight() {
 		return height;
 	}
@@ -234,15 +246,15 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 	public int getBackgroundWidth() {
 		return width;
 	}
-	
-	public void addToList(ImageLabel i){
-		list.add(i);
-		System.out.println(list.size());
+
+	public void addToList(ImageLabel i) {
+		  list.add(i);
+		 //System.out.println(list.size());
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		
+
 	}
 
 	@Override
@@ -257,43 +269,54 @@ public class LevelEditor extends JFrame implements KeyListener,MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		if(cachedLabel != null){
-			cachedLabel.setLocation(arg0.getX()-ImageLabel.WIDTH/2, arg0.getY()-ImageLabel.HEIGTHT/2);
+		if (cachedLabel != null) {
+			cachedLabel.setLocation(arg0.getX() - ImageLabel.WIDTH / 2,
+					arg0.getY() - ImageLabel.HEIGTHT / 2);
 			panel_1.add(cachedLabel);
 			//output();
 			panel_1.repaint();
 			panel_1.revalidate();
 		}
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	
-	public void output(){
-		for(int i=0; i<list.size(); i++){
-			System.out.println("item "+ i+" "+list.get(i).getX()+" "+list.get(i).getY());
+	public List<List<Object>> storeToList(){
+		List<List<Object>> store = new ArrayList<List<Object>>();
+		List<Object> storeBackground = new ArrayList<Object>();
+		storeBackground.add(background_Path);
+		store.add(storeBackground);
+		
+		for(ImageLabel label: list){
+			if(label.getX()!=0 || label.getY()!=0)
+				store.add(label.toList());
 		}
-		System.out.println(" ");
+		for(List<Object> a: store){
+			System.out.println(a.toString());
+		}
+		return store;
 	}
+
 }
