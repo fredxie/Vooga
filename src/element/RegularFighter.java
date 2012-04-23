@@ -99,11 +99,11 @@ public abstract class RegularFighter extends Fighter {
 
 	@KeyAnnotation(action = GameParameters.FIRE)
 	public abstract void keyFirePressed(long elapsedTime);
+	
+	@KeyAnnotation(action = GameParameters.BOMB)
+	public abstract void keyBombPressed(long elapsedTime);
 
 	public abstract void refresh(long elapsedTime);
-
-	public abstract void bomb(long elapsedTime);
-
 
 	public PlayerState getAssistanceState() {
 		return assistanceState;
