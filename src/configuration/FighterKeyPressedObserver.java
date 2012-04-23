@@ -29,4 +29,10 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 				- JsonUtil.parse("paraConfig.json").get(
 						GameParameters.BACKGROUND_SPEED) / 10.0);
 	}
+
+	@Override
+	public Object getObject() {
+		// TODO Auto-generated method stub
+		return fighter;
+	}
 }

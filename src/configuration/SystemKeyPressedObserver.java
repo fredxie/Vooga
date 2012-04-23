@@ -7,7 +7,7 @@ package configuration;
 
 public class SystemKeyPressedObserver implements KeyPressedObserver {
 
-	private KeyConfig Object;
+	private KeyConfig object;
 
 	// private boolean active = false;
 	//
@@ -20,17 +20,25 @@ public class SystemKeyPressedObserver implements KeyPressedObserver {
 	// }
 
 	public SystemKeyPressedObserver(KeyConfig Object) {
-		this.Object = Object;
+		this.object = Object;
 		KeyPressedSubject.getInstance().registerObserver(this);
 	}
 
 	@Override
 	public void pressKey(long elapsedTime) {
 		// TODO Auto-generated method stub
-		for (Key key : Object.getKeyList()) {
+		for (Key key : object.getKeyList()) {
 			if (key.isKeyPressed()) {
 				key.executeKeyFuction(elapsedTime);
 			}
 		}
 	}
+
+	@Override
+	public Object getObject() {
+		// TODO Auto-generated method stub
+		return object;
+	}
+	
+	
 }

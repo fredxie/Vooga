@@ -6,4 +6,6 @@ package configuration;
 public interface KeyPressedObserver {
 
 	public void pressKey(long elapsedTime);
+	
+	public Object getObject();
 }
