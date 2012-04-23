@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import state.DefaultFinishGameState;
 
+import collisionSystem.EnemyBulletCollision;
 import collisionSystem.LifeDecreaseCollision;
 
 import background.TopDownImageBackground;
@@ -36,7 +37,7 @@ public class WinGameScoreBoard extends ScoreBoardGameObject{
 				"YOU WIN THE GAME " , 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + LifeDecreaseCollision.destroyed + " ENEMIES", 20,
+				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES", 20,
 				DemoGameEngine.HEIGHT / 2 );
 	}
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import DemoGameLevel.GameLevel1;
 import ai.AI;
 import ai.BehaviorManager_Enemy;
 import ai.BehaviorManager_Weapon;
@@ -67,7 +68,6 @@ import element.Enemy;
 import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
-import gameLevel.GameLevel1;
 import gameObject.TopDownGameManager;
 import state.*;
 public class DemoEnemy extends Enemy {

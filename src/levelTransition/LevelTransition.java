@@ -1,16 +1,19 @@
 package levelTransition;
 
+import gameLevel.GameLevel;
+
 import java.awt.Graphics2D;
 
-import com.golden.gamedev.object.GameFontManager;
-
 public abstract class LevelTransition {
-	
-	//public abstract void levelComplete(boolean lc);
+	public GameLevel gl;
 
-	public abstract void gameRender(Graphics2D g, String levelRequirement, GameFontManager fontManager);
+	public LevelTransition(GameLevel gl) {
+		this.gl = gl;
+	}
 
-	public abstract void betweenLevelsRender(Graphics2D g, int nextLevelNum, GameFontManager fontManager);
-	
-	public abstract void gameOverRender(Graphics2D g, GameFontManager fontManager);
+	public abstract void gameOver();
+
+	public abstract void levelCompleteRender(Graphics2D g);
+
+	public abstract void gameOverRender(Graphics2D g);
 }

@@ -2,8 +2,6 @@ package demo;
 
 import game.TopDownGameEngine;
 import game.TopDownGameLoader;
-import gameLevel.GameLevel1;
-import gameLevel.GameLevel2;
 import gameObject.TopDownGameManager;
 import gameObject.optionGameObject.Menu;
 import gameObject.optionGameObject.Pause;
@@ -12,6 +10,9 @@ import gameObject.scoreBoardGameObject.LostGameScoreBoard;
 import gameObject.scoreBoardGameObject.WinGameScoreBoard;
 
 import java.awt.Dimension;
+
+import DemoGameLevel.GameLevel1;
+import DemoGameLevel.GameLevel2;
 
 
 public class DemoGameEngine extends TopDownGameEngine {
