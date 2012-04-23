@@ -35,7 +35,7 @@ public class DefaultLevelState extends State{
 	
 	@KeyAnnotation(action = GameParameters.SystemEscape)
 	public void updateHelper(long arg0) {
-		TopDownGameManager.setCurrentGameID(1);
+		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN+1);
 		myGameObject.finish();
 	}
 

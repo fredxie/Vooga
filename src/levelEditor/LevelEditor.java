@@ -14,12 +14,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class LevelEditor extends JFrame implements KeyListener, MouseListener {
@@ -138,9 +134,10 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	private void loadBackground() {
 		File myFile = getSelectedFile();
-		background_Path = getSelectedPath(myFile);
-		
-		BufferedImage image = getSelectedImage(myFile);
+		background_Path = LevelEditorUtil.getSelectedPath(myFile);
+		BufferedImage image = LevelEditorUtil.getSelectedImage(myFile);
+		//BufferedImage image = LevelEditorUtil.combine(i);
+		//BufferedImage image = getSelectedImage(myFile);
 		panel_1.setImage(image);
 		height = image.getHeight();
 		width = image.getWidth();
@@ -150,15 +147,17 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	private Image loadDefalutBackground() {
 		File myFile = new File("src/images/background1.jpg");
-		background_Path = getSelectedPath(myFile);
-		BufferedImage image = convertToBufferedImage(myFile);
+		background_Path = LevelEditorUtil.getSelectedPath(myFile);
+		BufferedImage image = LevelEditorUtil.convertToBufferedImage(myFile);
+		//return image;
+		//return LevelEditorUtil.combine(image);
 		return image;
 	}
 
 	private void loadNewElement() {
 		File myFile = getSelectedFile();
-		ImageLabel element = new ImageLabel(getSelectedImage(myFile), this);
-		element.setImagePath(getSelectedPath(myFile));
+		ImageLabel element = new ImageLabel(LevelEditorUtil.getSelectedImage(myFile), this);
+		element.setImagePath(LevelEditorUtil.getSelectedPath(myFile));
 		panel_2.add(element);
 		panel_2.revalidate();
 		panel_2.repaint();
@@ -178,23 +177,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		return myFile;
 	}
 	
-	private String getSelectedPath(File file){
-		String absolutePath = file.getAbsolutePath();
-		
-		File baseFile = new File("./");
-		String base = baseFile.getAbsolutePath().substring(0, baseFile.getAbsolutePath().length()-1);
-		
-		if (absolutePath.startsWith(base)) {
-		    return absolutePath.substring(base.length());
-		}
 
-		return null;
-	}
-
-	private BufferedImage getSelectedImage(File file) {
-		BufferedImage image = convertToBufferedImage(file);
-		return image;
-	}
 /******************************Main******************************/
 	
 	public static void main(String[] args) {
@@ -202,15 +185,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 	}
 /**************************************************************/
 
-	private BufferedImage convertToBufferedImage(File myFile) {
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(myFile);
-		} catch (IOException e) {
-		}
-
-		return img;
-	}
+	
 
 	public void deleteLabel(ImageLabel l) {
 		l.setVisible(false);
