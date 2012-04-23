@@ -1,14 +1,11 @@
 package state;
 
-import java.awt.event.KeyEvent;
-
 import util.JsonUtil;
 
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
 import configuration.SystemKeyPressedObserver;
 import game.TopDownGameEngine;
-import gameLevel.GameLevel;
 import gameObject.TopDownGameManager;
 import gameObject.scoreBoardGameObject.ScoreBoardGameObject;
 
@@ -23,8 +20,6 @@ public class DefaultFinishGameState extends State{
 	}
 
     public void update(long arg0) {
-//    	activateByPressedButton(KeyEvent.VK_ESCAPE, TopDownGameManager.GAMEBEGIN);
-//    	activateByPressedButton(KeyEvent.VK_R, TopDownGameManager.GAMELEVELBEGIN);
 		keyPressedObserver.pressKey(arg0);
 
 	}
@@ -32,6 +27,7 @@ public class DefaultFinishGameState extends State{
     @KeyAnnotation(action = GameParameters.SystemEscape)
 	public void toMenu(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
+		myGameEngine.initResources();
 		myGameObject.finish();
 	}
 	

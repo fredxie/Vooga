@@ -9,6 +9,7 @@ import DemoLevelTransition.DemoLevelTransition;
 import util.JsonUtil;
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import collisionSystem.EnemyBulletCollision;
@@ -32,13 +33,15 @@ public class DefaultLevelState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
+//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+
 		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
 	}
 
 	@KeyAnnotation(action = GameParameters.SystemEscape)
 	public void updateHelper(long arg0) {
-		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN+1);
+		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN + 1);
 		myGameObject.finish();
 	}
 

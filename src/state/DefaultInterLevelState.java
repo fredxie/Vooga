@@ -25,8 +25,6 @@ public class DefaultInterLevelState extends State{
 
 	@Override
 	public void update(long arg0) {
-//		activateByPressedButton(KeyEvent.VK_SPACE, TopDownGameManager.getPreviousGameID()+1);
-//		activateByPressedButton(KeyEvent.VK_ESCAPE, TopDownGameManager.GAMEBEGIN);
 		keyPressedObserver.pressKey(arg0);
 	}
 
