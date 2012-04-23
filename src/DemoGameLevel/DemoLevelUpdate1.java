@@ -15,6 +15,7 @@ import util.TopDownImageUtil;
 import configuration.KeyPressedSubject;
 import demo.DemoGameEngine;
 import demo.DemoProtection;
+import element.Fighter;
 
 public class DemoLevelUpdate1 extends GameLevelUpdate{
 
@@ -22,8 +23,8 @@ public class DemoLevelUpdate1 extends GameLevelUpdate{
 		super(gl);
 	}
 
-	public void keyUpdate(long elapsedTime) {
-		KeyPressedSubject.getInstance().notifyObservers(elapsedTime);
+	public void keyUpdate(long elapsedTime, Fighter fighter) {
+		KeyPressedSubject.getInstance().notifyObservers(elapsedTime, fighter);
 	}
 
 	public void playFieldUpdate(long elapsedTime) {
@@ -71,7 +72,7 @@ public class DemoLevelUpdate1 extends GameLevelUpdate{
 
 	
 	public void levelComplete() {
-		if (EnemyBulletCollision.destroyed >= 10
+		if (EnemyBulletCollision.destroyed >= 1
 				||gl.playfield.getBackground().getY() == 0) {
 			gl.levelComplete = true;
 			gl.playfield.clearPlayField();

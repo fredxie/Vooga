@@ -1,5 +1,7 @@
 package gameLevel;
 
+import element.Fighter;
+
 public abstract class GameLevelUpdate {
 	public GameLevel gl;
 
@@ -7,7 +9,7 @@ public abstract class GameLevelUpdate {
 		this.gl = gl;
 	}
 
-	public abstract void keyUpdate(long elapsedTime);
+	public abstract void keyUpdate(long elapsedTime, Fighter fighter);
 
 	public abstract void playFieldUpdate(long elapsedTime);
 

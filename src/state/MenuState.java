@@ -62,6 +62,7 @@ public class MenuState extends State {
 		switch (game.getOption()) {
 		case 0:
 			// start easy game
+			//myGameEngine.initResources();
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 			// myGameEngine.nextGameID = 2;
 			game.finish();
@@ -104,8 +105,8 @@ public class MenuState extends State {
 
 	@Override
 	public void update(long arg0) {
-//		KeyPressedSubject.getInstance().notifyObservers(arg0);
-		keyPressedObserver.pressKey(arg0);
+		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+//		keyPressedObserver.pressKey(arg0);
 
 	}
 

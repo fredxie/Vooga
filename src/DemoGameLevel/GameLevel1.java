@@ -40,7 +40,7 @@ public class GameLevel1 extends GameLevel {
 		DemoLevelUpdate1 demoLevelUpdate1 = new DemoLevelUpdate1(this);
 
 		demoLevelUpdate1.levelComplete();
-		demoLevelUpdate1.keyUpdate(elapsedTime);
+		demoLevelUpdate1.keyUpdate(elapsedTime, fighter);
 		demoLevelUpdate1.playFieldUpdate(elapsedTime);
 		demoLevelUpdate1.enemyUpdate(elapsedTime);
 		demoLevelUpdate1.fighterUpdate(elapsedTime);

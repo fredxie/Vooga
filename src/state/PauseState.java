@@ -50,7 +50,7 @@ public class PauseState extends State {
 		case 0:
 			// RESUME
 			// myGameEngine.nextGameID = 2;
-			System.out.println("XXX");
+			//System.out.println("XXX");
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.getPreviousGameID());
 			game.finish();
@@ -58,7 +58,7 @@ public class PauseState extends State {
 
 		case 1:
 			// RESTART
-			System.out.println(1);
+			//System.out.println(1);
 			myGameEngine.initResources();
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
@@ -68,13 +68,13 @@ public class PauseState extends State {
 
 		case 2:
 			// Setting
-			System.out.println(2);
+			//System.out.println(2);
 			DemoSetting setting = new DemoSetting();
 			break;
 
 		case 3:
 			// menu
-			System.out.println(3);
+			//System.out.println(3);
 			myGameEngine.initResources();
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 			game.finish();
