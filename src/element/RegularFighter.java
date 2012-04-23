@@ -27,7 +27,7 @@ public abstract class RegularFighter extends Fighter {
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 	public AssistanceState assistanceState = new AssistanceState(this);
-	public CollisionState collisionState = new PhysicCollisionState(this);
+	public CollisionState collisionState = new CollisionState(this);
 	public AutoFighter assistance;
 	public double moveSpeed = 0.3; // (default)
 	public boolean allowFire = true;
@@ -99,11 +99,11 @@ public abstract class RegularFighter extends Fighter {
 
 	@KeyAnnotation(action = GameParameters.FIRE)
 	public abstract void keyFirePressed(long elapsedTime);
+	
+	@KeyAnnotation(action = GameParameters.BOMB)
+	public abstract void keyBombPressed(long elapsedTime);
 
 	public abstract void refresh(long elapsedTime);
-
-	public abstract void bomb(long elapsedTime);
-
 
 	public PlayerState getAssistanceState() {
 		return assistanceState;

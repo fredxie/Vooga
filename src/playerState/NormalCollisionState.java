@@ -1,13 +1,16 @@
 package playerState;
 
+/**
+ * Yi Ding
+ */
 import com.golden.gamedev.object.Sprite;
 
 import element.Fighter;
 
-public class NormalCollisionState extends CollisionState{
+public class NormalCollisionState extends CollisionStatus{
 
-	public NormalCollisionState(Fighter fighter) {
-		super(fighter);
+	public NormalCollisionState(CollisionState state) {
+		super(state);
 		collisionID = "Normal";
 	}
 
@@ -16,6 +19,8 @@ public class NormalCollisionState extends CollisionState{
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }
 

@@ -1,23 +1,36 @@
 package playerState;
 
+/**
+ * Yi Ding
+ */
 import com.golden.gamedev.object.Timer;
 
 import element.Fighter;
 
-public class PhysicCollisionState extends CollisionState{
+public class PhysicCollisionState extends CollisionStatus{
     
-	Timer validDuration = new Timer(5000);
-	public PhysicCollisionState(Fighter fighter) {
-		super(fighter);
+	Timer validDuration = new Timer(10000);
+	public PhysicCollisionState(CollisionState state) {
+
+		super(state);
 		collisionID = "Shield";
 	}
-
+	
+	
+	
+	
+	
+	
 	@Override
 	public void update(long elapsedTime) {
+		// TODO Auto-generated method stub
+		
 		if(validDuration.action(elapsedTime))
 		{
-			changeState(new NormalCollisionState(fighter));
+			state.changeState(new NormalCollisionState(state));
 		}
 		
+		
 	}
+
 }

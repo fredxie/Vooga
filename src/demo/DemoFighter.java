@@ -2,6 +2,8 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import playerState.NormalCollisionState;
+
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
 import element.Element;
@@ -10,7 +12,6 @@ import element.PhysicalProtection;
 import element.RegularFighter;
 import element.Satellite;
 import element.Weapon;
-import game.Configuration;
 import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
@@ -30,6 +31,7 @@ public class DemoFighter extends RegularFighter {
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(BOMB_NUM);
+		collisionState.changeState(new NormalCollisionState(collisionState));
 		stateList.add(weaponState);
 		stateList.add(assistanceState);
 		stateList.add(collisionState);
@@ -38,7 +40,10 @@ public class DemoFighter extends RegularFighter {
 	}
 
 	public void refresh(long elapsedTime) {
+
 		if (isActive()) {
+			stateUpdate(elapsedTime);
+		
 			if(this.getWeaponStyle() == 3){ 
 				best_weapon = true;
 			}
@@ -55,19 +60,7 @@ public class DemoFighter extends RegularFighter {
 
 
 
-//	public void bomb(long elapsedTime) {
-//		if (allowBomb == false) {
-//			allowBomb = rebombRate.action(elapsedTime);
-//		}
-//		if (game.keyDown(Configuration.BOMB) && bombNum > 0 && allowBomb) {
-//			bombNum--;
-//			clearElement("Enemy");
-//			clearElement("Enemy Missile");
-//			allowBomb = false;
-//			// rebombRate.refresh();
-//		}
-//
-//	}
+
 
 	private void clearElement(String name) {
 		Element[] element = playfield.getGroup(name).getElement();
@@ -108,18 +101,23 @@ public class DemoFighter extends RegularFighter {
 	}
 	
 	public void keyUpPressed(long elapsedTime) {
+		// TODO Auto-generated method stub
+		// speedY = -moveSpeed;
 		setVerticalSpeed(-moveSpeed);
 	}
 	
 	public void keyDownPressed(long elapsedTime) {
+		// speedY = moveSpeed;
 		setVerticalSpeed(moveSpeed);
 	}
 
 	public void keyLeftPressed(long elapsedTime) {
+		// speedX = -moveSpeed;
 		setHorizontalSpeed(-moveSpeed);
 	}
 
 	public void keyRightPressed(long elapsedTime) {
+		// speedX = moveSpeed;
 		setHorizontalSpeed(moveSpeed);
 	}
 
@@ -131,8 +129,16 @@ public class DemoFighter extends RegularFighter {
 		else if (allowFire)
 			attack();
 	}
+
 	
-	public void bomb(long elapsedTime) {
+	@Override
+	public Element clone() {
+		// TODO Auto-generated method stub
+		return new DemoFighter(this.getImage());
+	}
+
+	@Override
+	public void keyBombPressed(long elapsedTime) {
 		if (allowBomb == false) {
 			allowBomb = rebombRate.action(elapsedTime);
 		}
@@ -141,14 +147,7 @@ public class DemoFighter extends RegularFighter {
 			clearElement("Enemy");
 			clearElement("Enemy Missile");
 			allowBomb = false;
-		}
-
-	}
-
-	@Override
-	public Element clone() {
-		// TODO Auto-generated method stub
-		return new DemoFighter(this.getImage());
+		}		
 	}
 
 

@@ -6,7 +6,7 @@ import element.Fighter;
 
 public class CollisionState extends PlayerState{
 	protected String collisionID;
-	CollisionState collisionState; 
+	CollisionStatus collisionStatus; 
 	
 //	Timer shieldLength = new Timer(5000);
 	
@@ -18,14 +18,20 @@ public class CollisionState extends PlayerState{
 	
 	public CollisionState(Fighter fighter) {
 		super(fighter);
-		collisionState = this;
-
+		
 	}
+	public CollisionState(Fighter fighter, CollisionStatus status) {
+		super(fighter);
+		collisionStatus = status;
+		collisionID = collisionStatus.collisionID;
+		
+	}
+	
 	
     public void changeState(Object collisionState)
     {
-    	this.collisionState = (CollisionState) collisionState;
-    	collisionID =this.collisionState.getID();
+    	collisionStatus = (CollisionStatus) collisionState;
+    	collisionID =collisionStatus.collisionID;
     }
     
 	public String getID()
@@ -36,8 +42,8 @@ public class CollisionState extends PlayerState{
 	@Override
 	public void update(long elapsedTime) {
 		// TODO Auto-generated method stub
-		collisionState.update(elapsedTime);
-		
+
+		collisionStatus.update(elapsedTime);
 	}
 	
    

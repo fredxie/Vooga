@@ -3,6 +3,8 @@ package demo;
 import java.awt.image.BufferedImage;
 
 import playerState.CollisionState;
+import playerState.CollisionStatus;
+import playerState.PhysicCollisionState;
 import element.Bonus;
 import element.Element;
 import element.RegularFighter;
@@ -11,12 +13,12 @@ import element.TopDownPlayField;
 public class DemoBonus5 extends Bonus {
 		
 	
-	private CollisionState state;
+	private CollisionStatus state;
 //	= new Laser(
 //			TopDownImageUtil.getImage("images/game/bigLaser1.png")); 
-	public DemoBonus5(TopDownPlayField playfield, BufferedImage image, CollisionState state) {
+	public DemoBonus5(TopDownPlayField playfield, BufferedImage image, CollisionStatus status) {
 		super(playfield, image);
-		this.state=state;
+		this.state=status;
 		  
 		}
 

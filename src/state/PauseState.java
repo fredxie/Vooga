@@ -10,6 +10,7 @@ import util.JsonUtil;
 import configuration.DemoSetting;
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import game.TopDownGameEngine;
@@ -49,8 +50,7 @@ public class PauseState extends State {
 		switch (game.getOption()) {
 		case 0:
 			// RESUME
-			// myGameEngine.nextGameID = 2;
-			//System.out.println("XXX");
+			System.out.println("pausestate0");
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.getPreviousGameID());
 			game.finish();
@@ -58,7 +58,7 @@ public class PauseState extends State {
 
 		case 1:
 			// RESTART
-			//System.out.println(1);
+			System.out.println("pausestate1");
 			myGameEngine.initResources();
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
@@ -68,13 +68,13 @@ public class PauseState extends State {
 
 		case 2:
 			// Setting
-			//System.out.println(2);
+			System.out.println("pausestate2");
 			DemoSetting setting = new DemoSetting();
 			break;
 
 		case 3:
 			// menu
-			//System.out.println(3);
+			System.out.println("pausestate3");
 			myGameEngine.initResources();
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 			game.finish();
@@ -91,6 +91,7 @@ public class PauseState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
+//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 	}
 
 }

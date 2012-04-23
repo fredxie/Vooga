@@ -18,6 +18,7 @@ import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import levelEditor.LevelEditor;
+import load.Load;
 import menu.GameSL;
 
 import game.Configuration;
@@ -62,9 +63,8 @@ public class MenuState extends State {
 		switch (game.getOption()) {
 		case 0:
 			// start easy game
-			//myGameEngine.initResources();
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
-			// myGameEngine.nextGameID = 2;
+			System.out.println("menustate0");
 			game.finish();
 			break;
 
@@ -81,15 +81,7 @@ public class MenuState extends State {
 
 		case 3:
 			// load and start game
-			GameSL sl = new GameSL();
-			try {
-				ArrayList<Element> list = sl.loadElement("1.jason");
-				HashMap<Integer, String> map = sl.loadMap("1.jason");
-				String path = map.get(0);
-				Configuration.BACKGROUND_PATH = path;
-			} catch (IOException e) {
-
-			}
+			Load load = new Load();
 			break;
 
 		case 4:

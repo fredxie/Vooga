@@ -15,6 +15,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+
+import util.LoadUtil;
+
 import java.io.File;
 import java.util.*;
 
@@ -297,6 +300,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		for(List<Object> a: store){
 			System.out.println(a.toString());
 		}
+		LoadUtil.saveJson(store);
 		return store;
 	}
 	
