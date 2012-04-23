@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public abstract class KeySubject {
 
-	public ArrayList observers = new ArrayList();
+	public ArrayList<Object> observers = new ArrayList<Object>();
 
 	public void registerObserver(Object o) {
 		observers.add(o);

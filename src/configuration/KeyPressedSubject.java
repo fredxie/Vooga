@@ -21,7 +21,7 @@ public class KeyPressedSubject extends KeySubject {
 	public void notifyObservers(long elapsedTime, Object object) {
 		for (int i = 0; i < observers.size(); i++) {
 			KeyPressedObserver observer = (KeyPressedObserver) observers.get(i);
-			if (observer.getObject().getClass().getName().equals(object.getClass().getName()))
+			if (observer.getObject().getClass().equals(object.getClass()))
 				observer.pressKey(elapsedTime);
 		}
 	}

@@ -10,6 +10,7 @@ import DemoLevelTransition.DemoLevelTransition;
 import util.JsonUtil;
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import game.TopDownGameEngine;
@@ -29,8 +30,8 @@ public class DefaultLastLevelState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
-		// activateByPressedButton(KeyEvent.VK_ESCAPE,
-		// TopDownGameManager.GAMEBEGIN+1);
+//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+
 		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
 	}
