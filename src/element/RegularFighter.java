@@ -13,30 +13,20 @@ import java.util.List;
 
 import playerState.AssistanceState;
 import playerState.CollisionState;
-import playerState.NormalCollisionState;
 import playerState.PhysicCollisionState;
 import playerState.PlayerState;
-import playerState.WeaponState;
-import util.TopDownImageUtil;
-
-import com.golden.gamedev.object.Sprite;
-
 import configuration.FighterKeyChangedObserver;
 import configuration.FighterKeyPressedObserver;
 import configuration.GameParameters;
 import configuration.Key;
 import configuration.KeyAnnotation;
-import configuration.KeyChangedSubject;
-import configuration.KeyPressedSubject;
 
 public abstract class RegularFighter extends Fighter {
 
 	private List<Key> keyList;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
-//	public WeaponState weaponState = new WeaponState(this);
 	public AssistanceState assistanceState = new AssistanceState(this);
-
 	public CollisionState collisionState = new PhysicCollisionState(this);
 	public AutoFighter assistance;
 	public double moveSpeed = 0.3; // (default)
@@ -44,10 +34,11 @@ public abstract class RegularFighter extends Fighter {
 	public GameLevel game;
 	public BufferedImage bulletImage;
 	public List<PlayerState> stateList = new ArrayList<PlayerState>();
-
 	public FighterKeyChangedObserver keyChangedObserver;
 	public FighterKeyPressedObserver keyPressedObserver;
-
+    protected double speedFactor;
+	
+	
 	public RegularFighter(BufferedImage image) {
 		super(image);
 	}
@@ -64,6 +55,36 @@ public abstract class RegularFighter extends Fighter {
 		return keyList;
 	}
 
+	// @KeyAnnotation(action = GameParameters.UP)
+	// public void keyUpPressed(long elapsedTime) {
+	// speedY = -moveSpeed;
+	// }
+	//
+	// @KeyAnnotation(action = GameParameters.DOWN)
+	// public void keyDownPressed(long elapsedTime) {
+	// speedY = moveSpeed;
+	// }
+	//
+	// @KeyAnnotation(action = GameParameters.LEFT)
+	// public void keyLeftPressed(long elapsedTime) {
+	// speedX = -moveSpeed;
+	// }
+	//
+	// @KeyAnnotation(action = GameParameters.RIGHT)
+	// public void keyRightPressed(long elapsedTime) {
+	// speedX = moveSpeed;
+	// }
+	//
+	// @KeyAnnotation(action = GameParameters.FIRE)
+	// public void keyFirePressed(long elapsedTime) {
+	// if (!allowFire) {
+	// allowFire = refireRate.action(elapsedTime);
+	// }
+	//
+	// else if (allowFire)
+	// attack(elapsedTime, weaponStyle, weaponDamage);
+	// }
+
 	@KeyAnnotation(action = GameParameters.UP)
 	public abstract void keyUpPressed(long elapsedTime);
 
@@ -78,12 +99,11 @@ public abstract class RegularFighter extends Fighter {
 
 	@KeyAnnotation(action = GameParameters.FIRE)
 	public abstract void keyFirePressed(long elapsedTime);
-	
-	@KeyAnnotation(action = GameParameters.BOMB)
-	public abstract void keyBombPressed(long elapsedTime);
-	
 
 	public abstract void refresh(long elapsedTime);
+
+	public abstract void bomb(long elapsedTime);
+
 
 	public PlayerState getAssistanceState() {
 		return assistanceState;
@@ -104,12 +124,20 @@ public abstract class RegularFighter extends Fighter {
 
 	public abstract void initHelper();
 
-	public void fighterControl(long elapsedTime) {
-		if (assistance != null)
-			assistance.fighterControl(elapsedTime);
+	/*public void fighterControl(long elapsedTime) {
+		// speedX = speedY = 0;
+		// for (Key key : keyList) {
+		// if (key.isKeyDown()) {
+		// key.notifyObserver(elapsedTime);
+		// }
+		// }
+		// speedY -= backgroundSpeed / 10.0;
+		// setSpeed(speedX, speedY);
+	//	if (assistance != null)
+		//	assistance.fighterControl(elapsedTime);
 
 		stateUpdate(elapsedTime);
-	}
+	}*/
 	
 	@Override
     public void attack() {
