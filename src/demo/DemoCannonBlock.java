@@ -26,10 +26,16 @@ import element.TopDownPlayField;
 import element.Weapon;
 import game.Configuration;
 
+/**
+ * 
+ * @author Yi Ding
+ *
+ */
+
 
 public class DemoCannonBlock extends Enemy {
 
-	public static final int DEFAULT_FIRE_DELAY = 2000;
+	public static final int DEFAULT_FIRE_DELAY = 100000;
 
 	protected Fighter fighter;
 	protected BufferedImage m_baseImg;
@@ -146,13 +152,15 @@ public class DemoCannonBlock extends Enemy {
 				attack(elapsedTime);
 			}
 		} else { // for those have shown before, they should continue firing
-			attack(elapsedTime);
+			 if(getY()>playfield.getBackground().getY())
+					show=false;
+			 else attack(elapsedTime);
+		
 		}
-
 	}
 
 	public void render(Graphics2D g) {
-		renderCannon(g);
+	//	renderCannon(g);
 		renderBase(g);
 		super.render(g);
 	}

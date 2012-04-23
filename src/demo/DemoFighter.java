@@ -2,6 +2,8 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import playerState.NormalCollisionState;
+
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
 import element.Element;
@@ -29,6 +31,7 @@ public class DemoFighter extends RegularFighter {
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(BOMB_NUM);
+		collisionState.changeState(new NormalCollisionState(collisionState));
 		stateList.add(weaponState);
 		stateList.add(assistanceState);
 		stateList.add(collisionState);

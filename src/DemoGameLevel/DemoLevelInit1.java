@@ -108,7 +108,7 @@ public class DemoLevelInit1 extends GameLevelInit {
 		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
 				new DemoBonus5(gl.playfield,
 						gl.getImage("images/game/fighter_accelerate.png"),
-						new PhysicCollisionState(gl.fighter)), gl.bonusNum);
+						new PhysicCollisionState(gl.fighter.getCollisionState())), gl.bonusNum);
 		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 
