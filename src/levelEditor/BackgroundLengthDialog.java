@@ -1,5 +1,9 @@
 package levelEditor;
 
+/**
+ * @author Jiawei Shi
+ */
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -68,7 +72,4 @@ public class BackgroundLengthDialog extends JFrame{
 		levelEditor.loadBackground(myFile,Integer.parseInt(text));
 		
 	}
-	
-	
-
 }

@@ -5,6 +5,7 @@ package levelEditor;
  */
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -49,7 +50,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		addKeyListener(this);
 
 		panel_1 = new ImagePanel(loadDefalutBackground());
-		// panel_1 = new ImagePanel();
 		panel_1.setLayout(null);
 		panel_1.addMouseListener(this);
 		panel1 = new JScrollPane(panel_1,
@@ -58,7 +58,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		panel1.setBounds(0, 0, 500, 600);
 
 		panel_2 = new JPanel();
-		// panel_2.setLayout(null);
 		panel_2.setLayout(new GridLayout(4, 4));
 		panel_2.setBackground(Color.WHITE);
 		panel2 = new JScrollPane(panel_2,
@@ -139,7 +138,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	public void loadBackground(File myFile,int length) {
 		playFieldLength = length;
-		//File myFile = LevelEditorUtil.getSelectedImageFile();
 		background_Path = LevelEditorUtil.getSelectedPath(myFile);
 		BufferedImage image = LevelEditorUtil.getSelectedImage(myFile);
 		panel_1.setImage(image, length);
@@ -193,7 +191,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		removeFromPanel(l);
 		panel_1.add(l);
 		l.setDefaultPosition();
-		//list.add(l);
 	}
 
 	public void setCachedLabel(ImageLabel i) {
@@ -255,7 +252,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	}
 	
-	public List<List<Object>> storeToList(){
+	public void storeToList(){
 		List<List<Object>> store = new ArrayList<List<Object>>();
 		List<Object> storeBackground = new ArrayList<Object>();
 		storeBackground.add(background_Path);
@@ -266,11 +263,14 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 			if(label.getX()!=0 || label.getY()!=0)
 				store.add(label.toList());
 		}
+		FileNameDialog fn = new FileNameDialog(store);
+		/*
 		for(List<Object> a: store){
 			System.out.println(a.toString());
 		}
-		LoadUtil.saveJson(store);
-		return store;
+		*/
+		
+		
 	}
 		
 	private void loadSavedFile(){
@@ -301,13 +301,57 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		panel_1.repaint();
 	}
 	
+	private class FileNameDialog extends JFrame{
+		private JPanel myPanel;
+		private Container con;
+		private JLabel myLabel;
+		private JTextField myTextField;
+		private List<List<Object>> listToStore;
+		
+		private FileNameDialog(List<List<Object>> store){
+			super("File Name");
+			listToStore = store;
+			myPanel = new JPanel();
+			setSize(200,120);
+			setLocation(300,300);
+			myPanel.setLayout(null);
+			setTextField();
+			
+			con = this.getContentPane();
+			con.add(myPanel);
+			myPanel.setOpaque(true);
+			setVisible(true);
+		}
+		
+		private void setTextField(){
+			myLabel = new JLabel("Input the File Name");
+			myLabel.setBounds(10, 10, 200, 30);
+			myLabel.setForeground(Color.RED);
+			myPanel.add(myLabel);
+			
+			myTextField = new JTextField(20);
+			myTextField.setBounds(10, 50, 100, 30);
+			myTextField.setEnabled(true);
+			myTextField.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent event) {
+					getFileName();
+				}
+			});
+			myPanel.add(myTextField);
+		}
+		
+		private void getFileName(){
+			String text = myTextField.getText();
+			dispose();
+			LoadUtil.saveJson(listToStore,text);
+		}
+	}
+	
 /******************************Main******************************/
 	
 	public static void main(String[] args) {
 		LevelEditor l = new LevelEditor();
 	}
-/**************************************************************/
-
-	
+/**************************************************************/	
 
 }

@@ -1,5 +1,9 @@
 package levelEditor;
 
+/**
+ * @author Jiawei Shi
+ */
+
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;

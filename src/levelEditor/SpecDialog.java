@@ -1,5 +1,9 @@
 package levelEditor;
 
+/**
+ * @author Jiawei Shi
+ */
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ItemEvent;

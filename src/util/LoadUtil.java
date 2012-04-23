@@ -18,14 +18,14 @@ import com.google.gson.reflect.TypeToken;
 
 public class LoadUtil {
 	
-	public static void saveJson(List<List<Object>> list){
+	public static void saveJson(List<List<Object>> list,String fileName){
 		Gson gson = new Gson();
         String jsonString = gson.toJson(list);
-        System.out.println("Generated json text: " + jsonString);
+        //System.out.println("Generated json text: " + jsonString);
         
         FileWriter fileOut;
 		try {
-			fileOut = new FileWriter("test.json");
+			fileOut = new FileWriter(fileName+".json");
 			BufferedWriter out = new BufferedWriter(fileOut);
 	        out.write(jsonString);
 	        out.close();

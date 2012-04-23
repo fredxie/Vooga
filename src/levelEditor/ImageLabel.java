@@ -1,8 +1,10 @@
+
+package levelEditor;
+
 /**
  * @author Jiawei Shi
  */
 
-package levelEditor;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
