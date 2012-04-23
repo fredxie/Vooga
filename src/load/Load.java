@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -22,6 +23,8 @@ import util.LoadUtil;
 public class Load extends JFrame {
 
 	private JPanel myPanel;
+	
+	public static List<List<Object>> list;
 
 	public Load() {
 
