@@ -104,8 +104,8 @@ public class MenuState extends State {
 
 	@Override
 	public void update(long arg0) {
-//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
-		keyPressedObserver.pressKey(arg0);
+		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+//		keyPressedObserver.pressKey(arg0);
 
 	}
 

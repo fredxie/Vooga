@@ -39,7 +39,7 @@ public class DemoFighter extends RegularFighter {
 
 	public void refresh(long elapsedTime) {
 		if (isActive()) {
-			fighterControl(elapsedTime);
+//			fighterControl(elapsedTime);
 			if(this.getWeaponStyle() == 3){ 
 				best_weapon = true;
 			}
@@ -133,7 +133,7 @@ public class DemoFighter extends RegularFighter {
 			attack();
 	}
 	
-	public void keyBombPressed(long elapsedTime) {
+	public void bomb(long elapsedTime) {
 		if (allowBomb == false) {
 			allowBomb = rebombRate.action(elapsedTime);
 		}

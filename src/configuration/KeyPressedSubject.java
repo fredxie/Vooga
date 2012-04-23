@@ -3,7 +3,6 @@ package configuration;
 /**
  * @author Ran Zhang
  */
-import java.util.ArrayList;
 
 public class KeyPressedSubject extends KeySubject {
 	public static final KeyPressedSubject keyPressed = new KeyPressedSubject();
