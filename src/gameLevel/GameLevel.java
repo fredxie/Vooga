@@ -2,7 +2,7 @@ package gameLevel;
 
 import game.TopDownGameEngine;
 import game.TopDownTimer;
-import gameObject.TopDownGameObject;
+import gameObject.api_GameObject.TopDownGameObject;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;

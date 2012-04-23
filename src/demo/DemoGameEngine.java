@@ -2,12 +2,12 @@ package demo;
 
 import game.TopDownGameEngine;
 import game.TopDownGameLoader;
-import gameObject.TopDownGameManager;
-import gameObject.optionGameObject.Menu;
-import gameObject.optionGameObject.Pause;
-import gameObject.scoreBoardGameObject.InterLevelScoreBoard;
-import gameObject.scoreBoardGameObject.LostGameScoreBoard;
-import gameObject.scoreBoardGameObject.WinGameScoreBoard;
+import gameObject.api_GameObject.TopDownGameManager;
+import gameObject.demoGameObject.InterLevelScoreBoard;
+import gameObject.demoGameObject.LostGameScoreBoard;
+import gameObject.demoGameObject.Menu;
+import gameObject.demoGameObject.Pause;
+import gameObject.demoGameObject.WinGameScoreBoard;
 
 import java.awt.Dimension;
 

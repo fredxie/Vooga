@@ -4,7 +4,7 @@ package game;
  * @author Jiawei Shi
  */
 
-import gameObject.TopDownGameManager;
+import gameObject.api_GameObject.TopDownGameManager;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;

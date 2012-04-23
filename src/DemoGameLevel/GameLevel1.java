@@ -5,7 +5,7 @@ import gameLevel.GameLevel;
 
 import java.awt.Graphics2D;
 
-import state.DefaultLevelState;
+import state.api_State.DefaultLevelState;
 import collisionSystem.EnemyBulletCollision;
 
 public class GameLevel1 extends GameLevel {

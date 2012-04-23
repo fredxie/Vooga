@@ -2,7 +2,7 @@ package element;
 
 import util.JsonUtil;
 import game.Configuration;
-import gameObject.TopDownGameObject;
+import gameObject.api_GameObject.TopDownGameObject;
 
 import background.TopDownBackground;
 import background.TopDownTileBackground;

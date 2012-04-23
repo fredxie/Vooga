@@ -1,14 +1,14 @@
 package ai;
 
 import gameLevel.GameLevel;
-import gameObject.TopDownGameManager;
+import gameObject.api_GameObject.TopDownGameManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import DemoGameLevel.GameLevel1;
 
-import state.State;
+import state.api_State.State;
 
 import demo.DemoEnemy;
 

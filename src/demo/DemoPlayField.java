@@ -5,7 +5,7 @@ import util.TopDownUtility;
 import background.TopDownTileBackground;
 import element.TopDownPlayField;
 import game.Configuration;
-import gameObject.TopDownGameObject;
+import gameObject.api_GameObject.TopDownGameObject;
 
 public class DemoPlayField extends TopDownPlayField {
 

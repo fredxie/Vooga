@@ -68,7 +68,7 @@ import element.Enemy;
 import element.Fighter;
 import element.TopDownPlayField;
 import game.Configuration;
-import gameObject.TopDownGameManager;
+import gameObject.api_GameObject.TopDownGameManager;
 import state.*;
 public class DemoEnemy extends Enemy {
 	//State gameID;
