@@ -39,7 +39,7 @@ public class DemoFighter extends RegularFighter {
 
 	public void refresh(long elapsedTime) {
 		if (isActive()) {
-			fighterControl(elapsedTime);
+			//fighterControl(elapsedTime);
 			if(this.getWeaponStyle() == 3){ 
 				best_weapon = true;
 			}
@@ -150,6 +150,12 @@ public class DemoFighter extends RegularFighter {
 	public Element clone() {
 		// TODO Auto-generated method stub
 		return new DemoFighter(this.getImage());
+	}
+
+	@Override
+	public void bomb(long elapsedTime) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
