@@ -1,11 +1,12 @@
 package ai;
 
 import gameLevel.GameLevel;
-import gameLevel.GameLevel1;
 import gameObject.TopDownGameManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import DemoGameLevel.GameLevel1;
 
 import state.State;
 

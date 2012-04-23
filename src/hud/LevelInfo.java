@@ -8,6 +8,6 @@ public class LevelInfo implements HUDInfo {
 	@Override
 	public String getString(Object obj) {
 		GameLevel gmLevel = (GameLevel) obj;
-		return " " + gmLevel.Level;
+		return " " + gmLevel.level;
 	}
 }
