@@ -10,6 +10,7 @@ import util.JsonUtil;
 import configuration.DemoSetting;
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import game.TopDownGameEngine;
@@ -90,7 +91,8 @@ public class PauseState extends State {
 
 	@Override
 	public void update(long arg0) {
-		keyPressedObserver.pressKey(arg0);
+//		keyPressedObserver.pressKey(arg0);
+		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 	}
 
 }
