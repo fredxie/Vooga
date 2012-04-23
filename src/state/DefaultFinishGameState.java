@@ -27,6 +27,7 @@ public class DefaultFinishGameState extends State{
     @KeyAnnotation(action = GameParameters.SystemEscape)
 	public void toMenu(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
+		myGameEngine.initResources();
 		myGameObject.finish();
 	}
 	

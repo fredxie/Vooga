@@ -72,7 +72,7 @@ public class DemoLevelUpdate1 extends GameLevelUpdate{
 
 	
 	public void levelComplete() {
-		if (EnemyBulletCollision.destroyed >= 10
+		if (EnemyBulletCollision.destroyed >= 1
 				||gl.playfield.getBackground().getY() == 0) {
 			gl.levelComplete = true;
 			gl.playfield.clearPlayField();
