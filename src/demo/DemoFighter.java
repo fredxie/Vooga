@@ -14,7 +14,6 @@ import game.Configuration;
 import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
-	private int BOMB_NUM = 5;
 	Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
 	private Satellite satellite;
@@ -29,7 +28,7 @@ public class DemoFighter extends RegularFighter {
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
-		setBombNum(BOMB_NUM);
+		setBombNum(Configuration.BOMB_NUM);
 		stateList.add(weaponState);
 		stateList.add(assistanceState);
 		stateList.add(collisionState);
@@ -39,7 +38,7 @@ public class DemoFighter extends RegularFighter {
 
 	public void refresh(long elapsedTime) {
 		if (isActive()) {
-			fighterControl(elapsedTime);
+			stateUpdate(elapsedTime);
 			if(this.getWeaponStyle() == 3){ 
 				best_weapon = true;
 			}
@@ -56,19 +55,19 @@ public class DemoFighter extends RegularFighter {
 
 
 
-//	public void bomb(long elapsedTime) {
-//		if (allowBomb == false) {
-//			allowBomb = rebombRate.action(elapsedTime);
-//		}
-//		if (game.keyDown(Configuration.BOMB) && bombNum > 0 && allowBomb) {
-//			bombNum--;
-//			clearElement("Enemy");
-//			clearElement("Enemy Missile");
-//			allowBomb = false;
-//			// rebombRate.refresh();
-//		}
-//
-//	}
+	public void bomb(long elapsedTime) {
+		if (allowBomb == false) {
+			allowBomb = rebombRate.action(elapsedTime);
+		}
+		if (game.keyDown(Configuration.BOMB) && bombNum > 0 && allowBomb) {
+			bombNum--;
+			clearElement("Enemy");
+			clearElement("Enemy Missile");
+			allowBomb = false;
+			// rebombRate.refresh();
+		}
+
+	}
 
 	private void clearElement(String name) {
 		Element[] element = playfield.getGroup(name).getElement();
@@ -108,22 +107,32 @@ public class DemoFighter extends RegularFighter {
 		return protection;
 	}
 	
+//	@KeyAnnotation(action = GameParameters.UP)
 	public void keyUpPressed(long elapsedTime) {
+		// TODO Auto-generated method stub
+		// speedY = -moveSpeed;
 		setVerticalSpeed(-moveSpeed);
 	}
 	
+//	@KeyAnnotation(action = GameParameters.DOWN)
 	public void keyDownPressed(long elapsedTime) {
+		// speedY = moveSpeed;
 		setVerticalSpeed(moveSpeed);
 	}
 
+//	@KeyAnnotation(action = GameParameters.LEFT)
 	public void keyLeftPressed(long elapsedTime) {
+		// speedX = -moveSpeed;
 		setHorizontalSpeed(-moveSpeed);
 	}
 
+//	@KeyAnnotation(action = GameParameters.RIGHT)
 	public void keyRightPressed(long elapsedTime) {
+		// speedX = moveSpeed;
 		setHorizontalSpeed(moveSpeed);
 	}
 
+//	@KeyAnnotation(action = GameParameters.FIRE)
 	public void keyFirePressed(long elapsedTime) {
 		if (!allowFire) {
 			allowFire = refireRate.action(elapsedTime);
@@ -131,19 +140,6 @@ public class DemoFighter extends RegularFighter {
 
 		else if (allowFire)
 			attack();
-	}
-	
-	public void keyBombPressed(long elapsedTime) {
-		if (allowBomb == false) {
-			allowBomb = rebombRate.action(elapsedTime);
-		}
-		if (bombNum > 0 && allowBomb) {
-			bombNum--;
-			clearElement("Enemy");
-			clearElement("Enemy Missile");
-			allowBomb = false;
-		}
-
 	}
 
 	@Override
