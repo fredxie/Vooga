@@ -15,7 +15,7 @@ import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
 	private int BOMB_NUM = 5;
-	Weapon bullet = new Laser(
+	Weapon bullet = new Laser(  
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
 	private Satellite satellite;
 	private DemoProtection protection;

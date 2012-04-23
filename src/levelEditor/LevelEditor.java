@@ -29,7 +29,8 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 	private JPanel panel_2;
 
 	private JMenuBar menuBar;
-	private ImageLabel cachedLabel;
+	private ImageLabel cachedLabel; 
+	private int playFieldLength = 600;
 	private static int width = 500; 
 	private static int height = 600;;
 
@@ -118,7 +119,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		JMenuItem loadBackground = new JMenuItem("Load Background");
 		loadBackground.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				loadBackground();
+				setNewBackground();
 			}
 		});
 		menu[1].add(loadBackground);
@@ -132,17 +133,21 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		menu[1].add(pasteElement);
 	}
 
-	private void loadBackground() {
+	public void loadBackground(int length) {
+		playFieldLength = length;
 		File myFile = getSelectedFile();
 		background_Path = LevelEditorUtil.getSelectedPath(myFile);
 		BufferedImage image = LevelEditorUtil.getSelectedImage(myFile);
-		//BufferedImage image = LevelEditorUtil.combine(i);
-		//BufferedImage image = getSelectedImage(myFile);
-		panel_1.setImage(image);
-		height = image.getHeight();
-		width = image.getWidth();
+		panel_1.setImage(image, length);
+		//panel_1.setImage(image);
+		//height = image.getHeight();
+		//width = image.getWidth();
 		panel_1.revalidate();
 		panel_1.repaint();
+	}
+	
+	private void setNewBackground(){
+		BackgroundLengthDialog bd = new BackgroundLengthDialog(this);
 	}
 
 	private Image loadDefalutBackground() {
@@ -282,6 +287,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		List<List<Object>> store = new ArrayList<List<Object>>();
 		List<Object> storeBackground = new ArrayList<Object>();
 		storeBackground.add(background_Path);
+		storeBackground.add(playFieldLength);
 		store.add(storeBackground);
 		
 		for(ImageLabel label: list){
@@ -293,5 +299,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		}
 		return store;
 	}
+	
 
 }
