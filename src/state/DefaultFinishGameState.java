@@ -4,6 +4,7 @@ import util.JsonUtil;
 
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 import game.TopDownGameEngine;
 import gameObject.TopDownGameManager;
@@ -21,6 +22,7 @@ public class DefaultFinishGameState extends State{
 
     public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
+//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 
 	}
 

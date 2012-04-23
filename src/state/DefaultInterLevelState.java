@@ -6,6 +6,7 @@ import util.JsonUtil;
 
 import configuration.GameParameters;
 import configuration.KeyAnnotation;
+import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import game.TopDownGameEngine;
@@ -26,16 +27,20 @@ public class DefaultInterLevelState extends State{
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
+//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+
 	}
 
 	@KeyAnnotation(action = GameParameters.SystemEscape)
 	public void toMenu(long arg0) {
+		System.out.println("interstate0");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 		myGameObject.finish();
 	}
 	
 	@KeyAnnotation(action = GameParameters.SystemSpace)
 	public void toNextLevel(long arg0) {
+		System.out.println("interstate1");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.getPreviousGameID()+1);
 		myGameObject.finish();
 	}
