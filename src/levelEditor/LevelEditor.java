@@ -25,6 +25,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	protected static final JFileChooser ImageChooser = new JFileChooser(
 			"./images/");
+	protected static final JFileChooser JsonChooser = new JFileChooser("./");
 
 	private JScrollPane panel1;
 	private JScrollPane panel2;
@@ -90,7 +91,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		JMenuItem loadLevel = new JMenuItem("Load Level");
 		loadLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-
+				loadSavedFile();
 			}
 		});
 		menu[0].add(loadLevel);
@@ -136,15 +137,12 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		menu[1].add(pasteElement);
 	}
 
-	public void loadBackground(int length) {
+	public void loadBackground(File myFile,int length) {
 		playFieldLength = length;
-		File myFile = getSelectedFile();
+		//File myFile = LevelEditorUtil.getSelectedImageFile();
 		background_Path = LevelEditorUtil.getSelectedPath(myFile);
 		BufferedImage image = LevelEditorUtil.getSelectedImage(myFile);
 		panel_1.setImage(image, length);
-		//panel_1.setImage(image);
-		//height = image.getHeight();
-		//width = image.getWidth();
 		panel_1.revalidate();
 		panel_1.repaint();
 	}
@@ -154,16 +152,14 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 	}
 
 	private Image loadDefalutBackground() {
-		File myFile = new File("src/images/background1.jpg");
+		File myFile = new File("images/background/background1.jpg");
 		background_Path = LevelEditorUtil.getSelectedPath(myFile);
 		BufferedImage image = LevelEditorUtil.convertToBufferedImage(myFile);
-		//return image;
-		//return LevelEditorUtil.combine(image);
 		return image;
 	}
 
 	private void loadNewElement() {
-		File myFile = getSelectedFile();
+		File myFile = LevelEditorUtil.getSelectedImageFile();
 		ImageLabel element = new ImageLabel(LevelEditorUtil.getSelectedImage(myFile), this);
 		element.setImagePath(LevelEditorUtil.getSelectedPath(myFile));
 		panel_2.add(element);
@@ -176,25 +172,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		putLabelOnPlayField(element);
 	}
 	
-	private File getSelectedFile(){
-		int retval = ImageChooser.showOpenDialog(null);
-		if (retval != JFileChooser.APPROVE_OPTION) {
-			return null;
-		}
-		File myFile = ImageChooser.getSelectedFile();
-		return myFile;
-	}
 	
-
-/******************************Main******************************/
-	
-	public static void main(String[] args) {
-		LevelEditor l = new LevelEditor();
-	}
-/**************************************************************/
-
-	
-
 	public void deleteLabel(ImageLabel l) {
 		l.setVisible(false);
 		removeFromPanel(l);
@@ -232,57 +210,48 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	public void addToList(ImageLabel i) {
 		  list.add(i);
-		 //System.out.println(list.size());
 	}
 
-	@Override
+	
 	public void keyPressed(KeyEvent arg0) {
 
 	}
 
-	@Override
+	
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
 	public void keyTyped(KeyEvent arg0) {
 	}
 
-	@Override
+
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	
 	}
 
-	@Override
+
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
-	@Override
+
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void mousePressed(MouseEvent arg0) {
 		if (cachedLabel != null) {
 			cachedLabel.setLocation(arg0.getX() - ImageLabel.WIDTH / 2,
 					arg0.getY() - ImageLabel.HEIGTHT / 2);
 			panel_1.add(cachedLabel);
-			//output();
 			panel_1.repaint();
 			panel_1.revalidate();
 		}
 
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -303,6 +272,42 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		LoadUtil.saveJson(store);
 		return store;
 	}
+		
+	private void loadSavedFile(){
+		File myFile = LevelEditorUtil.getJsonFile();
+		List<List<Object>> list = LoadUtil.loadJson(myFile);
+		
+		File background = new File((String)list.get(0).get(0));
+		playFieldLength = LevelEditorUtil.castObjectToInteger(list.get(0).get(1));
+		loadBackground(background,playFieldLength);
+		
+		for(int i=1; i<list.size(); i++){
+			loadElement(list.get(i));
+		}
+		
+	}
+	
+	private void loadElement(List<Object> list){
+		File file = new File((String) list.get(0));
+		BufferedImage image = LevelEditorUtil.convertToBufferedImage(file);
+		ImageLabel label = new ImageLabel(image,this);
+		label.setCategory((String)list.get(1));
+		label.setHP(LevelEditorUtil.castObjectToInteger(list.get(2)));
+		label.setLocation(LevelEditorUtil.castObjectToInteger(list.get(3)), LevelEditorUtil.castObjectToInteger(list.get(4)));
+		list.add(label);
+		
+		panel_1.add(label);
+		panel_1.revalidate();
+		panel_1.repaint();
+	}
+	
+/******************************Main******************************/
+	
+	public static void main(String[] args) {
+		LevelEditor l = new LevelEditor();
+	}
+/**************************************************************/
+
 	
 
 }

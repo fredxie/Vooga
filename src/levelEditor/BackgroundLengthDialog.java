@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -63,7 +64,8 @@ public class BackgroundLengthDialog extends JFrame{
 	public void setPlayFieldLength(){
 		String text = textField.getText();
 		dispose();
-		levelEditor.loadBackground(Integer.parseInt(text));
+		File myFile = LevelEditorUtil.getSelectedImageFile();
+		levelEditor.loadBackground(myFile,Integer.parseInt(text));
 		
 	}
 	

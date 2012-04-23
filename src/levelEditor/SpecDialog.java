@@ -37,7 +37,7 @@ public class SpecDialog extends JFrame{
 		
 		myPanel = new JPanel();
 		setSize(HEIGHT,WIDTH);
-		setLocation(myElement.getX(), myElement.getY());
+		setLocation(300, 300);
 		myPanel.setLayout(null);
 		
 		setDisplayedImage();
