@@ -57,7 +57,7 @@ public class DemoLevelUpdate2 extends GameLevelUpdate {
 
 	public void bonusUpdate(long elapsedTime) {
 
-		for (int i = 0; i < gl.bonusNum; i++) {
+		for (int i = 0; i < gl.bonuses.size(); i++) {
 			gl.bonuses.get(i).refresh(elapsedTime);
 		}
 	}
