@@ -1,13 +1,14 @@
 package api.util;
 
-import api.background.TopDownBackground;
 import api.background.TopDownTileBackground;
 import api.element.AutoFighter;
 import api.element.Element;
 import api.element.Fighter;
 import api.element.RegularFighter;
-import api.game.TopDownGameEngine;
-
+/**
+ * Utility methods for elements to stay in screen
+ * @author Ran Zhang
+ */
 public class TopDownAreaUtil {
 
 	public static void limitArea(Element ele, TopDownTileBackground background,

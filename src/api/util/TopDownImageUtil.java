@@ -7,7 +7,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.golden.gamedev.util.ImageUtil;
-
+/**
+ * Utility methods to read buffered image(s)
+ * @author Ran Zhang
+ */
 public class TopDownImageUtil {
 	public static BufferedImage[] getImages(String imagefile, int col, int row) {
 		BufferedImage image = null;

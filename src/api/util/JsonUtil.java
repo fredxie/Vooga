@@ -1,6 +1,7 @@
 package api.util;
 
 /**
+ * Utility methods for json operations
  * @author Ran Zhang
  */
 
@@ -24,6 +25,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonUtil {
 
+	/**
+	 * parse map from a json file
+	 */
 	public static HashMap<String, Integer> parse(String fileName) {
 		Gson gson = new Gson();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -40,6 +44,9 @@ public class JsonUtil {
 		return map;
 	}
 
+	/**
+	 * write a map to a json file
+	 */
 	public static void output(HashMap<String, Integer> map, String fileName) {
 
 		Gson gson = new Gson();
@@ -54,6 +61,9 @@ public class JsonUtil {
 		}
 	}
 
+	/**
+	 * create key list for the KeyPressedObserver
+	 */
 	public static List<Key> createKeyList(Object obj, String fileName,
 			GameObject myGame) {
 		HashMap<String, Integer> keyMap = JsonUtil.parse(fileName);
@@ -64,6 +74,10 @@ public class JsonUtil {
 		return keyList;
 	}
 	
+	/**
+	 * developers may add new functions that relate to key-pressing.
+	 * This method registers the new functions.
+	 */
 	public static void registerKeyAcion(String action, int keyValue) {
 		HashMap<String, Integer> map = JsonUtil.parse("json/keyConfig.json");
 		map.put(action, keyValue);

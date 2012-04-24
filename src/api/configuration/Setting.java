@@ -1,8 +1,6 @@
 package api.configuration;
 
-/**
- * @author Ran Zhang
- */
+
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -16,7 +14,11 @@ import javax.swing.*;
 
 import api.util.JsonUtil;
 
-
+/**
+ * Create GUI for the setting menu
+ * 
+ * @author Ran Zhang
+ */
 @SuppressWarnings("serial")
 public abstract class Setting extends JFrame {
 
@@ -40,8 +42,16 @@ public abstract class Setting extends JFrame {
 
 	}
 
+	/**
+	 * Set lists of parameters or keys that developers want to add in the setting menu
+	 * 
+	 */
 	public abstract void setList();
 
+	/**
+	 * key setting panel
+	 * 
+	 */
 	private JComponent keySetting() {
 		JPanel panel = new JPanel();
 		for (int i = 0; i < keySettingList.size(); i++) {
@@ -57,6 +67,10 @@ public abstract class Setting extends JFrame {
 		return panel;
 	}
 
+	/**
+	 * parameter setting panel
+	 * 
+	 */
 	private JComponent parameterSetting() {
 		JPanel panel = new JPanel();
 		for (int i = 0; i < paraSettingList.size(); i++) {
@@ -72,6 +86,10 @@ public abstract class Setting extends JFrame {
 		return panel;
 	}
 
+	/**
+	 * Used by Setting class: this class is the listener for parameter changed events
+	 * @author Ran Zhang
+	 */
 	public class ParameterListener implements ActionListener {
 
 		private String parameter;
@@ -92,6 +110,10 @@ public abstract class Setting extends JFrame {
 
 	}
 
+	/**
+	 * Used by Setting class: this class is the listener for key changed events
+	 * @author Ran Zhang
+	 */
 	public class KeySettingListener extends JFrame implements KeyListener {
 		String action;
 

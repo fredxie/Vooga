@@ -1,12 +1,14 @@
 package api.configuration;
 
-/**
- * @author Ran Zhang
- */
 
 import api.element.RegularFighter;
 import api.util.JsonUtil;
-
+/**
+ * Observer to observe the Fighter key changed events.
+ * 
+ * 
+ * @author Ran Zhang
+ */
 public class FighterKeyPressedObserver implements KeyPressedObserver {
 
 	private RegularFighter fighter;
@@ -16,7 +18,13 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 		KeyPressedSubject.getInstance().registerObserver(this);
 	}
 
-	@Override
+	/**
+	 * When this observer is notified, iterate the key list to react to the
+	 * pressed key.
+	 * 
+	 * 
+	 * @return void
+	 */
 	public void pressKey(long elapsedTime) {
 		fighter.setSpeed(0, 0);
 		for (Key key : fighter.getKeyList()) {
@@ -29,7 +37,11 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 				/ 10.0);
 	}
 
-	@Override
+	/**
+	 * 
+	 * 
+	 * @return the object that this observer is initiated in
+	 */
 	public Object getObject() {
 		return fighter;
 	}

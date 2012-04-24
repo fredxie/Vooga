@@ -1,9 +1,11 @@
 package api.configuration;
 
 /**
+ * Observer to observe the system key changed events.
+ * 
+ * 
  * @author Ran Zhang
  */
-
 public class SystemKeyPressedObserver implements KeyPressedObserver {
 
 	private KeyConfig object;
@@ -13,7 +15,13 @@ public class SystemKeyPressedObserver implements KeyPressedObserver {
 		KeyPressedSubject.getInstance().registerObserver(this);
 	}
 
-	@Override
+	/**
+	 * When this observer is notified, iterate the key list to react to the
+	 * pressed key.
+	 * 
+	 * 
+	 * @return void
+	 */
 	public void pressKey(long elapsedTime) {
 		for (Key key : object.getKeyList()) {
 			if (key.isKeyPressed()) {
@@ -22,7 +30,12 @@ public class SystemKeyPressedObserver implements KeyPressedObserver {
 		}
 	}
 
-	@Override
+
+	/**
+	 * 
+	 * 
+	 * @return the object that this observer is initiated in
+	 */
 	public Object getObject() {
 		return object;
 	}

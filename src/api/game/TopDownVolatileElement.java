@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.object.sprite.VolatileSprite;
 
+@SuppressWarnings("serial")
 public class TopDownVolatileElement extends VolatileSprite {
 
 	public TopDownVolatileElement(BufferedImage[] image, double arg1,

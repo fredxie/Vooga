@@ -1,14 +1,15 @@
 package api.configuration;
-
-/**
- * @author Ran Zhang
- */
 import java.util.HashMap;
 
 import api.element.RegularFighter;
 import api.util.JsonUtil;
 
-
+/**
+ * Observer to observe the Fighter key changed events.
+ * 
+ * 
+ * @author Ran Zhang
+ */
 public class FighterKeyChangedObserver implements KeyChangedObserver {
 
 	private RegularFighter fighter;
@@ -18,7 +19,12 @@ public class FighterKeyChangedObserver implements KeyChangedObserver {
 		KeyChangedSubject.getInstance().registerObserver(this);
 	}
 
-	@Override
+	/**
+	 * When this observer is notified, change key correspondingly.
+	 * 
+	 * 
+	 * @return void
+	 */
 	public void changeKey() {
 		HashMap<String, Integer> keyMap = JsonUtil.parse("json/keyConfig.json");
 		for (Key key : fighter.getKeyList()) {

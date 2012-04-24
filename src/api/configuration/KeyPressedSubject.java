@@ -5,19 +5,23 @@ package api.configuration;
  */
 
 public class KeyPressedSubject extends KeySubject {
+	
+	// Singleton pattern 
 	public static final KeyPressedSubject keyPressed = new KeyPressedSubject();
 
+	/**
+	 * 
+	 * 
+	 * @return the instance
+	 */
 	public static KeyPressedSubject getInstance() {
 		return keyPressed;
 	}
 
-	public void notifyObservers(long elapsedTime) {
-		for (int i = 0; i < observers.size(); i++) {
-			KeyPressedObserver observer = (KeyPressedObserver) observers.get(i);
-			observer.pressKey(elapsedTime);
-		}
-	}
-
+	/**
+	 * 
+	 * If a key is pressed, then notify observers registered
+	 */
 	public void notifyObservers(long elapsedTime, Object object) {
 		for (int i = 0; i < observers.size(); i++) {
 			KeyPressedObserver observer = (KeyPressedObserver) observers.get(i);

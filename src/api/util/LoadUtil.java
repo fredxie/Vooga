@@ -1,6 +1,7 @@
 package api.util;
 
 /**
+ * Utility methods for load levels in json files
  * @author Ran Zhang
  */
 
@@ -18,6 +19,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class LoadUtil {
 
+	/**
+	 * LevelEditor can save edited levels into json files using this method
+	 */
 	public static void saveJson(List<List<Object>> list, String fileName) {
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(list);
@@ -35,6 +39,9 @@ public class LoadUtil {
 
 	}
 
+	/**
+	 * load the json file of game level
+	 */
 	public static List<List<Object>> loadJson(File file) {
 		Scanner scanner;
 		List<List<Object>> outList = null;

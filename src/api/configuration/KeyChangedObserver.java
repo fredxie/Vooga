@@ -5,5 +5,10 @@ package api.configuration;
  */
 public interface KeyChangedObserver {
 
+	/**
+	 * When this observer is notified, change key correspondingly.
+	 * 
+	 * 
+	 */
 	public void changeKey();
 }

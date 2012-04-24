@@ -6,6 +6,7 @@ import api.configuration.Setting;
  * @author Ran Zhang
  */
 
+@SuppressWarnings("serial")
 public class DemoSetting extends Setting {
 
 	@Override
@@ -15,7 +16,6 @@ public class DemoSetting extends Setting {
 		keySettingList.add("LEFT");
 		keySettingList.add("RIGHT");
 		keySettingList.add("FIRE");
-		// keySettingList.add("BOMB");
 
 		paraSettingList.add("ENEMY_NUM");
 		paraSettingList.add("BOMB_NUM");
