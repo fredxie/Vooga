@@ -11,8 +11,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import DemoPlayerState.PhysicCollisionStatus;
-
 import playerState.AssistanceState;
 import playerState.CollisionState;
 import playerState.PlayerState;
@@ -26,11 +24,11 @@ public abstract class RegularFighter extends Fighter {
 
 	private List<Key> keyList;
 	public boolean allowBomb = true;
-	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
-	public AssistanceState assistanceState = new AssistanceState(this);
-	public CollisionState collisionState = new CollisionState(this);
+	public TopDownTimer rebombRate ; 
+	public AssistanceState assistanceState;
+	public CollisionState collisionState;
 	public AutoFighter assistance;
-	public double moveSpeed = 0.3; // (default)
+	public double moveSpeed; // (default)
 	public boolean allowFire = true;
 	public GameLevel game;
 	public BufferedImage bulletImage;
@@ -147,9 +145,13 @@ public abstract class RegularFighter extends Fighter {
 		allowFire = false;
 	  }
 	
+	public void addState(PlayerState newState)
+	{
+		stateList.add(newState);
+	}
+	
 	public void stateUpdate(long elapsedTime) {
 		for (PlayerState state : stateList) {
-
 			state.update(elapsedTime);
 
 		}

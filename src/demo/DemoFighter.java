@@ -2,24 +2,23 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
-import DemoPlayerState.NormalCollisionStatus;
-
-
+import playerState.AssistanceState;
+import playerState.CollisionState;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
+import DemoElement.Laser;
+import DemoPlayerState.NormalCollisionStatus;
 import element.Element;
-import element.Laser;
-import element.PhysicalProtection;
 import element.RegularFighter;
-import element.Satellite;
 import element.Weapon;
+import game.TopDownTimer;
 import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
 	private int BOMB_NUM = 5;
 	Weapon bullet = new Laser(  
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
-	private Satellite satellite;
+	private DemoSatellite satellite;
 	private DemoProtection protection;
     public static boolean best_weapon = false;
 	public DemoFighter(BufferedImage image) {
@@ -27,6 +26,10 @@ public class DemoFighter extends RegularFighter {
 	}
 	
 	public void initHelper() {
+		 moveSpeed = 0.3;
+		 rebombRate = new TopDownTimer(5000); 
+		 assistanceState = new AssistanceState(this);
+		 collisionState = new CollisionState(this);
 		setRefireRate(100);// Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
@@ -88,7 +91,7 @@ public class DemoFighter extends RegularFighter {
 
 	}
 
-	public Satellite getSatellite() {
+	public DemoSatellite getSatellite() {
 		return satellite;
 	}
 
@@ -97,7 +100,7 @@ public class DemoFighter extends RegularFighter {
 
 	}
 
-	public PhysicalProtection getProtection() {
+	public DemoProtection getProtection() {
 		return protection;
 	}
 	

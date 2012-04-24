@@ -1,10 +1,9 @@
 package playerState;
 
 import util.TopDownImageUtil;
-import element.Missile;
-import element.Weapon;
+import DemoElement.Missile;
 import element.Fighter;
-import element.Laser;
+import element.Weapon;
 
 public class WeaponState extends PlayerState{
 	

@@ -1,12 +1,7 @@
 
 package ai;
-import element.Missile;
-import demo.DemoGameEngine;
-
-import element.Missile;
-import element.Bullet;
+import DemoElement.Missile;
 import element.Enemy;
-import game.Configuration;
 /*
  * hp limit activate when player hp falls below a certain level. Rather then making the game tougher
  * it makes the game slightly easier to help the player. It won't activate until hp is almost gone

@@ -3,9 +3,9 @@ package demo;
 import java.awt.image.BufferedImage;
 
 import util.TopDownImageUtil;
+import DemoElement.Laser;
 import element.Bonus;
 import element.Element;
-import element.Laser;
 import element.RegularFighter;
 import element.TopDownPlayField;
 

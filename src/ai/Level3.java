@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import DemoElement.Missile;
 import element.Enemy;
-import element.Missile;
-import game.Configuration;
 public class Level3 implements TopDownBehavior
 {
 	double x = (Math.random()*51); 

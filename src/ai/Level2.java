@@ -1,8 +1,7 @@
 
 package ai;
+import DemoElement.Missile;
 import element.Enemy;
-import element.Missile;
-import game.Configuration;
 
 public class Level2 implements TopDownBehavior
 {

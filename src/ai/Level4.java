@@ -6,10 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import util.JsonUtil;
+import DemoElement.Missile;
 import configuration.api.GameParameters;
 import element.Enemy;
-import element.Missile;
-import game.Configuration;
 public class Level4 implements TopDownBehavior
 {
 	double d,hp,h,v;

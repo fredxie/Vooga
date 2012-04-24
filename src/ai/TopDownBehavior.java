@@ -1,8 +1,8 @@
 
 package ai;
 
+import DemoElement.Missile;
 import element.Enemy;
-import element.Missile;
 
 public interface TopDownBehavior {
 	abstract void movement(Enemy enemy);

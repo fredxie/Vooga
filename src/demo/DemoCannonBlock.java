@@ -11,20 +11,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import util.TopDownUtility;
-
+import DemoElement.Missile;
 import ai.AI;
 
-import com.golden.gamedev.object.GameFont;
 import com.golden.gamedev.object.Timer;
 
-import element.Block;
-import element.Bullet;
 import element.Enemy;
 import element.Fighter;
-import element.Missile;
 import element.TopDownPlayField;
 import element.Weapon;
-import game.Configuration;
 
 /**
  * 

@@ -2,8 +2,10 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import DemoElement.PhysicalProtection;
+
 import element.Element;
-import element.PhysicalProtection;
+
 import element.RegularFighter;
 
 public  class DemoProtection extends PhysicalProtection{

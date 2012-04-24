@@ -1,8 +1,7 @@
 
 package ai;
+import DemoElement.Missile;
 import element.Enemy;
-import element.Missile;
-import game.Configuration;
 
 // basic functionality for level 1, starts with standard weapon, one directional movement, slow fire rate, reduced damage
 // this corresponds to level 1 easy

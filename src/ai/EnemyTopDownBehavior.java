@@ -1,7 +1,6 @@
 package ai;
 
-import element.Bullet;
-import element.Missile;
+import DemoElement.Missile;
 import element.Enemy;
 
 public interface EnemyTopDownBehavior 

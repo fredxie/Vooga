@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import spawn.SpawnByRandom;
 import DemoCollisioSystem.LifeDecreaseCollision;
+import DemoElement.Missile;
 import ai.AI;
 import ai.BehaviorManager_Enemy;
 import ai.BehaviorManager_Weapon;
@@ -31,7 +32,6 @@ import ai.ScoreBrain_Weapon;
 import ai.hpBrain_Enemy;
 import ai.hpBrain_Weapon;
 import element.Enemy;
-import element.Missile;
 import element.TopDownPlayField;
 import gameObject.api_GameObject.TopDownGameManager;
 public class DemoEnemy extends Enemy {

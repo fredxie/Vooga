@@ -8,12 +8,11 @@ package demo;
 import java.awt.image.BufferedImage;
 
 import util.TopDownImageUtil;
-
-import element.Bullet;
+import DemoElement.Laser;
+import DemoElement.Satellite;
 import element.Element;
-import element.Laser;
 import element.RegularFighter;
-import element.Satellite;
+
 import element.Weapon;
 
 public class DemoSatellite extends Satellite

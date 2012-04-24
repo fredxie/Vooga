@@ -1,18 +1,13 @@
 
 package ai;
 
-import element.Missile; 
-import javax.swing.Timer;
-
-import game.Configuration;
-import demo.DemoGameEngine;
-import element.Bullet;
-import element.Enemy;
-import element.Missile;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+
+import javax.swing.Timer;
+
+import DemoElement.Missile;
+import element.Enemy;
 
 public class BonusLimit implements TopDownBehavior
 {

@@ -1,6 +1,5 @@
 package element;
 
-import game.Configuration;
 import game.TopDownTimer;
 import gameLevel.GameLevel;
 
@@ -9,6 +8,7 @@ import java.awt.image.BufferedImage;
 import playerState.WeaponState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
+import DemoElement.Laser;
 import configuration.api.GameParameters;
 
 public abstract class Fighter extends Element {

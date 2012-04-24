@@ -1,17 +1,8 @@
 package ai;
 
-import gameLevel.GameLevel;
-import gameObject.api_GameObject.TopDownGameManager;
-
 import java.util.ArrayList;
-import java.util.Collection;
 
-import DemoGameLevel.GameLevel1;
-
-import state.api.State;
-
-import demo.DemoEnemy;
-import element.Missile;
+import DemoElement.Missile;
 
 public class BehaviorManager_Weapon
 {
