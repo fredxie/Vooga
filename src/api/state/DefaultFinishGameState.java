@@ -1,13 +1,20 @@
 package api.state;
 
 import api.configuration.KeyAnnotation;
-import api.configuration.KeyPressedSubject;
 import api.configuration.SystemKeyPressedObserver;
 import api.game.TopDownGameEngine;
 import api.gameObject.ScoreBoardGameObject;
 import api.gameObject.TopDownGameManager;
 import api.util.JsonUtil;
 
+/**
+ * This class performs as the default state for the state that the game
+ * finishes. Developer can directly use this class if their game is not too
+ * complex
+ * 
+ * @author Jiawei Shi
+ * 
+ */
 
 public class DefaultFinishGameState extends State {
 
@@ -16,16 +23,23 @@ public class DefaultFinishGameState extends State {
 		super(parent, game);
 		game.setGameState(this);
 		keyPressedObserver = new SystemKeyPressedObserver(this);
-		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
+		setKeyList(JsonUtil.createKeyList(this, "keyConfig.json",
 				this.myGameObject));
 	}
 
+	/**
+	 * Transition between states
+	 */
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
-		// KeyPressedSubject.getInstance().notifyObservers(arg0, this);
-
 	}
 
+	/**
+	 * Transition from this state to the menu state. The user can personalize
+	 * the key configuration
+	 * 
+	 * @param arg0
+	 */
 	@KeyAnnotation(action = "SystemEscape")
 	public void toMenu(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
@@ -33,6 +47,12 @@ public class DefaultFinishGameState extends State {
 		myGameObject.finish();
 	}
 
+	/**
+	 * Transition between this state to the initial game state. After the key is
+	 * pressed, the game will restart
+	 * 
+	 * @param arg0
+	 */
 	@KeyAnnotation(action = "SystemRestart")
 	public void toNextLevel(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);

@@ -1,14 +1,15 @@
 package api.game;
 
+
+import api.gameObject.TopDownGameManager;
+import com.golden.gamedev.GameEngine;
+import com.golden.gamedev.GameObject;
+
 /**
+ * This is the game engine of top down games.
  * @author Jiawei Shi
  */
 
-
-import api.gameObject.TopDownGameManager;
-
-import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
 
 public abstract class TopDownGameEngine extends GameEngine {
 	{
@@ -22,24 +23,43 @@ public abstract class TopDownGameEngine extends GameEngine {
 		TopDownGameManager.initManager(this);
 	}
 
+	/**
+	 * Initialize the game objects and game states.
+	 */	
 	public void initResources() {
-		// System.out.println("start");
 		super.initResources();
 		TopDownGameManager.initManager(this);
 		addGameObjects();
 		setInitialGameID();
 	}
+	
+	/**
+	 * Instantly watch the gameID from the TopDownGameManager
+	 */
 
 	public void update(long elapsedTime) {
 		nextGameID = TopDownGameManager.getCurrentGameID();
 	}
+	
+	/**
+	 * Return new game object when the gameID is updated
+	 */
 
 	public GameObject getGame(int gameID) {
-		// nextGameID = TopDownGameManager.getCurrentGameID();
 		return TopDownGameManager.getGameObject(nextGameID);
 	}
+	
+	/**
+	 * Add all the game objects and set them game IDs before the game begins
+	 * Extended by concrete class
+	 */
 
 	public abstract void addGameObjects();
+	
+	/**
+	 * Set the initial gameID for the game
+	 * This will decide which game object is initially called 
+	 */
 
 	public abstract void setInitialGameID();
 
