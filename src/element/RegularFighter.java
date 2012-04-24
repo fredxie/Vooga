@@ -11,9 +11,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import DemoPlayerState.PhysicCollisionState;
+
 import playerState.AssistanceState;
 import playerState.CollisionState;
-import playerState.PhysicCollisionState;
 import playerState.PlayerState;
 import configuration.api.FighterKeyChangedObserver;
 import configuration.api.FighterKeyPressedObserver;

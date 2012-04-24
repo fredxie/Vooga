@@ -2,7 +2,8 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
-import playerState.NormalCollisionState;
+import DemoPlayerState.NormalCollisionState;
+
 
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;

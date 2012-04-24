@@ -2,7 +2,6 @@ package DemoGameLevel;
 
 import game.TopDownTimer;
 import gameLevel.GameLevelInit;
-import playerState.PhysicCollisionState;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import spawn.SpawnByTime;
@@ -17,6 +16,7 @@ import DemoCollisioSystem.ImageCollision;
 import DemoCollisioSystem.InActiveCollision;
 import DemoCollisioSystem.PhysicCollision;
 import DemoCollisioSystem.SoundCollision;
+import DemoPlayerState.PhysicCollisionState;
 import ai.AI;
 import collisionSystem.CollisionManager;
 import configuration.api.GameParameters;

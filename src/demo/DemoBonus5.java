@@ -2,9 +2,10 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import DemoPlayerState.PhysicCollisionState;
+
 import playerState.CollisionState;
 import playerState.CollisionStatus;
-import playerState.PhysicCollisionState;
 import element.Bonus;
 import element.Element;
 import element.RegularFighter;
