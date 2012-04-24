@@ -2,18 +2,18 @@ package api.gameLevel;
 
 import api.element.Fighter;
 
+/**
+ * This class is a game level update manager for developer to manage the update
+ * of different game levels
+ * 
+ * @param gl
+ *            current game level
+ * 
+ * @author Chenbo Zhu
+ */
 public abstract class GameLevelUpdate {
 	public GameLevel gl;
 
-	/**
-	 * This class is a game level update manager for developer to manage the
-	 * update of different game levels
-	 * 
-	 * @param gl
-	 *            current game level
-	 * 
-	 * @author Chenbo Zhu
-	 */
 	public GameLevelUpdate(GameLevel gl) {
 		this.gl = gl;
 	}
