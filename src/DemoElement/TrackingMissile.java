@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
-
 import DemoElement.Laser;
 import demo.DemoGameEngine;
 import element.Element;
@@ -89,7 +87,8 @@ public class TrackingMissile extends Weapon {
 
 	@Override
 	public Element clone() {
-		TrackingMissile TM=new TrackingMissile(this.getImage(), this.getX(), this.getY());// TODO Auto-generated method stub
+		TrackingMissile TM = new TrackingMissile(this.getImage(), this.getX(),
+				this.getY());// TODO Auto-generated method stub
 		return TM;
 	}
 }

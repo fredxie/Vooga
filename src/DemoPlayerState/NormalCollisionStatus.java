@@ -10,7 +10,7 @@ import com.golden.gamedev.object.Sprite;
 
 import element.Fighter;
 
-public class NormalCollisionStatus extends CollisionStatus{
+public class NormalCollisionStatus extends CollisionStatus {
 
 	public NormalCollisionStatus(CollisionState state) {
 		super(state);
@@ -20,10 +20,7 @@ public class NormalCollisionStatus extends CollisionStatus{
 	@Override
 	public void update(long elapsedTime) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-
-
 }
-

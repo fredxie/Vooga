@@ -9,6 +9,7 @@ class ImagePanel extends JPanel {
 
 	private Image img;
 	private int height = 600;
+
 	// private Dimension size = new Dimension(500,600);
 
 	public ImagePanel() {
@@ -26,7 +27,7 @@ class ImagePanel extends JPanel {
 	}
 
 	public void setImage(Image img) {
-		
+
 		this.img = img;
 		Dimension size = new Dimension(img.getWidth(null), height);
 		setPreferredSize(size);
@@ -35,11 +36,11 @@ class ImagePanel extends JPanel {
 		setSize(size);
 		setLayout(null);
 	}
-	
-	public void setImage(Image img, int length){
+
+	public void setImage(Image img, int length) {
 		height = length;
 		this.img = img;
-		Dimension size = new Dimension(img.getWidth(null),height);
+		Dimension size = new Dimension(img.getWidth(null), height);
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
@@ -49,8 +50,8 @@ class ImagePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		int len = img.getHeight(null);
-		for(int i=0; i*len <= height; i++){
-			g.drawImage(img, 0, i*len, null);
+		for (int i = 0; i * len <= height; i++) {
+			g.drawImage(img, 0, i * len, null);
 		}
 	}
 

@@ -1,6 +1,5 @@
 package spawn;
 
-
 public class SpawnByRandom implements SpawnBehavior {
 
 	private double x;

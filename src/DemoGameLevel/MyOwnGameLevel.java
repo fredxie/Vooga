@@ -11,9 +11,9 @@ import state.api.DefaultLastLevelState;
 import DemoCollisioSystem.EnemyBulletCollision;
 
 public class MyOwnGameLevel extends GameLevel {
-    
+
 	public List<List<Object>> list = Load.list;
-	
+
 	public MyOwnGameLevel(TopDownGameEngine parent) {
 		super(parent);
 		myState = new DefaultLastLevelState(parent, this);

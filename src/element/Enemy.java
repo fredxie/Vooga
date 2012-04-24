@@ -45,26 +45,28 @@ public abstract class Enemy extends Element {
 	 * @author Gang Song
 	 * @Description set Spawning behavior
 	 */
-	public void setSpawnBehavior(SpawnBehavior SB){
-		//mySpawnBehavior=new SpawnByLocation();
-		mySpawnBehavior=SB;
+	public void setSpawnBehavior(SpawnBehavior SB) {
+		// mySpawnBehavior=new SpawnByLocation();
+		mySpawnBehavior = SB;
 	}
 
-	public void spawn(){
-		double[] templocation=mySpawnBehavior.spawn();
+	public void spawn() {
+		double[] templocation = mySpawnBehavior.spawn();
 
-		this.setX(templocation[0]*(DemoGameEngine.WIDTH- this.getWidth()));
-		this.setY(templocation[1]*(playfield.getBackground().getHeight()- DemoGameEngine.HEIGHT));
+		this.setX(templocation[0] * (DemoGameEngine.WIDTH - this.getWidth()));
+		this.setY(templocation[1]
+				* (playfield.getBackground().getHeight() - DemoGameEngine.HEIGHT));
 
-		//this.playfield.getTileBackground().getWidth()
+		// this.playfield.getTileBackground().getWidth()
 	}
 
-	//To clone the same kind of enemy
+	// To clone the same kind of enemy
 	public abstract Enemy clone();
 
 	public int getRefireRate() {
 		return time;
 	}
+
 	// public abstract void death();
 
 	public void death(BufferedImage i) {

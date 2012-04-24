@@ -35,29 +35,30 @@ public abstract class TopDownGameObject extends GameObject {
 	public State getCurrentState() {
 		return myState;
 	}
-	public void optionArrowUp(int bsInput,int key,int optionNum){
-		if(bsInput == key){
+
+	public void optionArrowUp(int bsInput, int key, int optionNum) {
+		if (bsInput == key) {
 			option--;
 			if (option < 0)
 				option = optionNum;
 		}
 	}
-	
-	public void optionArrowDown(int bsInput, int key, int optionNum){
-		if(bsInput == key){
+
+	public void optionArrowDown(int bsInput, int key, int optionNum) {
+		if (bsInput == key) {
 			option++;
-			if (option >optionNum)
+			if (option > optionNum)
 				option = 0;
 		}
 	}
-	
-	public void setFinish(int bsInput, int key){
-		if(bsInput == key){
+
+	public void setFinish(int bsInput, int key) {
+		if (bsInput == key) {
 			finish();
 		}
 	}
-	
-	public int getOption(){
+
+	public int getOption() {
 		return option;
 	}
 }

@@ -44,7 +44,7 @@ public class GameLevel2 extends GameLevel {
 		demoLevelUpdate2.enemyUpdate(elapsedTime);
 		demoLevelUpdate2.fighterUpdate(elapsedTime);
 		demoLevelUpdate2.bonusUpdate(elapsedTime);
-	    demoLevelUpdate2.cannonUpdate(elapsedTime);
+		demoLevelUpdate2.cannonUpdate(elapsedTime);
 		demoLevelUpdate2.gameUpdate();
 
 	}

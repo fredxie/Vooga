@@ -6,13 +6,13 @@ public class InfoFactory {
 	private String infoType;
 	private Object myObject;
 	private HashMap<String, HUDInfo> myMap;
-	
-	public InfoFactory (String type, Object obj) {
+
+	public InfoFactory(String type, Object obj) {
 		infoType = type;
-		myObject = obj;	
+		myObject = obj;
 		constructMap();
 	}
-	
+
 	private void constructMap() {
 		myMap = new HashMap<String, HUDInfo>();
 		myMap.put("level", new LevelInfo());
@@ -23,11 +23,11 @@ public class InfoFactory {
 		myMap.put("life", new LifeInfo());
 		myMap.put("time", new RealTimeInfo());
 	}
-	
+
 	public void addIntoMap(String str, HUDInfo hdInfo) {
 		myMap.put(str, hdInfo);
 	}
-	
+
 	public String getInfo() {
 		return myMap.get(infoType).getString(myObject);
 	}

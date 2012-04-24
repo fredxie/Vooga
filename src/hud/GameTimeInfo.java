@@ -9,7 +9,7 @@ public class GameTimeInfo implements HUDInfo {
 	public String getString(Object obj) {
 		DateTime start = (DateTime) obj;
 		DateTime now = DateTime.now();
-		
+
 		Duration dur = new Duration(start, now);
 		return dur.toString().toString().substring(2);
 	}

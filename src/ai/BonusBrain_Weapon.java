@@ -2,8 +2,8 @@ package ai;
 
 import game.Configuration;
 
-public class BonusBrain_Weapon extends AI{
-	
+public class BonusBrain_Weapon extends AI {
+
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
@@ -12,7 +12,7 @@ public class BonusBrain_Weapon extends AI{
 		double y2 = mySprite.getVerticalSpeed();
 		x2 = (x2 * 1.5);
 		y2 = (y2 * 1.5);
-		mySprite.setSpeed(x2,y2);
+		mySprite.setSpeed(x2, y2);
 	}
 
 	@Override

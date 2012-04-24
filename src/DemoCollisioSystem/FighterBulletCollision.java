@@ -9,29 +9,28 @@ import collisionSystem.CollisionAction;
 
 import com.golden.gamedev.object.Sprite;
 
-import configuration.api.GameParameters;
-
-public class FighterBulletCollision extends CollisionAction{
+public class FighterBulletCollision extends CollisionAction {
 
 	@Override
 	public void oncollide(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
-		
+
 		s2.setActive(false);
-		((Fighter) s1).setHP(((Fighter) s1).getHP() - ((Weapon) s2).getDamage());
+		((Fighter) s1)
+				.setHP(((Fighter) s1).getHP() - ((Weapon) s2).getDamage());
 		if (((Fighter) s1).getHP() <= 0) {
 			if (((Fighter) s1).getLifeNum() == 1)
 				s1.setActive(false);
 			else {
 
 				((Fighter) s1).setHP(JsonUtil.parse("paraConfig.json").get(
-						GameParameters.FIGHTER_HP));
+						"FIGHTER_HP"));
 
 				((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);
 			}
 
 		}
-		
+
 	}
 
 }

@@ -4,11 +4,9 @@ package state.demo;
  * @author Jiawei Shi
  */
 
-
 import state.api.State;
 import util.JsonUtil;
 
-import configuration.api.GameParameters;
 import configuration.api.KeyAnnotation;
 import configuration.api.KeyPressedSubject;
 import configuration.api.SystemKeyPressedObserver;
@@ -32,19 +30,19 @@ public class PauseState extends State {
 				this.myGameObject));
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemUp)
+	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
 		Pause game = (Pause) myGameObject;
 		game.optionArrowUp(elapsedTime);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemDown)
+	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
 		Pause game = (Pause) myGameObject;
 		game.optionArrowDown(elapsedTime);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemEnter)
+	@KeyAnnotation(action = "SystemEnter")
 	public void updateHelper(long arg0) {
 		Pause game = (Pause) myGameObject;
 
@@ -52,8 +50,8 @@ public class PauseState extends State {
 		case 0:
 			// RESUME
 			System.out.println("pausestate0");
-			TopDownGameManager
-					.setCurrentGameID(TopDownGameManager.getPreviousGameID());
+			TopDownGameManager.setCurrentGameID(TopDownGameManager
+					.getPreviousGameID());
 			game.finish();
 			break;
 
@@ -92,7 +90,7 @@ public class PauseState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
-//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+		// KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 	}
 
 }

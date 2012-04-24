@@ -13,10 +13,10 @@ import demo.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {
 	TopDownImageBackground mainMenuTitle;
-	
+
 	public LostGameScoreBoard(TopDownGameEngine arg0) {
 		super(arg0);
-		myState = new DefaultFinishGameState(arg0,this);
+		myState = new DefaultFinishGameState(arg0, this);
 	}
 
 	public void initResources() {
@@ -27,14 +27,15 @@ public class LostGameScoreBoard extends ScoreBoardGameObject {
 
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(g,
-				"YOU LOST IN THE LEVEL " + (TopDownGameManager.getPreviousGameID()-TopDownGameManager.GAMELEVELBEGIN+1), 20,
+		fontManager.getFont("FPS Font").drawString(
+				g,
+				"YOU LOST IN THE LEVEL "
+						+ (TopDownGameManager.getPreviousGameID()
+								- TopDownGameManager.GAMELEVELBEGIN + 1), 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES", 20,
-				DemoGameEngine.HEIGHT / 2 );
+				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES",
+				20, DemoGameEngine.HEIGHT / 2);
 	}
-
-	
 
 }

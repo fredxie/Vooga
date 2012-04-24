@@ -8,7 +8,6 @@ import DemoGameLevel.GameLevel2;
 import DemoLevelTransition.DemoLevelTransition;
 
 import util.JsonUtil;
-import configuration.api.GameParameters;
 import configuration.api.KeyAnnotation;
 import configuration.api.KeyPressedSubject;
 import configuration.api.SystemKeyPressedObserver;
@@ -30,13 +29,13 @@ public class DefaultLastLevelState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
-//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+		// KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 
 		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemEscape)
+	@KeyAnnotation(action = "SystemEscape")
 	public void updateHelper(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN + 1);
 		myGameObject.finish();

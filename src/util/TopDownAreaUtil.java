@@ -41,13 +41,13 @@ public class TopDownAreaUtil {
 			fighter.setX(background.getX() + width - fighter.getWidth());
 		}
 	}
-	
+
 	public static void setAutoFighterArea(AutoFighter fighter,
 			TopDownTileBackground background, double height, double width) {
 		// the fighter can't move out of screen boundary
 		RegularFighter master = fighter.getMaster();
 		if (master.getX() == background.getX()) {
-			
+
 			fighter.setBrinkHorizontalSpeed();
 
 		}

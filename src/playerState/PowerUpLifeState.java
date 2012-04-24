@@ -2,7 +2,7 @@ package playerState;
 
 import element.Fighter;
 
-public class PowerUpLifeState extends LifeState{
+public class PowerUpLifeState extends LifeState {
 
 	public PowerUpLifeState(Fighter fighter) {
 		super(fighter);
@@ -10,14 +10,13 @@ public class PowerUpLifeState extends LifeState{
 
 	@Override
 	public void setPowerStatus() {
-		
-		
+
 	}
 
 	@Override
 	public void update(long elapsedTime) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

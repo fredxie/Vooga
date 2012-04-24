@@ -31,7 +31,6 @@ public class DemoLevelTransition extends LevelTransition {
 				"GAME OVER! PRESS ESC TO QUIT", 20, DemoGameEngine.HEIGHT / 2);
 	}
 
-
 	public void gameOver() {
 
 		if (gl.fighter.getLifeNum() == 0) {

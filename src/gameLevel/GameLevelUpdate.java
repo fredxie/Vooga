@@ -22,6 +22,6 @@ public abstract class GameLevelUpdate {
 	public abstract void bonusUpdate(long elapsedTime);
 
 	public abstract void levelComplete();
-    
+
 	public abstract void gameUpdate();
 }

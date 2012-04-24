@@ -5,7 +5,6 @@ package configuration.api;
  */
 import java.util.HashMap;
 
-
 import util.JsonUtil;
 import element.RegularFighter;
 
@@ -21,8 +20,7 @@ public class FighterKeyChangedObserver implements KeyChangedObserver {
 	@Override
 	public void changeKey() {
 		// TODO Auto-generated method stub
-		HashMap<GameParameters, Integer> keyMap = JsonUtil
-				.parse("keyConfig.json");
+		HashMap<String, Integer> keyMap = JsonUtil.parse("keyConfig.json");
 		for (Key key : fighter.getKeyList()) {
 			key.setValue(keyMap.get(key.getAction()));
 		}

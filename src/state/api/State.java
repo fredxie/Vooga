@@ -13,18 +13,17 @@ import gameObject.api_GameObject.TopDownGameManager;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
-import configuration.api.GameParameters;
 import configuration.api.Key;
 import configuration.api.KeyAnnotation;
 import configuration.api.KeyConfig;
 import configuration.api.KeyPressedSubject;
 import configuration.api.SystemKeyPressedObserver;
 
-public abstract class State implements KeyConfig{
+public abstract class State implements KeyConfig {
 	private int stateID;
 	protected GameObject myGameObject;
 	protected GameEngine myGameEngine;
-	
+
 	private List<Key> keyList;
 	public SystemKeyPressedObserver keyPressedObserver;
 
@@ -32,7 +31,7 @@ public abstract class State implements KeyConfig{
 		myGameEngine = parent;
 		myGameObject = game;
 	}
-	
+
 	public void setKeyList(List<Key> list) {
 		keyList = list;
 	}
@@ -55,7 +54,7 @@ public abstract class State implements KeyConfig{
 			myGameObject.finish();
 		}
 	}
-	
+
 	public abstract void update(long arg0);
 
 }

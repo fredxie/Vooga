@@ -1,6 +1,5 @@
 package gameObject.demoGameObject;
 
-
 import game.TopDownGameEngine;
 import gameObject.api_GameObject.OptionGameObject;
 
@@ -11,7 +10,7 @@ import state.demo.PauseState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class Pause extends OptionGameObject{
+public class Pause extends OptionGameObject {
 	int option;
 	TopDownImageBackground mainMenuTitle;
 
@@ -49,10 +48,9 @@ public class Pause extends OptionGameObject{
 	public int getOption() {
 		return super.getOption();
 	}
-	
-	public State getState(){
+
+	public State getState() {
 		return myState;
 	}
-
 
 }

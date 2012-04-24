@@ -52,13 +52,13 @@ public class GeneralCollision extends CollisionGroup {
 		for (CollisionAction collision : generalList)
 			collision.oncollide(s1, s2);
 
-		if(s1 instanceof RegularFighter)
-		{
-		String currentstate = ((RegularFighter) s1).getCollisionState().getID();
+		if (s1 instanceof RegularFighter) {
+			String currentstate = ((RegularFighter) s1).getCollisionState()
+					.getID();
 
-		if (stateMap.containsKey(currentstate))
-			for (CollisionAction collision : stateMap.get(currentstate))
-				collision.oncollide(s1, s2);
+			if (stateMap.containsKey(currentstate))
+				for (CollisionAction collision : stateMap.get(currentstate))
+					collision.oncollide(s1, s2);
 		}
 
 	}

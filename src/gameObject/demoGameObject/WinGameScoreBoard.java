@@ -10,13 +10,13 @@ import DemoCollisioSystem.EnemyBulletCollision;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class WinGameScoreBoard extends ScoreBoardGameObject{
-	
+public class WinGameScoreBoard extends ScoreBoardGameObject {
+
 	TopDownImageBackground mainMenuTitle;
 
 	public WinGameScoreBoard(TopDownGameEngine parent) {
 		super(parent);
-		myState = new DefaultFinishGameState(parent,this);
+		myState = new DefaultFinishGameState(parent, this);
 	}
 
 	@Override
@@ -29,14 +29,11 @@ public class WinGameScoreBoard extends ScoreBoardGameObject{
 	@Override
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(g,
-				"YOU WIN THE GAME " , 20,
+		fontManager.getFont("FPS Font").drawString(g, "YOU WIN THE GAME ", 20,
 				DemoGameEngine.HEIGHT / 2 - 50);
 		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES", 20,
-				DemoGameEngine.HEIGHT / 2 );
+				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES",
+				20, DemoGameEngine.HEIGHT / 2);
 	}
-
-	
 
 }

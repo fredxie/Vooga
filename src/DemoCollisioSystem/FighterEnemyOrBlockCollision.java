@@ -8,8 +8,6 @@ import collisionSystem.CollisionAction;
 
 import com.golden.gamedev.object.Sprite;
 
-import configuration.api.GameParameters;
-
 public class FighterEnemyOrBlockCollision extends CollisionAction {
 
 	@Override
@@ -17,8 +15,7 @@ public class FighterEnemyOrBlockCollision extends CollisionAction {
 		// TODO Auto-generated method stub
 		s2.setActive(false);
 
-		if(((Fighter) s1).getLifeNum()==1)
-		{
+		if (((Fighter) s1).getLifeNum() == 1) {
 			((Fighter) s1).setLifeNum(0);
 			s1.setActive(false);
 
@@ -27,12 +24,11 @@ public class FighterEnemyOrBlockCollision extends CollisionAction {
 		else {
 
 			((Fighter) s1).setHP(JsonUtil.parse("paraConfig.json").get(
-					GameParameters.FIGHTER_HP));
+					"FIGHTER_HP"));
 
 			((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);
 		}
 
-		
 	}
 
 }

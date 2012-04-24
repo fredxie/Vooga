@@ -82,7 +82,8 @@ public class TrackingMissile extends Weapon {
 
 	@Override
 	public Element clone() {
-		TrackingMissile TM=new TrackingMissile(this.getImage(), this.getX(), this.getY());// TODO Auto-generated method stub
+		TrackingMissile TM = new TrackingMissile(this.getImage(), this.getX(),
+				this.getY());// TODO Auto-generated method stub
 		return TM;
 	}
 }

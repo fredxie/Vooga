@@ -1,17 +1,15 @@
 package gameObject.demoGameObject;
 
-
 import game.TopDownGameEngine;
 import gameObject.api_GameObject.OptionGameObject;
 
 import java.awt.Graphics2D;
 
-
 import state.demo.MenuState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 
-public class Menu extends OptionGameObject{
+public class Menu extends OptionGameObject {
 	public int option;
 	TopDownImageBackground mainMenuTitle;
 

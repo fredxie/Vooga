@@ -16,32 +16,30 @@ public abstract class TopDownGameEngine extends GameEngine {
 
 	public static int HEIGHT;
 	public static int WIDTH;
-	
-	public TopDownGameEngine(){
+
+	public TopDownGameEngine() {
 		TopDownGameManager.initManager(this);
 	}
 
-	
-	public void initResources(){
-		//System.out.println("start");
+	public void initResources() {
+		// System.out.println("start");
 		super.initResources();
 		TopDownGameManager.initManager(this);
 		addGameObjects();
 		setInitialGameID();
 	}
-	
-	public void update(long elapsedTime){
+
+	public void update(long elapsedTime) {
 		nextGameID = TopDownGameManager.getCurrentGameID();
 	}
-	
-	public GameObject getGame(int gameID){
-		//nextGameID = TopDownGameManager.getCurrentGameID();
+
+	public GameObject getGame(int gameID) {
+		// nextGameID = TopDownGameManager.getCurrentGameID();
 		return TopDownGameManager.getGameObject(nextGameID);
 	}
-	
+
 	public abstract void addGameObjects();
-	
+
 	public abstract void setInitialGameID();
-	
-	
+
 }

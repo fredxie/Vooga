@@ -1,10 +1,8 @@
 package configuration.api;
 
-
 /**
  * @author Ran Zhang
  */
-
 
 public class SystemKeyPressedObserver implements KeyPressedObserver {
 
@@ -40,6 +38,5 @@ public class SystemKeyPressedObserver implements KeyPressedObserver {
 		// TODO Auto-generated method stub
 		return object;
 	}
-	
-	
+
 }

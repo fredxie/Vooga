@@ -3,9 +3,9 @@ package ai;
 import element.Enemy;
 import game.Configuration;
 
-public class ScoreBrain_Enemy extends AI{
+public class ScoreBrain_Enemy extends AI {
 	double h;
-	
+
 	@Override
 	public void refresh(long elaspedTime) {
 		// TODO Auto-generated method stub
@@ -13,12 +13,12 @@ public class ScoreBrain_Enemy extends AI{
 		double vSpeed = mySprite.getVerticalSpeed();
 		hSpeed = hSpeed + .05;
 		vSpeed = vSpeed + .02;
-		mySprite.setSpeed(hSpeed,vSpeed);
-	
+		mySprite.setSpeed(hSpeed, vSpeed);
+
 		int rate = ((Enemy) mySprite).getRefireRate();
 		rate = rate - 150;
-		((Enemy) mySprite).setRefireRate(rate);	
-		
+		((Enemy) mySprite).setRefireRate(rate);
+
 		double x = AI.ENEMY_HP;
 		h = x + .5;
 		AI.ENEMY_HP = h;

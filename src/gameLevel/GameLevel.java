@@ -27,11 +27,11 @@ public abstract class GameLevel extends TopDownGameObject {
 	public static TopDownTimer timer = new TopDownTimer(3000);
 	public DemoPlayField playfield = new DemoPlayField(this);
 	public DemoFighter fighter;
-	public List<Enemy> juniorEnemies = new ArrayList<Enemy>(); 
-	public List<Enemy> cannon = new ArrayList<Enemy>(); 
+	public List<Enemy> juniorEnemies = new ArrayList<Enemy>();
+	public List<Enemy> cannon = new ArrayList<Enemy>();
 	public List<Bonus> bonuses = new ArrayList<Bonus>();
 	public List<Block> blocks = new ArrayList<Block>();
-	
+
 	public ElementSpawner<Enemy> enemySpawner;
 	public ElementSpawner<Enemy> cannonSpawner;
 	public ElementSpawner<Bonus> bonusSpawner;
@@ -39,13 +39,13 @@ public abstract class GameLevel extends TopDownGameObject {
 
 	public boolean gameOver;
 	public boolean levelComplete;
-	
+
 	public String levelRequirement;
 	public int level;
-    
+
 	public GameLevel(TopDownGameEngine parent) {
 		super(parent);
 	}
-	
+
 	public abstract void gameRender(Graphics2D g);
 }

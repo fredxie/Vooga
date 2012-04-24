@@ -8,7 +8,7 @@ public class RegularEnemy extends Enemy {
 
 	public RegularEnemy(BufferedImage image) {
 		super(image);
-		this.mySpawnBehavior=new SpawnByLocation();
+		this.mySpawnBehavior = new SpawnByLocation();
 		// TODO Auto-generated constructor stub
 	}
 

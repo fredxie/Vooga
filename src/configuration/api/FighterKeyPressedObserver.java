@@ -26,8 +26,8 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 			}
 		}
 		fighter.setVerticalSpeed(fighter.getVerticalSpeed()
-				- JsonUtil.parse("paraConfig.json").get(
-						GameParameters.BACKGROUND_SPEED) / 10.0);
+				- JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
+				/ 10.0);
 	}
 
 	@Override

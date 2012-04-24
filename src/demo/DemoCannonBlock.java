@@ -1,4 +1,3 @@
-
 package demo;
 
 import java.awt.Graphics2D;
@@ -24,9 +23,8 @@ import element.Weapon;
 /**
  * 
  * @author Yi Ding
- *
+ * 
  */
-
 
 public class DemoCannonBlock extends Enemy {
 
@@ -46,19 +44,19 @@ public class DemoCannonBlock extends Enemy {
 
 	protected static final int CANNON_XOFFSET = (WIDTH - 16) / 2;
 	protected static final int CANNON_YOFFSET = -3 * HEIGHT / 4;
-	
+
 	AI init;
 
 	public DemoCannonBlock(TopDownPlayField playfield, BufferedImage baseImg,
-			BufferedImage cannonImg, Fighter player)//, AI initialAI)
+			BufferedImage cannonImg, Fighter player)// , AI initialAI)
 
 	{
-		super(baseImg);//, initialAI);
-		//init = initialAI;
+		super(baseImg);// , initialAI);
+		// init = initialAI;
 		this.playfield = playfield;
 		m_baseImg = baseImg;
 		m_cannonImg = cannonImg;
-       
+
 		m_fireTimer = new Timer(DEFAULT_FIRE_DELAY);
 		m_canFire = true;
 		fighter = player;
@@ -147,15 +145,16 @@ public class DemoCannonBlock extends Enemy {
 				attack(elapsedTime);
 			}
 		} else { // for those have shown before, they should continue firing
-			 if(getY()>playfield.getBackground().getY())
-					show=false;
-			 else attack(elapsedTime);
-		
+			if (getY() > playfield.getBackground().getY())
+				show = false;
+			else
+				attack(elapsedTime);
+
 		}
 	}
 
 	public void render(Graphics2D g) {
-	//	renderCannon(g);
+		// renderCannon(g);
 		renderBase(g);
 		super.render(g);
 	}
@@ -184,19 +183,18 @@ public class DemoCannonBlock extends Enemy {
 						CANNON_ROTATIONX, CANNON_ROTATIONY),
 				AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 		g.drawImage(m_cannonImg, op, cannonX, cannonY);
-		//System.out.println(cannonX);
+		// System.out.println(cannonX);
 	}
-	
-    protected void renderBase( Graphics2D g)
-    {
-        g.drawImage( m_baseImg, null, (int) getX(),(int) getY() );
-    }
+
+	protected void renderBase(Graphics2D g) {
+		g.drawImage(m_baseImg, null, (int) getX(), (int) getY());
+	}
 
 	@Override
 	public Enemy clone() {
 		// TODO Auto-generated method stub
-		return new DemoCannonBlock(playfield, m_baseImg, m_cannonImg, fighter);//, init);
+		return new DemoCannonBlock(playfield, m_baseImg, m_cannonImg, fighter);// ,
+																				// init);
 	}
 
 }
-

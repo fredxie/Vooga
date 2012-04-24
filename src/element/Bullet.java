@@ -1,4 +1,5 @@
 package element;
+
 /**
  * 
  * @author ShiyuanWang
@@ -6,9 +7,9 @@ package element;
 import java.awt.image.BufferedImage;
 
 public abstract class Bullet extends Element {
-    double damage;
+	double damage;
 	BufferedImage image;
-    
+
 	public Bullet(BufferedImage image) {
 		super(image);
 	}
@@ -17,7 +18,8 @@ public abstract class Bullet extends Element {
 		super(image, x, y);
 	}
 
-	public Bullet(BufferedImage image, double x, double y, double eNEMY_WEAPON_DAMAGE) {
+	public Bullet(BufferedImage image, double x, double y,
+			double eNEMY_WEAPON_DAMAGE) {
 		super(image, x, y);
 		this.damage = eNEMY_WEAPON_DAMAGE;
 	}
@@ -29,15 +31,17 @@ public abstract class Bullet extends Element {
 	public void setDamage(double x) {
 		this.damage = x;
 	}
-    public abstract  void genBullets(Fighter fighter, int numOfBullet, double weaponDamage);
- 
-    public void addBullets(Bullet[] bullets,Fighter fighter)
-    {  
-    	for(Bullet bullet : bullets)
+
+	public abstract void genBullets(Fighter fighter, int numOfBullet,
+			double weaponDamage);
+
+	public void addBullets(Bullet[] bullets, Fighter fighter) {
+		for (Bullet bullet : bullets)
 			fighter.playfield.getGroup("Fighter Bullet").add(bullet);
 		fighter.allowFire = false;
-		
-    }
+
+	}
+
 	@Override
 	public abstract void init();
 }

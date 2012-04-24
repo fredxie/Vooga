@@ -14,7 +14,7 @@ import DemoCollisioSystem.EnemyBulletCollision;
 import DemoLevelTransition.DemoLevelTransition;
 import configuration.api.KeyPressedSubject;
 
-public class DemoLevelUpdate1 extends GameLevelUpdate{
+public class DemoLevelUpdate1 extends GameLevelUpdate {
 
 	public DemoLevelUpdate1(GameLevel1 gl) {
 		super(gl);
@@ -32,12 +32,14 @@ public class DemoLevelUpdate1 extends GameLevelUpdate{
 		gl.fighter.refresh(elapsedTime);
 		if (gl.keyDown(KeyEvent.VK_SPACE) && !gl.showSatellite) {
 			gl.showSatellite = true;
-			gl.fighter.getAssistanceState().changeState(
-					new DemoProtection(TopDownImageUtil
-							.getImage("images/game/Satellite.png"), gl.fighter));
+			gl.fighter.getAssistanceState()
+					.changeState(
+							new DemoProtection(TopDownImageUtil
+									.getImage("images/game/Satellite.png"),
+									gl.fighter));
 			((AssistanceState) gl.fighter.getAssistanceState()).genAssistance();
 		}
-	
+
 	}
 
 	public void cannonUpdate(long elapsedTime) {
@@ -67,10 +69,9 @@ public class DemoLevelUpdate1 extends GameLevelUpdate{
 		}
 	}
 
-	
 	public void levelComplete() {
 		if (EnemyBulletCollision.destroyed >= 10
-				||gl.playfield.getBackground().getY() == 0) {
+				|| gl.playfield.getBackground().getY() == 0) {
 			gl.levelComplete = true;
 			gl.playfield.clearPlayField();
 		}

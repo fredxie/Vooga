@@ -3,8 +3,9 @@ package hud;
 import element.Enemy;
 
 public class EnemyHPInfo implements HUDInfo {
-	public EnemyHPInfo() {}
-	
+	public EnemyHPInfo() {
+	}
+
 	@Override
 	public String getString(Object obj) {
 		Enemy enemy = (Enemy) obj;

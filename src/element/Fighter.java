@@ -9,27 +9,26 @@ import playerState.WeaponState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
 import DemoElement.Laser;
-import configuration.api.GameParameters;
 
 public abstract class Fighter extends Element {
 
 	private static double FIGHTER_WEAPON_DAMAGE = 100;
 	private static int INITIAL_STYLE = 0;
-//	protected static double healthPoint = Configuration.FIGHTER_HP;
-	protected static double healthPoint = JsonUtil.parse("paraConfig.json").get(
-			GameParameters.FIGHTER_HP);
-	protected int lifeNum = JsonUtil.parse("paraConfig.json").get(
-			GameParameters.lifeNum);
+	// protected static double healthPoint = Configuration.FIGHTER_HP;
+	protected static double healthPoint = JsonUtil.parse("paraConfig.json")
+			.get("FIGHTER_HP");
+	protected int lifeNum = JsonUtil.parse("paraConfig.json").get("lifeNum");
 	protected double weaponDamage = FIGHTER_WEAPON_DAMAGE;
 	protected int weaponStyle = INITIAL_STYLE;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
 	public boolean allowFire = false;
-	public WeaponState weaponState = new WeaponState(this,weaponStyle,weaponDamage);
+	public WeaponState weaponState = new WeaponState(this, weaponStyle,
+			weaponDamage);
 	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
 	public double speedX, speedY; // after 300 ms
 	public double backgroundSpeed = JsonUtil.parse("paraConfig.json").get(
-			GameParameters.BACKGROUND_SPEED);
+			"BACKGROUND_SPEED");
 	public GameLevel game;
 	public BufferedImage bulletImage;
 	public int bombNum;
@@ -55,8 +54,7 @@ public abstract class Fighter extends Element {
 		healthPoint = healthPoint + change;
 		if (healthPoint <= 0) {
 			lifeNum--;
-			healthPoint = JsonUtil.parse("paraConfig.json").get(
-					GameParameters.FIGHTER_HP);
+			healthPoint = JsonUtil.parse("paraConfig.json").get("FIGHTER_HP");
 		}
 
 	}
@@ -96,11 +94,10 @@ public abstract class Fighter extends Element {
 		this.weaponStyle = weaponStyle;
 	}
 
-	public WeaponState getWeaponState()
-	{
+	public WeaponState getWeaponState() {
 		return weaponState;
 	}
-	
+
 	public int getWeaponStyle() {
 		return weaponStyle;
 	}
@@ -134,7 +131,7 @@ public abstract class Fighter extends Element {
 	}
 
 	public abstract void attack();
-	
+
 	public void setGameObject(GameLevel game) {
 		this.game = game;
 	}

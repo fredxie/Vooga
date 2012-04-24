@@ -10,7 +10,6 @@ import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
 import DemoElement.Laser;
-import configuration.api.GameParameters;
 import demo.DemoGameEngine;
 import element.AutoFighter;
 import element.RegularFighter;
@@ -38,7 +37,7 @@ public abstract class Satellite extends AutoFighter {
 		playfield = master.playfield;
 		game = master.game;
 		weaponState.changeState(bullet);
-		weaponState.setWeapon(0,1);
+		weaponState.setWeapon(0, 1);
 		setRefireRate(1000);
 		setLocation(master.getX() - 0.5 * master.getWidth(), master.getY());
 	}
@@ -51,7 +50,7 @@ public abstract class Satellite extends AutoFighter {
 				allowFire = refireRate.action(elapsedTime);
 			} else
 				attack();
-			speedY = master.getVerticalSpeed()*0.5;
+			speedY = master.getVerticalSpeed() * 0.5;
 			speedX = 0.3 * master.getHorizontalSpeed();
 			setSpeed(speedX, speedY);
 			TopDownAreaUtil.setFighterArea(this, playfield.getTileBackground(),
@@ -62,18 +61,17 @@ public abstract class Satellite extends AutoFighter {
 
 	public void setBrinkVerticalSpeed() {
 		setVerticalSpeed(-JsonUtil.parse("paraConfig.json").get(
-				GameParameters.BACKGROUND_SPEED));
+				"BACKGROUND_SPEED"));
 	}
 
 	public void setBrinkHorizontalSpeed() {
 		setHorizontalSpeed(0);
 	}
-	   public void attack() {
-			
-			weaponState.fire();
-			allowFire = false;
-		  }
 
+	public void attack() {
 
+		weaponState.fire();
+		allowFire = false;
+	}
 
 }

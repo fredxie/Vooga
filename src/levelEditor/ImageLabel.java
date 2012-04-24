@@ -1,10 +1,8 @@
-
 package levelEditor;
 
 /**
  * @author Jiawei Shi
  */
-
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -33,7 +31,7 @@ public class ImageLabel extends JLabel implements MouseListener {
 
 	private boolean inRightPanel;
 	private int X_pos, Y_pos;
-	
+
 	private String ImagePath;
 	private String myCategory = null;
 	private int HP = 0;
@@ -117,7 +115,7 @@ public class ImageLabel extends JLabel implements MouseListener {
 		}
 
 		else if (SwingUtilities.isLeftMouseButton(arg0) && inRightPanel) {
-			//ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
+			// ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
 			ImageLabel newLabel = copyLabel();
 			newLabel.moveToLeftPanel();
 			levelEditor.addToList(newLabel);
@@ -135,19 +133,18 @@ public class ImageLabel extends JLabel implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public void activateSpecDialog(){
+
+	public void activateSpecDialog() {
 		SpecDialog sd = new SpecDialog(this);
 	}
-	
-	public ImageLabel copyLabel(){
-		ImageLabel newLabel = new ImageLabel(myImage,levelEditor);
+
+	public ImageLabel copyLabel() {
+		ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
 		newLabel.setHP(HP);
 		newLabel.setCategory(myCategory);
 		newLabel.setImagePath(ImagePath);
 		return newLabel;
 	}
-
 
 	public void moveToLeftPanel() {
 		inRightPanel = false;
@@ -175,32 +172,32 @@ public class ImageLabel extends JLabel implements MouseListener {
 	public int getY_pos() {
 		return Y_pos;
 	}
-	
-	public void setCategory(String str){
+
+	public void setCategory(String str) {
 		myCategory = str;
 	}
-	
-	public String getCategory(){
+
+	public String getCategory() {
 		return myCategory;
 	}
-	
-	public void setHP(int a){
+
+	public void setHP(int a) {
 		HP = a;
 	}
-	
-	public int getHP(){
+
+	public int getHP() {
 		return HP;
 	}
-	
-	public void setImagePath(String str){
+
+	public void setImagePath(String str) {
 		ImagePath = str;
 	}
-	
-	public String getImagePath(){
+
+	public String getImagePath() {
 		return ImagePath;
 	}
-	
-	public List<Object> toList(){
+
+	public List<Object> toList() {
 		List<Object> myList = new ArrayList<Object>();
 		myList.add(ImagePath);
 		myList.add(myCategory);

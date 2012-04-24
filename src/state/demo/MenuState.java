@@ -12,7 +12,6 @@ import java.util.HashMap;
 import state.api.State;
 import util.JsonUtil;
 
-import configuration.api.GameParameters;
 import configuration.api.KeyAnnotation;
 import configuration.api.KeyPressedSubject;
 import configuration.api.SystemKeyPressedObserver;
@@ -45,26 +44,27 @@ public class MenuState extends State {
 
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemUp)
+	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
 		Menu game = (Menu) myGameObject;
 		game.optionArrowUp(elapsedTime);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemDown)
+	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
 		Menu game = (Menu) myGameObject;
 		game.optionArrowDown(elapsedTime);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemEnter)
+	@KeyAnnotation(action = "SystemEnter")
 	public void updateHelper(long arg0) {
 		Menu game = (Menu) myGameObject;
 
 		switch (game.getOption()) {
 		case 0:
 			// start easy game
-			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
+			TopDownGameManager
+					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 			System.out.println("menustate0");
 			game.finish();
 			break;
@@ -99,7 +99,7 @@ public class MenuState extends State {
 	@Override
 	public void update(long arg0) {
 		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
-//		keyPressedObserver.pressKey(arg0);
+		// keyPressedObserver.pressKey(arg0);
 
 	}
 

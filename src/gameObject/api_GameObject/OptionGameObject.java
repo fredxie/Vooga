@@ -1,6 +1,5 @@
 package gameObject.api_GameObject;
 
-
 import game.TopDownGameEngine;
 
 import java.awt.Graphics2D;
@@ -12,7 +11,6 @@ import state.api.State;
 
 import com.golden.gamedev.GameObject;
 
-import configuration.api.GameParameters;
 import configuration.api.Key;
 import configuration.api.KeyAnnotation;
 import configuration.api.SystemKeyPressedObserver;
@@ -21,7 +19,7 @@ public abstract class OptionGameObject extends GameObject {
 	protected State myState;
 	public int option;
 	public ArrayList<String> options;
-	
+
 	public OptionGameObject(TopDownGameEngine parent) {
 		super(parent);
 		options = new ArrayList<String>();
@@ -58,14 +56,14 @@ public abstract class OptionGameObject extends GameObject {
 
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemUp)
+	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
 		option--;
 		if (option < 0)
 			option = options.size() - 1;
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemDown)
+	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
 		option++;
 		if (option > options.size() - 1)

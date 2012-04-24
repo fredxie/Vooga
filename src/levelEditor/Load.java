@@ -19,11 +19,10 @@ import javax.swing.JPanel;
 
 import util.LoadUtil;
 
-
 public class Load extends JFrame {
 
 	private JPanel myPanel;
-	
+
 	public static List<List<Object>> list;
 
 	public Load() {
@@ -49,7 +48,7 @@ public class Load extends JFrame {
 				JFileChooser fc = new JFileChooser("./");
 				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fc.showOpenDialog(select);
-				
+
 				LoadUtil.loadJson(fc.getSelectedFile());
 			}
 
@@ -61,7 +60,7 @@ public class Load extends JFrame {
 		setPreferredSize(new Dimension(500, 100));
 		return panel;
 	}
-	
+
 	public static void main(String[] args) {
 		Load l = new Load();
 	}

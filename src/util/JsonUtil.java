@@ -19,19 +19,18 @@ import com.golden.gamedev.GameObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import configuration.api.GameParameters;
 import configuration.api.Key;
 
 public class JsonUtil {
 
-	public static HashMap<GameParameters, Integer> parse(String fileName) {
+	public static HashMap<String, Integer> parse(String fileName) {
 		Gson gson = new Gson();
-		HashMap<GameParameters, Integer> map = new HashMap<GameParameters, Integer>();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File(fileName));
 			String wholeFile = scanner.useDelimiter("\\A").next();
-			Type collectionType = new TypeToken<HashMap<GameParameters, Integer>>() {
+			Type collectionType = new TypeToken<HashMap<String, Integer>>() {
 			}.getType();
 			map = gson.fromJson(wholeFile, collectionType);
 		} catch (FileNotFoundException e) {
@@ -40,8 +39,7 @@ public class JsonUtil {
 		return map;
 	}
 
-	public static void output(HashMap<GameParameters, Integer> map,
-			String fileName) {
+	public static void output(HashMap<String, Integer> map, String fileName) {
 
 		Gson gson = new Gson();
 		try {
@@ -57,12 +55,18 @@ public class JsonUtil {
 
 	public static List<Key> createKeyList(Object obj, String fileName,
 			GameObject myGame) {
-		HashMap<GameParameters, Integer> keyMap = JsonUtil.parse(fileName);
+		HashMap<String, Integer> keyMap = JsonUtil.parse(fileName);
 		List<Key> keyList = new ArrayList<Key>();
-		for (GameParameters action : keyMap.keySet()) {
+		for (String action : keyMap.keySet()) {
 			keyList.add(new Key(keyMap.get(action), action, obj, myGame));
 		}
 		return keyList;
+	}
+	
+	public static void registerKeyAcion(String action, int keyValue) {
+		HashMap<String, Integer> map = JsonUtil.parse("keyConfig.json");
+		map.put(action, keyValue);
+		JsonUtil.output(map, "keyConfig.json");
 	}
 
 }

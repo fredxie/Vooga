@@ -19,7 +19,6 @@ import DemoCollisioSystem.SoundCollision;
 import DemoPlayerState.PhysicCollisionStatus;
 import ai.AI;
 import collisionSystem.CollisionManager;
-import configuration.api.GameParameters;
 import demo.DemoBlock;
 import demo.DemoBonus1;
 import demo.DemoBonus2;
@@ -41,14 +40,11 @@ public class DemoLevelInit1 extends GameLevelInit {
 
 	public void parametersInit() {
 		gl.gameOver = false;
-		gl.levelComplete =false;
+		gl.levelComplete = false;
 		gl.showSatellite = false;
-		gl.enemyNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.ENEMY_NUM);
-		gl.bonusNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.BONUS_NUM);
-		gl.blockNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.BLOCK_NUM);
+		gl.enemyNum = JsonUtil.parse("paraConfig.json").get("ENEMY_NUM");
+		gl.bonusNum = JsonUtil.parse("paraConfig.json").get("BONUS_NUM");
+		gl.blockNum = JsonUtil.parse("paraConfig.json").get("BLOCK_NUM");
 		gl.cannonNum = 20;
 		gl.timer = new TopDownTimer(3000);
 		gl.fighter = new DemoFighter(
@@ -108,7 +104,8 @@ public class DemoLevelInit1 extends GameLevelInit {
 		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
 				new DemoBonus5(gl.playfield,
 						gl.getImage("images/game/fighter_accelerate.png"),
-						new PhysicCollisionStatus(gl.fighter.getCollisionState())), gl.bonusNum);
+						new PhysicCollisionStatus(
+								gl.fighter.getCollisionState())), gl.bonusNum);
 		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 

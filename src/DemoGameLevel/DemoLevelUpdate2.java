@@ -61,19 +61,20 @@ public class DemoLevelUpdate2 extends GameLevelUpdate {
 		}
 	}
 
-
 	public void cannonUpdate(long elapsedTime) {
 		for (int i = 0; i < gl.cannonNum; i++) {
 			gl.cannon.get(i).refresh(elapsedTime);
 		}
 	}
+
 	public void levelComplete() {
 		if (EnemyBulletCollision.destroyed >= 20
-				||gl.playfield.getBackground().getY() == 0) {
+				|| gl.playfield.getBackground().getY() == 0) {
 			gl.levelComplete = true;
 			gl.playfield.clearPlayField();
 		}
 	}
+
 	public void gameUpdate() {
 		LevelTransition lt = new DemoLevelTransition(gl);
 		lt.gameOver();

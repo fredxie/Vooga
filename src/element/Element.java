@@ -14,15 +14,15 @@ public abstract class Element extends Sprite {
 	public TopDownPlayField playfield;
 	public SpawnBehavior mySpawnBehavior;
 
-	 private int mass;   // this is Yi Ding's revise
+	private int mass; // this is Yi Ding's revise
 
-		public int getMass() {    // this is Yi Ding's revise
-			return mass;
-		}
+	public int getMass() { // this is Yi Ding's revise
+		return mass;
+	}
 
-		public void setMass(int mass) {   // this is Yi Ding's revise
-			this.mass = mass;
-		}
+	public void setMass(int mass) { // this is Yi Ding's revise
+		this.mass = mass;
+	}
 
 	public Element(BufferedImage image) {
 		super(image);
@@ -57,27 +57,27 @@ public abstract class Element extends Sprite {
 	}
 
 	public abstract void init();
+
 	// public abstract void update(long elapsedTime);
-	
-	
+
 	/**
 	 * @author Gang Song
 	 * @Description set Spawning behavior
 	 */
-	public void setSpawnBehavior(SpawnBehavior SB){
-		//mySpawnBehavior=new SpawnByLocation();
-		mySpawnBehavior=SB;
+	public void setSpawnBehavior(SpawnBehavior SB) {
+		// mySpawnBehavior=new SpawnByLocation();
+		mySpawnBehavior = SB;
 	}
 
-	public void spawn(){
-		double[] templocation=mySpawnBehavior.spawn();
-		
-		this.setX(templocation[0]*(DemoGameEngine.WIDTH- this.getWidth()));
-		this.setY(templocation[1]*(playfield.getBackground().getHeight()- DemoGameEngine.HEIGHT));
+	public void spawn() {
+		double[] templocation = mySpawnBehavior.spawn();
 
-		//this.playfield.getTileBackground().getWidth()
+		this.setX(templocation[0] * (DemoGameEngine.WIDTH - this.getWidth()));
+		this.setY(templocation[1]
+				* (playfield.getBackground().getHeight() - DemoGameEngine.HEIGHT));
+
+		// this.playfield.getTileBackground().getWidth()
 	}
-	
-	
+
 	public abstract Element clone();
 }

@@ -1,6 +1,5 @@
 package configuration.demo;
 
-import configuration.api.GameParameters;
 import configuration.api.Setting;
 
 /**
@@ -11,18 +10,18 @@ public class DemoSetting extends Setting {
 
 	@Override
 	public void setList() {
-		keySettingList.add(GameParameters.UP);
-		keySettingList.add(GameParameters.DOWN);
-		keySettingList.add(GameParameters.LEFT);
-		keySettingList.add(GameParameters.RIGHT);
-		keySettingList.add(GameParameters.FIRE);
-		keySettingList.add(GameParameters.BOMB);
+		keySettingList.add("UP");
+		keySettingList.add("DOWN");
+		keySettingList.add("LEFT");
+		keySettingList.add("RIGHT");
+		keySettingList.add("FIRE");
+		// keySettingList.add("BOMB");
 
-		paraSettingList.add(GameParameters.ENEMY_NUM);
-		paraSettingList.add(GameParameters.BOMB_NUM);
-		paraSettingList.add(GameParameters.lifeNum);
-		paraSettingList.add(GameParameters.FIGHTER_HP);
-		paraSettingList.add(GameParameters.BACKGROUND_SPEED);
+		paraSettingList.add("ENEMY_NUM");
+		paraSettingList.add("BOMB_NUM");
+		paraSettingList.add("lifeNum");
+		paraSettingList.add("FIGHTER_HP");
+		paraSettingList.add("BACKGROUND_SPEED");
 	}
 
 }

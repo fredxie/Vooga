@@ -2,8 +2,11 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
+import configuration.api.KeyAnnotation;
+
 import playerState.AssistanceState;
 import playerState.CollisionState;
+import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
 import DemoElement.Laser;
@@ -16,20 +19,21 @@ import game.TopDownVolatileElement;
 
 public class DemoFighter extends RegularFighter {
 	private int BOMB_NUM = 5;
-	Weapon bullet = new Laser(  
+	Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/bigLaser1.png"));
 	private DemoSatellite satellite;
 	private DemoProtection protection;
-    public static boolean best_weapon = false;
+	public static boolean best_weapon = false;
+
 	public DemoFighter(BufferedImage image) {
 		super(image);
 	}
-	
+
 	public void initHelper() {
-		 moveSpeed = 0.3;
-		 rebombRate = new TopDownTimer(5000); 
-		 assistanceState = new AssistanceState(this);
-		 collisionState = new CollisionState(this);
+		moveSpeed = 0.3;
+		rebombRate = new TopDownTimer(5000);
+		assistanceState = new AssistanceState(this);
+		collisionState = new CollisionState(this);
 		setRefireRate(100);// Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
@@ -40,18 +44,17 @@ public class DemoFighter extends RegularFighter {
 		stateList.add(assistanceState);
 		stateList.add(collisionState);
 		setMass(4);
-
+		JsonUtil.registerKeyAcion("BOMB", 17);
 	}
 
 	public void refresh(long elapsedTime) {
 
 		if (isActive()) {
 			stateUpdate(elapsedTime);
-		
-			if(this.getWeaponStyle() == 3){ 
+
+			if (this.getWeaponStyle() == 3) {
 				best_weapon = true;
-			}
-			else {
+			} else {
 				best_weapon = false;
 			}
 			TopDownAreaUtil.setFighterArea(this, playfield.getTileBackground(),
@@ -61,10 +64,6 @@ public class DemoFighter extends RegularFighter {
 			}
 		}
 	}
-
-
-
-
 
 	private void clearElement(String name) {
 		Element[] element = playfield.getGroup(name).getElement();
@@ -80,7 +79,6 @@ public class DemoFighter extends RegularFighter {
 					playfield.add(new TopDownVolatileElement(TopDownImageUtil
 							.getImages("images/game/explosion.png", 6, 1),
 							element[i].getX(), element[i].getY()));
-					// EnemyDestroyedCollision.destroyed++;
 				}
 			}
 		}
@@ -103,25 +101,20 @@ public class DemoFighter extends RegularFighter {
 	public DemoProtection getProtection() {
 		return protection;
 	}
-	
+
 	public void keyUpPressed(long elapsedTime) {
-		// TODO Auto-generated method stub
-		// speedY = -moveSpeed;
 		setVerticalSpeed(-moveSpeed);
 	}
-	
+
 	public void keyDownPressed(long elapsedTime) {
-		// speedY = moveSpeed;
 		setVerticalSpeed(moveSpeed);
 	}
 
 	public void keyLeftPressed(long elapsedTime) {
-		// speedX = -moveSpeed;
 		setHorizontalSpeed(-moveSpeed);
 	}
 
 	public void keyRightPressed(long elapsedTime) {
-		// speedX = moveSpeed;
 		setHorizontalSpeed(moveSpeed);
 	}
 
@@ -134,14 +127,12 @@ public class DemoFighter extends RegularFighter {
 			attack();
 	}
 
-	
 	@Override
 	public Element clone() {
-		// TODO Auto-generated method stub
 		return new DemoFighter(this.getImage());
 	}
 
-	@Override
+	@KeyAnnotation(action = "BOMB")
 	public void keyBombPressed(long elapsedTime) {
 		if (allowBomb == false) {
 			allowBomb = rebombRate.action(elapsedTime);
@@ -151,8 +142,7 @@ public class DemoFighter extends RegularFighter {
 			clearElement("Enemy");
 			clearElement("Enemy Missile");
 			allowBomb = false;
-		}		
+		}
 	}
-
 
 }

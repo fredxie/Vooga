@@ -11,18 +11,17 @@ import javax.swing.JFrame;
 
 import util.JsonUtil;
 
-
 public class KeySettingListener extends JFrame implements KeyListener {
-	GameParameters action;
+	String action;
 
-	public KeySettingListener(GameParameters action) {
+	public KeySettingListener(String action) {
 		this.action = action;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 
-		HashMap<GameParameters, Integer> keyMap = JsonUtil.parse("keyConfig.json");
+		HashMap<String, Integer> keyMap = JsonUtil.parse("keyConfig.json");
 		keyMap.put(action, arg0.getKeyCode());
 		JsonUtil.output(keyMap, "keyConfig.json");
 	}

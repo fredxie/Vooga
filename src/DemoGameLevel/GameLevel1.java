@@ -47,7 +47,7 @@ public class GameLevel1 extends GameLevel {
 		demoLevelUpdate1.bonusUpdate(elapsedTime);
 		demoLevelUpdate1.cannonUpdate(elapsedTime);
 		demoLevelUpdate1.gameUpdate();
-		
+
 	}
 
 	public void gameRender(Graphics2D g) {

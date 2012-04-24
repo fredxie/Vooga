@@ -5,14 +5,17 @@ import gameLevel.GameLevel;
 
 import java.awt.image.BufferedImage;
 
-public abstract class AutoFighter extends Fighter{
-	
-	protected RegularFighter master;
-	public abstract void init();
-    public abstract void setBrinkVerticalSpeed();
-    public abstract void setBrinkHorizontalSpeed();
+public abstract class AutoFighter extends Fighter {
 
-    public AutoFighter(BufferedImage image) {
+	protected RegularFighter master;
+
+	public abstract void init();
+
+	public abstract void setBrinkVerticalSpeed();
+
+	public abstract void setBrinkHorizontalSpeed();
+
+	public AutoFighter(BufferedImage image) {
 		super(image);
 	}
 
@@ -22,10 +25,9 @@ public abstract class AutoFighter extends Fighter{
 		init();
 	}
 
-    public RegularFighter getMaster()
-    {
-    	return master;
-    }
+	public RegularFighter getMaster() {
+		return master;
+	}
 
 	public AutoFighter produce(Fighter fighter) {
 		fighter.playfield.add(this);

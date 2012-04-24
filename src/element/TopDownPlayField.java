@@ -9,12 +9,10 @@ import background.TopDownTileBackground;
 
 import com.golden.gamedev.object.PlayField;
 
-import configuration.api.GameParameters;
-
 public class TopDownPlayField extends PlayField {
 
 	private TopDownGameObject game;
-	private long myElapsedTime; 
+	private long myElapsedTime;
 
 	public TopDownPlayField(TopDownGameObject object) {
 		super();
@@ -34,12 +32,11 @@ public class TopDownPlayField extends PlayField {
 	}
 
 	public void update(long elapsedTime) {
-		myElapsedTime=elapsedTime;
+		myElapsedTime = elapsedTime;
 		super.update(elapsedTime);
 		this.getBackground().move(
 				0,
-				-JsonUtil.parse("paraConfig.json").get(
-						GameParameters.BACKGROUND_SPEED)
+				-JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
 						/ 10.0 * elapsedTime);
 	}
 
@@ -50,8 +47,8 @@ public class TopDownPlayField extends PlayField {
 	public ElementGroup getGroup(String name) {
 		return (ElementGroup) super.getGroup(name);
 	}
-	
-	public long getElapsedTime(){
+
+	public long getElapsedTime() {
 		return myElapsedTime;
 	}
 }

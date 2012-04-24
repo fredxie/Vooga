@@ -17,7 +17,6 @@ import DemoCollisioSystem.PhysicCollision;
 import DemoCollisioSystem.SoundCollision;
 import ai.AI;
 import collisionSystem.CollisionManager;
-import configuration.api.GameParameters;
 import demo.DemoBlock;
 import demo.DemoBonus1;
 import demo.DemoCannonBlock;
@@ -34,14 +33,11 @@ public class DemoLevelInit2 extends GameLevelInit {
 
 	public void parametersInit() {
 		gl.gameOver = false;
-		gl.levelComplete =false;
+		gl.levelComplete = false;
 		gl.showSatellite = false;
-		gl.enemyNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.ENEMY_NUM);
-		gl.bonusNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.BONUS_NUM);
-		gl.blockNum = JsonUtil.parse("paraConfig.json").get(
-				GameParameters.BLOCK_NUM);
+		gl.enemyNum = JsonUtil.parse("paraConfig.json").get("ENEMY_NUM");
+		gl.bonusNum = JsonUtil.parse("paraConfig.json").get("BONUS_NUM");
+		gl.blockNum = JsonUtil.parse("paraConfig.json").get("BLOCK_NUM");
 		gl.cannonNum = 30;
 		gl.timer = new TopDownTimer(3000);
 		gl.fighter = new DemoFighter(

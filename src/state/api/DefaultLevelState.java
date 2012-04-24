@@ -4,10 +4,8 @@ import game.TopDownGameEngine;
 import gameLevel.GameLevel;
 import gameObject.api_GameObject.TopDownGameManager;
 import util.JsonUtil;
-import configuration.api.GameParameters;
 import configuration.api.KeyAnnotation;
 import configuration.api.SystemKeyPressedObserver;
-
 
 // hello
 public class DefaultLevelState extends State {
@@ -25,13 +23,13 @@ public class DefaultLevelState extends State {
 	@Override
 	public void update(long arg0) {
 		keyPressedObserver.pressKey(arg0);
-//		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
+		// KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 
 		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
 	}
 
-	@KeyAnnotation(action = GameParameters.SystemEscape)
+	@KeyAnnotation(action = "SystemEscape")
 	public void updateHelper(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN + 1);
 		myGameObject.finish();

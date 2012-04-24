@@ -2,7 +2,7 @@ package ai;
 
 import game.Configuration;
 
-public class Brain1_Weapon extends AI{
+public class Brain1_Weapon extends AI {
 
 	@Override
 	public void refresh(long elaspedTime) {
@@ -17,6 +17,5 @@ public class Brain1_Weapon extends AI{
 		// TODO Auto-generated method stub
 		return 1;
 	}
-	
 
 }

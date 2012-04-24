@@ -41,17 +41,17 @@ public class SpawnByTime implements SpawnBehavior {
 
 	@Override
 	public double[] spawn() {
-		
-			x = Math.random();
 
-			double relativePosition = (NormalDist.inverseF01(Math.random()) / 6)
-					* myWaveLength;
+		x = Math.random();
 
-			double positionBaseline = myFighter.getY()
-					/ (myFighter.playfield.getBackground().getHeight()) * 0.98;
+		double relativePosition = (NormalDist.inverseF01(Math.random()) / 6)
+				* myWaveLength;
 
-			y = positionBaseline + relativePosition;
-		
+		double positionBaseline = myFighter.getY()
+				/ (myFighter.playfield.getBackground().getHeight()) * 0.98;
+
+		y = positionBaseline + relativePosition;
+
 		double[] loc = new double[2];
 		loc[0] = x;
 		loc[1] = y;
@@ -68,4 +68,3 @@ public class SpawnByTime implements SpawnBehavior {
 	}
 
 }
-

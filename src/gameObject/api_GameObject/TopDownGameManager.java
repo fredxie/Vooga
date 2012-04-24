@@ -19,53 +19,53 @@ public class TopDownGameManager {
 	private static int currentGameID;
 	private static int initialGameID;
 	private static int previousGameID;
-	//private static TopDownGameEngine gameEngine;
-	
-	public static void initManager(TopDownGameEngine e){
-		map = new HashMap<Integer,GameObject>();
-		//gameEngine = e;
+
+	// private static TopDownGameEngine gameEngine;
+
+	public static void initManager(TopDownGameEngine e) {
+		map = new HashMap<Integer, GameObject>();
+		// gameEngine = e;
 	}
-	
-	public static void setInitialGameID(int i){
+
+	public static void setInitialGameID(int i) {
 		initialGameID = i;
 		currentGameID = i;
-		//gameEngine.nextGameID = i;
+		// gameEngine.nextGameID = i;
 	}
-	
-	public static void addNewGameObject(int id, GameObject game){
+
+	public static void addNewGameObject(int id, GameObject game) {
 		map.put(id, game);
 	}
-	
-	public static GameObject getCurrentGameObject(){
-		//return currentGameObject;
+
+	public static GameObject getCurrentGameObject() {
+		// return currentGameObject;
 		return map.get(currentGameID);
 	}
-	
-	public static GameObject getGameObject(int gameID){
+
+	public static GameObject getGameObject(int gameID) {
 		return map.get(gameID);
 	}
-	
-	public static int getCurrentGameID(){
+
+	public static int getCurrentGameID() {
 		return currentGameID;
 	}
-	
-	public static void setCurrentGameID(int id){
-		//gameEngine.nextGameID = id;
+
+	public static void setCurrentGameID(int id) {
+		// gameEngine.nextGameID = id;
 		previousGameID = currentGameID;
 		currentGameID = id;
 	}
-	
-	public static int getInitialGameID(){
+
+	public static int getInitialGameID() {
 		return initialGameID;
 	}
-	
-	public static int getPreviousGameID(){
+
+	public static int getPreviousGameID() {
 		return previousGameID;
 	}
-	
-	public static void refresh(){
-		
+
+	public static void refresh() {
+
 	}
-	
-	
+
 }

@@ -14,15 +14,14 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
-
 import util.JsonUtil;
 
 public abstract class Setting extends JFrame {
 
 	private JPanel keyPanel;
 	private JPanel paraPanel;
-	public ArrayList<GameParameters> keySettingList = new ArrayList<GameParameters>();
-	public ArrayList<GameParameters> paraSettingList = new ArrayList<GameParameters>();
+	public ArrayList<String> keySettingList = new ArrayList<String>();
+	public ArrayList<String> paraSettingList = new ArrayList<String>();
 
 	public Setting() {
 
@@ -73,10 +72,10 @@ public abstract class Setting extends JFrame {
 
 	public class ParameterListener implements ActionListener {
 
-		private GameParameters parameter;
+		private String parameter;
 		private JTextField textField;
 
-		public ParameterListener(GameParameters para, JTextField field) {
+		public ParameterListener(String para, JTextField field) {
 			parameter = para;
 			textField = field;
 		}
@@ -85,8 +84,7 @@ public abstract class Setting extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			System.out.print(textField.getText());
-			HashMap<GameParameters, Integer> map = JsonUtil
-					.parse("paraConfig.json");
+			HashMap<String, Integer> map = JsonUtil.parse("paraConfig.json");
 			map.put(parameter, Integer.parseInt(textField.getText()));
 			JsonUtil.output(map, "paraConfig.json");
 		}
@@ -94,17 +92,16 @@ public abstract class Setting extends JFrame {
 	}
 
 	public class KeySettingListener extends JFrame implements KeyListener {
-		GameParameters action;
+		String action;
 
-		public KeySettingListener(GameParameters action) {
+		public KeySettingListener(String action) {
 			this.action = action;
 		}
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
 
-			HashMap<GameParameters, Integer> keyMap = JsonUtil
-					.parse("keyConfig.json");
+			HashMap<String, Integer> keyMap = JsonUtil.parse("keyConfig.json");
 			keyMap.put(action, arg0.getKeyCode());
 			JsonUtil.output(keyMap, "keyConfig.json");
 			KeyChangedSubject.getInstance().notifyObservers();
