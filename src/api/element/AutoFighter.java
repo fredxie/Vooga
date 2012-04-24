@@ -3,9 +3,6 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
-import api.game.TopDownGameObject;
-import api.gameLevel.GameLevel;
-
 public abstract class AutoFighter extends Fighter {
 
 	protected RegularFighter master;

@@ -22,9 +22,14 @@ import demo.collisionSystem.PhysicCollision;
 import demo.collisionSystem.SoundCollision;
 import demo.element.DemoBlock;
 import demo.element.DemoBonus1;
+import demo.element.DemoBonus2;
+import demo.element.DemoBonus3;
+import demo.element.DemoBonus4;
+import demo.element.DemoBonus5;
 import demo.element.DemoCannonBlock;
 import demo.element.DemoEnemy;
 import demo.element.DemoFighter;
+import demo.playerState.PhysicCollisionStatus;
 
 public class DemoLevelInit2 extends GameLevelInit {
 	public DemoLevelInit2(GameLevel2 gl) {
@@ -74,8 +79,30 @@ public class DemoLevelInit2 extends GameLevelInit {
 
 	public void bonusInit() {
 		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
-				new DemoBonus1(gl.playfield,
-						gl.getImage("images/game/bonus.png")), gl.bonusNum);
+				new DemoBonus1(gl.playfield, gl
+						.getImage("images/game/bullet_scatterload.png")),
+				gl.bonusNum);
+		gl.bonuses.addAll(gl.bonusSpawner.spawn());
+		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
+				new DemoBonus2(gl.playfield, gl
+						.getImage("images/game/fight_damage_powerup.png")),
+				gl.bonusNum);
+		gl.bonuses.addAll(gl.bonusSpawner.spawn());
+		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
+				new DemoBonus3(gl.playfield, gl
+						.getImage("images/game/bullet_laser.png")),
+				gl.bonusNum);
+		gl.bonuses.addAll(gl.bonusSpawner.spawn());
+		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
+				new DemoBonus4(gl.playfield, gl
+						.getImage("images/game/fight_hp_plus.png")),
+				gl.bonusNum);
+		gl.bonuses.addAll(gl.bonusSpawner.spawn());
+		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
+				new DemoBonus5(gl.playfield,
+						gl.getImage("images/game/fighter_accelerate.png"),
+						new PhysicCollisionStatus(
+								gl.fighter.getCollisionState())), gl.bonusNum);
 		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 
