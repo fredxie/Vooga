@@ -65,9 +65,9 @@ public class JsonUtil {
 	}
 	
 	public static void registerKeyAcion(String action, int keyValue) {
-		HashMap<String, Integer> map = JsonUtil.parse("keyConfig.json");
+		HashMap<String, Integer> map = JsonUtil.parse("json/keyConfig.json");
 		map.put(action, keyValue);
-		JsonUtil.output(map, "keyConfig.json");
+		JsonUtil.output(map, "json/keyConfig.json");
 	}
 
 }

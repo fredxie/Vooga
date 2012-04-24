@@ -14,14 +14,12 @@ import com.golden.gamedev.GameObject;
 public class Key {
 	private int keyValue;
 	public String action;
-	// private KeyObserver observer;
 	private GameObject myGame;
 	private Object player;
 
 	public Key(int value, String actionName, Object player, GameObject game) {
 		keyValue = value;
 		action = actionName;
-		// observer = new KeyObserver(player);
 		myGame = game;
 		this.player = player;
 	}

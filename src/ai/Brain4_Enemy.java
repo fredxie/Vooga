@@ -7,14 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import api.element.Enemy;
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 
 public class Brain4_Enemy extends AI {
 	double x = Math.random() * 50;
 	Timer timer;
-	double background_speed = JsonUtil.parse("paraConfig.json").get(
+	double background_speed = JsonUtil.parse("json/paraConfig.json").get(
 			"BACKGROUND_SPEED");
 
 	@Override

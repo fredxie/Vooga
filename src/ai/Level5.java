@@ -76,7 +76,7 @@ public class Level5 implements TopDownBehavior {
 		 */
 		h = Math.random() * 0.25;
 		v = Math.random() * 0.35
-				+ JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
+				+ JsonUtil.parse("json/paraConfig.json").get("BACKGROUND_SPEED")
 				/ 10.0;
 		if (Math.random() * 51 < 25) {
 			missile.setSpeed(h, v);

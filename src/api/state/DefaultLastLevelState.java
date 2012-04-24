@@ -24,7 +24,7 @@ public class DefaultLastLevelState extends State {
 		super(parent, game);
 		game.setGameState(this);
 		keyPressedObserver = new SystemKeyPressedObserver(this);
-		setKeyList(JsonUtil.createKeyList(this, "keyConfig.json",
+		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
 				this.myGameObject));
 	}
 

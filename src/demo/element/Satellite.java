@@ -61,7 +61,7 @@ public abstract class Satellite extends AutoFighter {
 	}
 
 	public void setBrinkVerticalSpeed() {
-		setVerticalSpeed(-JsonUtil.parse("paraConfig.json").get(
+		setVerticalSpeed(-JsonUtil.parse("json/paraConfig.json").get(
 				"BACKGROUND_SPEED"));
 	}
 

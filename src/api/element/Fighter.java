@@ -17,9 +17,9 @@ public abstract class Fighter extends Element {
 	private static double FIGHTER_WEAPON_DAMAGE = 100;
 	private static int INITIAL_STYLE = 0;
 	// protected static double healthPoint = Configuration.FIGHTER_HP;
-	protected static double healthPoint = JsonUtil.parse("paraConfig.json")
+	protected static double healthPoint = JsonUtil.parse("json/paraConfig.json")
 			.get("FIGHTER_HP");
-	protected int lifeNum = JsonUtil.parse("paraConfig.json").get("lifeNum");
+	protected int lifeNum = JsonUtil.parse("json/paraConfig.json").get("lifeNum");
 	protected double weaponDamage = FIGHTER_WEAPON_DAMAGE;
 	protected int weaponStyle = INITIAL_STYLE;
 	public boolean allowBomb = true;
@@ -29,7 +29,7 @@ public abstract class Fighter extends Element {
 			weaponDamage);
 	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
 	public double speedX, speedY; // after 300 ms
-	public double backgroundSpeed = JsonUtil.parse("paraConfig.json").get(
+	public double backgroundSpeed = JsonUtil.parse("json/paraConfig.json").get(
 			"BACKGROUND_SPEED");
 	public GameLevel game;
 	public BufferedImage bulletImage;
@@ -56,7 +56,7 @@ public abstract class Fighter extends Element {
 		healthPoint = healthPoint + change;
 		if (healthPoint <= 0) {
 			lifeNum--;
-			healthPoint = JsonUtil.parse("paraConfig.json").get("FIGHTER_HP");
+			healthPoint = JsonUtil.parse("json/paraConfig.json").get("FIGHTER_HP");
 		}
 
 	}

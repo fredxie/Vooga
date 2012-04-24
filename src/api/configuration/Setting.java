@@ -17,6 +17,7 @@ import javax.swing.*;
 import api.util.JsonUtil;
 
 
+@SuppressWarnings("serial")
 public abstract class Setting extends JFrame {
 
 	private JPanel keyPanel;
@@ -83,11 +84,10 @@ public abstract class Setting extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			System.out.print(textField.getText());
-			HashMap<String, Integer> map = JsonUtil.parse("paraConfig.json");
+			HashMap<String, Integer> map = JsonUtil.parse("json/paraConfig.json");
 			map.put(parameter, Integer.parseInt(textField.getText()));
-			JsonUtil.output(map, "paraConfig.json");
+			JsonUtil.output(map, "json/paraConfig.json");
 		}
 
 	}
@@ -102,9 +102,9 @@ public abstract class Setting extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent arg0) {
 
-			HashMap<String, Integer> keyMap = JsonUtil.parse("keyConfig.json");
+			HashMap<String, Integer> keyMap = JsonUtil.parse("json/keyConfig.json");
 			keyMap.put(action, arg0.getKeyCode());
-			JsonUtil.output(keyMap, "keyConfig.json");
+			JsonUtil.output(keyMap, "json/keyConfig.json");
 			KeyChangedSubject.getInstance().notifyObservers();
 		}
 

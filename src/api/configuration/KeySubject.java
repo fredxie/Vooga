@@ -11,7 +11,6 @@ public abstract class KeySubject {
 
 	public void registerObserver(Object o) {
 		observers.add(o);
-		// System.out.println(1000);
 	}
 
 	public void removeObserver(Object o) {
@@ -21,5 +20,4 @@ public abstract class KeySubject {
 		}
 	}
 
-	// public abstract void notifyObservers(long elapsedTime);
 }

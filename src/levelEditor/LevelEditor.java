@@ -23,6 +23,7 @@ import api.util.LoadUtil;
 import java.io.File;
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	protected static final JFileChooser ImageChooser = new JFileChooser(

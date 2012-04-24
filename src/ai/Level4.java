@@ -26,7 +26,7 @@ public class Level4 implements TopDownBehavior {
 								Math.random() * 0.26,
 								Math.random()
 										* 0.26
-										+ JsonUtil.parse("paraConfig.json")
+										+ JsonUtil.parse("json/paraConfig.json")
 												.get("BACKGROUND_SPEED") / 10.0);
 					} else if (x >= 10) {
 						enemy.setSpeed(.2, .2);
@@ -54,7 +54,7 @@ public class Level4 implements TopDownBehavior {
 	// }
 	public void weaponSpeed(Missile missile) {
 		missile.setSpeed(Math.random() * 0.25, Math.random() * 0.2
-				+ JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
+				+ JsonUtil.parse("json/paraConfig.json").get("BACKGROUND_SPEED")
 				/ 10.0);
 	}
 

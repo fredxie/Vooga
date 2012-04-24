@@ -20,8 +20,7 @@ public class FighterKeyChangedObserver implements KeyChangedObserver {
 
 	@Override
 	public void changeKey() {
-		// TODO Auto-generated method stub
-		HashMap<String, Integer> keyMap = JsonUtil.parse("keyConfig.json");
+		HashMap<String, Integer> keyMap = JsonUtil.parse("json/keyConfig.json");
 		for (Key key : fighter.getKeyList()) {
 			key.setValue(keyMap.get(key.getAction()));
 		}

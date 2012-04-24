@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import api.element.AutoFighter;
 import api.element.Element;
 import api.element.RegularFighter;
-import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 
 import com.golden.gamedev.object.Timer;

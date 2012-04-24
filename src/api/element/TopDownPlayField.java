@@ -36,7 +36,7 @@ public class TopDownPlayField extends PlayField {
 		super.update(elapsedTime);
 		this.getBackground().move(
 				0,
-				-JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
+				-JsonUtil.parse("json/paraConfig.json").get("BACKGROUND_SPEED")
 						/ 10.0 * elapsedTime);
 	}
 

@@ -24,7 +24,7 @@ public class FighterBulletCollision extends CollisionAction {
 				s1.setActive(false);
 			else {
 
-				((Fighter) s1).setHP(JsonUtil.parse("paraConfig.json").get(
+				((Fighter) s1).setHP(JsonUtil.parse("json/paraConfig.json").get(
 						"FIGHTER_HP"));
 
 				((Fighter) s1).setLifeNum(((Fighter) s1).getLifeNum() - 1);

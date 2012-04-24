@@ -27,7 +27,7 @@ public class DemoBonus4 extends Bonus {
 	@Override
 	public void collideAction(RegularFighter s1) {
 		// TODO Auto-generated method stub
-		s1.setHP(JsonUtil.parse("paraConfig.json").get("FIGHTER_HP"));
+		s1.setHP(JsonUtil.parse("json/paraConfig.json").get("FIGHTER_HP"));
 	}
 
 	public Element clone() {

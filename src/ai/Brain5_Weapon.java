@@ -5,7 +5,7 @@ import api.util.JsonUtil;
 
 public class Brain5_Weapon extends AI {
 	double h, v;
-	double background_speed = JsonUtil.parse("paraConfig.json").get(
+	double background_speed = JsonUtil.parse("json/paraConfig.json").get(
 			"BACKGROUND_SPEED");
 
 	@Override

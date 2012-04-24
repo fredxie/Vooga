@@ -16,7 +16,7 @@ public class Brain5_Enemy extends AI {
 	Timer timer2;
 	Timer timer3;
 	double rand, h, v;
-	double background_speed = JsonUtil.parse("paraConfig.json").get(
+	double background_speed = JsonUtil.parse("json/paraConfig.json").get(
 			"BACKGROUND_SPEED");
 
 	@Override

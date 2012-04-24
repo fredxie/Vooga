@@ -29,7 +29,7 @@ public class MenuState extends State {
 		setStateID(0);
 		engine = parent;
 		keyPressedObserver = new SystemKeyPressedObserver(this);
-		setKeyList(JsonUtil.createKeyList(this, "keyConfig.json",
+		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
 				this.myGameObject));
 
 	}

@@ -18,7 +18,6 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 
 	@Override
 	public void pressKey(long elapsedTime) {
-		// TODO Auto-generated method stub
 		fighter.setSpeed(0, 0);
 		for (Key key : fighter.getKeyList()) {
 			if (key.isKeyDown()) {
@@ -26,13 +25,12 @@ public class FighterKeyPressedObserver implements KeyPressedObserver {
 			}
 		}
 		fighter.setVerticalSpeed(fighter.getVerticalSpeed()
-				- JsonUtil.parse("paraConfig.json").get("BACKGROUND_SPEED")
+				- JsonUtil.parse("json/paraConfig.json").get("BACKGROUND_SPEED")
 				/ 10.0);
 	}
 
 	@Override
 	public Object getObject() {
-		// TODO Auto-generated method stub
 		return fighter;
 	}
 }

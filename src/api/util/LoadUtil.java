@@ -25,12 +25,11 @@ public class LoadUtil {
 
 		FileWriter fileOut;
 		try {
-			fileOut = new FileWriter(fileName + ".json");
+			fileOut = new FileWriter("json/" + fileName + ".json");
 			BufferedWriter out = new BufferedWriter(fileOut);
 			out.write(jsonString);
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -34,7 +34,7 @@ public abstract class Bonus extends Element {
 					&& getY() > playfield.getBackground().getY()) {
 				// show the bonus
 				setSpeed(TopDownUtility.getRandom(-1, 1) / 20.0, JsonUtil
-						.parse("paraConfig.json").get("BACKGROUND_SPEED")
+						.parse("json/paraConfig.json").get("BACKGROUND_SPEED")
 						/ 10.0 + TopDownUtility.getRandom(0, 1) / 20.0);
 				playfield.getGroup("Bonus").add(this);
 				show = true;

@@ -7,7 +7,6 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import api.configuration.FighterKeyChangedObserver;
@@ -19,7 +18,6 @@ import api.gameLevel.GameLevel;
 import api.playerState.AssistanceState;
 import api.playerState.CollisionState;
 import api.playerState.PlayerState;
-import api.util.JsonUtil;
 
 
 public abstract class RegularFighter extends Fighter {
