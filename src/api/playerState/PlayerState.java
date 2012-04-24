@@ -13,5 +13,10 @@ public abstract class PlayerState {
 	public abstract void changeState(Object state);
 
 	public abstract void update(long elapsedTime);
+	
+	public Fighter getFighter()
+	{
+		return fighter;
+	}
 
 }

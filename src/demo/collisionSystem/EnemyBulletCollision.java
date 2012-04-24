@@ -17,6 +17,7 @@ public class EnemyBulletCollision extends CollisionAction {
 		// TODO Auto-generated method stub
 		s2.setActive(false);
 		((Enemy) s1).setHP(((Enemy) s1).getHP() - ((Weapon) s2).getDamage());
+
 		if (((Enemy) s1).getHP() <= 0) {
 			s1.setActive(false);
 			destroyed++;

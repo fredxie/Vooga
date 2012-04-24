@@ -30,15 +30,6 @@ public class DemoLevelUpdate2 extends GameLevelUpdate {
 
 	public void fighterUpdate(long elapsedTime) {
 		gl.fighter.refresh(elapsedTime);
-		if (gl.keyDown(KeyEvent.VK_SPACE) && !gl.showSatellite) {
-			gl.showSatellite = true;
-			gl.fighter.getAssistanceState()
-					.changeState(
-							new DemoProtection(TopDownImageUtil
-									.getImage("images/game/Satellite.png"),
-									gl.fighter));
-			((AssistanceState) gl.fighter.getAssistanceState()).genAssistance();
-		}
 	}
 
 	public void enemyUpdate(long elapsedTime) {

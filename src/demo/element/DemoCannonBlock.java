@@ -61,6 +61,8 @@ public class DemoCannonBlock extends Enemy {
 		m_fireTimer = new Timer(DEFAULT_FIRE_DELAY);
 		m_canFire = true;
 		fighter = player;
+		healthPoint = AI.ENEMY_HP;
+
 	}
 
 	public void rotateCannon() {
