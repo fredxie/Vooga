@@ -7,7 +7,7 @@ package api.element;
 import java.awt.image.BufferedImage;
 
 public abstract class Weapon extends Element {
-	double damage;
+	double damage=1;
 	protected BufferedImage image;
 	protected double bulletSpeed = -0.7;
 	Weapon[] bullets;

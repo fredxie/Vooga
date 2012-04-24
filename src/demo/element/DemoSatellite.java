@@ -24,7 +24,7 @@ public class DemoSatellite extends Satellite {
 
 	public DemoSatellite(BufferedImage image, RegularFighter fighter) {
 		super(image, fighter);
-		playfield.getGroup("Fighter").add(this);
+		playfield.add(this);
 
 	}
 
