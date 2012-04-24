@@ -2,7 +2,7 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
-import DemoPlayerState.PhysicCollisionState;
+import DemoPlayerState.PhysicCollisionStatus;
 
 import playerState.CollisionState;
 import playerState.CollisionStatus;

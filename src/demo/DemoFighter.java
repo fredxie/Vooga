@@ -2,7 +2,7 @@ package demo;
 
 import java.awt.image.BufferedImage;
 
-import DemoPlayerState.NormalCollisionState;
+import DemoPlayerState.NormalCollisionStatus;
 
 
 import util.TopDownAreaUtil;
@@ -32,7 +32,7 @@ public class DemoFighter extends RegularFighter {
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(BOMB_NUM);
-		collisionState.changeState(new NormalCollisionState(collisionState));
+		collisionState.changeState(new NormalCollisionStatus(collisionState));
 		stateList.add(weaponState);
 		stateList.add(assistanceState);
 		stateList.add(collisionState);

@@ -10,9 +10,9 @@ import com.golden.gamedev.object.Sprite;
 
 import element.Fighter;
 
-public class NormalCollisionState extends CollisionStatus{
+public class NormalCollisionStatus extends CollisionStatus{
 
-	public NormalCollisionState(CollisionState state) {
+	public NormalCollisionStatus(CollisionState state) {
 		super(state);
 		collisionID = "Normal";
 	}

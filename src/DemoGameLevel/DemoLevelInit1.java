@@ -16,7 +16,7 @@ import DemoCollisioSystem.ImageCollision;
 import DemoCollisioSystem.InActiveCollision;
 import DemoCollisioSystem.PhysicCollision;
 import DemoCollisioSystem.SoundCollision;
-import DemoPlayerState.PhysicCollisionState;
+import DemoPlayerState.PhysicCollisionStatus;
 import ai.AI;
 import collisionSystem.CollisionManager;
 import configuration.api.GameParameters;
@@ -108,7 +108,7 @@ public class DemoLevelInit1 extends GameLevelInit {
 		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
 				new DemoBonus5(gl.playfield,
 						gl.getImage("images/game/fighter_accelerate.png"),
-						new PhysicCollisionState(gl.fighter.getCollisionState())), gl.bonusNum);
+						new PhysicCollisionStatus(gl.fighter.getCollisionState())), gl.bonusNum);
 		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 

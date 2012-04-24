@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import DemoPlayerState.PhysicCollisionState;
+import DemoPlayerState.PhysicCollisionStatus;
 
 import playerState.AssistanceState;
 import playerState.CollisionState;
