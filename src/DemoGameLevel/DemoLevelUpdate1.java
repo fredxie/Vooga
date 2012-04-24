@@ -1,21 +1,18 @@
 package DemoGameLevel;
 
+import demo.DemoGameEngine;
+import demo.DemoProtection;
+import element.Fighter;
 import gameLevel.GameLevelUpdate;
 
 import java.awt.event.KeyEvent;
 
-import DemoLevelTransition.DemoLevelTransition;
-
 import levelTransition.LevelTransition;
-
-import collisionSystem.EnemyBulletCollision;
-
 import playerState.AssistanceState;
 import util.TopDownImageUtil;
+import DemoCollisioSystem.EnemyBulletCollision;
+import DemoLevelTransition.DemoLevelTransition;
 import configuration.api.KeyPressedSubject;
-import demo.DemoGameEngine;
-import demo.DemoProtection;
-import element.Fighter;
 
 public class DemoLevelUpdate1 extends GameLevelUpdate{
 

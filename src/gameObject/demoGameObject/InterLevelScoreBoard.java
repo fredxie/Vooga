@@ -7,11 +7,8 @@ import gameObject.api_GameObject.TopDownGameManager;
 import java.awt.Graphics2D;
 
 import state.api.DefaultInterLevelState;
-
+import DemoCollisioSystem.EnemyBulletCollision;
 import background.TopDownImageBackground;
-import collisionSystem.EnemyBulletCollision;
-
-
 import demo.DemoGameEngine;
 
 public class InterLevelScoreBoard extends ScoreBoardGameObject{

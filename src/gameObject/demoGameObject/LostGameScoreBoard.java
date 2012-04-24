@@ -7,11 +7,8 @@ import gameObject.api_GameObject.TopDownGameManager;
 import java.awt.Graphics2D;
 
 import state.api.DefaultFinishGameState;
-
+import DemoCollisioSystem.EnemyBulletCollision;
 import background.TopDownImageBackground;
-
-import collisionSystem.EnemyBulletCollision;
-
 import demo.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {

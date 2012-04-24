@@ -5,7 +5,7 @@ import gameLevel.GameLevel;
 import java.awt.Graphics2D;
 
 import levelTransition.LevelTransition;
-import collisionSystem.EnemyBulletCollision;
+import DemoCollisioSystem.EnemyBulletCollision;
 import demo.DemoGameEngine;
 
 public class DemoLevelTransition extends LevelTransition {

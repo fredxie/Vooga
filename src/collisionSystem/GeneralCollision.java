@@ -17,11 +17,11 @@ public class GeneralCollision extends CollisionGroup {
 		pixelPerfectCollision = true;
 	}
 
-	private List<CoolCollision> generalList;
+	private List<CollisionAction> generalList;
 
-	private HashMap<String, List<CoolCollision>> stateMap;
+	private HashMap<String, List<CollisionAction>> stateMap;
 
-	public GeneralCollision(List<CoolCollision> coolList) {
+	public GeneralCollision(List<CollisionAction> coolList) {
 		super();
 		generalList = coolList;
 
@@ -29,17 +29,17 @@ public class GeneralCollision extends CollisionGroup {
 
 	public GeneralCollision() {
 		super();
-		generalList = new ArrayList<CoolCollision>();
-		stateMap = new HashMap<String, List<CoolCollision>>();
+		generalList = new ArrayList<CollisionAction>();
+		stateMap = new HashMap<String, List<CollisionAction>>();
 	}
 
-	public void addGeneralAction(CoolCollision collide) {
+	public void addGeneralAction(CollisionAction collide) {
 		generalList.add(collide);
 	}
 
-	public void addStateAction(String currentState, CoolCollision collide) {
+	public void addStateAction(String currentState, CollisionAction collide) {
 		if (!stateMap.containsKey(currentState)) {
-			ArrayList<CoolCollision> stateAction = new ArrayList<CoolCollision>();
+			ArrayList<CollisionAction> stateAction = new ArrayList<CollisionAction>();
 			stateMap.put(currentState, stateAction);
 		}
 		stateMap.get(currentState).add(collide);
@@ -49,7 +49,7 @@ public class GeneralCollision extends CollisionGroup {
 	@Override
 	public void collided(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub
-		for (CoolCollision collision : generalList)
+		for (CollisionAction collision : generalList)
 			collision.oncollide(s1, s2);
 
 		if(s1 instanceof RegularFighter)
@@ -57,7 +57,7 @@ public class GeneralCollision extends CollisionGroup {
 		String currentstate = ((RegularFighter) s1).getCollisionState().getID();
 
 		if (stateMap.containsKey(currentstate))
-			for (CoolCollision collision : stateMap.get(currentstate))
+			for (CollisionAction collision : stateMap.get(currentstate))
 				collision.oncollide(s1, s2);
 		}
 

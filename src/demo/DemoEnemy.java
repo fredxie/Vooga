@@ -1,21 +1,20 @@
 
 package demo;
 
-import java.awt.image.BufferedImage; 
-
-
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import DemoGameLevel.GameLevel1;
+import spawn.SpawnByRandom;
+import DemoCollisioSystem.LifeDecreaseCollision;
 import ai.AI;
 import ai.BehaviorManager_Enemy;
 import ai.BehaviorManager_Weapon;
 import ai.BonusBrain_Enemy;
 import ai.BonusBrain_Weapon;
-import ai.BonusLimit; // 
 import ai.Brain1_Enemy;
 import ai.Brain1_Weapon;
 import ai.Brain2_Enemy;
@@ -31,45 +30,10 @@ import ai.ScoreBrain_Enemy;
 import ai.ScoreBrain_Weapon;
 import ai.hpBrain_Enemy;
 import ai.hpBrain_Weapon;
-import ai.hpLimit;
-import ai.ScoreLimit;
-import ai.Level1;
-import ai.Level2;
-import ai.Level3;
-import ai.Level4;
-import ai.Level5;
-import ai.hpLimit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
-import configuration.api.GameParameters;
-
-import collisionSystem.LifeDecreaseCollision;
-
-import spawn.SpawnByLocation;
-import spawn.SpawnByRandom;
-import util.JsonUtil;
-import util.TopDownUtility;
-
-import element.Bullet;
 import element.Enemy;
 import element.Missile;
 import element.TopDownPlayField;
-import game.Configuration;
-
-import util.TopDownUtility;
-
-import element.Bullet;
-import element.Enemy;
-import element.Fighter;
-import element.TopDownPlayField;
-import game.Configuration;
 import gameObject.api_GameObject.TopDownGameManager;
-import state.*;
 public class DemoEnemy extends Enemy {
 	//State gameID;
 	public EnemyTopDownBehavior behavior;

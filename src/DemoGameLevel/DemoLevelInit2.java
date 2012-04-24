@@ -1,21 +1,23 @@
 package DemoGameLevel;
 
-import configuration.api.GameParameters;
+import game.TopDownTimer;
+import gameLevel.GameLevelInit;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import util.JsonUtil;
 import util.TopDownImageUtil;
+import DemoCollisioSystem.BlockBulletCollision;
+import DemoCollisioSystem.BonusCollision;
+import DemoCollisioSystem.EnemyBulletCollision;
+import DemoCollisioSystem.FighterBulletCollision;
+import DemoCollisioSystem.FighterEnemyOrBlockCollision;
+import DemoCollisioSystem.ImageCollision;
+import DemoCollisioSystem.InActiveCollision;
+import DemoCollisioSystem.PhysicCollision;
+import DemoCollisioSystem.SoundCollision;
 import ai.AI;
-import collisionSystem.BlockBulletCollision;
-import collisionSystem.BonusCollision;
 import collisionSystem.CollisionManager;
-import collisionSystem.EnemyBulletCollision;
-import collisionSystem.FighterBulletCollision;
-import collisionSystem.FighterEnemyOrBlockCollision;
-import collisionSystem.ImageCollision;
-import collisionSystem.InActiveCollision;
-import collisionSystem.PhysicCollision;
-import collisionSystem.SoundCollision;
+import configuration.api.GameParameters;
 import demo.DemoBlock;
 import demo.DemoBonus1;
 import demo.DemoCannonBlock;
@@ -24,8 +26,6 @@ import demo.DemoFighter;
 import element.Block;
 import element.Bonus;
 import element.Enemy;
-import game.TopDownTimer;
-import gameLevel.GameLevelInit;
 
 public class DemoLevelInit2 extends GameLevelInit {
 	public DemoLevelInit2(GameLevel2 gl) {

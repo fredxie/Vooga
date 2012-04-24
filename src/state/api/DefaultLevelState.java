@@ -1,22 +1,12 @@
 package state.api;
 
-import java.awt.event.KeyEvent;
-
-import levelTransition.LevelTransition;
-
-import DemoLevelTransition.DemoLevelTransition;
-
-import util.JsonUtil;
-import configuration.api.GameParameters;
-import configuration.api.KeyAnnotation;
-import configuration.api.KeyPressedSubject;
-import configuration.api.SystemKeyPressedObserver;
-
-import collisionSystem.EnemyBulletCollision;
-
 import game.TopDownGameEngine;
 import gameLevel.GameLevel;
 import gameObject.api_GameObject.TopDownGameManager;
+import util.JsonUtil;
+import configuration.api.GameParameters;
+import configuration.api.KeyAnnotation;
+import configuration.api.SystemKeyPressedObserver;
 
 public class DefaultLevelState extends State {
 

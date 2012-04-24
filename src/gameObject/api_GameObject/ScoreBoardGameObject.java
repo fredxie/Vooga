@@ -5,12 +5,8 @@ import java.util.ArrayList;
 
 import state.api.State;
 
-import collisionSystem.EnemyBulletCollision;
-
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
-
-import demo.DemoGameEngine;
 
 public abstract class ScoreBoardGameObject extends GameObject{
 	protected State myState;

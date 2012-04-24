@@ -43,19 +43,19 @@ public class CollisionManager {
 //		actionMap.get(collisionType).add(cool);
 //	}
 	
-	public void registerCollision(String s1,String s2, CoolCollision... collide)
+	public void registerCollision(String s1,String s2, CollisionAction... collide)
 	{
 		String collisionType = registerCollision(s1,s2);
 
-		for(CoolCollision cool: collide)
+		for(CollisionAction cool: collide)
 		collisionMap.get(collisionType).addGeneralAction(cool);
 	}
 	
 	
-	public void registerCollision(String s1,String currentState, String s2, CoolCollision...collide)
+	public void registerCollision(String s1,String currentState, String s2, CollisionAction...collide)
 	{
 		String collisionType = registerCollision(s1,s2);
-		for(CoolCollision cool: collide)
+		for(CollisionAction cool: collide)
 		collisionMap.get(collisionType).addStateAction(currentState,cool);
 	}
 	

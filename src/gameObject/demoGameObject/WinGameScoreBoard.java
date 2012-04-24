@@ -2,17 +2,12 @@ package gameObject.demoGameObject;
 
 import game.TopDownGameEngine;
 import gameObject.api_GameObject.ScoreBoardGameObject;
-import gameObject.api_GameObject.TopDownGameManager;
 
 import java.awt.Graphics2D;
 
 import state.api.DefaultFinishGameState;
-
-import collisionSystem.EnemyBulletCollision;
-import collisionSystem.LifeDecreaseCollision;
-
+import DemoCollisioSystem.EnemyBulletCollision;
 import background.TopDownImageBackground;
-
 import demo.DemoGameEngine;
 
 public class WinGameScoreBoard extends ScoreBoardGameObject{

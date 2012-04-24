@@ -1,6 +1,6 @@
 package gameLevel;
 
-import collisionSystem.EnemyBulletCollision;
+import DemoCollisioSystem.EnemyBulletCollision;
 
 public abstract class GameLevelInit {
 	public GameLevel gl;
