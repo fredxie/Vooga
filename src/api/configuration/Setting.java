@@ -90,7 +90,7 @@ public abstract class Setting extends JFrame {
 	 * Used by Setting class: this class is the listener for parameter changed events
 	 * @author Ran Zhang
 	 */
-	public class ParameterListener implements ActionListener {
+	private class ParameterListener implements ActionListener {
 
 		private String parameter;
 		private JTextField textField;
@@ -114,7 +114,7 @@ public abstract class Setting extends JFrame {
 	 * Used by Setting class: this class is the listener for key changed events
 	 * @author Ran Zhang
 	 */
-	public class KeySettingListener extends JFrame implements KeyListener {
+	private class KeySettingListener extends JFrame implements KeyListener {
 		String action;
 
 		public KeySettingListener(String action) {

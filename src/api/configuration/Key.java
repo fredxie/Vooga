@@ -14,7 +14,7 @@ import com.golden.gamedev.GameObject;
  */
 public class Key {
 	private int keyValue;
-	public String action;
+	private String action;
 	private GameObject myGame;
 	private Object player;
 
@@ -95,7 +95,7 @@ public class Key {
 	 * Use key annotation to call the corresponding method
 	 * 
 	 */
-	public boolean execute(long elapsedTime, Class<?> c) {
+	private boolean execute(long elapsedTime, Class<?> c) {
 		Method[] methods = c.getMethods();
 		boolean invoked = false;
 		for (Method m : methods) {
