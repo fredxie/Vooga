@@ -19,7 +19,7 @@ import configuration.KeyPressedSubject;
 import configuration.SystemKeyPressedObserver;
 
 import levelEditor.LevelEditor;
-import load.Load;
+import levelEditor.Load;
 import menu.GameSL;
 
 import game.Configuration;

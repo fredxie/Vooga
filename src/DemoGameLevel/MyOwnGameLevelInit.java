@@ -2,7 +2,7 @@ package DemoGameLevel;
 
 import java.util.List;
 
-import load.Load;
+import levelEditor.Load;
 import gameLevel.GameLevelInit;
 
 public class MyOwnGameLevelInit extends GameLevelInit{

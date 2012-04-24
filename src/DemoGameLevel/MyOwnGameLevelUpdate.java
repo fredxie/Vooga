@@ -2,7 +2,7 @@ package DemoGameLevel;
 
 import java.util.List;
 
-import load.Load;
+import levelEditor.Load;
 import element.Fighter;
 import gameLevel.GameLevelUpdate;
 public class MyOwnGameLevelUpdate extends GameLevelUpdate {

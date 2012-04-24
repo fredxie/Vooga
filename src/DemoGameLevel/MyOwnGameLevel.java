@@ -6,9 +6,10 @@ import gameLevel.GameLevel;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import load.Load;
+import state.api_State.DefaultLastLevelState;
 
-import state.DefaultLastLevelState;
+import levelEditor.Load;
+
 import collisionSystem.EnemyBulletCollision;
 
 public class MyOwnGameLevel extends GameLevel {
