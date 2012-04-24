@@ -8,8 +8,10 @@ import api.element.Bonus;
 import api.element.Element;
 import api.element.RegularFighter;
 import api.element.TopDownPlayField;
+import api.playerState.AssistanceState;
 import api.playerState.CollisionState;
 import api.playerState.CollisionStatus;
+import api.util.TopDownImageUtil;
 
 /**
  * 
@@ -34,6 +36,10 @@ public class DemoBonus5 extends Bonus {
 	public void collideAction(RegularFighter s1) {
 		// TODO Auto-generated method stub
 		s1.getCollisionState().changeState(state);
+		s1.getAssistanceState().changeState(
+				new DemoProtection(TopDownImageUtil
+						.getImage("images/game/Satellite.png"), s1));
+		((AssistanceState) s1.getAssistanceState()).genAssistance();
 
 	}
 
