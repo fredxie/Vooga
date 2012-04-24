@@ -1,5 +1,6 @@
 package demo;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import configuration.api.KeyAnnotation;
@@ -44,7 +45,7 @@ public class DemoFighter extends RegularFighter {
 		stateList.add(assistanceState);
 		stateList.add(collisionState);
 		setMass(4);
-		JsonUtil.registerKeyAcion("BOMB", 17);
+		JsonUtil.registerKeyAcion("BOMB", KeyEvent.VK_CONTROL);
 	}
 
 	public void refresh(long elapsedTime) {
