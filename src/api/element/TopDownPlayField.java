@@ -1,15 +1,13 @@
 package api.element;
 
 
-import api.background.TopDownBackground;
 import api.background.TopDownTileBackground;
-import api.game.Configuration;
 import api.gameObject.TopDownGameObject;
 import api.util.JsonUtil;
 
 import com.golden.gamedev.object.PlayField;
 
-public class TopDownPlayField extends PlayField {
+public abstract class TopDownPlayField extends PlayField {
 
 	private TopDownGameObject game;
 	private long myElapsedTime;
@@ -51,4 +49,5 @@ public class TopDownPlayField extends PlayField {
 	public long getElapsedTime() {
 		return myElapsedTime;
 	}
+	public abstract void init(String s);
 }

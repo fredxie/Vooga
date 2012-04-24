@@ -30,6 +30,7 @@ import demo.element.DemoBonus5;
 import demo.element.DemoCannonBlock;
 import demo.element.DemoEnemy;
 import demo.element.DemoFighter;
+import demo.game.DemoPlayField;
 import demo.playerState.PhysicCollisionStatus;
 
 public class DemoLevelInit1 extends GameLevelInit {
@@ -42,6 +43,7 @@ public class DemoLevelInit1 extends GameLevelInit {
 		gl.gameOver = false;
 		gl.levelComplete = false;
 		gl.showSatellite = false;
+		gl.playfield = new DemoPlayField(gl);
 		gl.enemyNum = JsonUtil.parse("json/paraConfig.json").get("ENEMY_NUM");
 		gl.bonusNum = JsonUtil.parse("json/paraConfig.json").get("BONUS_NUM");
 		gl.blockNum = JsonUtil.parse("json/paraConfig.json").get("BLOCK_NUM");

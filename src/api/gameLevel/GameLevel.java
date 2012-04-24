@@ -9,11 +9,11 @@ import api.element.Block;
 import api.element.Bonus;
 import api.element.Enemy;
 import api.element.RegularFighter;
+import api.element.TopDownPlayField;
 import api.game.TopDownGameEngine;
 import api.game.TopDownTimer;
 import api.gameObject.TopDownGameObject;
 import api.spawn.ElementSpawner;
-import demo.game.DemoPlayField;
 
 /**
  * This class extends the top down game object and developers can use this
@@ -74,7 +74,7 @@ public abstract class GameLevel extends TopDownGameObject {
 
 	public CollisionManager manager;
 	public static TopDownTimer timer;
-	public DemoPlayField playfield = new DemoPlayField(this);
+	public TopDownPlayField playfield;
 	public RegularFighter fighter;
 	public List<Enemy> juniorEnemies = new ArrayList<Enemy>();
 	public List<Enemy> cannon = new ArrayList<Enemy>();
