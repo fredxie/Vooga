@@ -15,11 +15,11 @@ import playerState.AssistanceState;
 import playerState.CollisionState;
 import playerState.PhysicCollisionState;
 import playerState.PlayerState;
-import configuration.FighterKeyChangedObserver;
-import configuration.FighterKeyPressedObserver;
-import configuration.GameParameters;
-import configuration.Key;
-import configuration.KeyAnnotation;
+import configuration.api.FighterKeyChangedObserver;
+import configuration.api.FighterKeyPressedObserver;
+import configuration.api.GameParameters;
+import configuration.api.Key;
+import configuration.api.KeyAnnotation;
 
 public abstract class RegularFighter extends Fighter {
 

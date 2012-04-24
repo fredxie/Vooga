@@ -19,8 +19,8 @@ import com.golden.gamedev.GameObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import configuration.GameParameters;
-import configuration.Key;
+import configuration.api.GameParameters;
+import configuration.api.Key;
 
 public class JsonUtil {
 

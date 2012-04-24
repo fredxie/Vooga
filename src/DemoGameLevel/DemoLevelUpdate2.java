@@ -10,7 +10,7 @@ import collisionSystem.EnemyBulletCollision;
 import playerState.AssistanceState;
 import util.TopDownImageUtil;
 import gameLevel.GameLevelUpdate;
-import configuration.KeyPressedSubject;
+import configuration.api.KeyPressedSubject;
 import demo.DemoGameEngine;
 import demo.DemoProtection;
 import element.Fighter;

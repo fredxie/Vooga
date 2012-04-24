@@ -2,7 +2,7 @@ package ai;
 
 import game.Configuration;
 import util.JsonUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public class Brain4_Weapon extends AI{
 	double background_speed = JsonUtil.parse("paraConfig.json").get(GameParameters.BACKGROUND_SPEED);

@@ -6,7 +6,7 @@ import gameObject.api_GameObject.TopDownGameManager;
 
 import java.awt.Graphics2D;
 
-import state.api_State.DefaultFinishGameState;
+import state.api.DefaultFinishGameState;
 
 import background.TopDownImageBackground;
 

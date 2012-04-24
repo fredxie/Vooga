@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import util.JsonUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public class Brain5_Enemy extends AI {
 	Timer timer1;

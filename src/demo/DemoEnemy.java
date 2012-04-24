@@ -46,7 +46,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 import collisionSystem.LifeDecreaseCollision;
 

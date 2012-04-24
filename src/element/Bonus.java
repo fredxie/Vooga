@@ -9,7 +9,7 @@ import com.golden.gamedev.object.Sprite;
 import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownUtility;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import demo.DemoGameEngine;
 
 public abstract class Bonus extends Element {

@@ -4,7 +4,7 @@ import game.TopDownGameEngine;
 
 import java.awt.Graphics2D;
 
-import state.api_State.State;
+import state.api.State;
 
 import com.golden.gamedev.GameObject;
 

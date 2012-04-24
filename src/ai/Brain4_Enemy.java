@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import util.JsonUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public class Brain4_Enemy extends AI{
 	double x = Math.random() * 50;

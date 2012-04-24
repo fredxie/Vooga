@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import playerState.WeaponState;
 import util.JsonUtil;
 import util.TopDownImageUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public abstract class Fighter extends Element {
 

@@ -6,8 +6,8 @@ import gameObject.api_GameObject.OptionGameObject;
 
 import java.awt.Graphics2D;
 
-import state.api_State.State;
-import state.demoState.PauseState;
+import state.api.State;
+import state.demo.PauseState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 

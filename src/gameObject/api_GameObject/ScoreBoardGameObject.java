@@ -3,7 +3,7 @@ package gameObject.api_GameObject;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import state.api_State.State;
+import state.api.State;
 
 import collisionSystem.EnemyBulletCollision;
 

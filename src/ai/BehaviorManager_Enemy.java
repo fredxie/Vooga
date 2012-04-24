@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import DemoGameLevel.GameLevel1;
 
-import state.api_State.State;
+import state.api.State;
 
 import demo.DemoEnemy;
 

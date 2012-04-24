@@ -19,7 +19,7 @@ import collisionSystem.ImageCollision;
 import collisionSystem.InActiveCollision;
 import collisionSystem.PhysicCollision;
 import collisionSystem.SoundCollision;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import demo.DemoBlock;
 import demo.DemoBonus1;
 import demo.DemoBonus2;

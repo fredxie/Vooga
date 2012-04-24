@@ -7,7 +7,7 @@ import util.TopDownAreaUtil;
 
 import com.golden.gamedev.object.Timer;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import demo.DemoGameEngine;
 
 public  class PhysicalProtection extends AutoFighter {

@@ -6,7 +6,7 @@ import gameObject.api_GameObject.TopDownGameManager;
 
 import java.awt.Graphics2D;
 
-import state.api_State.DefaultInterLevelState;
+import state.api.DefaultInterLevelState;
 
 import background.TopDownImageBackground;
 import collisionSystem.EnemyBulletCollision;

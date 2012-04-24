@@ -4,7 +4,7 @@ import util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 import element.Block;
 import element.Enemy;

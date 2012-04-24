@@ -7,7 +7,7 @@ import gameObject.api_GameObject.OptionGameObject;
 import java.awt.Graphics2D;
 
 
-import state.demoState.MenuState;
+import state.demo.MenuState;
 import background.TopDownImageBackground;
 import demo.DemoGameEngine;
 

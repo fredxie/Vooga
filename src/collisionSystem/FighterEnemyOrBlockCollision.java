@@ -6,7 +6,7 @@ import game.Configuration;
 
 import com.golden.gamedev.object.Sprite;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public class FighterEnemyOrBlockCollision extends CoolCollision {
 

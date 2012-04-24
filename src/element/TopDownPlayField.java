@@ -9,7 +9,7 @@ import background.TopDownTileBackground;
 
 import com.golden.gamedev.object.PlayField;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 public class TopDownPlayField extends PlayField {
 

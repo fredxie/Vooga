@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import util.JsonUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import element.Enemy;
 import element.Missile;
 import game.Configuration;

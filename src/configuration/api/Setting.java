@@ -1,0 +1,127 @@
+package configuration.api;
+
+/**
+ * @author Ran Zhang
+ */
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.*;
+
+
+import util.JsonUtil;
+
+public abstract class Setting extends JFrame {
+
+	private JPanel keyPanel;
+	private JPanel paraPanel;
+	public ArrayList<GameParameters> keySettingList = new ArrayList<GameParameters>();
+	public ArrayList<GameParameters> paraSettingList = new ArrayList<GameParameters>();
+
+	public Setting() {
+
+		super("Setting");
+		setList();
+		keyPanel = new JPanel();
+		keyPanel = (JPanel) keySetting();
+		paraPanel = (JPanel) parameterSetting();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		add(keyPanel, BorderLayout.NORTH);
+		add(paraPanel, BorderLayout.SOUTH);
+		pack();
+		setVisible(true);
+
+	}
+
+	public abstract void setList();
+
+	private JComponent keySetting() {
+		JPanel panel = new JPanel();
+		for (int i = 0; i < keySettingList.size(); i++) {
+			JLabel label = new JLabel(keySettingList.get(i).toString());
+			JTextField textField = new JTextField(10);
+			textField.setEnabled(true);
+			textField.addKeyListener(new KeySettingListener(keySettingList
+					.get(i)));
+			panel.add(label);
+			panel.add(textField);
+		}
+		setVisible(true);
+		return panel;
+	}
+
+	private JComponent parameterSetting() {
+		JPanel panel = new JPanel();
+		for (int i = 0; i < paraSettingList.size(); i++) {
+			JLabel label = new JLabel(paraSettingList.get(i).toString());
+			JTextField textField = new JTextField(10);
+			textField.setEnabled(true);
+			textField.addActionListener(new ParameterListener(paraSettingList
+					.get(i), textField));
+			panel.add(label);
+			panel.add(textField);
+		}
+		setVisible(true);
+		return panel;
+	}
+
+	public class ParameterListener implements ActionListener {
+
+		private GameParameters parameter;
+		private JTextField textField;
+
+		public ParameterListener(GameParameters para, JTextField field) {
+			parameter = para;
+			textField = field;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.print(textField.getText());
+			HashMap<GameParameters, Integer> map = JsonUtil
+					.parse("paraConfig.json");
+			map.put(parameter, Integer.parseInt(textField.getText()));
+			JsonUtil.output(map, "paraConfig.json");
+		}
+
+	}
+
+	public class KeySettingListener extends JFrame implements KeyListener {
+		GameParameters action;
+
+		public KeySettingListener(GameParameters action) {
+			this.action = action;
+		}
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+
+			HashMap<GameParameters, Integer> keyMap = JsonUtil
+					.parse("keyConfig.json");
+			keyMap.put(action, arg0.getKeyCode());
+			JsonUtil.output(keyMap, "keyConfig.json");
+			KeyChangedSubject.getInstance().notifyObservers();
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
+}

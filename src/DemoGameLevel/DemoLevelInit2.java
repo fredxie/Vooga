@@ -1,6 +1,6 @@
 package DemoGameLevel;
 
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import spawn.ElementSpawner;
 import spawn.SpawnByRandom;
 import util.JsonUtil;

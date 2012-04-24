@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import util.JsonUtil;
 import util.TopDownAreaUtil;
 import util.TopDownImageUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 import demo.DemoGameEngine;
 
 public abstract class Satellite extends AutoFighter {

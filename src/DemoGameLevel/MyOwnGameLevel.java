@@ -6,7 +6,7 @@ import gameLevel.GameLevel;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import state.api_State.DefaultLastLevelState;
+import state.api.DefaultLastLevelState;
 
 import levelEditor.Load;
 

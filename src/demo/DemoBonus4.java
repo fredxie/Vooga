@@ -3,7 +3,7 @@ package demo;
 import java.awt.image.BufferedImage;
 
 import util.JsonUtil;
-import configuration.GameParameters;
+import configuration.api.GameParameters;
 
 import element.Bonus;
 import element.Element;

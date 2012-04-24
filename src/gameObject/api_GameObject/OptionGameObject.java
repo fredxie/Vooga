@@ -8,14 +8,14 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import state.api_State.State;
+import state.api.State;
 
 import com.golden.gamedev.GameObject;
 
-import configuration.GameParameters;
-import configuration.Key;
-import configuration.KeyAnnotation;
-import configuration.SystemKeyPressedObserver;
+import configuration.api.GameParameters;
+import configuration.api.Key;
+import configuration.api.KeyAnnotation;
+import configuration.api.SystemKeyPressedObserver;
 
 public abstract class OptionGameObject extends GameObject {
 	protected State myState;
