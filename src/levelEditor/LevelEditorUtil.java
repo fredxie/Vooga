@@ -14,7 +14,7 @@ import javax.swing.JFileChooser;
 public class LevelEditorUtil {
 	protected static final JFileChooser ImageChooser = new JFileChooser(
 			"./images/");
-	protected static final JFileChooser JsonChooser = new JFileChooser("./");
+	protected static final JFileChooser JsonChooser = new JFileChooser("./json");
 
 	public static BufferedImage convertToBufferedImage(File myFile) {
 		BufferedImage img = null;

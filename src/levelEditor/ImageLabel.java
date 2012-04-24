@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
+@SuppressWarnings("serial")
 public class ImageLabel extends JLabel implements MouseListener {
 
 	public static int WIDTH = 60;
@@ -50,7 +51,6 @@ public class ImageLabel extends JLabel implements MouseListener {
 	private void setBackgroundImage() {
 		ImageIcon Icon = new ImageIcon(myImage);
 		setIcon(Icon);
-		// setSize(WIDTH, HEIGHT);
 	}
 
 	private BufferedImage properImageSize(BufferedImage i) {
@@ -60,25 +60,21 @@ public class ImageLabel extends JLabel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(final MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 		if (SwingUtilities.isRightMouseButton(arg0)) {
 
@@ -115,7 +111,6 @@ public class ImageLabel extends JLabel implements MouseListener {
 		}
 
 		else if (SwingUtilities.isLeftMouseButton(arg0) && inRightPanel) {
-			// ImageLabel newLabel = new ImageLabel(myImage, levelEditor);
 			ImageLabel newLabel = copyLabel();
 			newLabel.moveToLeftPanel();
 			levelEditor.addToList(newLabel);
@@ -130,10 +125,10 @@ public class ImageLabel extends JLabel implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
+	@SuppressWarnings("unused")
 	public void activateSpecDialog() {
 		SpecDialog sd = new SpecDialog(this);
 	}
