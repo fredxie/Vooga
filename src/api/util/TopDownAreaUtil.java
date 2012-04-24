@@ -1,12 +1,12 @@
 package api.util;
 
+import api.background.TopDownBackground;
+import api.background.TopDownTileBackground;
 import api.element.AutoFighter;
 import api.element.Element;
 import api.element.Fighter;
 import api.element.RegularFighter;
 import api.game.TopDownGameEngine;
-import background.TopDownBackground;
-import background.TopDownTileBackground;
 
 public class TopDownAreaUtil {
 

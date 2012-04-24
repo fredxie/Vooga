@@ -1,4 +1,4 @@
-package configuration.demo;
+package demo.configuration;
 
 import api.configuration.Setting;
 

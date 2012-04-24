@@ -1,11 +1,11 @@
 package api.element;
 
 
+import api.background.TopDownBackground;
+import api.background.TopDownTileBackground;
 import api.game.Configuration;
 import api.gameObject.TopDownGameObject;
 import api.util.JsonUtil;
-import background.TopDownBackground;
-import background.TopDownTileBackground;
 
 import com.golden.gamedev.object.PlayField;
 

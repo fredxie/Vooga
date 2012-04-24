@@ -1,4 +1,4 @@
-package background;
+package api.background;
 
 import com.golden.gamedev.object.Background;
 

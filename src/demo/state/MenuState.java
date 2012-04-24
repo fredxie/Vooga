@@ -4,30 +4,19 @@ package demo.state;
  * @author Jiawei Shi
  */
 
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import levelEditor.LevelEditor;
+import levelEditor.Load;
 import api.configuration.KeyAnnotation;
 import api.configuration.KeyPressedSubject;
 import api.configuration.SystemKeyPressedObserver;
-import api.element.Element;
-import api.game.Configuration;
 import api.game.TopDownGameEngine;
 import api.gameLevel.GameLevel;
 import api.gameObject.OptionGameObject;
 import api.gameObject.TopDownGameManager;
 import api.state.State;
 import api.util.JsonUtil;
-
-
-import configuration.demo.DemoSetting;
+import demo.configuration.DemoSetting;
 import demo.gameObject.Menu;
-
-import levelEditor.LevelEditor;
-import levelEditor.Load;
-import menu.GameSL;
 
 
 

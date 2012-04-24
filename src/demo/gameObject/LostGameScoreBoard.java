@@ -3,11 +3,11 @@ package demo.gameObject;
 
 import java.awt.Graphics2D;
 
+import api.background.TopDownImageBackground;
 import api.game.TopDownGameEngine;
 import api.gameObject.ScoreBoardGameObject;
 import api.gameObject.TopDownGameManager;
 import api.state.DefaultFinishGameState;
-import background.TopDownImageBackground;
 import demo.collisionSystem.EnemyBulletCollision;
 import demo.game.DemoGameEngine;
 
