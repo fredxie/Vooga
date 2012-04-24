@@ -1,6 +1,6 @@
 package configuration.demo;
 
-import configuration.api.Setting;
+import api.configuration.Setting;
 
 /**
  * @author Ran Zhang

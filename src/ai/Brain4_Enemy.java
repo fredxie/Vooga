@@ -1,14 +1,15 @@
 package ai;
 
-import element.Enemy;
-import game.Configuration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import util.JsonUtil;
+import api.element.Enemy;
+import api.game.Configuration;
+import api.util.JsonUtil;
+
 
 public class Brain4_Enemy extends AI {
 	double x = Math.random() * 50;

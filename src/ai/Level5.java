@@ -5,10 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import util.JsonUtil;
-import DemoElement.Missile;
-import demo.DemoGameEngine;
-import element.Enemy;
+import api.element.Enemy;
+import api.util.JsonUtil;
+
+import demo.element.Missile;
+import demo.game.DemoGameEngine;
 
 public class Level5 implements TopDownBehavior {
 	Timer timer1;

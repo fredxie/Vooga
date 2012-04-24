@@ -1,7 +1,7 @@
 package ai;
 
-import DemoElement.Missile;
-import element.Enemy;
+import demo.element.Missile;
+import api.element.Enemy;
 
 /*
  * When the player gets x number of points, score limit increases the ai of the computer. This will happen

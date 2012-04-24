@@ -1,6 +1,6 @@
 package hud;
 
-import element.Fighter;
+import api.element.Fighter;
 
 public class FighterHPInfo implements HUDInfo {
 	public FighterHPInfo() {

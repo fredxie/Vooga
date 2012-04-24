@@ -1,7 +1,7 @@
 package ai;
 
-import DemoElement.Missile;
-import element.Enemy;
+import demo.element.Missile;
+import api.element.Enemy;
 
 /*
  * hp limit activate when player hp falls below a certain level. Rather then making the game tougher

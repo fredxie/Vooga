@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import api.element.Element;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import element.Element;
 
 /*
  * Class provide load and save method for TopDownMenu to store and get edited level

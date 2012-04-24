@@ -17,7 +17,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
-import util.LoadUtil;
+import api.util.LoadUtil;
+
 
 import java.io.File;
 import java.util.*;

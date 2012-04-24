@@ -2,7 +2,8 @@ package ai;
 
 import java.util.ArrayList;
 
-import DemoElement.Missile;
+import demo.element.Missile;
+
 
 public class BehaviorManager_Weapon {
 	protected static EnemyTopDownBehavior behavior;

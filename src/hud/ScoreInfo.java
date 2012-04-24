@@ -1,6 +1,6 @@
 package hud;
 
-import DemoCollisioSystem.LifeDecreaseCollision;
+import demo.collisionSystem.LifeDecreaseCollision;
 
 public class ScoreInfo implements HUDInfo {
 	public ScoreInfo() {

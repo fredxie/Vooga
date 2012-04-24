@@ -17,7 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import util.LoadUtil;
+import api.util.LoadUtil;
+
 
 public class Load extends JFrame {
 

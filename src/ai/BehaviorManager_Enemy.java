@@ -1,16 +1,18 @@
 package ai;
 
-import gameLevel.GameLevel;
-import gameObject.api_GameObject.TopDownGameManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DemoGameLevel.GameLevel1;
+import demo.element.DemoEnemy;
+import demo.gameLevel.GameLevel1;
 
-import state.api.State;
+import api.gameLevel.GameLevel;
+import api.gameObject.TopDownGameManager;
+import api.state.State;
 
-import demo.DemoEnemy;
+
+
 
 public class BehaviorManager_Enemy {
 	protected static EnemyTopDownBehavior behavior;

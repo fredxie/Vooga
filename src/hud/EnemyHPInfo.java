@@ -1,6 +1,6 @@
 package hud;
 
-import element.Enemy;
+import api.element.Enemy;
 
 public class EnemyHPInfo implements HUDInfo {
 	public EnemyHPInfo() {

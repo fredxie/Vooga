@@ -1,7 +1,7 @@
 package ai;
 
-import DemoElement.Missile;
-import element.Enemy;
+import demo.element.Missile;
+import api.element.Enemy;
 
 public interface EnemyTopDownBehavior {
 	abstract int getState();

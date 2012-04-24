@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import DemoElement.Missile;
-import element.Enemy;
+import demo.element.Missile;
+
+import api.element.Enemy;
+
 
 public class BonusLimit implements TopDownBehavior {
 	Timer timer1;
