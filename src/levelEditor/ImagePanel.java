@@ -5,12 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 class ImagePanel extends JPanel {
 
 	private Image img;
 	private int height = 600;
-
-	// private Dimension size = new Dimension(500,600);
 
 	public ImagePanel() {
 

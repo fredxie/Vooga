@@ -147,6 +147,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		panel_1.repaint();
 	}
 
+	@SuppressWarnings("unused")
 	private void setNewBackground() {
 		BackgroundLengthDialog bd = new BackgroundLengthDialog(this);
 	}
@@ -249,6 +250,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	public void storeToList() {
 		List<List<Object>> store = new ArrayList<List<Object>>();
 		List<Object> storeBackground = new ArrayList<Object>();
@@ -261,10 +263,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 				store.add(label.toList());
 		}
 		FileNameDialog fn = new FileNameDialog(store);
-		/*
-		 * for(List<Object> a: store){ System.out.println(a.toString()); }
-		 */
-
 	}
 
 	private void loadSavedFile() {

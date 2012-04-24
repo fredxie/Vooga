@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import api.util.LoadUtil;
 
 
+@SuppressWarnings("serial")
 public class Load extends JFrame {
 
 	private JPanel myPanel;
@@ -60,10 +61,6 @@ public class Load extends JFrame {
 		setVisible(true);
 		setPreferredSize(new Dimension(500, 100));
 		return panel;
-	}
-
-	public static void main(String[] args) {
-		Load l = new Load();
 	}
 
 }
