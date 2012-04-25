@@ -9,6 +9,7 @@ import demo.element.Missile;
 import demo.gameLevel.GameLevel1;
 
 import api.element.Enemy;
+import api.element.Weapon;
 import api.gameLevel.GameLevel;
 import api.gameObject.TopDownGameManager;
 import api.state.State;
@@ -53,7 +54,7 @@ public class BehaviorManager {
 		e_map.clear();
 		return rightBrain;
 	}
-	public static AI wBehaviorManager(Missile missile, int Level) {
+	public static AI wBehaviorManager(Weapon missile, int Level) {
 		for (AI brain : w_behaviors) {
 			if (Level <= w_behaviors.size()) {
 				if(w_map.containsKey(brain)){
