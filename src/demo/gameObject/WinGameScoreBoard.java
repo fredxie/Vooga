@@ -6,8 +6,9 @@ import java.awt.Graphics2D;
 import api.background.TopDownImageBackground;
 import api.game.TopDownGameEngine;
 import api.gameObject.ScoreBoardGameObject;
+import api.hud.HUD;
 import api.state.DefaultFinishGameState;
-import demo.collisionSystem.EnemyBulletCollision;
+import demo.HUD.DirectText;
 import demo.game.DemoGameEngine;
 
 public class WinGameScoreBoard extends ScoreBoardGameObject {
@@ -29,11 +30,10 @@ public class WinGameScoreBoard extends ScoreBoardGameObject {
 	@Override
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(g, "YOU WIN THE GAME ", 20,
-				DemoGameEngine.HEIGHT / 2 - 50);
-		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES",
-				20, DemoGameEngine.HEIGHT / 2);
+		HUD hud = new HUD();
+		hud.addDisplayObject(g, fontManager, "FPS Font", "YOU WIN THE GAME!", new DirectText(), 20, DemoGameEngine.HEIGHT / 2 - 50);
+		hud.addDisplayObject(g, fontManager, "FPS Font", "NUMBER OF ENEMIES KILLED", new DirectText(), 20, DemoGameEngine.HEIGHT / 2);
+		hud.display();
 	}
 
 }
