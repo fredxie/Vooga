@@ -58,7 +58,7 @@ public abstract class Enemy extends Element {
 	}
 
 	public void spawn(SpawnBehavior sb) {
-		double[] templocation = mySpawnBehavior.spawn();
+		double[] templocation = sb.spawn();
 
 		this.setX(templocation[0] * (DemoGameEngine.WIDTH - this.getWidth()));
 		this.setY(templocation[1]
