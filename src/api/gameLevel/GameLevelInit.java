@@ -1,5 +1,8 @@
 package api.gameLevel;
 
+import java.io.File;
+
+import levelEditor.LevelEditorUtil;
 import demo.collisionSystem.EnemyBulletCollision;
 
 /**
@@ -16,6 +19,22 @@ public abstract class GameLevelInit {
 
 	public GameLevelInit(GameLevel gl) {
 		this.gl = gl;
+	}
+
+	/**
+	 * all things initialization
+	 */
+	public void initAll() {
+
+		parametersInit();
+		collisionInit();
+		backgroundInit();
+		fighterInit();
+		enemyInit();
+		blockInit();
+		bonusInit();
+		keyInit();
+		gameRecordInit();
 	}
 
 	/**
@@ -47,11 +66,6 @@ public abstract class GameLevelInit {
 	 * enemy initialization
 	 */
 	public abstract void enemyInit();
-
-	/**
-	 * cannon initialization
-	 */
-	public abstract void cannonInit();
 
 	/**
 	 * collision system initialization

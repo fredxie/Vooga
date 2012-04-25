@@ -20,10 +20,6 @@ public abstract class LevelTransition {
 		this.gl = gl;
 	}
 
-	/**
-	 * game over method
-	 */
-	public abstract void gameOver();
 
 	/**
 	 * render after level completed
