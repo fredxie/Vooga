@@ -2,8 +2,11 @@ package api.hud;
 
 import java.awt.Graphics2D;
 
+import com.golden.gamedev.object.GameFontManager;
+
 public class DisplayObject {
 	private Graphics2D myGraphics;
+	private GameFontManager myFontManager;
 	private String myFont;
 	private String myTitle;
 	private Display myDisplay;
@@ -15,8 +18,9 @@ public class DisplayObject {
 		myX = myY = 0;
 	}
 	
-	public DisplayObject(Graphics2D g, String font, String title, Display disp, int x, int y) {
+	public DisplayObject(Graphics2D g, GameFontManager fontManager, String font, String title, Display disp, int x, int y) {
 		myGraphics = g;
+		myFontManager = fontManager;
 		myFont = font;
 		myTitle = title;
 		myDisplay = disp;
@@ -38,6 +42,6 @@ public class DisplayObject {
 	}
 	
 	public void display() {	
-		myDisplay.display(myGraphics, myFont, myTitle, myX, myY);
+		myDisplay.display(myGraphics, myFontManager, myFont, myTitle, myX, myY);
 	}
 }

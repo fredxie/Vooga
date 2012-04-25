@@ -3,6 +3,8 @@ package api.hud;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.golden.gamedev.object.GameFontManager;
+
 public class HUD {
 	private ArrayList<DisplayObject> myList;
 	
@@ -10,8 +12,8 @@ public class HUD {
 		myList = new ArrayList<DisplayObject>();
 	}
 	
-	public void addDisplayObject(Graphics2D g, String font, String title, Display dis, int x, int y) {
-		DisplayObject display = new DisplayObject(g, font, title, dis, x, y);
+	public void addDisplayObject(Graphics2D g, GameFontManager fontManager, String font, String title, Display dis, int x, int y) {
+		DisplayObject display = new DisplayObject(g, fontManager, font, title, dis, x, y);
 		myList.add(display);
 	}
 	

@@ -7,8 +7,10 @@ import api.background.TopDownImageBackground;
 import api.game.TopDownGameEngine;
 import api.gameObject.ScoreBoardGameObject;
 import api.gameObject.TopDownGameManager;
+import api.hud.HUD;
 import api.state.DefaultFinishGameState;
-import demo.collisionSystem.EnemyBulletCollision;
+import demo.HUD.NumberText;
+import demo.HUD.ScoreText;
 import demo.game.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {
@@ -27,15 +29,11 @@ public class LostGameScoreBoard extends ScoreBoardGameObject {
 
 	public void render(Graphics2D g) {
 		mainMenuTitle.render(g);
-		fontManager.getFont("FPS Font").drawString(
-				g,
-				"YOU LOST IN THE LEVEL "
-						+ (TopDownGameManager.getPreviousGameID()
-								- TopDownGameManager.GAMELEVELBEGIN + 1), 20,
-				DemoGameEngine.HEIGHT / 2 - 50);
-		fontManager.getFont("FPS Font").drawString(g,
-				"YOU KILLED " + EnemyBulletCollision.destroyed + " ENEMIES",
-				20, DemoGameEngine.HEIGHT / 2);
+		HUD hud = new HUD();
+		hud.addDisplayObject(g, fontManager, "FPS Font", "YOU LOST IN THE LEVEL", new NumberText(TopDownGameManager.getPreviousGameID()
+				- TopDownGameManager.GAMELEVELBEGIN + 1), 20, DemoGameEngine.HEIGHT / 2 - 50);
+		hud.addDisplayObject(g, fontManager, "FPS Font", "NUMBER OF ENEMIES KILLED", new ScoreText(), 20, DemoGameEngine.HEIGHT / 2);
+		hud.display();
 	}
 
 }
