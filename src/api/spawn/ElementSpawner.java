@@ -19,8 +19,6 @@ public class ElementSpawner<E extends Element> {
 	private E myElement;
 	private int myElementNum;
 
-	// private PlayField myPlayField;
-
 	/**
 	 * @param element
 	 *            is the type of the element that is going to be spawned
@@ -44,12 +42,9 @@ public class ElementSpawner<E extends Element> {
 
 				E currentElement = (E) myElement.clone();// To clone the same
 															// kind of element
-//				currentElement.setSpawnBehavior(mySpawnBehavior);
 				currentElement.spawn(mySpawnBehavior);
-				// currentElement
 				elements.add(currentElement);
 			}
-
 		}
 		return elements;
 
@@ -65,7 +60,7 @@ public class ElementSpawner<E extends Element> {
 
 	/**
 	 * @param enemy
-	 *            : change Enemy type to enemy
+	 *            : change Element type to element
 	 */
 	
 	public void setElement(E element) {
@@ -76,50 +71,5 @@ public class ElementSpawner<E extends Element> {
 		myElementNum = num;
 	}
 
-	/**
-	 * 
-	 * @param elapsedTime
-	 * @Description: This method is mainly used for time related spawning
-	 *               behavior, such as SpawnByTime
-	 */
-
-	//
-	// public Enemy[] refresh(long elapsedTime){
-	// if(myTimer.action(elapsedTime)){
-	// myTimer.refresh();
-	// return spawn();
-	// }
-	// return null;
-	// }
-	//
-
-	// public boolean refresh(long elapsedTime){
-	// boolean state=myTimer.action(elapsedTime);
-	// if(state){
-	// myTimer.refresh();
-	// }
-	// return state;
-	// }
-
-	//
-	// public void setTimer(Timer time){
-	// myTimer=time;
-	// }
-
-	// public Enemy[] spawnByFighterState(){
-	// if (hasSpawned == false) {
-	//
-	// Enemy[] retEne=spawn();
-	// if(retEne!=null){
-	// hasSpawned = true;
-	// }
-	// return retEne;
-	// }
-	// return null;
-	// }
-	//
-	// public boolean checkSpawn(){
-	// return hasSpawned;
-	// }
 
 }
