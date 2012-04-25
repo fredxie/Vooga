@@ -7,6 +7,7 @@ import java.util.Random;
 
 import demo.game.DemoGameEngine;
 
+@SuppressWarnings("serial")
 public class TrackingMissile extends Weapon {
 	public Enemy target;
 	double damage = 5;

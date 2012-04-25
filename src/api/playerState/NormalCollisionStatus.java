@@ -9,10 +9,6 @@ package api.playerState;
  */
  
 
-import api.element.Fighter;
-
-import com.golden.gamedev.object.Sprite;
-
 
 public class NormalCollisionStatus extends CollisionStatus {
 

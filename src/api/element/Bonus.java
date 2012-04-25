@@ -3,12 +3,10 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
-import api.game.Configuration;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownUtility;
 
-import com.golden.gamedev.object.Sprite;
 
 import demo.game.DemoGameEngine;
 
@@ -18,6 +16,7 @@ import demo.game.DemoGameEngine;
  * @author Yi Ding
  *
  */
+@SuppressWarnings("serial")
 public abstract class Bonus extends Element {
 
 	// private int weaponDamage;

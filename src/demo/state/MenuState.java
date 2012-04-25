@@ -46,6 +46,7 @@ public class MenuState extends State {
 		game.optionArrowDown(elapsedTime);
 	}
 
+	@SuppressWarnings("unused")
 	@KeyAnnotation(action = "SystemEnter")
 	public void optionEnter(long arg0) {
 		Menu game = (Menu) myGameObject;
@@ -89,8 +90,6 @@ public class MenuState extends State {
 	@Override
 	public void update(long arg0) {
 		KeyPressedSubject.getInstance().notifyObservers(arg0, this);
-		// keyPressedObserver.pressKey(arg0);
-
 	}
 
 }

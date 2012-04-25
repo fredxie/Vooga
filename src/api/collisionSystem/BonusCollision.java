@@ -2,7 +2,6 @@ package api.collisionSystem;
 
 
 import api.element.Bonus;
-import api.element.Fighter;
 import api.element.RegularFighter;
 
 import com.golden.gamedev.object.Sprite;

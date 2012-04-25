@@ -25,7 +25,6 @@ public class PhysicCollision extends CollisionAction {
 		// momentum law begins
 		double dx = e2.getX() - e1.getX();
 		double dy = e2.getY() - e1.getY();
-		double dist = Math.sqrt(dx * dx + dy * dy);
 
 		double angle = Math.atan2(dy, dx);
 		double cos = Math.cos(angle);

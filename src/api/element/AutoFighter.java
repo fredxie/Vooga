@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
  * 
  */
 
+@SuppressWarnings("serial")
 public abstract class AutoFighter extends Fighter {
 
 	protected RegularFighter master;

@@ -1,15 +1,11 @@
 package demo.gameLevel;
 
 import java.awt.Graphics2D;
-import java.io.File;
 import java.util.List;
 
-import levelEditor.LevelEditorUtil;
-import levelEditor.Load;
 import api.game.TopDownGameEngine;
 import api.gameLevel.GameLevel;
 import api.state.DefaultLastLevelState;
-import api.util.LoadUtil;
 import demo.collisionSystem.EnemyBulletCollision;
 import demo.levelTransition.DemoLevelTransition;
 

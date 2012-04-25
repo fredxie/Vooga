@@ -20,9 +20,10 @@ import api.playerState.PlayerState;
  * This class designs the fighter which can be controlled by keyWord and have many states.
  * 
  * 
- * @author Ran Zheng & Shiyuan Wang
+ * @author Ran Zhang & Shiyuan Wang
  * 
  */
+@SuppressWarnings("serial")
 public abstract class RegularFighter extends Fighter {
 
 	private List<Key> keyList;

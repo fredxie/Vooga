@@ -8,6 +8,7 @@ import api.element.RegularFighter;
 
 
 
+@SuppressWarnings("serial")
 public class DemoProtection extends PhysicalProtection {
 
 	public DemoProtection(BufferedImage image) {

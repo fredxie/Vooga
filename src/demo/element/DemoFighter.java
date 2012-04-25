@@ -9,8 +9,6 @@ import api.element.RegularFighter;
 import api.element.Weapon;
 import api.game.TopDownTimer;
 import api.game.TopDownVolatileElement;
-import api.playerState.AssistanceState;
-import api.playerState.CollisionState;
 import api.playerState.NormalCollisionStatus;
 import api.playerState.PlayerStateManager;
 import api.util.JsonUtil;
@@ -20,6 +18,7 @@ import api.util.TopDownImageUtil;
 import demo.game.DemoGameEngine;
 
 
+@SuppressWarnings("serial")
 public class DemoFighter extends RegularFighter {
 	private int BOMB_NUM = 5;
 	Weapon bullet = new Laser(

@@ -13,6 +13,7 @@ import api.util.TopDownUtility;
  *
  */
 
+@SuppressWarnings("serial")
 public class DemoBonus1 extends Bonus {
 
 	private int weaponStyle;

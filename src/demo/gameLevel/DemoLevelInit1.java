@@ -46,6 +46,7 @@ public class DemoLevelInit1 extends GameLevelInit {
 		super(gl);
 	}
 
+	@SuppressWarnings("static-access")
 	public void parametersInit() {
         cannonNum = 20;
 		gl.gameOver = false;

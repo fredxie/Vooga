@@ -4,7 +4,6 @@ package demo.collisionSystem;
 
 import api.collisionSystem.CollisionAction;
 import api.element.Fighter;
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;

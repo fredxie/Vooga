@@ -34,6 +34,7 @@ public class ElementSpawner<E extends Element> {
 		myElement = element;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<E> spawn() {
 
 		List<E> elements = new ArrayList<E>();

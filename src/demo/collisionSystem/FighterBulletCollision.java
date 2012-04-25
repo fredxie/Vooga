@@ -5,7 +5,6 @@ package demo.collisionSystem;
 import api.collisionSystem.CollisionAction;
 import api.element.Fighter;
 import api.element.Weapon;
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;
@@ -18,6 +17,7 @@ import com.golden.gamedev.object.Sprite;
  */
 public class FighterBulletCollision extends CollisionAction {
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void oncollide(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub

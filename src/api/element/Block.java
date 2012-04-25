@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
  *
  */
 
+@SuppressWarnings("serial")
 public abstract class Block extends Element {
 
 	protected int hardDegree;

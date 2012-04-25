@@ -13,6 +13,7 @@ import api.util.TopDownImageUtil;
  *
  */
 
+@SuppressWarnings("serial")
 public class DemoBonus3 extends Bonus {
 
 	private Laser bullet;

@@ -41,6 +41,7 @@ public class PauseState extends State {
 		game.optionArrowDown(elapsedTime);
 	}
 
+	@SuppressWarnings("unused")
 	@KeyAnnotation(action = "SystemEnter")
 	public void optionEnter(long arg0) {
 		Pause game = (Pause) myGameObject;

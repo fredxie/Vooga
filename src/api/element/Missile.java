@@ -10,6 +10,7 @@ import ai.AI;
 import ai.BehaviorManager;
 import api.gameObject.TopDownGameManager;
 
+@SuppressWarnings("serial")
 public class Missile extends Weapon {
 	double damage = 3;
 	AI myBrain_Weapon;

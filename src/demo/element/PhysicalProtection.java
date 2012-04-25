@@ -12,6 +12,7 @@ import com.golden.gamedev.object.Timer;
 
 import demo.game.DemoGameEngine;
 
+@SuppressWarnings("serial")
 public class PhysicalProtection extends AutoFighter {
 
 	Timer resetLocation = new Timer(50);

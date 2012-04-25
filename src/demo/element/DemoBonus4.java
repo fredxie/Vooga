@@ -6,7 +6,6 @@ import api.element.Bonus;
 import api.element.Element;
 import api.element.RegularFighter;
 import api.element.TopDownPlayField;
-import api.game.Configuration;
 import api.util.JsonUtil;
 /**
  * 
@@ -15,6 +14,7 @@ import api.util.JsonUtil;
  */
 
 
+@SuppressWarnings("serial")
 public class DemoBonus4 extends Bonus {
 
 	// = new Laser(

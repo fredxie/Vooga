@@ -6,6 +6,7 @@ package api.element;
  */
 import java.awt.image.BufferedImage;
 
+@SuppressWarnings("serial")
 public abstract class Bullet extends Element {
 	double damage;
 	BufferedImage image;

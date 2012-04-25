@@ -11,7 +11,7 @@ public class FighterHPText extends DisplayText {
 		myFighter = fighter;
 	}
 	
-	@Override
+	@SuppressWarnings("static-access")
 	public String getString() {
 		return " " + myFighter.getHP();
 	}

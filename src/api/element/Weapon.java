@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
  * @author ShiyuanWang
  */
 
+@SuppressWarnings("serial")
 public abstract class Weapon extends Element {
 	double damage = 1;
 	protected BufferedImage image;

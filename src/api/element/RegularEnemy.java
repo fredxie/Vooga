@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import api.spawn.SpawnByLocation;
 
 
+@SuppressWarnings("serial")
 public class RegularEnemy extends Enemy {
 
 	public RegularEnemy(BufferedImage image) {

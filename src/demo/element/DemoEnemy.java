@@ -3,7 +3,6 @@ package demo.element;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -33,6 +32,7 @@ import api.element.TopDownPlayField;
 import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnByRandom;
 
+@SuppressWarnings("serial")
 public class DemoEnemy extends Enemy {
 	// State gameID;
 	public int Level = TopDownGameManager.getCurrentGameID()

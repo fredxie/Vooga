@@ -11,6 +11,7 @@ import api.element.TopDownPlayField;
  * @author Yi Ding
  *
  */
+@SuppressWarnings("serial")
 public class DemoBlock extends Block {
 
 	public DemoBlock(TopDownPlayField playfield, BufferedImage image,
