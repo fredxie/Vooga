@@ -59,7 +59,7 @@ public class SpawnByTime implements SpawnBehavior {
 		return loc;
 	}
 
-	public boolean check() {
+	public boolean checkIfSpawn() {
 
 		boolean state = myTimer.action(myFighter.playfield.getElapsedTime());
 		if (state) {

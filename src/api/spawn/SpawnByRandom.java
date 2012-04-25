@@ -23,7 +23,7 @@ public class SpawnByRandom implements SpawnBehavior {
 	}
 
 	@Override
-	public boolean check() {
+	public boolean checkIfSpawn() {
 		// TODO Auto-generated method stub
 		return true;
 	}

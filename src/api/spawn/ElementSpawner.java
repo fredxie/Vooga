@@ -27,9 +27,9 @@ public class ElementSpawner<E extends Element> {
 	 *            is the type of the element that is going to be spawned
 	 * @param
 	 */
-	public ElementSpawner(SpawnBehavior sb, E element, int enemyNum) {
+	public ElementSpawner(SpawnBehavior sb, E element, int elementNum) {
 
-		myElementNum = enemyNum;
+		myElementNum = elementNum;
 		mySpawnBehavior = sb;
 		myElement = element;
 	}
@@ -39,14 +39,14 @@ public class ElementSpawner<E extends Element> {
 
 		List<E> elements = new ArrayList<E>();
 
-		if (mySpawnBehavior.check()) {
+		if (mySpawnBehavior.checkIfSpawn()) {
 
 			for (int i = 0; i < myElementNum; i++) {
 
 				E currentElement = (E) myElement.clone();// To clone the same
 															// kind of element
-				currentElement.setSpawnBehavior(mySpawnBehavior);
-				currentElement.spawn();
+//				currentElement.setSpawnBehavior(mySpawnBehavior);
+				currentElement.spawn(mySpawnBehavior);
 				// currentElement
 				elements.add(currentElement);
 			}

@@ -60,7 +60,7 @@ public class SpawnByFighterLife implements SpawnBehavior {
 	}
 
 	@Override
-	public boolean check() {
+	public boolean checkIfSpawn() {
 		// myFighter.
 		if (hasSpawn == false && myFighter.getLifeNum() <= myBootLevel) {
 			hasSpawn = true;
