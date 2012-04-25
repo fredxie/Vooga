@@ -19,6 +19,19 @@ public abstract class GameLevelUpdate {
 	}
 
 	/**
+	 * all things update
+	 */
+	public void updateAll(long elapsedTime, Fighter fighter) {
+		keyUpdate(elapsedTime, fighter);
+		playFieldUpdate(elapsedTime);
+		fighterUpdate(elapsedTime);
+		enemyUpdate(elapsedTime);
+		bonusUpdate(elapsedTime);
+		levelComplete();
+		gameUpdate();
+	}
+
+	/**
 	 * key setting update
 	 * 
 	 * @param elapsedTime
@@ -39,13 +52,6 @@ public abstract class GameLevelUpdate {
 	 * @param elapsedTime
 	 */
 	public abstract void fighterUpdate(long elapsedTime);
-
-	/**
-	 * cannon update
-	 * 
-	 * @param elapsedTime
-	 */
-	public abstract void cannonUpdate(long elapsedTime);
 
 	/**
 	 * enemy update

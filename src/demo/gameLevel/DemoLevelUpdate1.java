@@ -1,23 +1,16 @@
 package demo.gameLevel;
 
-import demo.collisionSystem.EnemyBulletCollision;
-import demo.element.DemoProtection;
-import demo.game.DemoGameEngine;
-import demo.levelTransition.DemoLevelTransition;
-
-import java.awt.event.KeyEvent;
-
 import api.configuration.KeyPressedSubject;
 import api.element.Fighter;
+import api.gameLevel.GameLevel;
 import api.gameLevel.GameLevelUpdate;
-import api.levelTransition.LevelTransition;
-import api.playerState.AssistanceState;
-import api.util.TopDownImageUtil;
+import demo.collisionSystem.EnemyBulletCollision;
+import demo.game.DemoGameEngine;
 
 
 public class DemoLevelUpdate1 extends GameLevelUpdate {
 
-	public DemoLevelUpdate1(GameLevel1 gl) {
+	public DemoLevelUpdate1(GameLevel gl) {
 		super(gl);
 	}
 
@@ -33,13 +26,7 @@ public class DemoLevelUpdate1 extends GameLevelUpdate {
 		gl.fighter.refresh(elapsedTime);
 
 	}
-
-	public void cannonUpdate(long elapsedTime) {
-		for (int i = 0; i < gl.cannonNum; i++) {
-			gl.cannon.get(i).refresh(elapsedTime);
-		}
-	}
-
+	
 	public void enemyUpdate(long elapsedTime) {
 		for (int i = 0; i < gl.juniorEnemies.size(); i++) {
 			gl.juniorEnemies.get(i).refresh(elapsedTime);
@@ -70,7 +57,9 @@ public class DemoLevelUpdate1 extends GameLevelUpdate {
 	}
 
 	public void gameUpdate() {
-		LevelTransition lt = new DemoLevelTransition(gl);
-		lt.gameOver();
+		if (gl.fighter.getLifeNum() == 0) {
+			gl.gameOver = true;
+			gl.playfield.clearPlayField();
+		}
 	}
 }

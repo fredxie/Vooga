@@ -1,5 +1,8 @@
 package demo.gameLevel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ai.AI;
 import api.collisionSystem.BonusCollision;
 import api.collisionSystem.CollisionManager;
@@ -10,6 +13,7 @@ import api.element.Block;
 import api.element.Bonus;
 import api.element.Enemy;
 import api.game.TopDownTimer;
+import api.gameLevel.GameLevel;
 import api.gameLevel.GameLevelInit;
 import api.playerState.PhysicCollisionStatus;
 import api.spawn.ElementSpawner;
@@ -33,7 +37,12 @@ import demo.element.DemoFighter;
 import demo.game.DemoPlayField;
 
 public class DemoLevelInit2 extends GameLevelInit {
-	public DemoLevelInit2(GameLevel2 gl) {
+	
+	public int cannonNum;
+	public List<Enemy> cannon = new ArrayList<Enemy>();
+	public ElementSpawner<Enemy> cannonSpawner;
+	
+	public DemoLevelInit2(GameLevel gl) {
 		super(gl);
 	}
 
@@ -46,7 +55,7 @@ public class DemoLevelInit2 extends GameLevelInit {
 		gl.enemyNum = JsonUtil.parse("json/paraConfig.json").get("ENEMY_NUM");
 		gl.bonusNum = JsonUtil.parse("json/paraConfig.json").get("BONUS_NUM");
 		gl.blockNum = JsonUtil.parse("json/paraConfig.json").get("BLOCK_NUM");
-		gl.cannonNum = 30;
+		cannonNum = 30;
 		gl.timer = new TopDownTimer(3000);
 		gl.fighter = new DemoFighter(
 				TopDownImageUtil.getImage("images/game/fighter.png"));
@@ -163,17 +172,15 @@ public class DemoLevelInit2 extends GameLevelInit {
 				new ImageCollision(gl.playfield, "images/game/explosion.png"),
 				new BlockBulletCollision());
 
-	}
-
-	public void cannonInit() {
-		gl.cannonSpawner = new ElementSpawner<Enemy>(new SpawnByRandom(),
+		cannonSpawner = new ElementSpawner<Enemy>(new SpawnByRandom(),
 				new DemoCannonBlock(gl.playfield, gl
 						.getImage("images/game/base.png"), gl
 						.getImage("images/game/cannon.png"), gl.fighter),
-				gl.cannonNum);
-		gl.cannon.addAll(gl.cannonSpawner.spawn());
+				cannonNum);
+		gl.juniorEnemies.addAll(cannonSpawner.spawn());
 
 	}
+
 
 	public void keyInit() {
 		gl.fighter.setKeyList(JsonUtil.createKeyList(gl.fighter,
