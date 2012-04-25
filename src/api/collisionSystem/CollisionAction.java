@@ -4,7 +4,13 @@ import api.element.TopDownPlayField;
 
 import com.golden.gamedev.object.Sprite;
 
-
+/**
+ * This class is a piece of collision effect to act when a collision happens.
+ * The effect is encapsulated in oncollide() method.
+ * 
+ * @author Yi Ding
+ *
+ */
 public abstract class CollisionAction {
 
 	protected TopDownPlayField playfield;

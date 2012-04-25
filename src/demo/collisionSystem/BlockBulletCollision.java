@@ -6,6 +6,12 @@ import api.element.Block;
 
 import com.golden.gamedev.object.Sprite;
 
+/**
+ * This class extends CollisionAction to define a collision effect between Block and Bullet.
+ * 
+ * @author Yi Ding
+ *
+ */
 
 public class BlockBulletCollision extends CollisionAction {
 

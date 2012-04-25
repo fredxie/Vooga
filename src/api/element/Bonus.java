@@ -12,6 +12,12 @@ import com.golden.gamedev.object.Sprite;
 
 import demo.game.DemoGameEngine;
 
+/**
+ * This class defines Bonus Sprite to help developer use Bonus.
+ * 
+ * @author Yi Ding
+ *
+ */
 public abstract class Bonus extends Element {
 
 	// private int weaponDamage;
@@ -23,8 +29,10 @@ public abstract class Bonus extends Element {
 		this.playfield = playfield;
 	}
 
-	/*
-	 * public int getweaponDamage(){ return weaponDamage; }
+	/**
+	 * refresh bonus status when update.
+	 * 
+	 * @param elapsedTime
 	 */
 
 	public void refresh(long elapsedTime) {
@@ -42,12 +50,19 @@ public abstract class Bonus extends Element {
 		}
 	}
 
+	/**
+	 * Update bonus
+	 * 
+	 */
 	public void update(long elapsedTime) {
 		super.update(elapsedTime);
 		TopDownAreaUtil.limitArea(this, playfield.getTileBackground(),
 				DemoGameEngine.HEIGHT, DemoGameEngine.WIDTH);
 	}
 
+	/**
+	 * initiate bonus
+	 */
 	public void init() {
 		// this.setWeaponDamage();
 		// this.setWeaponStyle(TopDownUtility.getRandom(0, 2));
@@ -59,6 +74,11 @@ public abstract class Bonus extends Element {
 				.getHeight() - DemoGameEngine.HEIGHT));
 	}
 
+	/**
+	 * define the effect when bonus is eaten by fighter
+	 * 
+	 * @param s1
+	 */
 	public abstract void collideAction(RegularFighter s1);
 
 }

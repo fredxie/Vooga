@@ -10,6 +10,12 @@ import api.util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;
 
+
+/**
+ * This class extends CollisionAction to define a collision effect between Fighter and Bullet.
+ * @author Yi Ding
+ *
+ */
 public class FighterBulletCollision extends CollisionAction {
 
 	@Override

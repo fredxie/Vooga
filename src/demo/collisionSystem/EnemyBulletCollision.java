@@ -7,6 +7,12 @@ import api.element.Weapon;
 
 import com.golden.gamedev.object.Sprite;
 
+/**
+ * This class extends CollisionAction to define a collision effect between Enemy and Bullet.
+
+ * @author Yi Ding
+ *
+ */
 
 public class EnemyBulletCollision extends CollisionAction {
 

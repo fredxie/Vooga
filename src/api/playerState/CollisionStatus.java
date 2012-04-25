@@ -1,6 +1,8 @@
 package api.playerState;
 
 /**
+ * This class performs as the status class to define each collisionState, called when collision
+ * occurs, the class can decide the effect of collision
  * 
  * @author Yi Ding
  * 

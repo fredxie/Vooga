@@ -2,6 +2,13 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * This class defines Block Sprite to help developer use blocks.
+ * 
+ * @author Yi Ding
+ *
+ */
+
 public abstract class Block extends Element {
 
 	protected int hardDegree;

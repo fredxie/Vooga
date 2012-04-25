@@ -6,7 +6,7 @@ import api.element.Fighter;
  * This class performs as the state class of collision, called when collision
  * occurs, the class can decide the effect of collision
  * 
- * @author ShiyuanWang
+ * @author ShiyuanWang & Yi Ding
  */
 public class CollisionState extends PlayerState {
 	protected String collisionID;

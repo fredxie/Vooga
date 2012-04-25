@@ -12,6 +12,11 @@ import api.util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;
 
+/**
+ * This class extends CollisionAction to define a collision effect that decrease life.
+ * @author Yi Ding
+ *
+ */
 
 public class LifeDecreaseCollision extends CollisionAction {
 

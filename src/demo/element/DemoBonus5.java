@@ -2,7 +2,6 @@ package demo.element;
 
 import java.awt.image.BufferedImage;
 
-import demo.playerState.PhysicCollisionStatus;
 
 import api.element.Bonus;
 import api.element.Element;
@@ -11,6 +10,7 @@ import api.element.TopDownPlayField;
 import api.playerState.AssistanceState;
 import api.playerState.CollisionState;
 import api.playerState.CollisionStatus;
+import api.playerState.PhysicCollisionStatus;
 import api.util.TopDownImageUtil;
 
 /**
