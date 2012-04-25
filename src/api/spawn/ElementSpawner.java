@@ -5,7 +5,6 @@ import java.util.List;
 
 import api.element.Element;
 
-
 /**
  * 
  * @author Gang Song
@@ -68,6 +67,7 @@ public class ElementSpawner<E extends Element> {
 	 * @param enemy
 	 *            : change Element sub-type to element
 	 */
+	
 	public void setElement(E element) {
 		myElement = element;
 	}
