@@ -12,6 +12,7 @@ import api.util.TopDownImageUtil;
 
 import demo.game.DemoGameEngine;
 
+@SuppressWarnings("serial")
 public abstract class Satellite extends AutoFighter {
 	protected Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/beam3.png"));

@@ -13,7 +13,9 @@ import api.util.TopDownImageUtil;
 
 
 
+@SuppressWarnings("serial")
 public class DemoSatellite extends Satellite {
+	@SuppressWarnings("unused")
 	private Weapon bullet = new Laser(
 			TopDownImageUtil.getImage("images/game/beam3.png"));
 

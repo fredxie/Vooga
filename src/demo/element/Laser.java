@@ -11,6 +11,7 @@ import api.element.Fighter;
 import api.element.Weapon;
 
 
+@SuppressWarnings("serial")
 public class Laser extends Weapon {
 
 	double damage = 5;

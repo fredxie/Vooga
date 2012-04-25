@@ -7,7 +7,6 @@ import api.element.Block;
 import api.element.Enemy;
 import api.element.Fighter;
 import api.element.Weapon;
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 import com.golden.gamedev.object.Sprite;
@@ -22,6 +21,7 @@ public class LifeDecreaseCollision extends CollisionAction {
 
 	public static int destroyed = 0;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void oncollide(Sprite s1, Sprite s2) {
 		// TODO Auto-generated method stub

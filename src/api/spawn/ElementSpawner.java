@@ -36,6 +36,7 @@ public class ElementSpawner<E extends Element> {
 	 * 
 	 * @return a list of Element E
 	 */
+	@SuppressWarnings("unchecked")
 	public List<E> spawn() {
 
 		List<E> elements = new ArrayList<E>();
@@ -46,9 +47,7 @@ public class ElementSpawner<E extends Element> {
 
 				E currentElement = (E) myElement.clone();// To clone the same
 															// kind of element
-//				currentElement.setSpawnBehavior(mySpawnBehavior);
 				currentElement.spawn(mySpawnBehavior);
-				// currentElement
 				elements.add(currentElement);
 			}
 

@@ -26,6 +26,7 @@ public class LifeGraph extends DisplayGraph {
 	void placeGraph(int length, int x, int y) {
 		int lifeNum = myFighter.getLifeNum();
 		for(int i = 0; i < lifeNum; i++) {
+			@SuppressWarnings("unused")
 			HUDGraph hdgp = new HUDGraph (myImage, myField, x + length + i * myImage.getWidth(), y);
 		}
 	}

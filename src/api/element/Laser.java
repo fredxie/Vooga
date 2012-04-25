@@ -6,6 +6,7 @@ package api.element;
  */
 import java.awt.image.BufferedImage;
 
+@SuppressWarnings("serial")
 public class Laser extends Weapon {
 
 	double damage = 5;

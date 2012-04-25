@@ -8,6 +8,7 @@ import com.golden.gamedev.object.Sprite;
 
 import demo.game.DemoGameEngine;
 
+@SuppressWarnings("serial")
 public abstract class Element extends Sprite {
 
 	public TopDownPlayField playfield;

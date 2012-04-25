@@ -3,7 +3,6 @@ package api.playerState;
 
 
 
-import api.element.Fighter;
 import api.element.RegularFighter;
 import api.util.TopDownImageUtil;
 

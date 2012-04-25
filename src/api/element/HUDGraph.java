@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.object.PlayField;
 
+@SuppressWarnings("serial")
 public class HUDGraph extends Element {
 	private BufferedImage myImg;
 	private int myX;

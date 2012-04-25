@@ -13,6 +13,7 @@ import api.element.Weapon;
 import demo.element.Laser;
 import demo.game.DemoGameEngine;
 
+@SuppressWarnings("serial")
 public class TrackingMissile extends Weapon {
 	public Enemy target;
 	double damage = 5;

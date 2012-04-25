@@ -7,10 +7,7 @@ import api.element.Bonus;
 import api.element.Element;
 import api.element.RegularFighter;
 import api.element.TopDownPlayField;
-import api.playerState.AssistanceState;
-import api.playerState.CollisionState;
 import api.playerState.CollisionStatus;
-import api.playerState.PhysicCollisionStatus;
 import api.util.TopDownImageUtil;
 
 /**
@@ -19,6 +16,7 @@ import api.util.TopDownImageUtil;
  *
  */
 
+@SuppressWarnings("serial")
 public class DemoBonus5 extends Bonus {
 
 	private CollisionStatus state;

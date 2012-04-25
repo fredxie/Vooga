@@ -44,6 +44,7 @@ public abstract class Fighter extends Element {
 		this.playfield = playfield;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setHP(double fIGHTER_HP) {
 
 		this.healthPoint = fIGHTER_HP;

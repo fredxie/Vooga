@@ -341,11 +341,5 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		}
 	}
 
-	/****************************** Main ******************************/
-
-	public static void main(String[] args) {
-		LevelEditor l = new LevelEditor();
-	}
-	/**************************************************************/
 
 }

@@ -1,12 +1,9 @@
 package api.collisionSystem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import api.element.ElementGroup;
 import api.element.TopDownPlayField;
-import api.playerState.PlayerState;
 
 /**
  * This class is a collision manager to help developer manage different collisions between SpriteGroups in the game.

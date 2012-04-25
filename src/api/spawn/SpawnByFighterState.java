@@ -1,7 +1,6 @@
 package api.spawn;
 
 import api.element.Fighter;
-import demo.game.DemoGameEngine;
 import umontreal.iro.lecuyer.probdist.NormalDist;
 
 public class SpawnByFighterState implements SpawnBehavior {

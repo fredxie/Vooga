@@ -46,6 +46,7 @@ public class DemoLevelInit2 extends GameLevelInit {
 		super(gl);
 	}
 
+	@SuppressWarnings("static-access")
 	public void parametersInit() {
 		gl.gameOver = false;
 		gl.levelComplete = false;

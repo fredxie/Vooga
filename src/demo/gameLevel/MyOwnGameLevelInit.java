@@ -35,6 +35,7 @@ public class MyOwnGameLevelInit extends GameLevelInit {
 		
 	}
 
+	@SuppressWarnings("static-access")
 	public void parametersInit() {
 		gl.gameOver = false;
 		gl.levelComplete = false;

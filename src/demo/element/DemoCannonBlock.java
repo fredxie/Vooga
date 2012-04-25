@@ -27,6 +27,7 @@ import demo.game.DemoGameEngine;
  * 
  */
 
+@SuppressWarnings("serial")
 public class DemoCannonBlock extends Enemy {
 
 	public static final int DEFAULT_FIRE_DELAY = 100000;

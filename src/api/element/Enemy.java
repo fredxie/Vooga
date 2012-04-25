@@ -11,8 +11,8 @@ import api.spawn.SpawnBehavior;
 
 
 import demo.game.DemoGameEngine;
-import demo.game.DemoPlayField;
 
+@SuppressWarnings("serial")
 public abstract class Enemy extends Element {
 
 	protected double healthPoint;
