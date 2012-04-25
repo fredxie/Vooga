@@ -11,8 +11,7 @@ import demo.collisionSystem.LifeDecreaseCollision;
 import demo.game.DemoGameEngine;
 
 import ai.AI;
-import ai.BehaviorManager_Enemy;
-import ai.BehaviorManager_Weapon;
+import ai.BehaviorManager;
 import ai.BonusBrain_Enemy;
 import ai.BonusBrain_Weapon;
 import ai.Brain1_Enemy;
@@ -51,18 +50,19 @@ public class DemoEnemy extends Enemy {
 		super(playfield, image);
 		healthPoint = eNEMY_HP;
 		this.mySpawnBehavior = new SpawnByRandom();
-		BehaviorManager_Enemy.behavior_Map(new Brain1_Enemy(), 1);
-		BehaviorManager_Enemy.behavior_Map(new Brain2_Enemy(), 2);
-		BehaviorManager_Enemy.behavior_Map(new Brain3_Enemy(), 3);
-		BehaviorManager_Enemy.behavior_Map(new Brain4_Enemy(), 4);
-		BehaviorManager_Enemy.behavior_Map(new Brain5_Enemy(), 5);
-		BehaviorManager_Weapon.behavior_Map(new Brain1_Weapon(), 1);
-		BehaviorManager_Weapon.behavior_Map(new Brain2_Weapon(), 2);
-		BehaviorManager_Weapon.behavior_Map(new Brain3_Weapon(), 3);
-		BehaviorManager_Weapon.behavior_Map(new Brain4_Weapon(), 4);
-		BehaviorManager_Weapon.behavior_Map(new Brain5_Weapon(), 5);
+		BehaviorManager.enemy_Map(new Brain1_Enemy(), 1);
+		BehaviorManager.enemy_Map(new Brain2_Enemy(), 2);
+		BehaviorManager.enemy_Map(new Brain3_Enemy(), 3);
+		BehaviorManager.enemy_Map(new Brain4_Enemy(), 4);
+		BehaviorManager.enemy_Map(new Brain5_Enemy(), 5);
+		BehaviorManager.weapon_Map(new Brain1_Weapon(), 1);
+		BehaviorManager.weapon_Map(new Brain2_Weapon(), 2);
+		BehaviorManager.weapon_Map(new Brain3_Weapon(), 3);
+		BehaviorManager.weapon_Map(new Brain4_Weapon(), 4);
+		BehaviorManager.weapon_Map(new Brain5_Weapon(), 5);
 		this.setAI_Enemy();
 		myBrain_Enemy = this.getAI_Enemy();
+		System.out.println(myBrain_Enemy);
 		healthPoint = AI.ENEMY_HP;
 	}
 
@@ -84,7 +84,7 @@ public class DemoEnemy extends Enemy {
 					+ DemoGameEngine.HEIGHT
 					&& getY() > playfield.getBackground().getY()) {
 				// show the enemy
-				BehaviorManager_Enemy.BehaviorManager(this, Level);
+				BehaviorManager.eBehaviorManager(this, Level);
 				myBrain_Enemy.refresh(elapsedTime);
 				y = getY();
 				playfield.getGroup("Enemy").add(this);
@@ -122,13 +122,12 @@ public class DemoEnemy extends Enemy {
 			if (refireRate.action(elapsedTime)) {
 				Missile enemyMissile;
 				try {
-					enemyMissile = new Missile(ImageIO.read(new File(
-							"images/game/emissle_easy.png")), getX()
-							+ getWidth() / 2, getY() + 20, 1);
+					enemyMissile = new Missile(ImageIO.read(new File("images/game/emissle_easy.png")), getX()+ getWidth() / 2, getY() + 20, 1);
 					enemyMissile.setAI_Weapon();
 					myBrain_Weapon = enemyMissile.getAI_Weapon();
+					System.out.println(myBrain_Weapon);
 					myBrain_Weapon.refresh(elapsedTime);
-					BehaviorManager_Weapon.BehaviorManager(enemyMissile, Level);
+					BehaviorManager.wBehaviorManager(enemyMissile, Level);
 					oldBrain_Weapon = enemyMissile.getAI_Weapon();
 					if (DemoFighter.getHP() <= .5) {
 						enemyMissile.setAI_Weapon(new hpBrain_Weapon());

@@ -4,7 +4,7 @@ package api.element;
 import java.awt.image.BufferedImage;
 
 import ai.AI;
-import ai.BehaviorManager_Enemy;
+import ai.BehaviorManager;
 import api.game.TopDownTimer;
 import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnBehavior;
@@ -87,7 +87,7 @@ public abstract class Enemy extends Element {
 	}
 
 	public void setAI_Enemy() {
-		AI newBrain = BehaviorManager_Enemy.BehaviorManager(this, Level);
+		AI newBrain = BehaviorManager.eBehaviorManager(this, Level);
 		newBrain.setSprite(this);
 		this.myBrain_Enemy = newBrain;
 	}

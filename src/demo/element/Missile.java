@@ -7,7 +7,7 @@ package demo.element;
 import java.awt.image.BufferedImage;
 
 import ai.AI;
-import ai.BehaviorManager_Weapon;
+import ai.BehaviorManager;
 import api.element.Element;
 import api.element.Fighter;
 import api.element.Weapon;
@@ -101,7 +101,7 @@ public class Missile extends Weapon {
 	}
 
 	public void setAI_Weapon() {
-		AI newBrain = BehaviorManager_Weapon.BehaviorManager(this, Level);
+		AI newBrain = BehaviorManager.wBehaviorManager(this, Level);
 		newBrain.setSprite(this);
 		this.myBrain_Weapon = newBrain;
 	}

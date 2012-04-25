@@ -7,8 +7,7 @@ package api.element;
 import java.awt.image.BufferedImage;
 
 import ai.AI;
-import ai.BehaviorManager_Enemy;
-import ai.BehaviorManager_Weapon;
+import ai.BehaviorManager;
 import api.gameObject.TopDownGameManager;
 
 public class Missile extends Weapon {
@@ -43,11 +42,15 @@ public class Missile extends Weapon {
 		return myBrain_Weapon;
 	}
 
-//	public void setAI_Enemy() {
-//		AI newBrain = BehaviorManager_Weapon.BehaviorManager(this, Level);
-//		newBrain.setSprite(this);
-//		this.myBrain_Weapon = newBrain;
-//	}
+	public void setAI_Weapon() {
+		AI newBrain = BehaviorManager.wBehaviorManager(this, Level);
+		newBrain.setSprite(this);
+		this.myBrain_Weapon = newBrain;
+	}
+
+	public void setAI_Weapon(AI newbrain) {
+		this.myBrain_Weapon = newbrain;
+	}
 
 	@Override
 	public void genBullets(Fighter fighter, int numOfBullet, double weaponDamage) {
