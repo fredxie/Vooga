@@ -12,10 +12,4 @@ public class Brain1_Weapon extends AI {
 		mySprite.setVerticalSpeed(.25);
 	}
 
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 1;
-	}
-
 }

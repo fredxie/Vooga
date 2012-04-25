@@ -24,10 +24,4 @@ public class ScoreBrain_Enemy extends AI {
 		AI.ENEMY_HP = h;
 	}
 
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

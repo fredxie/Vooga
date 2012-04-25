@@ -6,8 +6,16 @@ package api.element;
  */
 import java.awt.image.BufferedImage;
 
+import ai.AI;
+import ai.BehaviorManager_Enemy;
+import ai.BehaviorManager_Weapon;
+import api.gameObject.TopDownGameManager;
+
 public class Missile extends Weapon {
 	double damage = 3;
+	AI myBrain_Weapon;
+	public int Level = TopDownGameManager.getCurrentGameID()
+			- (TopDownGameManager.GAMELEVELBEGIN - 1);
 
 	public Missile(BufferedImage image) {
 		super(image);
@@ -31,6 +39,15 @@ public class Missile extends Weapon {
 		this.damage = eNEMY_WEAPON_DAMAGE;
 		this.image = image;
 	}
+	public AI getAI_Weapon() {
+		return myBrain_Weapon;
+	}
+
+//	public void setAI_Enemy() {
+//		AI newBrain = BehaviorManager_Weapon.BehaviorManager(this, Level);
+//		newBrain.setSprite(this);
+//		this.myBrain_Weapon = newBrain;
+//	}
 
 	@Override
 	public void genBullets(Fighter fighter, int numOfBullet, double weaponDamage) {
@@ -84,5 +101,4 @@ public class Missile extends Weapon {
 		// TODO Auto-generated method stub
 
 	}
-
 }

@@ -27,10 +27,4 @@ public class hpBrain_Weapon extends AI {
 		y = y * 0.75;
 		mySprite.setVerticalSpeed(y);
 	}
-
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

@@ -3,7 +3,10 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import ai.AI;
+import ai.BehaviorManager_Enemy;
 import api.game.TopDownTimer;
+import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnBehavior;
 
 
@@ -18,6 +21,9 @@ public abstract class Enemy extends Element {
 	public SpawnBehavior mySpawnBehavior;
 	public int time = 800;
 	public TopDownTimer refireRate = new TopDownTimer(time);
+	AI myBrain_Enemy;
+	public int Level = TopDownGameManager.getCurrentGameID()
+			- (TopDownGameManager.GAMELEVELBEGIN - 1);
 
 	public Enemy(BufferedImage image) {
 		super(image);
@@ -75,5 +81,18 @@ public abstract class Enemy extends Element {
 	}
 
 	public abstract void refresh(long elapsedTime);
+	
+	public AI getAI_Enemy() {
+		return myBrain_Enemy;
+	}
 
+	public void setAI_Enemy() {
+		AI newBrain = BehaviorManager_Enemy.BehaviorManager(this, Level);
+		newBrain.setSprite(this);
+		this.myBrain_Enemy = newBrain;
+	}
+
+	public void setAI_Enemy(AI newbrain) {
+		this.myBrain_Enemy = newbrain;
+	}
 }

@@ -33,8 +33,10 @@ public abstract class Satellite extends AutoFighter {
 	public void init() {
 		playfield = master.playfield;
 		game = master.game;
-		weaponState.changeState(bullet);
-		weaponState.setWeapon(0, 1);
+		stateManager.changeWeaponState(bullet);
+		stateManager.setWeapon(0,1);
+//		weaponState.changeState(bullet);
+//		weaponState.setWeapon(0, 1);
 		setRefireRate(1000);
 		setLocation(master.getX() - 0.5 * master.getWidth(), master.getY());
 	}
@@ -67,7 +69,8 @@ public abstract class Satellite extends AutoFighter {
 
 	public void attack() {
 
-		weaponState.fire();
+//		weaponState.fire();
+		stateManager.fire();
 		allowFire = false;
 	}
 

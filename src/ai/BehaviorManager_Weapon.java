@@ -1,29 +1,34 @@
 package ai;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import api.element.Enemy;
 
 import demo.element.Missile;
 
 
 public class BehaviorManager_Weapon {
-	protected static EnemyTopDownBehavior behavior;
 	static double h;
 	static double v;
 	protected static ArrayList<AI> behaviors = new ArrayList<AI>();
+	protected static Map<AI,Integer> map = new HashMap<AI,Integer>();
 	static AI rightBrain;
 
-	public static void behaviors_List(AI... brains) {
-		for (AI brain : brains) {
-			behaviors.add(brain);
+	public static void behavior_Map(AI brains, int level){
+		if(!map.containsKey(brains)){
+			map.put(brains, level);
 		}
+		behaviors.add(brains);
 	}
-
 	public static AI BehaviorManager(Missile missile, int Level) {
 		for (AI brain : behaviors) {
 			if (Level <= behaviors.size()) {
-				if (Level == brain.getState()) {
-					rightBrain = brain;
-					System.out.print(rightBrain + "\n");
+				if(map.containsKey(brain)){
+					if (Level == map.get(brain)){
+						rightBrain = brain;
+					}
 				}
 			} else if (Level > behaviors.size()) {
 				h = missile.getHorizontalSpeed();
@@ -32,6 +37,7 @@ public class BehaviorManager_Weapon {
 			}
 		}
 		behaviors.clear();
+		map.clear();
 		return rightBrain;
 	}
 }

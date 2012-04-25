@@ -37,9 +37,9 @@ public class PhysicCollisionStatus extends CollisionStatus {
 					new DemoSatellite(TopDownImageUtil
 							.getImage("images/game/Satellite.png"),
 							fighter));
-			
+
 			fighter.getStateManager().genAssistance();
-			
+
 		}
 
 	}

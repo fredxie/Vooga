@@ -13,10 +13,4 @@ public class Brain3_Enemy extends AI {
 		AI.ENEMY_HP = 2.5;
 	}
 
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 3;
-	}
-
 }

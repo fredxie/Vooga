@@ -25,7 +25,6 @@ import ai.Brain4_Enemy;
 import ai.Brain4_Weapon;
 import ai.Brain5_Enemy;
 import ai.Brain5_Weapon;
-import ai.EnemyTopDownBehavior;
 import ai.ScoreBrain_Enemy;
 import ai.ScoreBrain_Weapon;
 import ai.hpBrain_Enemy;
@@ -37,12 +36,8 @@ import api.spawn.SpawnByRandom;
 
 public class DemoEnemy extends Enemy {
 	// State gameID;
-	public EnemyTopDownBehavior behavior;
-	EnemyTopDownBehavior oldBehavior;
 	public int Level = TopDownGameManager.getCurrentGameID()
 			- (TopDownGameManager.GAMELEVELBEGIN - 1);
-
-	ArrayList<EnemyTopDownBehavior> behaviors = new ArrayList<EnemyTopDownBehavior>();
 	double h, v, y;
 	AI myBrain_Enemy;
 	AI oldBrain_Enemy;
@@ -56,30 +51,28 @@ public class DemoEnemy extends Enemy {
 		super(playfield, image);
 		healthPoint = eNEMY_HP;
 		this.mySpawnBehavior = new SpawnByRandom();
-		BehaviorManager_Enemy.behaviors_List(new Brain1_Enemy(),
-				new Brain2_Enemy(), new Brain3_Enemy(), new Brain4_Enemy(),
-				new Brain5_Enemy());
-		BehaviorManager_Weapon.behaviors_List(new Brain1_Weapon(),
-				new Brain2_Weapon(), new Brain3_Weapon(), new Brain4_Weapon(),
-				new Brain5_Weapon());
-		// myBrain = BehaviorManager.BehaviorManager(this, Level);
+		BehaviorManager_Enemy.behavior_Map(new Brain1_Enemy(), 1);
+		BehaviorManager_Enemy.behavior_Map(new Brain2_Enemy(), 2);
+		BehaviorManager_Enemy.behavior_Map(new Brain3_Enemy(), 3);
+		BehaviorManager_Enemy.behavior_Map(new Brain4_Enemy(), 4);
+		BehaviorManager_Enemy.behavior_Map(new Brain5_Enemy(), 5);
+		BehaviorManager_Weapon.behavior_Map(new Brain1_Weapon(), 1);
+		BehaviorManager_Weapon.behavior_Map(new Brain2_Weapon(), 2);
+		BehaviorManager_Weapon.behavior_Map(new Brain3_Weapon(), 3);
+		BehaviorManager_Weapon.behavior_Map(new Brain4_Weapon(), 4);
+		BehaviorManager_Weapon.behavior_Map(new Brain5_Weapon(), 5);
 		this.setAI_Enemy();
-		// behavior = this.getBehaviour();
+		myBrain_Enemy = this.getAI_Enemy();
 		healthPoint = AI.ENEMY_HP;
 	}
 
-	public DemoEnemy(BufferedImage image) {// , AI initialAI) {
-		super(image);// , initialAI);
+	public DemoEnemy(BufferedImage image) {
+		super(image);
 		this.mySpawnBehavior = new SpawnByRandom();
 	}
 
 	@Override
 	public void init() {
-
-		// this.setX(TopDownUtility.getRandom(0,
-		// DemoGameEngine.WIDTH - this.getWidth()));
-		// this.setY(TopDownUtility.getRandom(100, playfield.getBackground()
-		// .getHeight() - DemoGameEngine.HEIGHT));
 		setMass(3);
 
 	}
@@ -93,7 +86,6 @@ public class DemoEnemy extends Enemy {
 				// show the enemy
 				BehaviorManager_Enemy.BehaviorManager(this, Level);
 				myBrain_Enemy.refresh(elapsedTime);
-				// behavior.enemy_Changes(this);
 				y = getY();
 				playfield.getGroup("Enemy").add(this);
 				show = true;
@@ -118,62 +110,11 @@ public class DemoEnemy extends Enemy {
 				if (DemoFighter.best_weapon == false) {
 					this.setAI_Enemy(oldBrain_Enemy);
 				}
-				// oldBehavior = this.getBehaviour();
-				// if(DemoFighter.getHP() <= .5){
-				// this.setBehavior(new hpLimit());
-				// hpLimit = true;
-				// }
-				// if(hpLimit == true){
-				// if(DemoFighter.getHP() > .5){
-				// this.setBehavior(oldBehavior);
-				// hpLimit = false;
-				// }
-				// }
-				// if (LifeDecreaseCollision.destroyed >= 6) {
-				// this.setBehavior(new ScoreLimit());
-				// oldBehavior = this.getBehaviour();
-				// }
-				// if(DemoFighter.best_weapon == true){
-				// this.setBehavior(new BonusLimit());
-				// }
-				// if(DemoFighter.best_weapon == false){
-				// this.setBehavior(oldBehavior);
-				// }
-				// enemy fires
 				attack(elapsedTime);
 			}
 		} else { // for those have shown before, they should continue firing
 			attack(elapsedTime);
 		}
-	}
-
-	// public void setBehavior(EnemyTopDownBehavior behavior){
-	// this.behavior = behavior;
-	// }
-	// public EnemyTopDownBehavior getBehaviour()
-	// {
-	// return behavior;
-	// }
-	public void setAI_Enemy(AI newbrain) {
-		this.myBrain_Enemy = newbrain;
-	}
-
-	public void setAI_Weapon(AI newbrain) {
-		this.myBrain_Weapon = newbrain;
-	}
-
-	public AI getAI_Enemy() {
-		return myBrain_Enemy;
-	}
-
-	public AI getAI_Weapon() {
-		return myBrain_Weapon;
-	}
-
-	public void setAI_Enemy() {
-		AI newBrain = BehaviorManager_Enemy.BehaviorManager(this, Level);
-		newBrain.setSprite(this);
-		this.myBrain_Enemy = newBrain;
 	}
 
 	public void attack(long elapsedTime) {
@@ -184,41 +125,37 @@ public class DemoEnemy extends Enemy {
 					enemyMissile = new Missile(ImageIO.read(new File(
 							"images/game/emissle_easy.png")), getX()
 							+ getWidth() / 2, getY() + 20, 1);
-					oldBrain_Weapon = getAI_Weapon();
+					enemyMissile.setAI_Weapon();
+					myBrain_Weapon = enemyMissile.getAI_Weapon();
+					myBrain_Weapon.refresh(elapsedTime);
+					BehaviorManager_Weapon.BehaviorManager(enemyMissile, Level);
+					oldBrain_Weapon = enemyMissile.getAI_Weapon();
 					if (DemoFighter.getHP() <= .5) {
-						this.setAI_Weapon(new hpBrain_Weapon());
+						enemyMissile.setAI_Weapon(new hpBrain_Weapon());
 						hpLimit = true;
 					}
 					if (hpLimit == true) {
 						if (DemoFighter.getHP() > .5) {
-							this.setAI_Weapon(oldBrain_Weapon);
+							enemyMissile.setAI_Weapon(oldBrain_Weapon);
 							hpLimit = false;
 						}
 					}
 					if (LifeDecreaseCollision.destroyed >= 6) {
-						this.setAI_Weapon(new ScoreBrain_Weapon());
-						oldBrain_Weapon = this.getAI_Weapon();
+						enemyMissile.setAI_Weapon(new ScoreBrain_Weapon());
+						oldBrain_Weapon = enemyMissile.getAI_Weapon();
 					}
 					if (DemoFighter.best_weapon == true) {
-						this.setAI_Weapon(new BonusBrain_Weapon());
+						enemyMissile.setAI_Weapon(new BonusBrain_Weapon());
 					}
 					if (DemoFighter.best_weapon == false) {
-						this.setAI_Weapon(oldBrain_Weapon);
+						enemyMissile.setAI_Weapon(oldBrain_Weapon);
 					}
-					AI newBrain2 = BehaviorManager_Weapon.BehaviorManager(
-							enemyMissile, Level);
-					newBrain2.setSprite(this);
-					this.myBrain_Weapon = newBrain2;
-					myBrain_Weapon.refresh(elapsedTime);
-					BehaviorManager_Weapon.BehaviorManager(enemyMissile, Level);
-					// behavior.weapon_Changes(enemyMissile);
 					playfield.getGroup("Enemy Missile").add(enemyMissile);
 					refireRate.refresh();
 					if (Level >= 5) {
 						if (enemyMissile.getX() <= 0
 								|| enemyMissile.getX() >= DemoGameEngine.WIDTH
 										- ((enemyMissile.getWidth()))) {
-							// behavior.weaponSpeed(enemyMissile);
 							double h2 = enemyMissile.getHorizontalSpeed();
 							double v2 = enemyMissile.getVerticalSpeed();
 							enemyMissile.setSpeed(-h2, v2);

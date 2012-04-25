@@ -6,13 +6,19 @@ package demo.element;
  */
 import java.awt.image.BufferedImage;
 
+import ai.AI;
+import ai.BehaviorManager_Weapon;
 import api.element.Element;
 import api.element.Fighter;
 import api.element.Weapon;
+import api.gameObject.TopDownGameManager;
 
 
 public class Missile extends Weapon {
 	double damage = 3;
+	AI myBrain_Weapon;
+	public int Level = TopDownGameManager.getCurrentGameID()
+			- (TopDownGameManager.GAMELEVELBEGIN - 1);
 
 	public Missile(BufferedImage image) {
 		super(image);
@@ -90,4 +96,17 @@ public class Missile extends Weapon {
 
 	}
 
+	public AI getAI_Weapon() {
+		return myBrain_Weapon;
+	}
+
+	public void setAI_Weapon() {
+		AI newBrain = BehaviorManager_Weapon.BehaviorManager(this, Level);
+		newBrain.setSprite(this);
+		this.myBrain_Weapon = newBrain;
+	}
+
+	public void setAI_Weapon(AI newbrain) {
+		this.myBrain_Weapon = newbrain;
+	}
 }

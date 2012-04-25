@@ -15,10 +15,4 @@ public class BonusBrain_Weapon extends AI {
 		mySprite.setSpeed(x2, y2);
 	}
 
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

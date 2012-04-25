@@ -39,10 +39,4 @@ public class Brain3_Weapon extends AI {
 		timer.start();
 	}
 
-	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 3;
-	}
-
 }

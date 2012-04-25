@@ -74,7 +74,7 @@ public abstract class RegularFighter extends Fighter {
 	 * Return assistance state, which is the state to manage AutoFighter
 	 */
 
-	
+
 	public PlayerState getAssistanceState() {
 		return stateManager.getAssistanceState();
 	}
@@ -106,7 +106,7 @@ public abstract class RegularFighter extends Fighter {
 	/**
 	 *  Register new player state to grant the fighter more features.  
 	 */
-	
+
 	public void addState(PlayerState newState) {
 		stateManager.registerNewState(newState);
 	}
@@ -124,7 +124,7 @@ public abstract class RegularFighter extends Fighter {
 	/**
 	 *  Update the states of the fighter based the time.  
 	 */
-	
+
 	public void stateUpdate(long elapsedTime) {
 		stateManager.update(elapsedTime);
 	}

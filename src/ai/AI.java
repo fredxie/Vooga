@@ -16,6 +16,4 @@ public abstract class AI {
 	}
 
 	public abstract void refresh(long elaspedTime);
-
-	public abstract int getState();
 }
