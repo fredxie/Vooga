@@ -1,40 +1,40 @@
 package api.element;
 
-
 import java.awt.image.BufferedImage;
-
-import demo.element.Laser;
 
 import api.game.TopDownTimer;
 import api.gameLevel.GameLevel;
+import api.playerState.PlayerStateManager;
 import api.playerState.WeaponState;
 import api.util.JsonUtil;
-import api.util.TopDownImageUtil;
 
+/**
+ * This abstract class keep the basic feature of the fighter which is ready to
+ * be extended.
+ */
 
 @SuppressWarnings("serial")
 public abstract class Fighter extends Element {
 
 	private static double FIGHTER_WEAPON_DAMAGE = 100;
 	private static int INITIAL_STYLE = 0;
-	// protected static double healthPoint = Configuration.FIGHTER_HP;
-	protected static double healthPoint = JsonUtil.parse("json/paraConfig.json")
-			.get("FIGHTER_HP");
-	protected int lifeNum = JsonUtil.parse("json/paraConfig.json").get("lifeNum");
+	protected static double healthPoint = JsonUtil
+			.parse("json/paraConfig.json").get("FIGHTER_HP");
+	protected int lifeNum = JsonUtil.parse("json/paraConfig.json").get(
+			"lifeNum");
 	protected double weaponDamage = FIGHTER_WEAPON_DAMAGE;
 	protected int weaponStyle = INITIAL_STYLE;
 	public boolean allowBomb = true;
-	public TopDownTimer rebombRate = new TopDownTimer(5000); // allow to rebomb
+	public TopDownTimer rebombRate = new TopDownTimer(5000);
 	public boolean allowFire = false;
-	public WeaponState weaponState = new WeaponState(this, weaponStyle,
-			weaponDamage);
-	public TopDownTimer refireRate = new TopDownTimer(1000); // allow to refire
-	public double speedX, speedY; // after 300 ms
+	public TopDownTimer refireRate = new TopDownTimer(1000);
+	public double speedX, speedY;
 	public double backgroundSpeed = JsonUtil.parse("json/paraConfig.json").get(
 			"BACKGROUND_SPEED");
 	public GameLevel game;
 	public BufferedImage bulletImage;
 	public int bombNum;
+	protected PlayerStateManager stateManager;
 
 	public Fighter(BufferedImage image) {
 		super(image);
@@ -53,11 +53,16 @@ public abstract class Fighter extends Element {
 		return healthPoint;
 	}
 
+	/**
+	 * Change the HP of the Fighter
+	 */
+
 	public void changeHP(double change) {
 		healthPoint = healthPoint + change;
 		if (healthPoint <= 0) {
 			lifeNum--;
-			healthPoint = JsonUtil.parse("json/paraConfig.json").get("FIGHTER_HP");
+			healthPoint = JsonUtil.parse("json/paraConfig.json").get(
+					"FIGHTER_HP");
 		}
 
 	}
@@ -86,19 +91,13 @@ public abstract class Fighter extends Element {
 		this.setImage(i);
 	}
 
-	// State Pattern of State Pattern about Bullet
-	// Default Sate
-	private Weapon bullet = new Laser(
-			TopDownImageUtil.getImage("images/game/bigLaser1.png")); // Default
-																		// Bullet
-
 	public void setWeapon(int weaponDamage, int weaponStyle) {
 		this.weaponDamage = weaponDamage;
 		this.weaponStyle = weaponStyle;
 	}
 
 	public WeaponState getWeaponState() {
-		return weaponState;
+		return stateManager.getWeaponState();
 	}
 
 	public int getWeaponStyle() {
@@ -134,6 +133,14 @@ public abstract class Fighter extends Element {
 	}
 
 	public abstract void attack();
+
+	/**
+	 * Return the state manager which manages all states of the fighter
+	 */
+
+	public PlayerStateManager getStateManager() {
+		return stateManager;
+	}
 
 	public void setGameObject(GameLevel game) {
 		this.game = game;

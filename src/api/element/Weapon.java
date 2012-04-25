@@ -1,13 +1,17 @@
 package api.element;
 
+import java.awt.image.BufferedImage;
+
 /**
+ * This abstract class keep the basic feature of the weapon which is ready to be
+ * extended.
+ * 
  * 
  * @author ShiyuanWang
  */
-import java.awt.image.BufferedImage;
 
 public abstract class Weapon extends Element {
-	double damage=1;
+	double damage = 1;
 	protected BufferedImage image;
 	protected double bulletSpeed = -0.7;
 	Weapon[] bullets;
@@ -34,9 +38,17 @@ public abstract class Weapon extends Element {
 		this.damage = x;
 	}
 
+	/**
+	 * Generate different effects of attack based the concrete method,
+	 * genBullets
+	 */
+
 	public abstract void genBullets(Fighter fighter, int numOfBullet,
 			double weaponDamage);
 
+	/**
+	 * Add the bullets into playfield
+	 */
 	public void addBullets(Weapon[] bullets, Fighter fighter) {
 		this.bullets = bullets;
 		for (Weapon bullet : bullets)
@@ -48,6 +60,9 @@ public abstract class Weapon extends Element {
 	@Override
 	public abstract void init();
 
+	/**
+	 * Update bullet under certain circumstances
+	 */
 	public abstract void bulletUpdate();
 
 	public void setBulletSpeed(double bulletSpeed) {

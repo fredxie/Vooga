@@ -2,20 +2,15 @@ package api.playerState;
 
 import api.element.Fighter;
 
-import com.golden.gamedev.object.Timer;
-
-
+/**
+ * This class performs as the state class of collision, called when collision
+ * occurs, the class can decide the effect of collision
+ * 
+ * @author ShiyuanWang
+ */
 public class CollisionState extends PlayerState {
 	protected String collisionID;
 	CollisionStatus collisionStatus;
-
-	// Timer shieldLength = new Timer(5000);
-
-	// public CollisionState(Fighter fighter, CollisionState collisionState) {
-	// super(fighter);
-	// this.collisionState=collisionState;
-	//
-	// }
 
 	public CollisionState(Fighter fighter) {
 		super(fighter);
@@ -29,19 +24,28 @@ public class CollisionState extends PlayerState {
 
 	}
 
+	/**
+	 * Change the collision State according to the passed collisionStatus
+	 */
+
 	public void changeState(Object collisionState) {
 		collisionStatus = (CollisionStatus) collisionState;
 		collisionID = collisionStatus.collisionID;
 	}
 
+	/**
+	 * Return the ID of the Collision State to give the hint of the effect of
+	 * collision
+	 */
 	public String getID() {
 		return collisionID;
 	}
 
+	/**
+	 * Update the collision State according to time
+	 */
 	@Override
 	public void update(long elapsedTime) {
-		// TODO Auto-generated method stub
-
 		collisionStatus.update(elapsedTime);
 	}
 

@@ -32,14 +32,13 @@ public class PhysicCollisionStatus extends CollisionStatus {
 
 		if (validDuration.action(elapsedTime)) {
 			RegularFighter fighter = (RegularFighter) state.getFighter();
-			state.changeState(new NormalCollisionStatus(state));
-			fighter.getAssistanceState().changeState(
+			fighter.getStateManager().changeCollisionState(new NormalCollisionStatus(state));
+			fighter.getStateManager().changeAssistanceState(
 					new DemoSatellite(TopDownImageUtil
 							.getImage("images/game/Satellite.png"),
 							fighter));
 			
-			
-	((AssistanceState) fighter.getAssistanceState()).genAssistance();
+			fighter.getStateManager().genAssistance();
 			
 		}
 

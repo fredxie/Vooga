@@ -11,6 +11,7 @@ import api.game.TopDownTimer;
 import api.game.TopDownVolatileElement;
 import api.playerState.AssistanceState;
 import api.playerState.CollisionState;
+import api.playerState.PlayerStateManager;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownImageUtil;
@@ -34,17 +35,13 @@ public class DemoFighter extends RegularFighter {
 	public void initHelper() {
 		moveSpeed = 0.3;
 		rebombRate = new TopDownTimer(5000);
-		assistanceState = new AssistanceState(this);
-		collisionState = new CollisionState(this);
+		stateManager = new PlayerStateManager(this);
 		setRefireRate(100);// Default Re-fire Rate
 		setLocation(DemoGameEngine.WIDTH / 2, playfield.getBackground()
 				.getHeight() - getHeight());// Default Location
 		playfield.getGroup("Fighter").add(this);
 		setBombNum(BOMB_NUM);
-		collisionState.changeState(new NormalCollisionStatus(collisionState));
-		stateList.add(weaponState);
-		stateList.add(assistanceState);
-		stateList.add(collisionState);
+		stateManager.changeCollisionState(new NormalCollisionStatus(getCollisionState()));
 		setMass(4);
 		JsonUtil.registerKeyAcion("BOMB", KeyEvent.VK_CONTROL);
 	}
@@ -53,7 +50,6 @@ public class DemoFighter extends RegularFighter {
 
 		if (isActive()) {
 			stateUpdate(elapsedTime);
-
 			if (this.getWeaponStyle() == 3) {
 				best_weapon = true;
 			} else {

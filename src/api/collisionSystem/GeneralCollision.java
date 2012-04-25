@@ -54,8 +54,8 @@ public class GeneralCollision extends CollisionGroup {
 			collision.oncollide(s1, s2);
 
 		if (s1 instanceof RegularFighter) {
-			String currentstate = ((RegularFighter) s1).getCollisionState()
-					.getID();
+			String currentstate = ((RegularFighter) s1).getStateManager()
+					.getCollisionID();
 
 			if (stateMap.containsKey(currentstate))
 				for (CollisionAction collision : stateMap.get(currentstate))

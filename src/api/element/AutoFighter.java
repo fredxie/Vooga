@@ -1,7 +1,14 @@
 package api.element;
 
-
 import java.awt.image.BufferedImage;
+
+/**
+ * This class designed the AutoFighter extending Fighter, which is the fighter
+ * cannot be controlled but assist the fighter.
+ * 
+ * @author Shiyuan Wang
+ * 
+ */
 
 public abstract class AutoFighter extends Fighter {
 
@@ -23,14 +30,27 @@ public abstract class AutoFighter extends Fighter {
 		init();
 	}
 
+	/**
+	 * Return the master fighter of this AutoFighter
+	 */
+
 	public RegularFighter getMaster() {
 		return master;
 	}
+
+	/**
+	 * Produce the autoFighter to assist the master Fighter
+	 */
 
 	public AutoFighter produce(Fighter fighter) {
 		fighter.playfield.add(this);
 		return this;
 	}
+
+	/**
+	 * AutoFighter takes action according to the action of Master Fighter and
+	 * time
+	 */
 
 	public abstract void fighterControl(long elapsedTime);
 

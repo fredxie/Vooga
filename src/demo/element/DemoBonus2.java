@@ -25,7 +25,7 @@ public class DemoBonus2 extends Bonus {
 	@Override
 	public void collideAction(RegularFighter s1) {
 		// TODO Auto-generated method stub
-		s1.getWeaponState().changeWeaponDamage(weaponDamage);
+		s1.getStateManager().changeWeaponDamage(weaponDamage);
 	}
 
 	public Element clone() {

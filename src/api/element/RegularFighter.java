@@ -6,7 +6,6 @@ package api.element;
  */
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 
 import api.configuration.FighterKeyChangedObserver;
@@ -15,24 +14,25 @@ import api.configuration.Key;
 import api.configuration.KeyAnnotation;
 import api.game.TopDownTimer;
 import api.gameLevel.GameLevel;
-import api.playerState.AssistanceState;
 import api.playerState.CollisionState;
 import api.playerState.PlayerState;
-
-
+/**
+ * This class designs the fighter which can be controlled by keyWord and have many states.
+ * 
+ * 
+ * @author Ran Zheng & Shiyuan Wang
+ * 
+ */
 public abstract class RegularFighter extends Fighter {
 
 	private List<Key> keyList;
 	public boolean allowBomb = true;
 	public TopDownTimer rebombRate;
-	public AssistanceState assistanceState;
-	public CollisionState collisionState;
 	public AutoFighter assistance;
 	public double moveSpeed; // (default)
 	public boolean allowFire = true;
 	public GameLevel game;
 	public BufferedImage bulletImage;
-	public List<PlayerState> stateList = new ArrayList<PlayerState>();
 	public FighterKeyChangedObserver keyChangedObserver;
 	public FighterKeyPressedObserver keyPressedObserver;
 	protected double speedFactor;
@@ -70,18 +70,23 @@ public abstract class RegularFighter extends Fighter {
 
 	public abstract void refresh(long elapsedTime);
 
+	/**
+	 * Return assistance state, which is the state to manage AutoFighter
+	 */
+
+	
 	public PlayerState getAssistanceState() {
-		return assistanceState;
+		return stateManager.getAssistanceState();
 	}
 
-	// State in Collision Part
-
+	/**
+	 * Return collision state, which is the state to deal the collision between this fighter and other elements
+	 */
 	public CollisionState getCollisionState() {
-		return collisionState;
+		return stateManager.getCollisionState();
 	}
 
 	public void init() {
-		// TODO Auto-generated method stub
 		keyChangedObserver = new FighterKeyChangedObserver(this);
 		keyPressedObserver = new FighterKeyPressedObserver(this);
 		initHelper();
@@ -89,22 +94,39 @@ public abstract class RegularFighter extends Fighter {
 
 	public abstract void initHelper();
 
+	/**
+	 *  Attack and the make specific effects based on specific weapon state. 
+	 */
 	@Override
 	public void attack() {
-
-		weaponState.fire();
+		stateManager.fire();
 		allowFire = false;
 	}
 
+	/**
+	 *  Register new player state to grant the fighter more features.  
+	 */
+	
 	public void addState(PlayerState newState) {
-		stateList.add(newState);
+		stateManager.registerNewState(newState);
 	}
 
-	public void stateUpdate(long elapsedTime) {
-		for (PlayerState state : stateList) {
-			state.update(elapsedTime);
+	public void changeAssistanceState(Object state) {
+		stateManager.changeAssistanceState(state);
 
-		}
+	}
+
+	public void genAssistance() {
+		stateManager.genAssistance();
+
+	}
+
+	/**
+	 *  Update the states of the fighter based the time.  
+	 */
+	
+	public void stateUpdate(long elapsedTime) {
+		stateManager.update(elapsedTime);
 	}
 
 }

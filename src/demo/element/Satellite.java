@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import api.element.AutoFighter;
 import api.element.RegularFighter;
 import api.element.Weapon;
+import api.playerState.PlayerStateManager;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownImageUtil;
@@ -37,8 +38,11 @@ public abstract class Satellite extends AutoFighter {
 	public void init() {
 		playfield = master.playfield;
 		game = master.game;
-		weaponState.changeState(bullet);
-		weaponState.setWeapon(0, 1);
+		stateManager = new PlayerStateManager(this);
+		stateManager.changeWeaponState(bullet);
+		//weaponState.changeState(bullet);
+		stateManager.setWeapon(0,1);
+	//	weaponState.setWeapon(0, 1);
 		setRefireRate(1000);
 		setLocation(master.getX() - 0.5 * master.getWidth(), master.getY());
 	}
@@ -71,7 +75,7 @@ public abstract class Satellite extends AutoFighter {
 
 	public void attack() {
 
-		weaponState.fire();
+		stateManager.fire();
 		allowFire = false;
 	}
 

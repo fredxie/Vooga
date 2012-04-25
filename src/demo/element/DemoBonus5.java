@@ -34,12 +34,11 @@ public class DemoBonus5 extends Bonus {
 
 	@Override
 	public void collideAction(RegularFighter s1) {
-		// TODO Auto-generated method stub
-		s1.getCollisionState().changeState(state);
-		s1.getAssistanceState().changeState(
+		s1.getStateManager().changeCollisionState(state);
+		s1.getStateManager().changeAssistanceState(
 				new DemoProtection(TopDownImageUtil
 						.getImage("images/game/Satellite.png"), s1));
-		((AssistanceState) s1.getAssistanceState()).genAssistance();
+		s1.getStateManager().genAssistance();
 
 	}
 

@@ -5,15 +5,17 @@ import api.element.Fighter;
 import api.element.Weapon;
 import api.util.TopDownImageUtil;
 
+/**
+ * This class keep the weapon feature 
+ * @author ShiyuanWang
+ */
 public class WeaponState extends PlayerState {
 
 	public int weaponStyle = 0;
 	public double weaponDamage = 0;
 
-	private Weapon bullet = new Missile(
-			TopDownImageUtil.getImage("images/game/bullet.png")); // Default
-																	// value for
-																	// easy test
+	private Weapon weapon = new Missile(
+			TopDownImageUtil.getImage("images/game/bullet.png"));
 
 	public WeaponState(Fighter fighter) {
 		super(fighter);
@@ -25,13 +27,17 @@ public class WeaponState extends PlayerState {
 		this.weaponDamage = weaponDamage;
 	}
 
-	public void setWeapon(int numOfBullet, double weaponDamage) {
-		this.weaponStyle = numOfBullet;
+	/**
+	 * Set the properties of the weapon
+	 */
+
+	public void setWeapon(int weaponStyle, double weaponDamage) {
+		this.weaponStyle = weaponStyle;
 		this.weaponDamage = weaponDamage;
 	}
 
 	public void changeState(Object bullet) {
-		this.bullet = (Weapon) bullet;
+		this.weapon = (Weapon) bullet;
 	}
 
 	public void setWeaponStyle(int weaponStyle) {
@@ -50,13 +56,12 @@ public class WeaponState extends PlayerState {
 		return weaponDamage;
 	}
 
-	// public void fire(long elapsedTime, int numOfBullet, double weaponDamage)
-	// {
-	// bullet.genBullets(fighter, numOfBullet, weaponDamage);
-	// }
+	/**
+	 * Generate different bullets according to the weapon state
+	 */
 
 	public void fire() {
-		bullet.genBullets(fighter, weaponStyle, weaponDamage);
+		weapon.genBullets(fighter, weaponStyle, weaponDamage);
 	}
 
 	public void changeNumOFBullet(int change) {
@@ -69,7 +74,6 @@ public class WeaponState extends PlayerState {
 
 	@Override
 	public void update(long elapsedTime) {
-		// TODO Auto-generated method stub
 
 	}
 

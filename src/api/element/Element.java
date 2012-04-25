@@ -2,10 +2,8 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
-
 import api.spawn.SpawnBehavior;
 
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
 
 import demo.game.DemoGameEngine;
