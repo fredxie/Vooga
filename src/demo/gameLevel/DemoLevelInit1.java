@@ -113,7 +113,7 @@ public class DemoLevelInit1 extends GameLevelInit {
 				new DemoBonus5(gl.playfield,
 						gl.getImage("images/game/fighter_accelerate.png"),
 						new PhysicCollisionStatus(
-								gl.fighter.getStateManager().getCollisionState())), gl.bonusNum);
+								gl.fighter.getStateManager().getCollisionState(),5)), gl.bonusNum);
 		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 

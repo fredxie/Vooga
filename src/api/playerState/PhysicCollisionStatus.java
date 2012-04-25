@@ -20,12 +20,13 @@ import demo.element.DemoSatellite;
  */
 public class PhysicCollisionStatus extends CollisionStatus {
 
-	Timer validDuration = new Timer(10000);
+	Timer validDuration;
 
-	public PhysicCollisionStatus(CollisionState state) {
+	public PhysicCollisionStatus(CollisionState state,int timer) {
 
 		super(state);
 		collisionID = "Shield";
+		validDuration= new Timer(timer*1000);
 	}
 
 	@Override
