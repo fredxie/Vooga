@@ -1,6 +1,7 @@
 package api.state;
 
 import java.util.List;
+
 import api.configuration.Key;
 import api.configuration.KeyConfig;
 import api.configuration.SystemKeyPressedObserver;

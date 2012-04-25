@@ -1,20 +1,18 @@
 package demo.game;
 
-
 import java.awt.Dimension;
 
+import api.game.TopDownGameEngine;
+import api.game.TopDownGameLoader;
+import api.gameObject.TopDownGameManager;
 import demo.gameLevel.GameLevel1;
 import demo.gameLevel.GameLevel2;
+import demo.gameLevel.MyOwnGameLevel;
 import demo.gameObject.InterLevelScoreBoard;
 import demo.gameObject.LostGameScoreBoard;
 import demo.gameObject.Menu;
 import demo.gameObject.Pause;
 import demo.gameObject.WinGameScoreBoard;
-
-import api.game.TopDownGameEngine;
-import api.game.TopDownGameLoader;
-import api.gameObject.TopDownGameManager;
-
 
 public class DemoGameEngine extends TopDownGameEngine {
 
@@ -41,6 +39,9 @@ public class DemoGameEngine extends TopDownGameEngine {
 				new LostGameScoreBoard(this));
 		TopDownGameManager.addNewGameObject(TopDownGameManager.SCOREBOARD + 2,
 				new WinGameScoreBoard(this));
+		TopDownGameManager.addNewGameObject(TopDownGameManager.GAMELEVELBEGIN + 2,
+				new MyOwnGameLevel(this));
+
 	}
 
 	@Override

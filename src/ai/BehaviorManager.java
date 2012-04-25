@@ -1,18 +1,10 @@
 package ai;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import demo.element.DemoEnemy;
-import demo.element.Missile;
-import demo.gameLevel.GameLevel1;
-
 import api.element.Enemy;
 import api.element.Weapon;
-import api.gameLevel.GameLevel;
-import api.gameObject.TopDownGameManager;
-import api.state.State;
 
 public class BehaviorManager {
 	static double h;
@@ -24,6 +16,7 @@ public class BehaviorManager {
 	static AI rightBrain;
 
 	public static void enemy_Map(AI brains, int level){
+		System.out.println(level);
 		if(!e_map.containsKey(brains)){
 			e_map.put(brains, level);
 		}
@@ -40,6 +33,7 @@ public class BehaviorManager {
 			if (Level <= e_behaviors.size()) {
 				if(e_map.containsKey(brain)){
 					if (Level == e_map.get(brain)){
+						
 						rightBrain = brain;
 					}
 				}

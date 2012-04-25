@@ -22,8 +22,9 @@ public class Menu extends OptionGameObject {
 		addOption("PLAY");
 		addOption("EXIT");
 		addOption("LEVEL EDITOR");
-		addOption("LOAD AND SAVE");
+		addOption("LOAD FILE");
 		addOption("SETTING");
+		addOption("PLAY MY OWN GAME");
 	}
 
 	@Override

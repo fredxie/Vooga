@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import api.element.Enemy;
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 

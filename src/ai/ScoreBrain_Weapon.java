@@ -1,6 +1,5 @@
 package ai;
 
-import api.game.Configuration;
 
 public class ScoreBrain_Weapon extends AI {
 	double d;

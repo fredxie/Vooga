@@ -6,8 +6,6 @@ import java.awt.image.BufferedImage;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownUtility;
-
-
 import demo.game.DemoGameEngine;
 
 /**

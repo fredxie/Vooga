@@ -8,8 +8,6 @@ import ai.BehaviorManager;
 import api.game.TopDownTimer;
 import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnBehavior;
-
-
 import demo.game.DemoGameEngine;
 
 @SuppressWarnings("serial")
@@ -88,6 +86,8 @@ public abstract class Enemy extends Element {
 
 	public void setAI_Enemy() {
 		AI newBrain = BehaviorManager.eBehaviorManager(this, Level);
+		System.out.println(newBrain);
+		System.out.println(this);
 		newBrain.setSprite(this);
 		this.myBrain_Enemy = newBrain;
 	}

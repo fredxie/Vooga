@@ -19,7 +19,7 @@ public class MyOwnGameLevel extends GameLevel {
 		super(parent);
 		myState = new DefaultLastLevelState(parent, this);
 		levelInit = new MyOwnGameLevelInit(this);
-		levelUpdate = new DemoLevelUpdate1(this);
+		levelUpdate = new DemoLevelUpdate1 (this);
 		levelTransition = new DemoLevelTransition(this);
 	}
 

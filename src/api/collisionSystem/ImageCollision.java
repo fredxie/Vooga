@@ -3,8 +3,6 @@ package api.collisionSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import api.element.TopDownPlayField;
 import api.util.TopDownImageUtil;
 

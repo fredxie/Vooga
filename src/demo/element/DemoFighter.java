@@ -14,7 +14,6 @@ import api.playerState.PlayerStateManager;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownImageUtil;
-
 import demo.game.DemoGameEngine;
 
 

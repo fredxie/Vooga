@@ -2,7 +2,6 @@ package demo.element;
 
 import java.awt.image.BufferedImage;
 
-
 import api.element.Bonus;
 import api.element.Element;
 import api.element.RegularFighter;

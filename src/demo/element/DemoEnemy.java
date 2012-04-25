@@ -6,9 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import demo.collisionSystem.LifeDecreaseCollision;
-import demo.game.DemoGameEngine;
-
 import ai.AI;
 import ai.BehaviorManager;
 import ai.BonusBrain_Enemy;
@@ -31,6 +28,8 @@ import api.element.Enemy;
 import api.element.TopDownPlayField;
 import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnByRandom;
+import demo.collisionSystem.LifeDecreaseCollision;
+import demo.game.DemoGameEngine;
 
 @SuppressWarnings("serial")
 public class DemoEnemy extends Enemy {

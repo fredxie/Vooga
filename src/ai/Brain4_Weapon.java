@@ -1,6 +1,5 @@
 package ai;
 
-import api.game.Configuration;
 import api.util.JsonUtil;
 
 public class Brain4_Weapon extends AI {

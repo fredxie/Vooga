@@ -1,7 +1,6 @@
 package ai;
 
 import api.element.Enemy;
-import api.game.Configuration;
 
 public class ScoreBrain_Enemy extends AI {
 	double h;

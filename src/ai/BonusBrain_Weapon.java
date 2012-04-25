@@ -1,6 +1,5 @@
 package ai;
 
-import api.game.Configuration;
 
 public class BonusBrain_Weapon extends AI {
 

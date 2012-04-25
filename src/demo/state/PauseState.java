@@ -12,7 +12,6 @@ import api.gameObject.OptionGameObject;
 import api.gameObject.TopDownGameManager;
 import api.state.State;
 import api.util.JsonUtil;
-
 import demo.configuration.DemoSetting;
 import demo.gameObject.Pause;
 

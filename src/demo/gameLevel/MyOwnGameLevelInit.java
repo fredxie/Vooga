@@ -1,20 +1,24 @@
 package demo.gameLevel;
 
+import levelEditor.LevelEditorUtil;
 import levelEditor.Load;
-import api.background.TopDownImageBackground;
+import ai.AI;
 import api.collisionSystem.BonusCollision;
 import api.collisionSystem.CollisionManager;
 import api.collisionSystem.ImageCollision;
 import api.collisionSystem.PhysicCollision;
 import api.collisionSystem.SoundCollision;
+import api.element.Block;
+import api.element.Bonus;
+import api.element.Enemy;
 import api.game.TopDownTimer;
 import api.gameLevel.GameLevel;
 import api.gameLevel.GameLevelInit;
+import api.spawn.ElementSpawner;
+import api.spawn.SpawnByRandom;
+import api.spawn.SpawnByTime;
 import api.util.JsonUtil;
 import api.util.TopDownImageUtil;
-
-import com.golden.gamedev.object.background.ImageBackground;
-
 import demo.collisionSystem.BlockBulletCollision;
 import demo.collisionSystem.EnemyBulletCollision;
 import demo.collisionSystem.FighterBulletCollision;
@@ -24,15 +28,15 @@ import demo.element.DemoBlock;
 import demo.element.DemoBonus1;
 import demo.element.DemoEnemy;
 import demo.element.DemoFighter;
-import demo.game.DemoGameEngine;
 import demo.game.DemoPlayField;
 
 public class MyOwnGameLevelInit extends GameLevelInit {
-   
+	public String blockPath;
+	public String enemyPath;
+	public String bonusPath;
 
 	public MyOwnGameLevelInit(GameLevel gl) {
 		super(gl);
-		
 	}
 
 	@SuppressWarnings("static-access")
@@ -41,43 +45,38 @@ public class MyOwnGameLevelInit extends GameLevelInit {
 		gl.levelComplete = false;
 		gl.showSatellite = false;
 		gl.playfield = new DemoPlayField(gl);
+		for (int i = 1; i < Load.list.size(); i++) {
+			if (Load.list.get(i).get(1).equals("Enemy")) {
+				gl.enemyNum = LevelEditorUtil.castObjectToInteger(Load.list
+						.get(i).get(5));
+				enemyPath = (String)Load.list.get(i).get(0);
+				System.out.print(enemyPath);
+			} else if (Load.list.get(i).get(1).equals( "Block")) {
+				gl.blockNum = LevelEditorUtil.castObjectToInteger(Load.list
+						.get(i).get(5));
+				blockPath = (String)Load.list.get(i).get(0);
+
+				System.out.print(blockPath);
+			} else if (Load.list.get(i).get(1) .equals( "Bonus") ){
+				gl.bonusNum = LevelEditorUtil.castObjectToInteger(Load.list
+						.get(i).get(5));
+				bonusPath = (String)Load.list.get(i).get(0);
+
+				System.out.print(bonusPath);
+			}
+
+		}
 		gl.timer = new TopDownTimer(3000);
 		gl.fighter = new DemoFighter(
 				TopDownImageUtil.getImage("images/game/fighter.png"));
 
-		gl.levelRequirement = "GO THROUGH IT!!";
 		gl.level = 3;
-		
-		int size = Load.list.size();
-		for(int i = 1; i<size;i++){
-			if(Load.list.get(i).get(1).equals("Bonus")){
-				gl.bonusNum++;
-				DemoBonus1 demoBonus = new DemoBonus1(gl.playfield,gl.getImage((String)Load.list.get(i).get(0)));
-				demoBonus.setX((Double) Load.list.get(i).get(3));
-				demoBonus.setY((Double) Load.list.get(i).get(4));
-				gl.bonuses.add(demoBonus);
-			}
-			else if(Load.list.get(i).get(1).equals("Block")){
-				gl.blockNum++;
-				DemoBlock demoBlock = new DemoBlock(gl.playfield,gl.getImage((String)Load.list.get(i).get(0)));
-				demoBlock.setX((Double) Load.list.get(i).get(3));
-				demoBlock.setY((Double) Load.list.get(i).get(4));
-				gl.blocks.add(demoBlock);
-			}
-			else if(Load.list.get(i).get(1).equals("Enemy")){
-				gl.enemyNum++;
-				DemoEnemy demoEnemy = new DemoEnemy(gl.playfield,gl.getImage((String)Load.list.get(i).get(0)),(Double) Load.list.get(i).get(2));
-				demoEnemy.setX((Double) Load.list.get(i).get(3));
-				demoEnemy.setY((Double) Load.list.get(i).get(4));
-				gl.juniorEnemies.add(demoEnemy);
-			}
-		}
+		gl.levelRequirement = "GO THROUGH IT!!";
 		
 	}
 
 	public void backgroundInit() {
-		ImageBackground img = new TopDownImageBackground(gl.getImage((String)Load.list.get(0).get(0)), DemoGameEngine.WIDTH, (Integer) Load.list.get(0).get(1));
-		gl.playfield.setBackground(img);
+		gl.playfield.init((String)Load.list.get(0).get(0));
 	}
 
 	public void fighterInit() {
@@ -87,15 +86,31 @@ public class MyOwnGameLevelInit extends GameLevelInit {
 	}
 
 	public void blockInit() {
-      //for this game level, all initialization of elements moved into parameteInit()
+		gl.blockSpawner = new ElementSpawner<Block>(new SpawnByRandom(),
+				new DemoBlock(gl.playfield, gl
+						.getImage(blockPath)),
+				2 * gl.blockNum / 3);
+		gl.blocks.addAll(gl.blockSpawner.spawn());
 	}
-	
+
+	// Yi Ding's revise different bonus spawn
+
 	public void bonusInit() {
-      //for this game level, all initialization of elements moved into parameteInit()
+		gl.bonusSpawner = new ElementSpawner<Bonus>(new SpawnByRandom(),
+				new DemoBonus1(gl.playfield, gl
+						.getImage(bonusPath)),
+				gl.bonusNum);
+		gl.bonuses.addAll(gl.bonusSpawner.spawn());
 	}
 
 	public void enemyInit() {
-      //for this game level, all initialization of elements moved into parameteInit()
+		gl.enemySpawner = new ElementSpawner<Enemy>(
+				new SpawnByTime(gl.fighter),
+				new DemoEnemy(gl.playfield, gl
+						.getImage(enemyPath), AI.ENEMY_HP),
+				5);
+		gl.juniorEnemies.addAll(gl.enemySpawner.spawn());
+
 	}
 
 	public void collisionInit() {
@@ -143,6 +158,7 @@ public class MyOwnGameLevelInit extends GameLevelInit {
 				new SoundCollision(gl.playfield, "sounds/explosion.wav"),
 				new ImageCollision(gl.playfield, "images/game/explosion.png"),
 				new BlockBulletCollision());
+
 	}
 
 	public void keyInit() {
@@ -150,7 +166,12 @@ public class MyOwnGameLevelInit extends GameLevelInit {
 				"json/keyConfig.json", gl));
 	}
 
+	/***
+	 * added by Jiawei initialize the number of killed enemies before the start
+	 * of every level Help to fix bugs in restart game and game record display
+	 */
 	public void gameRecordInit() {
 		EnemyBulletCollision.destroyed = 0;
 	}
+
 }

@@ -2,7 +2,6 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
-
 import api.util.TopDownAreaUtil;
 
 import com.golden.gamedev.object.Timer;

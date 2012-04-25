@@ -1,7 +1,6 @@
 package ai;
 
 import api.element.Enemy;
-import api.game.Configuration;
 
 public class Brain2_Enemy extends AI {
 

@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import api.gameObject.TopDownGameManager;
 import api.util.LoadUtil;
 
 
@@ -50,7 +51,6 @@ public class Load extends JFrame {
 				JFileChooser fc = new JFileChooser("./");
 				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fc.showOpenDialog(select);
-
 				list = LoadUtil.loadJson(fc.getSelectedFile());
 			}
 

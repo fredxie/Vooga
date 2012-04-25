@@ -15,13 +15,21 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import api.util.LoadUtil;
-
-
-import java.io.File;
-import java.util.*;
 
 @SuppressWarnings("serial")
 public class LevelEditor extends JFrame implements KeyListener, MouseListener {
@@ -124,7 +132,8 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		JMenuItem loadBackground = new JMenuItem("Load Background");
 		loadBackground.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				setNewBackground();
+				//setNewBackground();
+				loadBackGround();
 			}
 		});
 		menu[1].add(loadBackground);
@@ -157,6 +166,13 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		background_Path = LevelEditorUtil.getSelectedPath(myFile);
 		BufferedImage image = LevelEditorUtil.convertToBufferedImage(myFile);
 		return image;
+	}
+	
+	private void loadBackGround(){
+		File myFile = LevelEditorUtil.getSelectedImageFile();
+		background_Path = LevelEditorUtil.getSelectedPath(myFile);
+		BufferedImage image = LevelEditorUtil.getSelectedImage(myFile);
+		panel_1.setImage(image);
 	}
 
 	private void loadNewElement() {
@@ -270,9 +286,11 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		List<List<Object>> list = LoadUtil.loadJson(myFile);
 
 		File background = new File((String) list.get(0).get(0));
-		playFieldLength = LevelEditorUtil.castObjectToInteger(list.get(0)
+		/*playFieldLength = LevelEditorUtil.castObjectToInteger(list.get(0)
 				.get(1));
-		loadBackground(background, playFieldLength);
+		loadBackground(background, playFieldLength);*/
+		BufferedImage bg = LevelEditorUtil.getSelectedImage(background);
+		panel_1.setImage(bg);
 
 		for (int i = 1; i < list.size(); i++) {
 			loadElement(list.get(i));
@@ -339,6 +357,10 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 			dispose();
 			LoadUtil.saveJson(listToStore, text);
 		}
+	}
+	
+	public static void main(String[] args){
+		LevelEditor e = new LevelEditor();
 	}
 
 

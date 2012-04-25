@@ -1,6 +1,5 @@
 package ai;
 
-import api.game.Configuration;
 
 public class hpBrain_Weapon extends AI {
 	double d;

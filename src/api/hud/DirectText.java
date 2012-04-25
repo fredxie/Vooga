@@ -1,10 +1,10 @@
 package api.hud;
 
 public class DirectText extends DisplayText {
-	public DirectText(){}
-	
-	@Override
-	String getString() {
+	public DirectText() {
+	}
+
+	public String getString() {
 		return null;
 	}
 

@@ -2,7 +2,9 @@ package api.gameObject;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+
 import api.state.State;
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 

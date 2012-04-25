@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import api.game.Configuration;
-
 public class Brain3_Weapon extends AI {
 
 	Timer timer;

@@ -3,7 +3,6 @@ package api.collisionSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import api.element.TopDownPlayField;
 
 import com.golden.gamedev.object.Sprite;
