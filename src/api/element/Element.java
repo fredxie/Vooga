@@ -11,7 +11,7 @@ import demo.game.DemoGameEngine;
 public abstract class Element extends Sprite {
 
 	public TopDownPlayField playfield;
-	public SpawnBehavior mySpawnBehavior;
+//	public SpawnBehavior mySpawnBehavior;
 
 	private int mass; // this is Yi Ding's revise
 
@@ -63,13 +63,13 @@ public abstract class Element extends Sprite {
 	 * @author Gang Song
 	 * @Description set Spawning behavior
 	 */
-	public void setSpawnBehavior(SpawnBehavior SB) {
-		// mySpawnBehavior=new SpawnByLocation();
-		mySpawnBehavior = SB;
-	}
+//	public void setSpawnBehavior(SpawnBehavior SB) {
+//		// mySpawnBehavior=new SpawnByLocation();
+//		mySpawnBehavior = SB;
+//	}
 
-	public void spawn() {
-		double[] templocation = mySpawnBehavior.spawn();
+	public void spawn(SpawnBehavior sb) {
+		double[] templocation = sb.spawn();
 
 		this.setX(templocation[0] * (DemoGameEngine.WIDTH - this.getWidth()));
 		this.setY(templocation[1]

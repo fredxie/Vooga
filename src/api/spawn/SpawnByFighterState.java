@@ -61,7 +61,7 @@ public class SpawnByFighterState implements SpawnBehavior {
 	}
 
 	@Override
-	public boolean check() {
+	public boolean checkIfSpawn() {
 		// TODO Auto-generated method stub
 		return false;
 	}
