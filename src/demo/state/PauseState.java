@@ -5,7 +5,6 @@ package demo.state;
  */
 
 import api.configuration.KeyAnnotation;
-import api.configuration.KeyPressedSubject;
 import api.configuration.SystemKeyPressedObserver;
 import api.game.TopDownGameEngine;
 import api.gameLevel.GameLevel;
@@ -43,7 +42,7 @@ public class PauseState extends State {
 	}
 
 	@KeyAnnotation(action = "SystemEnter")
-	public void updateHelper(long arg0) {
+	public void optionEnter(long arg0) {
 		Pause game = (Pause) myGameObject;
 
 		switch (game.getOption()) {

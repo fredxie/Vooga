@@ -41,7 +41,7 @@ public class DefaultFinishGameState extends State {
 	 * @param arg0
 	 */
 	@KeyAnnotation(action = "SystemEscape")
-	public void toMenu(long arg0) {
+	public void escapePressed(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 		myGameEngine.initResources();
 		myGameObject.finish();
@@ -54,7 +54,7 @@ public class DefaultFinishGameState extends State {
 	 * @param arg0
 	 */
 	@KeyAnnotation(action = "SystemRestart")
-	public void toNextLevel(long arg0) {
+	public void restartPressed(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 		myGameObject.finish();
 	}

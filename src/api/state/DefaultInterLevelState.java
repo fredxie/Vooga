@@ -41,7 +41,7 @@ public class DefaultInterLevelState extends State {
 	 * @param arg0
 	 */
 	@KeyAnnotation(action = "SystemEscape")
-	public void toMenu(long arg0) {
+	public void escapePressed(long arg0) {
 		System.out.println("interstate0");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 		myGameObject.finish();
@@ -54,7 +54,7 @@ public class DefaultInterLevelState extends State {
 	 * @param arg0
 	 */
 	@KeyAnnotation(action = "SystemSpace")
-	public void toNextLevel(long arg0) {
+	public void restartPressed(long arg0) {
 		System.out.println("interstate1");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager
 				.getPreviousGameID() + 1);

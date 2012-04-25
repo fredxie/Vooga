@@ -47,7 +47,7 @@ public class MenuState extends State {
 	}
 
 	@KeyAnnotation(action = "SystemEnter")
-	public void updateHelper(long arg0) {
+	public void optionEnter(long arg0) {
 		Menu game = (Menu) myGameObject;
 
 		switch (game.getOption()) {

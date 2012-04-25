@@ -12,6 +12,7 @@ import api.util.JsonUtil;
 import api.util.TopDownImageUtil;
 
 
+@SuppressWarnings("serial")
 public abstract class Fighter extends Element {
 
 	private static double FIGHTER_WEAPON_DAMAGE = 100;
