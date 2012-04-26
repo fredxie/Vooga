@@ -20,7 +20,7 @@ import com.golden.gamedev.GameObject;
  */
 public abstract class ScoreBoardGameObject extends GameObject {
 	protected State myState;
-	ArrayList<String> output;
+	protected ArrayList<String> output;
 
 	public ScoreBoardGameObject(GameEngine parent) {
 		super(parent);
