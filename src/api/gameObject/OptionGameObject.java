@@ -26,8 +26,8 @@ import com.golden.gamedev.GameObject;
 
 public abstract class OptionGameObject extends GameObject {
 	protected State myState;
-	protected int option;
-	protected ArrayList<String> options;
+	public int option;
+	public ArrayList<String> options;
 
 	public OptionGameObject(TopDownGameEngine parent) {
 		super(parent);
