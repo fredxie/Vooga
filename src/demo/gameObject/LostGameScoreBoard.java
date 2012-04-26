@@ -1,6 +1,5 @@
 package demo.gameObject;
 
-
 import java.awt.Graphics2D;
 
 import api.HUD.HUD;
@@ -14,7 +13,7 @@ import demo.HUD.ScoreText;
 import demo.game.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {
-	TopDownImageBackground mainMenuTitle;
+	private TopDownImageBackground mainMenuTitle;
 
 	public LostGameScoreBoard(TopDownGameEngine arg0) {
 		super(arg0);

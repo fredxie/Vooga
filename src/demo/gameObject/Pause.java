@@ -11,8 +11,7 @@ import demo.game.DemoGameEngine;
 import demo.state.PauseState;
 
 public class Pause extends OptionGameObject {
-	int option;
-	TopDownImageBackground mainMenuTitle;
+	private TopDownImageBackground mainMenuTitle;
 
 	public Pause(TopDownGameEngine parent) {
 		super(parent);
