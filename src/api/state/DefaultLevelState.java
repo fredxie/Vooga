@@ -19,20 +19,20 @@ public class DefaultLevelState extends State {
 
 	public DefaultLevelState(TopDownGameEngine parent, GameLevel game) {
 		super(parent, game);
-		//myGameObject = game;
+		myGameObject = game;
 		game.setGameState(this);
 
-		setKeyPressedObserver(new SystemKeyPressedObserver(this));
+		keyPressedObserver = new SystemKeyPressedObserver(this);
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				getGameObject()));
+				this.myGameObject));
 	}
 
 	/**
 	 * Transition between states
 	 */
 	public void update(long arg0) {
-		getKeyPressedObserver().pressKey(arg0);
-		GameLevel game = (GameLevel) getGameObject();
+		keyPressedObserver.pressKey(arg0);
+		GameLevel game = (GameLevel) myGameObject;
 		gameFinish(game, arg0);
 	}
 
@@ -45,7 +45,7 @@ public class DefaultLevelState extends State {
 	@KeyAnnotation(action = "SystemEscape")
 	public void escapePressed(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN + 1);
-		getGameObject().finish();
+		myGameObject.finish();
 	}
 
 	/**

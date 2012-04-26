@@ -19,40 +19,39 @@ import demo.configuration.DemoSetting;
 import demo.gameObject.Menu;
 
 public class MenuState extends State {
-	private TopDownGameEngine engine;
+	TopDownGameEngine engine;
 
 	public MenuState(TopDownGameEngine parent, OptionGameObject game) {
 		super(parent, game);
 		game.setGameState(this);
 		setStateID(0);
 		engine = parent;
-		setKeyPressedObserver(new SystemKeyPressedObserver(this));
+		keyPressedObserver = new SystemKeyPressedObserver(this);
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				getGameObject()));
+				this.myGameObject));
 
 	}
 
 	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
-		Menu game = (Menu) getGameObject();
+		Menu game = (Menu) myGameObject;
 		game.optionArrowUp(elapsedTime);
 	}
 
 	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
-		Menu game = (Menu) getGameObject();
+		Menu game = (Menu) myGameObject;
 		game.optionArrowDown(elapsedTime);
 	}
 
 	@SuppressWarnings("unused")
 	@KeyAnnotation(action = "SystemEnter")
 	public void optionEnter(long arg0) {
-		Menu game = (Menu) getGameObject();
+		Menu game = (Menu) myGameObject;
 
 		switch (game.getOption()) {
 		case 0:
 			// start easy game
-			getGameEngine().initResources();
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 
@@ -60,19 +59,19 @@ public class MenuState extends State {
 			break;
 
 		case 1:
+			// end
+			// game.finish();
+			engine.finish();
+			break;
+
+		case 2:
 			// level editor
 			LevelEditor l = new LevelEditor();
 			break;
 
-		case 2:
+		case 3:
 			// load and start game
 			Load load = new Load();
-			game.finish();
-			break;
-			
-		case 3:
-			TopDownGameManager
-					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
 			game.finish();
 			break;
 
@@ -81,10 +80,12 @@ public class MenuState extends State {
 			break;
 
 		case 5:
-			engine.finish();
+
+			TopDownGameManager
+					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
+			game.finish();
 			break;
 		}
-	    
 
 	}
 

@@ -23,27 +23,27 @@ public class PauseState extends State {
 		game.setGameState(this);
 		setStateID(1);
 
-		setKeyPressedObserver(new SystemKeyPressedObserver(this));
+		keyPressedObserver = new SystemKeyPressedObserver(this);
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				getGameObject()));
+				this.myGameObject));
 	}
 
 	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
-		Pause game = (Pause) getGameObject();
+		Pause game = (Pause) myGameObject;
 		game.optionArrowUp(elapsedTime);
 	}
 
 	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
-		Pause game = (Pause) getGameObject();
+		Pause game = (Pause) myGameObject;
 		game.optionArrowDown(elapsedTime);
 	}
 
 	@SuppressWarnings("unused")
 	@KeyAnnotation(action = "SystemEnter")
 	public void optionEnter(long arg0) {
-		Pause game = (Pause) getGameObject();
+		Pause game = (Pause) myGameObject;
 
 		switch (game.getOption()) {
 		case 0:
@@ -57,7 +57,7 @@ public class PauseState extends State {
 		case 1:
 			// RESTART
 			System.out.println("pausestate1");
-			getGameEngine().initResources();
+			myGameEngine.initResources();
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 			// myGameEngine.nextGameID = 2;
@@ -73,7 +73,7 @@ public class PauseState extends State {
 		case 3:
 			// menu
 			System.out.println("pausestate3");
-			getGameEngine().initResources();
+			myGameEngine.initResources();
 			TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
 			game.finish();
 			break;
@@ -82,12 +82,14 @@ public class PauseState extends State {
 	}
 
 	public void gameFinish(GameLevel game, long arg0) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void update(long arg0) {
-		getKeyPressedObserver().pressKey(arg0);
+		keyPressedObserver.pressKey(arg0);
+		// KeyPressedSubject.getInstance().notifyObservers(arg0, this);
 	}
 
 }

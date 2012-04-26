@@ -22,16 +22,16 @@ public class DefaultFinishGameState extends State {
 			ScoreBoardGameObject game) {
 		super(parent, game);
 		game.setGameState(this);
-		setKeyPressedObserver(new SystemKeyPressedObserver(this));
+		keyPressedObserver = new SystemKeyPressedObserver(this);
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				getGameObject()));
+				this.myGameObject));
 	}
 
 	/**
 	 * Transition between states
 	 */
 	public void update(long arg0) {
-		getKeyPressedObserver().pressKey(arg0);
+		keyPressedObserver.pressKey(arg0);
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class DefaultFinishGameState extends State {
 	@KeyAnnotation(action = "SystemEscape")
 	public void escapePressed(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
-		getGameEngine().initResources();
-		getGameObject().finish();
+		myGameEngine.initResources();
+		myGameObject.finish();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class DefaultFinishGameState extends State {
 	@KeyAnnotation(action = "SystemRestart")
 	public void restartPressed(long arg0) {
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
-		getGameObject().finish();
+		myGameObject.finish();
 	}
 
 }
