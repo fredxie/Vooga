@@ -22,16 +22,16 @@ public class DefaultInterLevelState extends State {
 			InterLevelScoreBoard game) {
 		super(parent, game);
 		game.setGameState(this);
-		keyPressedObserver = new SystemKeyPressedObserver(this);
+		setKeyPressedObserver(new SystemKeyPressedObserver(this));
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				this.myGameObject));
+				getGameObject()));
 	}
 
 	/**
 	 * Transition between states
 	 */
 	public void update(long arg0) {
-		keyPressedObserver.pressKey(arg0);
+		getKeyPressedObserver().pressKey(arg0);
 	}
 
 	/**
@@ -42,9 +42,8 @@ public class DefaultInterLevelState extends State {
 	 */
 	@KeyAnnotation(action = "SystemEscape")
 	public void escapePressed(long arg0) {
-		System.out.println("interstate0");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager.GAMEBEGIN);
-		myGameObject.finish();
+		getGameObject().finish();
 	}
 
 	/**
@@ -55,10 +54,9 @@ public class DefaultInterLevelState extends State {
 	 */
 	@KeyAnnotation(action = "SystemSpace")
 	public void restartPressed(long arg0) {
-		System.out.println("interstate1");
 		TopDownGameManager.setCurrentGameID(TopDownGameManager
 				.getPreviousGameID() + 1);
-		myGameObject.finish();
+		getGameObject().finish();
 	}
 
 }

@@ -19,39 +19,40 @@ import demo.configuration.DemoSetting;
 import demo.gameObject.Menu;
 
 public class MenuState extends State {
-	TopDownGameEngine engine;
+	private TopDownGameEngine engine;
 
 	public MenuState(TopDownGameEngine parent, OptionGameObject game) {
 		super(parent, game);
 		game.setGameState(this);
 		setStateID(0);
 		engine = parent;
-		keyPressedObserver = new SystemKeyPressedObserver(this);
+		setKeyPressedObserver(new SystemKeyPressedObserver(this));
 		setKeyList(JsonUtil.createKeyList(this, "json/keyConfig.json",
-				this.myGameObject));
+				getGameObject()));
 
 	}
 
 	@KeyAnnotation(action = "SystemUp")
 	public void optionArrowUp(long elapsedTime) {
-		Menu game = (Menu) myGameObject;
+		Menu game = (Menu) getGameObject();
 		game.optionArrowUp(elapsedTime);
 	}
 
 	@KeyAnnotation(action = "SystemDown")
 	public void optionArrowDown(long elapsedTime) {
-		Menu game = (Menu) myGameObject;
+		Menu game = (Menu) getGameObject();
 		game.optionArrowDown(elapsedTime);
 	}
 
 	@SuppressWarnings("unused")
 	@KeyAnnotation(action = "SystemEnter")
 	public void optionEnter(long arg0) {
-		Menu game = (Menu) myGameObject;
+		Menu game = (Menu) getGameObject();
 
 		switch (game.getOption()) {
 		case 0:
 			// start easy game
+			getGameEngine().initResources();
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
 
@@ -59,19 +60,19 @@ public class MenuState extends State {
 			break;
 
 		case 1:
-			// end
-			// game.finish();
-			engine.finish();
-			break;
-
-		case 2:
 			// level editor
 			LevelEditor l = new LevelEditor();
 			break;
 
-		case 3:
+		case 2:
 			// load and start game
 			Load load = new Load();
+			game.finish();
+			break;
+			
+		case 3:
+			TopDownGameManager
+					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
 			game.finish();
 			break;
 
@@ -80,12 +81,10 @@ public class MenuState extends State {
 			break;
 
 		case 5:
-
-			TopDownGameManager
-					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
-			game.finish();
+			engine.finish();
 			break;
 		}
+	    
 
 	}
 

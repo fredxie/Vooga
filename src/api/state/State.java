@@ -31,11 +31,11 @@ import com.golden.gamedev.GameObject;
  */
 public abstract class State implements KeyConfig {
 	private int stateID;
-	protected GameObject myGameObject;
-	protected GameEngine myGameEngine;
+	private GameObject myGameObject;
+	private GameEngine myGameEngine;
 
 	private List<Key> keyList;
-	protected SystemKeyPressedObserver keyPressedObserver;
+	private SystemKeyPressedObserver keyPressedObserver;
 
 	public State(TopDownGameEngine parent, GameObject game) {
 		myGameEngine = parent;
@@ -97,5 +97,21 @@ public abstract class State implements KeyConfig {
 	 * @param arg0
 	 */
 	public abstract void update(long arg0);
+	
+	protected GameObject getGameObject(){
+		return myGameObject;
+	}
+	
+	protected GameEngine getGameEngine(){
+		return myGameEngine;
+	}
+	
+	protected SystemKeyPressedObserver getKeyPressedObserver(){
+		return keyPressedObserver;
+	}
+	
+	protected void setKeyPressedObserver(SystemKeyPressedObserver ob){
+		keyPressedObserver = ob;
+	}
 
 }
