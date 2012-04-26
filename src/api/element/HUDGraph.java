@@ -2,6 +2,8 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import api.game.TopDownPlayField;
+
 import com.golden.gamedev.object.PlayField;
 
 @SuppressWarnings("serial")

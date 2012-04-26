@@ -3,9 +3,9 @@ package demo.gameLevel;
 
 import java.awt.Graphics2D;
 
+import api.HUD.HUD;
 import api.game.TopDownGameEngine;
 import api.gameLevel.GameLevel;
-import api.hud.HUD;
 import api.state.DefaultLastLevelState;
 import demo.HUD.DirectText;
 import demo.HUD.FighterHPText;

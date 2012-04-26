@@ -358,10 +358,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 			LoadUtil.saveJson(listToStore, text);
 		}
 	}
-	
-	public static void main(String[] args){
-		LevelEditor e = new LevelEditor();
-	}
 
 
 }

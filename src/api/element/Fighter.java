@@ -2,6 +2,7 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import api.game.TopDownPlayField;
 import api.game.TopDownTimer;
 import api.gameLevel.GameLevel;
 import api.playerState.PlayerStateManager;

@@ -1,6 +1,6 @@
 package api.collisionSystem;
 
-import api.element.TopDownPlayField;
+import api.game.TopDownPlayField;
 
 import com.golden.gamedev.object.Sprite;
 

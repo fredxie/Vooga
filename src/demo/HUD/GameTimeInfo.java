@@ -3,7 +3,7 @@ package demo.HUD;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
-import api.hud.DisplayText;
+import api.HUD.DisplayText;
 
 public class GameTimeInfo extends DisplayText {
 	private DateTime myTime;

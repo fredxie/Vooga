@@ -3,8 +3,9 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
-import ai.AI;
-import ai.BehaviorManager;
+import api.ai.AI;
+import api.ai.BehaviorManager;
+import api.game.TopDownPlayField;
 import api.game.TopDownTimer;
 import api.gameObject.TopDownGameManager;
 import api.spawn.SpawnBehavior;

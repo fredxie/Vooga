@@ -6,8 +6,8 @@ package demo.element;
  */
 import java.awt.image.BufferedImage;
 
-import ai.AI;
-import ai.BehaviorManager;
+import api.ai.AI;
+import api.ai.BehaviorManager;
 import api.element.Element;
 import api.element.Fighter;
 import api.element.Weapon;

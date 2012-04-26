@@ -1,7 +1,7 @@
 package demo.HUD;
 
+import api.HUD.DisplayText;
 import api.gameLevel.GameLevel;
-import api.hud.DisplayText;
 
 public class LevelText extends DisplayText {
 	private GameLevel myLevel;

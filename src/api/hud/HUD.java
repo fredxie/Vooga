@@ -1,4 +1,4 @@
-package api.hud;
+package api.HUD;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -42,6 +42,12 @@ public class HUD {
 	public void display() {
 		for(DisplayObject obj : myList) {
 			obj.display();
+		}
+	}
+	
+	public void setAllFont (String newFont) {
+		for(DisplayObject obj : myList) {
+			obj.changeFont(newFont);
 		}
 	}
 	

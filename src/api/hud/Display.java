@@ -1,4 +1,4 @@
-package api.hud;
+package api.HUD;
 
 import java.awt.Graphics2D;
 

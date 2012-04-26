@@ -1,7 +1,7 @@
 package demo.game;
 
 import api.background.TopDownTileBackground;
-import api.element.TopDownPlayField;
+import api.game.TopDownPlayField;
 import api.gameObject.TopDownGameObject;
 import api.util.TopDownImageUtil;
 import api.util.TopDownUtility;

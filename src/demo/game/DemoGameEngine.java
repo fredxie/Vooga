@@ -2,12 +2,13 @@ package demo.game;
 
 import java.awt.Dimension;
 
+import levelEditor.MyOwnGameLevel;
+
 import api.game.TopDownGameEngine;
 import api.game.TopDownGameLoader;
 import api.gameObject.TopDownGameManager;
 import demo.gameLevel.GameLevel1;
 import demo.gameLevel.GameLevel2;
-import demo.gameLevel.MyOwnGameLevel;
 import demo.gameObject.InterLevelScoreBoard;
 import demo.gameObject.LostGameScoreBoard;
 import demo.gameObject.Menu;

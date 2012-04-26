@@ -3,7 +3,7 @@ package demo.gameLevel;
 import java.util.ArrayList;
 import java.util.List;
 
-import ai.AI;
+import api.ai.AI;
 import api.collisionSystem.BonusCollision;
 import api.collisionSystem.CollisionManager;
 import api.collisionSystem.ImageCollision;

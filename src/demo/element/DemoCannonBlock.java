@@ -9,11 +9,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import ai.AI;
+import api.ai.AI;
 import api.element.Enemy;
 import api.element.Fighter;
-import api.element.TopDownPlayField;
 import api.element.Weapon;
+import api.game.TopDownPlayField;
 import api.util.TopDownUtility;
 
 import com.golden.gamedev.object.Timer;

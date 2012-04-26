@@ -1,7 +1,7 @@
 package demo.HUD;
 
+import api.HUD.DisplayText;
 import api.element.Fighter;
-import api.hud.DisplayText;
 
 
 public class LifeText extends DisplayText {

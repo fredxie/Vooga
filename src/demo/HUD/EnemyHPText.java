@@ -1,7 +1,7 @@
 package demo.HUD;
 
+import api.HUD.DisplayText;
 import api.element.Enemy;
-import api.hud.DisplayText;
 
 
 public class EnemyHPText extends DisplayText {
