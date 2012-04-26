@@ -14,7 +14,7 @@ import demo.HUD.ScoreText;
 import demo.game.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {
-	private TopDownImageBackground mainMenuTitle;
+	TopDownImageBackground mainMenuTitle;
 
 	public LostGameScoreBoard(TopDownGameEngine arg0) {
 		super(arg0);

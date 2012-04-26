@@ -13,7 +13,7 @@ import demo.game.DemoGameEngine;
 
 public class WinGameScoreBoard extends ScoreBoardGameObject {
 
-	private TopDownImageBackground mainMenuTitle;
+	TopDownImageBackground mainMenuTitle;
 
 	public WinGameScoreBoard(TopDownGameEngine parent) {
 		super(parent);
