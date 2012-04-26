@@ -5,10 +5,10 @@ import org.joda.time.Duration;
 
 import api.HUD.DisplayText;
 
-public class GameTimeInfo extends DisplayText {
+public class GameTimeText extends DisplayText {
 	private DateTime myTime;
 	
-	public GameTimeInfo(DateTime startTime) {
+	public GameTimeText(DateTime startTime) {
 		super();
 		myTime = startTime;
 	}
