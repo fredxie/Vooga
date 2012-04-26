@@ -59,19 +59,19 @@ public class MenuState extends State {
 			break;
 
 		case 1:
-			// end
-			// game.finish();
-			engine.finish();
-			break;
-
-		case 2:
 			// level editor
 			LevelEditor l = new LevelEditor();
 			break;
 
-		case 3:
+		case 2:
 			// load and start game
 			Load load = new Load();
+			game.finish();
+			break;
+
+		case 3:
+			TopDownGameManager
+					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
 			game.finish();
 			break;
 
@@ -80,10 +80,7 @@ public class MenuState extends State {
 			break;
 
 		case 5:
-
-			TopDownGameManager
-					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
-			game.finish();
+			engine.finish();
 			break;
 		}
 

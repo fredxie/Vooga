@@ -20,11 +20,12 @@ public class Menu extends OptionGameObject {
 
 	public void setOptionList() {
 		addOption("PLAY");
-		addOption("EXIT");
+		//addOption("EXIT");
 		addOption("LEVEL EDITOR");
 		addOption("LOAD FILE");
-		addOption("SETTING");
 		addOption("PLAY MY OWN GAME");
+		addOption("SETTING");
+		addOption("EXIT");
 	}
 
 	@Override
