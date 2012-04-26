@@ -14,7 +14,7 @@ import demo.HUD.ScoreText;
 import demo.game.DemoGameEngine;
 
 public class InterLevelScoreBoard extends ScoreBoardGameObject {
-	TopDownImageBackground mainMenuTitle;
+	private TopDownImageBackground mainMenuTitle;
 
 	public InterLevelScoreBoard(TopDownGameEngine parent) {
 		super(parent);
