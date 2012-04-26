@@ -1,6 +1,7 @@
 package api.state;
 
 import java.util.List;
+
 import api.configuration.Key;
 import api.configuration.KeyConfig;
 import api.configuration.SystemKeyPressedObserver;
@@ -34,7 +35,7 @@ public abstract class State implements KeyConfig {
 	protected GameEngine myGameEngine;
 
 	private List<Key> keyList;
-	public SystemKeyPressedObserver keyPressedObserver;
+	protected SystemKeyPressedObserver keyPressedObserver;
 
 	public State(TopDownGameEngine parent, GameObject game) {
 		myGameEngine = parent;

@@ -1,6 +1,6 @@
 package demo.HUD;
 
-import api.hud.DisplayText;
+import api.HUD.DisplayText;
 import demo.collisionSystem.EnemyBulletCollision;
 
 

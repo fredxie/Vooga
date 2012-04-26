@@ -2,6 +2,7 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import api.game.TopDownPlayField;
 import api.spawn.SpawnBehavior;
 
 import com.golden.gamedev.object.Sprite;

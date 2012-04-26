@@ -6,8 +6,8 @@ package api.element;
  */
 import java.awt.image.BufferedImage;
 
-import ai.AI;
-import ai.BehaviorManager;
+import api.ai.AI;
+import api.ai.BehaviorManager;
 import api.gameObject.TopDownGameManager;
 
 @SuppressWarnings("serial")

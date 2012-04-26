@@ -1,9 +1,9 @@
 package api.playerState;
 
-import demo.element.Missile;
 import api.element.Fighter;
 import api.element.Weapon;
 import api.util.TopDownImageUtil;
+import demo.element.Missile;
 
 /**
  * This class keep the weapon feature 

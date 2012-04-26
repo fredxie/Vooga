@@ -13,8 +13,6 @@ import api.playerState.PlayerStateManager;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownImageUtil;
-
-import demo.element.Laser;
 import demo.game.DemoGameEngine;
 
 @SuppressWarnings("serial")

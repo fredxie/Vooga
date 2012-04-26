@@ -3,10 +3,9 @@ package demo.levelTransition;
 
 import java.awt.Graphics2D;
 
+import api.HUD.HUD;
 import api.gameLevel.GameLevel;
-import api.hud.HUD;
 import api.levelTransition.LevelTransition;
-
 import demo.HUD.DirectText;
 import demo.HUD.LevelText;
 import demo.HUD.ScoreText;

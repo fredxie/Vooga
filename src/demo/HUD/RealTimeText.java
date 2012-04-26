@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import api.hud.DisplayText;
+import api.HUD.DisplayText;
 
 public class RealTimeText extends DisplayText {
 	private DateTimeFormatter myFormatter = DateTimeFormat

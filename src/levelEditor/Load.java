@@ -50,7 +50,6 @@ public class Load extends JFrame {
 				JFileChooser fc = new JFileChooser("./");
 				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fc.showOpenDialog(select);
-
 				list = LoadUtil.loadJson(fc.getSelectedFile());
 			}
 

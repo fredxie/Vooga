@@ -56,7 +56,7 @@ public class DemoLevelUpdate2 extends GameLevelUpdate {
 	}
 
 	public void gameUpdate() {
-		if (gl.fighter.getLifeNum() == 0) {
+		if (!gl.fighter.isActive()) {
 			gl.gameOver = true;
 			gl.playfield.clearPlayField();
 		}

@@ -34,8 +34,10 @@ public class ImageLabel extends JLabel implements MouseListener {
 	private int X_pos, Y_pos;
 
 	private String ImagePath;
-	private String myCategory = null;
-	private int HP = 0;
+	private String myCategory = "Enemy";
+	private int HP = 1;
+	private int num = 1;
+	private String spawnType = "Random";
 
 	public ImageLabel(BufferedImage image, LevelEditor ld) {
 		super();
@@ -199,7 +201,25 @@ public class ImageLabel extends JLabel implements MouseListener {
 		myList.add(HP);
 		myList.add(getX());
 		myList.add(getY());
+		myList.add(num);
+		myList.add(spawnType);
 		return myList;
+	}
+	
+	public void setSpawnNum(int n){
+		num = n;
+	}
+	
+	public int getSpawnNum(){
+		return num;
+	}
+	
+	public void setSpawnType(String str){
+		spawnType = str;
+	}
+	
+	public String getSpawnType(){
+		return spawnType;
 	}
 
 }

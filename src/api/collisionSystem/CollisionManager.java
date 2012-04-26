@@ -3,7 +3,7 @@ package api.collisionSystem;
 import java.util.HashMap;
 
 import api.element.ElementGroup;
-import api.element.TopDownPlayField;
+import api.game.TopDownPlayField;
 
 /**
  * This class is a collision manager to help developer manage different collisions between SpriteGroups in the game.

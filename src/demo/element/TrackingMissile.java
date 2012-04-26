@@ -9,8 +9,6 @@ import api.element.Element;
 import api.element.Enemy;
 import api.element.Fighter;
 import api.element.Weapon;
-
-import demo.element.Laser;
 import demo.game.DemoGameEngine;
 
 @SuppressWarnings("serial")

@@ -2,6 +2,8 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import api.game.TopDownPlayField;
+
 /**
  * This class defines Block Sprite to help developer use blocks.
  * 

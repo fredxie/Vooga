@@ -6,6 +6,8 @@ package levelEditor;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -14,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class SpecDialog extends JFrame {
@@ -30,6 +33,10 @@ public class SpecDialog extends JFrame {
 	private JComboBox category;
 	private JLabel HP_Label;
 	private JComboBox HP;
+	private JLabel num_Label;
+	private JTextField textField;
+	private JLabel spawn_Label;
+	private JComboBox spawn;
 
 	private ImageLabel myElement;
 
@@ -49,6 +56,8 @@ public class SpecDialog extends JFrame {
 		setPositionLabel();
 		setCategory();
 		setHPNumber();
+		setSpawnNumber();
+		setSpawnType();
 
 		con = this.getContentPane();
 		con.add(myPanel);
@@ -92,7 +101,7 @@ public class SpecDialog extends JFrame {
 		category_Label.setBounds(150, 10, 100, 30);
 		myPanel.add(category_Label);
 
-		String[] Category = { "Fighter", "Enemy", "Block", "Bonus" };
+		String[] Category = { "Enemy", "Fighter", "Block", "Bonus" };
 		category = new JComboBox(Category);
 		category.setBackground(Color.GRAY);
 		category.setForeground(Color.RED);
@@ -126,6 +135,46 @@ public class SpecDialog extends JFrame {
 				String str = (String) HP.getSelectedItem();
 				int health = Integer.parseInt(str);
 				myElement.setHP(health);
+			}
+		});
+	}
+	
+	public void setSpawnNumber(){
+		num_Label = new JLabel("Spawn Number");
+		num_Label.setForeground(Color.RED);
+		num_Label.setBounds(150, 130, 150, 30);
+		myPanel.add(num_Label);
+		
+		textField = new JTextField(10);
+		textField.setForeground(Color.GRAY);
+		textField.setBounds(150, 160, 150, 30);
+		textField.setEnabled(true);
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				String text = textField.getText();
+				myElement.setSpawnNum(Integer.parseInt(text));
+			}
+		});
+		myPanel.add(textField);
+	}
+	
+	public void setSpawnType(){
+		spawn_Label = new JLabel("Spawn Type");
+		spawn_Label.setForeground(Color.RED);
+		spawn_Label.setBounds(150, 190, 150, 30);
+		myPanel.add(spawn_Label);
+		
+		String[] spawnType = {"Random", "Time", "Location", "PlayerState"};
+		spawn = new JComboBox(spawnType);
+		spawn.setBackground(Color.GRAY);
+		spawn.setForeground(Color.RED);
+		spawn.setBounds(150, 220, 150, 30);
+		myPanel.add(spawn);
+		
+		spawn.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent ie) {
+				String str = (String) spawn.getSelectedItem();
+				myElement.setSpawnType(str);
 			}
 		});
 	}

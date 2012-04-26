@@ -3,11 +3,10 @@ package api.element;
 
 import java.awt.image.BufferedImage;
 
+import api.game.TopDownPlayField;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownUtility;
-
-
 import demo.game.DemoGameEngine;
 
 /**

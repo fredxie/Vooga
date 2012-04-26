@@ -2,11 +2,10 @@ package demo.element;
 
 import java.awt.image.BufferedImage;
 
-
 import api.element.Bonus;
 import api.element.Element;
 import api.element.RegularFighter;
-import api.element.TopDownPlayField;
+import api.game.TopDownPlayField;
 import api.playerState.CollisionStatus;
 import api.util.TopDownImageUtil;
 

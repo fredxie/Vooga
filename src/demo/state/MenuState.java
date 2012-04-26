@@ -18,8 +18,6 @@ import api.util.JsonUtil;
 import demo.configuration.DemoSetting;
 import demo.gameObject.Menu;
 
-
-
 public class MenuState extends State {
 	TopDownGameEngine engine;
 
@@ -56,30 +54,36 @@ public class MenuState extends State {
 			// start easy game
 			TopDownGameManager
 					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN);
-			System.out.println("menustate0");
+
 			game.finish();
 			break;
 
 		case 1:
-			// end
-			// game.finish();
-			engine.finish();
-			break;
-
-		case 2:
 			// level editor
 			LevelEditor l = new LevelEditor();
 			break;
 
-		case 3:
+		case 2:
 			// load and start game
 			Load load = new Load();
+			game.finish();
+			break;
+
+		case 3:
+			TopDownGameManager
+					.setCurrentGameID(TopDownGameManager.GAMELEVELBEGIN + 2);
+			game.finish();
 			break;
 
 		case 4:
 			DemoSetting setting = new DemoSetting();
 			break;
+
+		case 5:
+			engine.finish();
+			break;
 		}
+
 	}
 
 	public void gameFinish(GameLevel game, long arg0) {

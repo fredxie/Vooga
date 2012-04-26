@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import api.util.JsonUtil;
 import api.util.TopDownAreaUtil;
 import api.util.TopDownImageUtil;
-
 import demo.game.DemoGameEngine;
 
 @SuppressWarnings("serial")

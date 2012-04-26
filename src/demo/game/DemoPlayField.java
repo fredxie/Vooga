@@ -1,8 +1,7 @@
 package demo.game;
 
 import api.background.TopDownTileBackground;
-import api.element.TopDownPlayField;
-import api.game.Configuration;
+import api.game.TopDownPlayField;
 import api.gameObject.TopDownGameObject;
 import api.util.TopDownImageUtil;
 import api.util.TopDownUtility;
@@ -22,11 +21,10 @@ public class DemoPlayField extends TopDownPlayField {
 			}
 		}
 
-		if (Configuration.BACKGROUND_PATH == null)
-			Configuration.BACKGROUND_PATH = s;
+		
 		TopDownTileBackground background = new TopDownTileBackground(
 				TopDownImageUtil
-						.getImages(Configuration.BACKGROUND_PATH, 10, 1),
+						.getImages(s, 10, 1),
 				tiles);
 		background.setLocation(0, background.getHeight());
 		this.setBackground(background);

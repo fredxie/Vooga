@@ -4,9 +4,9 @@ package demo.HUD;
 
 import java.awt.image.BufferedImage;
 
+import api.HUD.DisplayImage;
 import api.element.Fighter;
 import api.element.HUDGraph;
-import api.hud.DisplayImage;
 
 import com.golden.gamedev.object.PlayField;
 

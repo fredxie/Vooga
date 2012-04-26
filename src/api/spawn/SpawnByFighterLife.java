@@ -1,7 +1,7 @@
 package api.spawn;
 
-import api.element.Fighter;
 import umontreal.iro.lecuyer.probdist.NormalDist;
+import api.element.Fighter;
 
 public class SpawnByFighterLife implements SpawnBehavior {
 

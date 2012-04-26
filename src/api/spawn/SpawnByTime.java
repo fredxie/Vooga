@@ -5,7 +5,6 @@
 package api.spawn;
 
 import umontreal.iro.lecuyer.probdist.NormalDist;
-
 import api.element.Fighter;
 
 import com.golden.gamedev.object.Timer;

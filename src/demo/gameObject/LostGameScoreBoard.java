@@ -1,20 +1,19 @@
 package demo.gameObject;
 
-
 import java.awt.Graphics2D;
 
+import api.HUD.HUD;
 import api.background.TopDownImageBackground;
 import api.game.TopDownGameEngine;
 import api.gameObject.ScoreBoardGameObject;
 import api.gameObject.TopDownGameManager;
-import api.hud.HUD;
 import api.state.DefaultFinishGameState;
 import demo.HUD.NumberText;
 import demo.HUD.ScoreText;
 import demo.game.DemoGameEngine;
 
 public class LostGameScoreBoard extends ScoreBoardGameObject {
-	TopDownImageBackground mainMenuTitle;
+	private TopDownImageBackground mainMenuTitle;
 
 	public LostGameScoreBoard(TopDownGameEngine arg0) {
 		super(arg0);

@@ -1,11 +1,11 @@
 package api.state;
 
-import demo.gameObject.InterLevelScoreBoard;
 import api.configuration.KeyAnnotation;
 import api.configuration.SystemKeyPressedObserver;
 import api.game.TopDownGameEngine;
 import api.gameObject.TopDownGameManager;
 import api.util.JsonUtil;
+import demo.gameObject.InterLevelScoreBoard;
 
 /**
  * This class performs as the default state class for the state between

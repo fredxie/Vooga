@@ -101,10 +101,8 @@ public class Key {
 		for (Method m : methods) {
 			Annotation annotation = m.getAnnotation(KeyAnnotation.class);
 			if (annotation instanceof KeyAnnotation) {
-				KeyAnnotation key = (KeyAnnotation) annotation;
-				if (!m.getGenericParameterTypes()[0].equals(long.class))
-					continue;
-				if (key.action().equals(action)) {
+				KeyAnnotation keyAnnotation = (KeyAnnotation) annotation;
+				if (m.getGenericParameterTypes()[0].equals(long.class) && keyAnnotation.action().equals(action)) {
 					try {
 						m.invoke(player, elapsedTime);
 						invoked = true;
