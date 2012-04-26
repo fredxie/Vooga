@@ -11,7 +11,7 @@ import demo.state.MenuState;
 
 public class Menu extends OptionGameObject {
 	public int option;
-	private TopDownImageBackground mainMenuTitle;
+	TopDownImageBackground mainMenuTitle;
 
 	public Menu(TopDownGameEngine parent) {
 		super(parent);
@@ -20,11 +20,11 @@ public class Menu extends OptionGameObject {
 
 	public void setOptionList() {
 		addOption("PLAY");
+		addOption("EXIT");
 		addOption("LEVEL EDITOR");
 		addOption("LOAD FILE");
-		addOption("PLAY MY OWN GAME");
 		addOption("SETTING");
-		addOption("EXIT");
+		addOption("PLAY MY OWN GAME");
 	}
 
 	@Override
