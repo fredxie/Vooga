@@ -132,7 +132,6 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		JMenuItem loadBackground = new JMenuItem("Load Background");
 		loadBackground.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				//setNewBackground();
 				loadBackGround();
 			}
 		});
@@ -286,9 +285,7 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 		List<List<Object>> list = LoadUtil.loadJson(myFile);
 
 		File background = new File((String) list.get(0).get(0));
-		/*playFieldLength = LevelEditorUtil.castObjectToInteger(list.get(0)
-				.get(1));
-		loadBackground(background, playFieldLength);*/
+		background_Path = (String) list.get(0).get(0);
 		BufferedImage bg = LevelEditorUtil.getSelectedImage(background);
 		panel_1.setImage(bg);
 
@@ -298,16 +295,19 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 
 	}
 
-	private void loadElement(List<Object> list) {
-		File file = new File((String) list.get(0));
+	private void loadElement(List<Object> inputList) {
+		File file = new File((String) inputList.get(0));
 		BufferedImage image = LevelEditorUtil.convertToBufferedImage(file);
 		ImageLabel label = new ImageLabel(image, this);
-		label.setCategory((String) list.get(1));
-		label.setHP(LevelEditorUtil.castObjectToInteger(list.get(2)));
-		label.setLocation(LevelEditorUtil.castObjectToInteger(list.get(3)),
-				LevelEditorUtil.castObjectToInteger(list.get(4)));
+		label.setImagePath((String) inputList.get(0));
+		label.setCategory((String) inputList.get(1));
+		label.setHP(LevelEditorUtil.castObjectToInteger(inputList.get(2)));
+		label.setLocation(LevelEditorUtil.castObjectToInteger(inputList.get(3)),
+				LevelEditorUtil.castObjectToInteger(inputList.get(4)));
+		label.setSpawnNum(LevelEditorUtil.castObjectToInteger(inputList.get(5)));
+		label.setSpawnType((String)inputList.get(6));
 		list.add(label);
-
+		System.out.println("list size "+list.size());
 		panel_1.add(label);
 		panel_1.revalidate();
 		panel_1.repaint();
@@ -358,6 +358,5 @@ public class LevelEditor extends JFrame implements KeyListener, MouseListener {
 			LoadUtil.saveJson(listToStore, text);
 		}
 	}
-
-
+	
 }
