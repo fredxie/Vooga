@@ -35,7 +35,7 @@ public abstract class State implements KeyConfig {
 	protected GameEngine myGameEngine;
 
 	private List<Key> keyList;
-	protected SystemKeyPressedObserver keyPressedObserver;
+	public SystemKeyPressedObserver keyPressedObserver;
 
 	public State(TopDownGameEngine parent, GameObject game) {
 		myGameEngine = parent;
