@@ -87,8 +87,6 @@ public abstract class Enemy extends Element {
 
 	public void setAI_Enemy() {
 		AI newBrain = BehaviorManager.eBehaviorManager(this, Level);
-		System.out.println(newBrain);
-		System.out.println(this);
 		newBrain.setSprite(this);
 		this.myBrain_Enemy = newBrain;
 	}

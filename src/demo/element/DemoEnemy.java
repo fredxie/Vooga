@@ -61,7 +61,6 @@ public class DemoEnemy extends Enemy {
 		BehaviorManager.weapon_Map(new Brain5_Weapon(), 5);
 		this.setAI_Enemy();
 		myBrain_Enemy = this.getAI_Enemy();
-		System.out.println(myBrain_Enemy);
 		healthPoint = AI.ENEMY_HP;
 	}
 
@@ -124,7 +123,6 @@ public class DemoEnemy extends Enemy {
 					enemyMissile = new Missile(ImageIO.read(new File("images/game/emissle_easy.png")), getX()+ getWidth() / 2, getY() + 20, 1);
 					enemyMissile.setAI_Weapon();
 					myBrain_Weapon = enemyMissile.getAI_Weapon();
-					System.out.println(myBrain_Weapon);
 					myBrain_Weapon.refresh(elapsedTime);
 					BehaviorManager.wBehaviorManager(enemyMissile, Level);
 					oldBrain_Weapon = enemyMissile.getAI_Weapon();

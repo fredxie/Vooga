@@ -16,7 +16,6 @@ public class BehaviorManager {
 	static AI rightBrain;
 
 	public static void enemy_Map(AI brains, int level){
-		System.out.println(level);
 		if(!e_map.containsKey(brains)){
 			e_map.put(brains, level);
 		}
@@ -32,8 +31,7 @@ public class BehaviorManager {
 		for (AI brain : e_behaviors) {
 			if (Level <= e_behaviors.size()) {
 				if(e_map.containsKey(brain)){
-					if (Level == e_map.get(brain)){
-						
+					if (Level == e_map.get(brain)){	
 						rightBrain = brain;
 					}
 				}
@@ -42,7 +40,6 @@ public class BehaviorManager {
 				v = enemy.getVerticalSpeed();
 				enemy.setSpeed(h + .05, v + .03);
 			}
-
 		}
 		e_behaviors.clear();
 		e_map.clear();
@@ -61,7 +58,6 @@ public class BehaviorManager {
 				v = missile.getVerticalSpeed();
 				missile.setSpeed(h + .02, v + .03);
 			}
-
 		}
 		w_behaviors.clear();
 		w_map.clear();
